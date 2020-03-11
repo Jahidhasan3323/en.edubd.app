@@ -71,12 +71,17 @@ class AttendenceSms extends Command
         }
         if (count($attendance_schools) > 0) {
             $sms_schools = School::whereIn('id', $attendance_schools)->get();
-            echo AutoSms::attend($sms_schools);
-            echo AutoSms::absent($sms_schools);
+            // Use 1 for employee & 2 for Student
+            echo AutoSms::attend($sms_schools,1);
+            echo AutoSms::attend($sms_schools,2);
+            echo AutoSms::absent($sms_schools,1);
+            echo AutoSms::absent($sms_schools,2);
         }
         if (count($attendance_out_schools) > 0) {
             $sms_timeout = School::whereIn('id', $attendance_out_schools)->get();
-            echo AutoSms::attend_out($sms_timeout);
+             // Use 1 for employee & 2 for Student
+            // echo AutoSms::attend_out($sms_timeout,1);
+            // echo AutoSms::attend_out($sms_timeout,2);
         }
 
     }
