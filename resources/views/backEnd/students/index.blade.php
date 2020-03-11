@@ -58,7 +58,7 @@
 <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
     <div class="page-header">
         @if(Auth::is('root'))<h1 class="text-center text-temp">{{$school->user->name}}</h1>@endif
-        <h1 class="text-center text-temp">শ্রেণী ভিত্তিক {{$student_type==1?'প্রাক্তন':''}} শিক্ষার্থীদের তালিকা</h1>
+        <h1 class="text-center text-temp">List of class-based {{$student_type==1?'former':''}} students</h1>
     </div>
 
     @if(Session::has('errmgs'))
@@ -71,14 +71,14 @@
        <table id="student_tbl" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th>ক্রমিক নং</th>
-                    <th>শ্রেণী </th>
-                    <th>বিভাগ</th>
-                    <th>শাখা</th>
-                    <th>শিফট</th>
-                    <th>শিক্ষাবর্ষ</th>
-                    <th>মোট শিক্ষার্থী</th>
-                    <th>অ্যাকশন</th>
+                    <th>#</th>
+                    <th>Class </th>
+                    <th>Group/Department</th>
+                    <th>Section</th>
+                    <th>Shift</th>
+                    <th>Session</th>
+                    <th>Total Student</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -88,12 +88,12 @@
                     @foreach($students as $student)
                         <tr>
                             <td>{{$x}}</td>
-                            <td>{{$BanglaNumberToWord->engToBn($student->masterClass->name)}}</td>
+                            <td>{{$student->masterClass->name}}</td>
                             <td>{{$student->group}}</td>
                             <td>{{$student->section}}</td>
                             <td>{{$student->shift}}</td>
-                            <td>{{$BanglaNumberToWord->engToBn($student->session)}}</td>
-                            <td>{{$BanglaNumberToWord->engToBn($student->total_student)}}</td>
+                            <td>{{$student->session}}</td>
+                            <td>{{$student->total_student}}</td>
                             <td>
                               @if(Auth::is('root'))
                                 <a style="margin-bottom: 10px;" href="{{url('/student_list_controll',[$student->master_class_id,$student->group,$student->section,$student->shift,$student->session,$school->id])}}" class="btn btn-danger"><span class="glyphicon glyphicon-eye-open"></span> ID Card Access</a>
@@ -111,14 +111,14 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th>ক্রমিক নং</th>
-                    <th>শ্রেণী </th>
-                    <th>বিভাগ</th>
-                    <th>শাখা</th>
-                    <th>শিফট</th>
-                    <th>শিক্ষাবর্ষ</th>
-                    <th>মোট শিক্ষার্থী</th>
-                    <th>অ্যাকশন</th>
+                    <th>#</th>
+                    <th>Class </th>
+                    <th>Group/Department</th>
+                    <th>Section</th>
+                    <th>Shift</th>
+                    <th>Session</th>
+                    <th>Total Student</th>
+                    <th>Action</th>
                 </tr>
             </tfoot>
         </table>
