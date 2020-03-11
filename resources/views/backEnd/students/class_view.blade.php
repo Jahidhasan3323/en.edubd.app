@@ -56,17 +56,17 @@
 </style>
 <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
     <div class="page-header">
-        <h1 class="text-center text-temp">শিক্ষার্থীদের তালিকা</h1>
+        <h1 class="text-center text-temp">Student List</h1>
     </div>
     <div class="row">
       <div class="col-sm-12 text-center">
-        <a class="btn btn-primary" onclick="event.preventDefault();document.getElementById('student-list-print').submit();"><i class="glyphicon glyphicon-print"></i> প্রিন্ট করুন</a>
+        <a class="btn btn-primary" onclick="event.preventDefault();document.getElementById('student-list-print').submit();"><i class="glyphicon glyphicon-print"></i> Print</a>
         <form id="student-list-print" action="{{ url('students/print') }}" method="POST" style="display: none;" target="_blank">
           {{ csrf_field() }}
           <input type="hidden" value="{{$students}}" name="students">
         </form>
 
-        <h4>শ্রেণী : {{$BanglaNumberToWord->engToBn($students[0]->masterClass->name)}}, বিভাগ : {{$students[0]->group}}, শাখা : {{$students[0]->section}}, শিক্ষাবর্ষ :{{$BanglaNumberToWord->engToBn($students[0]->session)}} </h4>
+        <h4>Class : {{$students[0]->masterClass->name}}, Department : {{$students[0]->group}}, Section : {{$students[0]->section}}, Session :{{$students[0]->session}} </h4>
       </div>
 
       @if(Session::has('errmgs'))
@@ -81,13 +81,13 @@
        <table id="student_tbl" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th>ক্রমিক নং</th>
-                    <th>ছবি</th>
-                    <th>নাম</th>
-                    <th>রোল</th>
-                    <th>ইমেইল</th>
-                    <th>আইডি নং</th>
-                    <th>অ্যাকশন</th>
+                    <th>#</th>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Roll No.</th>
+                    <th>Email</th>
+                    <th>ID No.</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -155,13 +155,13 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th>ক্রমিক নং</th>
-                    <th>ছবি</th>
-                    <th>নাম</th>
-                    <th>রোল</th>
-                    <th>ইমেইল</th>
-                    <th>আইডি নং</th>
-                    <th>অ্যাকশন</th>
+                    <th>#</th>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Roll No.</th>
+                    <th>Email</th>
+                    <th>ID No.</th>
+                    <th>Action</th>
                 </tr>
             </tfoot>
         </table>

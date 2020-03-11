@@ -8,12 +8,12 @@
 <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
     <div class="page-header">
         <h1 class="text-center text-temp">{{$school->user->name}}</h1>
-        <h1 class="text-center text-temp">শিক্ষার্থীদের তালিকা</h1>
+        <h1 class="text-center text-temp">Student List</h1>
     </div>
     <div class="row">
       <div class="col-sm-12 text-center">
 
-        <h4>শ্রেণী : {{$BanglaNumberToWord->engToBn($students[0]->masterClass->name)}}, বিভাগ : {{$students[0]->group}}, শাখা : {{$students[0]->section}}, শিক্ষাবর্ষ :{{$BanglaNumberToWord->engToBn($students[0]->session)}} </h4>
+        <h4>Class : {{$students[0]->masterClass->name}}, Department : {{$students[0]->group}}, Section : {{$students[0]->section}}, Session :{{$students[0]->session}} </h4>
       </div>
 
       @if(Session::has('errmgs'))
@@ -56,10 +56,10 @@
                 </tr>
               @endif
                 <tr>
-                    <th>নাম</th>
-                    <th>আইডি নং</th>
-                    <th>রোল</th>
-                    <th>ছবি</th>
+                    <th>Name</th>
+                    <th>ID No.</th>
+                    <th>Roll</th>
+                    <th>Photo</th>
                 </tr>
             </thead>
             <tbody>
@@ -80,9 +80,9 @@
                 @if(count($students)>0)
                 <tr>
                     <td colspan="3">
-                        <input id="all_check" class="form-check-input" onclick="checkNumber()" type="checkbox"> <label for="all_check">সব চেক / আনচেক</label>
+                        <input id="all_check" class="form-check-input" onclick="checkNumber()" type="checkbox"> <label for="all_check">All Check / Uncheck</label>
 
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="form-check-input" id="student_list_print" onclick="checkFromAction()" type="checkbox"> <label for="student_list_print">শিক্ষার্থীদের তালিকা প্রিন্টের জন্য এখানে টিক দিন </label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="form-check-input" id="student_list_print" onclick="checkFromAction()" type="checkbox"> <label for="student_list_print">Click here for printing a student list </label>
                     </td>
                 </tr>
                 @endif
@@ -90,9 +90,9 @@
         </table>
     </div>
           <div class="col-sm-12 text-center">
-            <input type="submit" value="{{isset($print)?'আইডি কার্ড প্রিন্ট':'পরিবর্তন সংরক্ষণ'}} করুন" class="btn btn-info" id="card_print" style="display: inline;">
+            <input type="submit" value="{{isset($print)?'ID Card Print':'Save Changes'}}" class="btn btn-info" id="card_print" style="display: inline;">
             @if(isset($print))
-             <input type="submit" value="প্রিন্ট করুন" id="printed_student_list" class="btn btn-info" style="display: none;">
+             <input type="submit" value="Print" id="printed_student_list" class="btn btn-info" style="display: none;">
             @endif
           </div>
     </form>

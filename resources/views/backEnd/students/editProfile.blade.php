@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group {{$errors->has('email') ? 'has-error' : ''}}">
-                        <label class="" for="email">ই-মেইল <span class="star"></span></label>
+                        <label class="" for="email">Email <span class="star"></span></label>
                         <div class="">
                             <input class="form-control" value="{{$studentData->user->email}}" type="text" name="email" id="email" placeholder="Student Full Name">
                         </div>
@@ -42,7 +42,7 @@
                 <div class="row">
                     <div class="col-sm-2 col-sm-offset-5">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-block btn-info">হালনাগাদ</button>
+                            <button type="submit" class="btn btn-block btn-info">Update</button>
                         </div>
                     </div>
                 </div>
