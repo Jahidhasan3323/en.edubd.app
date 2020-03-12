@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'প্রভিডেন্ট ফান্ড পরিচালনা')
+@section('mainTitle', 'Provident Fund')
 @section('head_section')
     <style>
 
@@ -11,7 +11,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h2 class="text-center text-temp">ব্যাংকে জমা প্রভিডেন্ট ফান্ড</h2>
+      <h2 class="text-center text-temp">Deposit Provident Fund List</h2>
     </div>
   </div>
   <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
@@ -20,12 +20,12 @@
               <table id="provident_fund" class="table table-bordered table-hover table-striped">
                   <thead>
                       <tr>
-                        <th class="text-center">ক্রমিক</th>
-                        <th class="text-center">ব্যাংকের নাম</th>
-                        <th class="text-center">একাউন্ট নাম্বার</th>
-                        <th class="text-center">ডিপোজিট নাম্বার</th>
-                        <th class="text-center">জমাকারী</th>
-                        <th class="text-center">পরিমান</th>
+                        <th class="text-center">Serial</th>
+                        <th class="text-center">Bank name</th>
+                        <th class="text-center">Account Number</th>
+                        <th class="text-center">Deposit Number</th>
+                        <th class="text-center">Depositor</th>
+                        <th class="text-center">Amount</th>
                       </tr>
                   </thead>
                   <tbody>

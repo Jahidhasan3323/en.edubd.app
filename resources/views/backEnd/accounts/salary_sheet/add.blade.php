@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'বেতন শীট পরিচালনা')
+@section('mainTitle', 'Salary Sheet Management')
 @section('head_section')
   <style>
     .vouchar1, .vouchar2{position: relative; min-height: 500px;}
@@ -11,7 +11,7 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
-      <h2 class="text-center text-temp">বেতন শীট</h2>
+      <h2 class="text-center text-temp">Salary Sheet</h2>
     </div>
     <div class="col-md-12">
       @if(session('success_msg'))
@@ -37,40 +37,40 @@
               <div class="row">
                   <div class="col-sm-4">
                       <div class="form-group">
-                          <label class="">মাসের নাম নির্বাচন করুন</label>
+                          <label class="">Select Month</label>
                           <div class="">
                             <select class="form-control" name="month">
-                              <option @if (date('m')=='02') selected @endif value="01">জানুয়ারি</option>
-                              <option @if (date('m')=='03') selected @endif value="02">ফেব্রুয়ারি</option>
-                              <option @if (date('m')=='04') selected @endif value="03">মার্চ</option>
-                              <option @if (date('m')=='05') selected @endif value="04">এপ্রিল</option>
-                              <option @if (date('m')=='06') selected @endif value="05">মে</option>
-                              <option @if (date('m')=='07') selected @endif value="06">জুন</option>
-                              <option @if (date('m')=='08') selected @endif value="07">জুলাই</option>
-                              <option @if (date('m')=='09') selected @endif value="08">আগস্ট</option>
-                              <option @if (date('m')=='10') selected @endif value="09">সেপ্টেম্বর</option>
-                              <option @if (date('m')=='11') selected @endif value="10">অক্টোবর</option>
-                              <option @if (date('m')=='12') selected @endif value="11">নভেম্বর</option>
-                              <option @if (date('m')=='01') selected @endif value="12">ডিসেম্বর</option>
+                              <option @if (date('m')=='02') selected @endif value="01">January</option>
+                              <option @if (date('m')=='03') selected @endif value="02">February</option>
+                              <option @if (date('m')=='04') selected @endif value="03">March</option>
+                              <option @if (date('m')=='05') selected @endif value="04">April</option>
+                              <option @if (date('m')=='06') selected @endif value="05">May</option>
+                              <option @if (date('m')=='07') selected @endif value="06">June</option>
+                              <option @if (date('m')=='08') selected @endif value="07">July</option>
+                              <option @if (date('m')=='09') selected @endif value="08">August</option>
+                              <option @if (date('m')=='10') selected @endif value="09">September</option>
+                              <option @if (date('m')=='11') selected @endif value="10">October</option>
+                              <option @if (date('m')=='12') selected @endif value="11">November</option>
+                              <option @if (date('m')=='01') selected @endif value="12">December</option>
                             </select>
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-4">
                       <div class="form-group">
-                          <label class="">মাসের নাম নির্বাচন করুন</label>
+                          <label class="">Select Year</label>
                           <div class="">
                             <select class="form-control" name="year">
-                              <option @if (date('Y')=='2019') selected @endif value="2019">২০১৯</option>
-                              <option @if (date('Y')=='2020') selected @endif value="2020">২০২০</option>
-                              <option @if (date('Y')=='2021') selected @endif value="2021">২০২১</option>
+                                <option @if (date('Y')=='2019') selected @endif value="2019">2019</option>
+                                <option @if (date('Y')=='2020') selected @endif value="2020">2020</option>
+                                <option @if (date('Y')=='2021') selected @endif value="2021">2021</option>
                             </select>
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-4">
                       <div class="form-group">
-                          <button id="save" type="submit" class="btn btn-block btn-info" style="margin-top: 20px;">বেতন শীট জমা ও ভিঊ</button>
+                          <button id="save" type="submit" class="btn btn-block btn-info" style="margin-top: 20px;">Create Salary Sheeet</button>
                       </div>
                   </div>
               </div>
@@ -86,31 +86,31 @@
             <h3>{{ $school->user->name }}</h3>
             <h5 style="margin: 0px; padding: 0px;">{{ $school->address }}</h5>
             <img id="school_logo" src="{{ Storage::url($school->logo) }}" alt="Logo" width="60" height="60" style="border: 1px solid #ddd; position: absolute;left: 2%;top: 5%;">
-            <h4 class="text-center">বেতন শীট - {{ str_replace($s, $r, date('F', strtotime('1-'.$month.'-'.$year))) }} {{ str_replace($s, $r, $year) }} </h4>
+            <h4 class="text-center">Salary Sheet - {{ date('F', strtotime('1-'.$month.'-'.$year)) }} {{ $year }} </h4>
           </center>
           <div class="" style="margin-top: 25px;"></div>
           <div class="">
                 <table id="" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th class="text-center">আইডি</th>
-                            <th class="text-center">নাম</th>
-                            <th class="text-center">পদবী</th>
-                            <th class="text-center">বেসিক</th>
-                            <th class="text-center">অন্যান্য (+)</th>
-                            <th class="text-center">অন্যান্য (-) </th>
-                            <th class="text-center">প্রভিডেন্ট</th>
-                            <th class="text-center">অনুপস্থিত</th>
-                            <th class="text-center">অগ্রিম</th>
-                            <th class="text-center">নেট বেতন</th>
-                            <th class="text-center">স্বাক্ষর</th>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Designation</th>
+                            <th class="text-center">Basic</th>
+                            <th class="text-center">Other's (+)</th>
+                            <th class="text-center">Other's (-) </th>
+                            <th class="text-center">Provident</th>
+                            <th class="text-center">Absent</th>
+                            <th class="text-center">Advanced</th>
+                            <th class="text-center">Net Salary</th>
+                            <th class="text-center">Signature</th>
                         </tr>
                     </thead>
                     <tbody>
                       @if (count($salary_sheets) < 1)
                         <tr>
                           <td class="text-center" colspan="11">
-                            <span style="color:red;">বেতন শীট তৈরির পূর্বে কর্মকর্তা বা কর্মাচারীদের বেতন নির্ধারণ করুন ।</span>
+                            <span style="color:red;">Please setup basic salary before creating salary sheet.</span>
                           </td>
                         </tr>
                       @endif
@@ -135,13 +135,13 @@
                   Powered by: Ehsan Software Email: infoehsansoftware@gmail.com
                 </div>
                 <div class="col-md-6 text-right" style="float:right;margin-top:100px;">
-                   স্বাক্ষর ও সীল
+                   Signature
                 </div>
             </div>
         </div>
       </div>
       <div align="center" style="width: 100%; margin-bottom: 25px;">
-        <button class="btn btn-success" id="PrintVoucher">প্রিন্ট করুন</button>
+        <button class="btn btn-success" id="PrintVoucher">Print</button>
       </div>
     </div>
   @endisset
@@ -168,7 +168,7 @@
           var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
           frameDoc.document.open();
           //Create a new HTML document.
-          frameDoc.document.write('<html><head><title>ভাউচার প্রিন্ট</title>');
+          frameDoc.document.write('<html><head><title>Vouchar Print</title>');
           frameDoc.document.write('</head><body>');
           //Append the external CSS file.
           frameDoc.document.write('<link rel="stylesheet" href="{{mix('css/all.css')}}">');

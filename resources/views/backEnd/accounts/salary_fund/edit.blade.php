@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'বেতন-ভাতা আপডেট')
+@section('mainTitle', 'Salary Fund Edit')
 @section('head_section')
     <style>
 
@@ -11,7 +11,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h2 class="text-center text-temp">বেতন-ভাতা আপডেট করুন</h2>
+      <h2 class="text-center text-temp">Edit Salary Fund</h2>
     </div>
     <div class="col-md-12">
       @if(session('success_msg'))
@@ -35,14 +35,14 @@
             <p class="text-center error" style=""></p>
         </div>
 
-        <div class="panel-body">
+        <div class="panel-body col-md-8 col-md-offset-2">
             <form action="{{ route('salary_fund_update') }}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <input type="hidden" name="id" value="{{ $salary_fund->id }}">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="" for="name">বেতন-ভাতার নাম <span class="star">*</span></label>
+                            <label class="" for="name">Salary Fund Name <span class="star">*</span></label>
                             <div class="">
                                 <input value="{{ $salary_fund->name??'' }}" type="text" name="name" class="form-control">
                             </div>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label class="" for="amount">বেতন-ভাতার হার (%) <span class="star">*</span></label>
+                            <label class="" for="amount">Salary Fund Rate (%) <span class="star">*</span></label>
                             <div class="">
                                 <input value="{{ $salary_fund->amount??'' }}" type="number" name="amount" class="form-control">
                             </div>
@@ -58,16 +58,10 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label class="">বেতন-ভাতার অবস্থা <span class="star">*</span></label>
+                            <label class="">Salary Fund Status <span class="star">*</span></label>
                             <div class="">
                               <select class="form-control" name="status">
-                                <option selected value="{{ $salary_fund->status }}">
-                                  @if ($salary_fund->status=="Addition")
-                                    বৃদ্ধি
-                                  @else
-                                    হ্রাস
-                                  @endif
-                                </option>
+                                <option selected value="{{ $salary_fund->status }}">{{ $salary_fund->status }}</option>
                                 <option value="Addition">বৃদ্ধি</option>
                                 <option value="Deduction">হ্রাস</option>
                               </select>
@@ -82,7 +76,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">আপডেট করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Update</button>
                             </div>
                         </div>
                     </div>

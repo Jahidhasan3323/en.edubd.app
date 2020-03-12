@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'অন্যান্য আয় যোগ')
+@section('mainTitle', 'Add Income')
 @section('head_section')
     <style>
       .vouchar1, .vouchar2{position: relative; min-height: 500px;}
@@ -11,10 +11,10 @@
 @section('content')
   <div class="row">
     <div class="col-md-6" style="padding: 15px;">
-      <h2 class="text-center text-temp">আয় যোগ করুন</h2>
+      <h2 class="text-center text-temp">Add income</h2>
     </div>
     <div class="col-md-6" style="padding: 15px;">
-      <h2 class="text-center text-temp">ভাউচার প্রিন্ট করুন</h2>
+      <h2 class="text-center text-temp">Print Vouchar</h2>
     </div>
     <div class="col-md-12">
       @if(session('success_msg'))
@@ -46,7 +46,7 @@
                 <div class="row">
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label for="payment_date">গ্রহনের তারিখ <span class="star">*</span></label>
+                          <label for="payment_date">Payment Date<span class="star">*</span></label>
                           <div class="">
                               <input value="{{ date('d-m-Y') }}" class="form-control date" type="text" name="payment_date" id="payment_date">
                           </div>
@@ -55,54 +55,54 @@
 
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="payment_by">প্রদানকারীর নাম <span class="star">*</span></label>
+                          <label class="" for="payment_by">Payment By<span class="star">*</span></label>
                           <div class="">
-                              <input value="{{old('payment_by')}}" type="text" name="payment_by" class="form-control" placeholder="প্রদানকারীর নাম">
+                              <input value="{{old('payment_by')}}" type="text" name="payment_by" class="form-control" placeholder="Payment By">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="mobile">প্রদানকারীর মোবাইল </label>
+                          <label class="" for="mobile">Mobile Number </label>
                           <div class="">
-                              <input value="{{old('mobile')}}" type="number" name="mobile" class="form-control" placeholder="মোবাইল - 01xxxxxxxxx">
+                              <input value="{{old('mobile')}}" type="number" name="mobile" class="form-control" placeholder="Mobile - 01xxxxxxxxx">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="amount">পরিমান <span class="star">*</span></label>
+                          <label class="" for="amount">Amount <span class="star">*</span></label>
                           <div class="">
-                              <input value="{{old('amount')}}" type="number" name="amount" class="form-control" placeholder="পরিমান দিন (ইংরেজিতে)">
+                              <input value="{{old('amount')}}" type="number" name="amount" class="form-control" placeholder="ENter Aoount">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-12">
                       <div class="form-group">
-                          <label class="" for="reference">রেফারেন্স </label>
+                          <label class="" for="reference">Reference </label>
                           <div class="">
-                              <input value="{{old('reference')}}" type="text" name="reference" class="form-control" placeholder="রেফারেন্স">
+                              <input value="{{old('reference')}}" type="text" name="reference" class="form-control" placeholder="Reference">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="payment_method">পেমেন্ট মেথড <span class="star">*</span></label>
+                          <label class="" for="payment_method">Payment Method <span class="star">*</span></label>
                           <div class="">
                               <select class="form-control" name="payment_method" id="payment_method">
-                                  <option value="ক্যাশ">ক্যাশ</option>
-                                  <option value="বিকাশ">বিকাশ</option>
-                                  <option value="রকেট">রকেট</option>
-                                  <option value="ক্রেডিট কার্ড">ক্রেডিট কার্ড</option>
-                                  <option value="ডেবিট কার্ড">ডেবিট কার্ড</option>
-                                  <option value="ব্যাংক">ব্যাংক</option>
+                                  <option value="Cash">Cash</option>
+                                  <option value="Bkash">Bkash</option>
+                                  <option value="Rocket">Rocket</option>
+                                  <option value="Credit-Card">Credit-Card</option>
+                                  <option value="Debit-Card">Debit-Card</option>
+                                  <option value="Bank">Bank</option>
                               </select>
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="fund_id">ফান্ড নির্বাচন করুন <span class="star">*</span></label>
+                          <label class="" for="fund_id">Select Fund <span class="star">*</span></label>
                           <div class="">
                               <select class="form-control" name="fund_id" id="fund_id">
                                 @foreach ($funds as $fund)
@@ -114,7 +114,7 @@
                   </div>
                   <div class="col-sm-12">
                       <div class="form-group">
-                          <label class="" for="description">বিবরণ</label>
+                          <label class="" for="description">Description</label>
                           <div class="">
                               <textarea name="description" rows="3" class="form-control"></textarea>
                           </div>
@@ -128,7 +128,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">সংরক্ষণ করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Save</button>
                             </div>
                         </div>
                     </div>
@@ -146,13 +146,13 @@
             <h5 style="margin: 0px; padding: 0px;">{{ $school->address }}</h5>
             <img id="school_logo" src="{{ Storage::url($school->logo) }}" alt="Logo" width="60" height="60" style="border: 1px solid #ddd; position: absolute;left: 2%;top: 5%;">
             <h3>{{ $account_setting->voucher_title }}</h3>
-            <span>অফিস কপি</span>
+            <span>Office Copy</span>
           </center>
           <div class="col-md-6 text-left" style="padding-bottom: 15px; display:inline-block; float:left;">
-            সিরিয়ালঃ {{ $income_view->serial }}
+            Serial: {{ $income_view->serial }}
           </div>
           <div class="col-md-6 text-right" style="padding-bottom: 15px;">
-            তারিখঃ {{ $income_view->payment_date }}
+            Date: {{ $income_view->payment_date }}
           </div>
           <div class="col-md-12">
             <div class="row">
@@ -160,11 +160,11 @@
                 <table class="table table-bordered">
                   <tbody>
                     <tr>
-                      <th width="40%">নাম</th>
+                      <th width="40%">Name</th>
                       <td>{{ $income_view->payment_by??'' }}</td>
                     </tr>
                     <tr>
-                      <th width="40%">মোবাইল</th>
+                      <th width="40%">Mobile</th>
                       <td> {{$income_view->mobile}}</td>
                     </tr>
                   </tbody>
@@ -174,11 +174,11 @@
                 <table class="table table-bordered">
                   <tbody>
                     <tr>
-                      <th width="40%">পেমেন্ট মেথোড</th>
+                      <th width="40%">Payment Method</th>
                       <td>{{$income_view->payment_method}}</td>
                     </tr>
                     <tr>
-                      <th width="40%">রেফারেন্স</th>
+                      <th width="40%">Reference</th>
                       <td>{{ $income_view->reference??'' }}</td>
                     </tr>
                   </tbody>
@@ -188,10 +188,10 @@
             <table class="table table-bordered">
               <thead>
                   <tr>
-                      <th class="text-center">ক্রমিক</th>
-                      <th class="text-center">বিবরণ</th>
-                      <th class="text-center">ফান্ড</th>
-                      <th class="text-center">পরিমান</th>
+                      <th class="text-center">Serial</th>
+                      <th class="text-center">Description</th>
+                      <th class="text-center">Fund</th>
+                      <th class="text-center">Amount</th>
                   </tr>
               </thead>
               <tbody>
@@ -202,94 +202,95 @@
                     <td class="text-right">{{ number_format($income_view->amount, 2) }}</td>
                   </tr>
                   <tr>
-                    <td colspan="3" class="text-right">সর্বমোট</td>
+                    <td colspan="3" class="text-right">Total</td>
                     <td class="text-right"> <b>{{ number_format($income_view->amount, 2) }}</b> </td>
                   </tr>
               </tbody>
           </table>
           </div>
           <div class="col-md-12 text-right" style="margin-top: 50px;">
-            আদায়কারীর স্বাক্ষর ও সীল
+            Receiver Signature
           </div>
         </div>
-        <div id="voucher" class="row vouchar2" style=" height: 50%;">
-          <center>
-            <h3>{{ $school->user->name }}</h3>
-            <h5 style="margin: 0px; padding: 0px;">{{ $school->address }}</h5>
-            <img id="school_logo" src="{{ Storage::url($school->logo) }}" alt="Logo" width="60" height="60" style="border: 1px solid #ddd; position: absolute;left: 2%;top: 5%;">
-            <h3>{{ $account_setting->voucher_title }}</h3>
-            <span>প্রদানকারীর কপি</span>
-          </center>
-          <div class="col-md-6 text-left" style="padding-bottom: 15px; display:inline-block; float:left;">
-            সিরিয়ালঃ {{ $income_view->serial }}
-          </div>
-          <div class="col-md-6 text-right" style="padding-bottom: 15px;">
-            তারিখঃ {{ $income_view->payment_date }}
-          </div>
-          <div class="col-md-12">
-            <div class="row">
-              <div class="col-md-6" style="width: 50%; display:inline-block; float:left;">
-                <table class="table table-bordered">
-                  <tbody>
-                    <tr>
-                      <th width="40%">নাম</th>
-                      <td>{{ $income_view->payment_by??'' }}</td>
-                    </tr>
-                    <tr>
-                      <th width="40%">মোবাইল</th>
-                      <td> {{$income_view->mobile}}</td>
-                    </tr>
-                  </tbody>
-                </table>
+        <div class="" style="position:relative">
+            <div id="voucher" class="row vouchar2" style=" height: 50%;">
+              <center>
+                <h3>{{ $school->user->name }}</h3>
+                <h5 style="margin: 0px; padding: 0px;">{{ $school->address }}</h5>
+                <img id="school_logo" src="{{ Storage::url($school->logo) }}" alt="Logo" width="60" height="60" style="border: 1px solid #ddd; position: absolute;left: 2%;top: 5%;">
+                <h3>{{ $account_setting->voucher_title }}</h3>
+              </center>
+              <div class="col-md-6 text-left" style="padding-bottom: 15px; display:inline-block; float:left;">
+                Serial: {{ $income_view->serial }}
               </div>
-              <div class="col-md-6" style="width: 50%; display:inline-block;">
+              <div class="col-md-6 text-right" style="padding-bottom: 15px;">
+                Date {{ $income_view->payment_date }}
+              </div>
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-6" style="width: 50%; display:inline-block; float:left;">
+                    <table class="table table-bordered">
+                      <tbody>
+                        <tr>
+                          <th width="40%">Name</th>
+                          <td>{{ $income_view->payment_by??'' }}</td>
+                        </tr>
+                        <tr>
+                          <th width="40%">Mobile</th>
+                          <td> {{$income_view->mobile}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="col-md-6" style="width: 50%; display:inline-block;">
+                    <table class="table table-bordered">
+                      <tbody>
+                        <tr>
+                          <th width="40%">Payment Method</th>
+                          <td>{{$income_view->payment_method}}</td>
+                        </tr>
+                        <tr>
+                          <th width="40%">Reference</th>
+                          <td>{{ $income_view->reference??'' }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
                 <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th class="text-center">Serial</th>
+                          <th class="text-center">Description</th>
+                          <th class="text-center">Fund</th>
+                          <th class="text-center">Amount</th>
+                      </tr>
+                  </thead>
                   <tbody>
-                    <tr>
-                      <th width="40%">পেমেন্ট মেথোড</th>
-                      <td>{{$income_view->payment_method}}</td>
-                    </tr>
-                    <tr>
-                      <th width="40%">রেফারেন্স</th>
-                      <td>{{ $income_view->reference??'' }}</td>
-                    </tr>
+                      <tr>
+                        <td class="text-center">1</td>
+                        <td class="text-left">{{ $income_view->description??'' }}</td>
+                        <td class="text-left">{{ $income_view->fund->name??'' }}</td>
+                        <td class="text-right">{{ number_format($income_view->amount, 2) }}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="3" class="text-right">Total</td>
+                        <td class="text-right"> <b>{{ number_format($income_view->amount, 2) }}</b> </td>
+                      </tr>
                   </tbody>
-                </table>
+              </table>
+              </div>
+              <div class="col-md-12 text-left" style="position: absolute;left: 2%;bottom: 0%;">
+                Powered by: Ehsan Software Email: infoehsansoftware@gmail.com
+              </div>
+              <div class="col-md-12 text-right" style="margin-top: 50px;">
+                Receiver Signature
               </div>
             </div>
-            <table class="table table-bordered">
-              <thead>
-                  <tr>
-                      <th class="text-center">ক্রমিক</th>
-                      <th class="text-center">বিবরণ</th>
-                      <th class="text-center">ফান্ড</th>
-                      <th class="text-center">পরিমান</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                    <td class="text-center">1</td>
-                    <td class="text-left">{{ $income_view->description??'' }}</td>
-                    <td class="text-left">{{ $income_view->fund->name??'' }}</td>
-                    <td class="text-right">{{ number_format($income_view->amount, 2) }}</td>
-                  </tr>
-                  <tr>
-                    <td colspan="3" class="text-right">সর্বমোট</td>
-                    <td class="text-right"> <b>{{ number_format($income_view->amount, 2) }}</b> </td>
-                  </tr>
-              </tbody>
-          </table>
-          </div>
-          <div class="col-md-12 text-left" style="position: absolute;left: 2%;bottom: 0%;">
-            Powered by: Ehsan Software Email: infoehsansoftware@gmail.com
-          </div>
-          <div class="col-md-12 text-right" style="margin-top: 50px;">
-            আদায়কারীর স্বাক্ষর ও সীল
-          </div>
         </div>
       </div>
       <div align="center" style="width: 100%; margin-bottom: 25px;">
-        <button class="btn btn-success" id="PrintVoucher">প্রিন্ট করুন</button>
+        <button class="btn btn-success" id="PrintVoucher">Print</button>
       </div>
     </div>
   @endisset
@@ -319,7 +320,7 @@ $(function () {
       var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
       frameDoc.document.open();
       //Create a new HTML document.
-      frameDoc.document.write('<html><head><title>ভাউচার প্রিন্ট</title>');
+      frameDoc.document.write('<html><head><title>Print Vouchar</title>');
       frameDoc.document.write('</head><body>');
       //Append the external CSS file.
       frameDoc.document.write('<link rel="stylesheet" href="{{mix('css/all.css')}}">');

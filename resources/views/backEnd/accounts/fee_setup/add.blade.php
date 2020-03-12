@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'ফি পরিচালন')
+@section('mainTitle', 'Fee Seup Management')
 @section('head_section')
     <style>
 
@@ -11,10 +11,10 @@
 
   <div class="row">
     <div class="col-md-6">
-      <h2 class="text-center text-temp">ফি পরিচালনা করুন</h2>
+      <h2 class="text-center text-temp">Fee Seup Management</h2>
     </div>
     <div class="col-md-6">
-      <h2 class="text-center text-temp">ফি নির্ধারণ করুন</h2>
+      <h2 class="text-center text-temp">Fee Seup</h2>
     </div>
     <div class="col-md-12">
       @if(session('success_msg'))
@@ -34,17 +34,17 @@
     </div>
   </div>
   <div class="panel col-md-6 col-sm-12" style="margin-top: 15px; margin-bottom: 15px; min-height: 500px; border: 1px solid #ddd;">
-      <div class="panel-body">
+      <div class="panel-body" style="overflow:scroll;">
           <div class="table-responsive">
               <table id="commitee_tbl" class="table table-bordered table-hover table-striped">
                   <thead>
                       <tr>
-                          <th class="text-center">ক্রমিক</th>
-                          <th class="text-center">নাম</th>
-                          <th class="text-center">শ্রেণী</th>
-                          <th class="text-center">বিভাগ</th>
-                          <th class="text-center">পরিমান</th>
-                          <th class="text-center">একশন</th>
+                          <th class="text-center">SL</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">Class</th>
+                          <th class="text-center">Group</th>
+                          <th class="text-center">Amount</th>
+                          <th class="text-center">Action</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -64,7 +64,7 @@
                               @csrf
                               @method('delete')
                               <input type="hidden" name="id" value="{{ $fee_amount->id }}">
-                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('আপনি কি নির্ধারিত ফি মুছে ফেলতে চান ?')" style="margin-top: 5px;"><i class="fa fa-trash-o"></i></button>
+                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete ?')" style="margin-top: 5px;"><i class="fa fa-trash-o"></i></button>
                             </form>
                           </td>
                       </tr>
@@ -85,10 +85,10 @@
                 <div class="row">
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="master_class_id">শ্রেণী <span class="star">*</span></label>
+                          <label class="" for="master_class_id">Class <span class="star">*</span></label>
                           <div class="">
                               <select style="width: 100% !important;" class="form-control" name="master_class_id" id="master_class_id">
-                                  <option value="">...শ্রেণী নির্বাচন করুন...</option>
+                                  <option value="">Select Class</option>
                                   @foreach($classes as $class)
                                       <option value="{{$class->id}}">{{$class->name}}</option>
                                   @endforeach
@@ -98,10 +98,10 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="group_class_id">গ্রুপ / বিভাগ <span class="star">*</span></label>
+                          <label class="" for="group_class_id">Group <span class="star">*</span></label>
                           <div class="">
                               <select style="width: 100% !important;" class="form-control" name="group_class_id" id="group_class_id">
-                                  <option value="">...গ্রুপ / বিভাগ নির্বাচন করুন...</option>
+                                  <option value="">Select group</option>
                                   @foreach($groups as $group)
                                       <option value="{{$group->id}}">{{$group->name}}</option>
                                   @endforeach
@@ -113,21 +113,21 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label class="" for="shift">শিফট <span class="star">*</span></label>
+                            <label class="" for="shift">Shift <span class="star">*</span></label>
                             <div class="">
                                 <select class="form-control" style="width: 100% !important;" name="shift" id="shift">
-                                    <option value="">শিফট নির্বাচন করুন</option>
-                                    <option value="সকাল">সকাল</option>
-                                    <option value="দিন">দিন</option>
-                                    <option value="সন্ধ্যা">সন্ধ্যা</option>
-                                    <option value="রাত">রাত</option>
+                                    <option value="">Select Shift</option>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Day">Day</option>
+                                    <option value="Evening">Evening</option>
+                                    <option value="Night">Night</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                       <div class="col-sm-6">
                           <div class="form-group {{$errors->has('name') ? 'has-error' : ''}}">
-                              <label class="">ফি ক্যাটাগরি নির্বাচন করুন <span class="star">*</span></label>
+                              <label class="">Select Fee Category <span class="star">*</span></label>
                               <div class="">
                                 <select class="form-control" name="fee_category_id">
                                   @foreach ($fee_categories as $key => $fee_category)
@@ -139,7 +139,7 @@
                       </div>
                       <div class="col-sm-6">
                           <div class="form-group">
-                              <label class="" for="amount">ফি এর পরিমান <span class="star">*</span></label>
+                              <label class="" for="amount">Fee Amount <span class="star">*</span></label>
                               <div class="">
                                   <input value="{{old('amount')}}" type="number" name="amount" class="form-control" placeholder="ফি এর পরিমান লিখুন">
                               </div>
@@ -154,7 +154,7 @@
                       <div class="row">
                           <div class="col-sm-12">
                               <div class="form-group">
-                                  <button id="save" type="submit" class="btn btn-block btn-info">সংরক্ষণ করুন</button>
+                                  <button id="save" type="submit" class="btn btn-block btn-info">Save</button>
                               </div>
                           </div>
                       </div>
@@ -167,11 +167,11 @@
 
     <script src="{{asset('backEnd')}}/DataTables/jquery.dataTables.min.js"></script>
     <script src="{{asset('backEnd')}}/DataTables/dataTables.bootstrap.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-    $('#commitee_tbl').DataTable();
-} );
-</script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $('#commitee_tbl').DataTable();
+    } );
+    </script>
 
 
 @endsection

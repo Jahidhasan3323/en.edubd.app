@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'বেসিক বেতন পরিচালনা')
+@section('mainTitle', 'Basic Salary Setup')
 @section('head_section')
     <style>
 
@@ -11,10 +11,10 @@
 
   <div class="row">
     <div class="col-md-6">
-      <h2 class="text-center text-temp">বেসিক বেতন পরিচালনা করুন</h2>
+      <h2 class="text-center text-temp">Basic Salary Setup Manage</h2>
     </div>
     <div class="col-md-6">
-      <h2 class="text-center text-temp">বেসিক বেতন যোগ করুন</h2>
+      <h2 class="text-center text-temp">Basic Salary Setup</h2>
     </div>
     <div class="col-md-12">
       @if(session('success_msg'))
@@ -39,11 +39,11 @@
               <table id="commitee_tbl" class="table table-bordered table-hover table-striped">
                   <thead>
                       <tr>
-                          <th class="text-center">ক্রমিক</th>
-                          <th class="text-center">নাম</th>
-                          <th class="text-center">বেতন</th>
-                          <th class="text-center">পরিবর্তন</th>
-                          <th class="text-center">মুছুন</th>
+                          <th class="text-center">Serial</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">Salary</th>
+                          <th class="text-center">Edit</th>
+                          <th class="text-center">Delete</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -63,7 +63,7 @@
                               @csrf
                               @method('delete')
                               <input type="hidden" name="id" value="{{ $salary_setup->id }}">
-                              <button type="submit" class="btn btn-danger" onclick="return confirm('আপনি কি বেসিক বেতন মুছে ফেলতে চান ?')"><i class="fa fa-trash-o"></i></button>
+                              <button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to delete ?')"><i class="fa fa-trash-o"></i></button>
                             </form>
                           </td>
                       </tr>
@@ -84,7 +84,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="">কর্মকর্তা বা কর্মাচারী নির্বাচন করুন </label>
+                            <label class="">Select Emplyee</label>
                             <div class="">
                               <select class="form-control" name="employee_id">
                                 @foreach ($employees as $key => $employee)
@@ -96,9 +96,9 @@
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="" for="amount">বেসিক বেতনের পরিমান <span class="star">*</span></label>
+                            <label class="" for="amount"> Basic Salary Amount<span class="star">*</span></label>
                             <div class="">
-                                <input value="{{old('amount')}}" type="text" name="amount" class="form-control" placeholder="বেসিক বেতনের পরিমান">
+                                <input value="{{old('amount')}}" type="text" name="amount" class="form-control" placeholder="Enter Salary Amount">
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">সংরক্ষণ করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Save</button>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'ফি কালেকশন পরিচালনা')
+@section('mainTitle', 'Fee Collection Managementা')
 @section('head_section')
     <style>
 
@@ -11,7 +11,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h2 class="text-center text-temp">ফি কালেকশন পরিচালনা করুন</h2>
+      <h2 class="text-center text-temp">Fee Collection Management</h2>
     </div>
     <div class="col-md-12">
       @if(session('success_msg'))
@@ -37,15 +37,15 @@
               <table id="commitee_tbl" class="table table-bordered table-hover table-striped">
                   <thead>
                       <tr>
-                          <th class="text-center">ক্রমিক</th>
-                          <th class="text-center">সিরিয়াল</th>
-                          <th class="text-center">নাম</th>
-                          <th class="text-center">ফি ক্যাটাগরি</th>
-                          <th class="text-center">ফান্ড</th>
-                          <th class="text-center">পরিমান</th>
-                          <th class="text-center">পেইড</th>
-                          <th class="text-center">বাকি</th>
-                          <th class="text-center">একশন</th>
+                          <th class="text-center">SL</th>
+                          <th class="text-center">Serial</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">Fee Category</th>
+                          <th class="text-center">Fund</th>
+                          <th class="text-center">Amount</th>
+                          <th class="text-center">Paid</th>
+                          <th class="text-center">Due</th>
+                          <th class="text-center">Action</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -67,12 +67,12 @@
                           <td class="text-center">{{ $fee_collection->paid }}</td>
                           <td class="text-center">{{ $fee_collection->due }}</td>
                           <td class="text-center">
-                            <a href="{{ route('fee_collection_view', $fee_collection->id) }}" title="প্রিন্ট করুন"> <button type="button" class="btn btn-info btn-sm" style="margin: 5px;"><i class="fa fa-print"></i></button> </a>
+                            <a href="{{ route('fee_collection_view', $fee_collection->id) }}" title="Click for Print View"> <button type="button" class="btn btn-info btn-sm" style="margin: 5px;"><i class="fa fa-print"></i></button> </a>
                             <form class="" action="{{ route('fee_collection_delete') }}" method="post">
                               @csrf
                               @method('delete')
                               <input type="hidden" name="id" value="{{ $fee_collection->id }}">
-                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('আপনি কি কালেকশনটি মুছে ফেলতে চান ?')" title="মুছে ফেলুন"><i class="fa fa-trash-o"></i></button>
+                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete ?')" title="Click for delete"><i class="fa fa-trash-o"></i></button>
                             </form>
                           </td>
                       </tr>

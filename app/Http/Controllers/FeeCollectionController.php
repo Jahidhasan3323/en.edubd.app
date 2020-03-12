@@ -114,7 +114,10 @@ class FeeCollectionController extends Controller
           return redirect()->route('fee_collection_add')->with('error_msg', 'ফি কালেকশনের পূর্বে ক্যাটাগরি ভিত্তিক ফি এর পরিমান নির্ধারন করুন।');
         }
       }
-
+      $account_setting = AccountSetting::where('school_id', Auth::getSchool())->first();
+      if (empty($account_setting)) {
+        return redirect()->route('fee_collection_add')->with('error_msg', 'ফি কালেকশনের পূর্বে ভাউচারের শিরোনাম, এস,এম,এস ইত্যাদি একাউন্ট  সেটিংসে যোগ করুন ।');
+      }
       $total_amount = 0;
       foreach ($fees as $key => $fee) {
         $total_amount += $fee->amount;
@@ -155,10 +158,7 @@ class FeeCollectionController extends Controller
       $due_paid = FeeCollection::where('student_id', $student->id)->sum('due_paid');
       $current_due = ($due - $due_paid);
       // SMS Sending Code
-      $account_setting = AccountSetting::where('school_id', Auth::getSchool())->first();
-      if (empty($account_setting)) {
-        return redirect()->route('fee_collection_add')->with('error_msg', 'ফি কালেকশনের পূর্বে ভাউচারের শিরোনাম, এস,এম,এস ইত্যাদি একাউন্ট  সেটিংসে যোগ করুন ।');
-      }
+
       $student_name = User::find($student->user_id);
       $school=$this->school();
       $sms_limit = SmsLimit::where('school_id', $school->id)->first();

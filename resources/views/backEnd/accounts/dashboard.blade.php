@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'System Dathboard')
+@section('mainTitle', 'Account Dathboard')
 @section('active_accounts', 'active')
 @section('content')
     <div id="page-inner">
@@ -9,11 +9,11 @@
                 <div class="col-md-4 col-sm-6 col-xs-6">
                     <div class="panel panel-back noti-box">
                         <span class="icon-box bg-color-green set-icon">
-                            <i class="fa fa-usd"></i>
+                            <i class="fa fa-money"></i>
                         </span>
                         <div class="text-box">
-                            <p class="main-text">{{str_replace($s, $r,$total_fee_collection)}} টাকা</p>
-                            <p class="text-muted">সর্বমোট ফি কালেকশন</p>
+                            <p class="main-text">{{$total_fee_collection}} Taka</p>
+                            <p class="text-muted">Total Fee Collection</p>
                         </div>
                     </div>
                 </div>
@@ -22,11 +22,11 @@
                 <div class="col-md-4 col-sm-6 col-xs-6">
                     <div class="panel panel-back noti-box">
                         <span class="icon-box bg-color-green set-icon">
-                            <i class="fa fa-usd"></i>
+                            <i class="fa fa-money"></i>
                         </span>
                         <div class="text-box">
-                            <p class="main-text">{{str_replace($s, $r,$total_income)}} টাকা</p>
-                            <p class="text-muted">সর্বমোট আয় কালেকশন</p>
+                            <p class="main-text">{{ $total_income }} Taka</p>
+                            <p class="text-muted">Total Income Collection</p>
                         </div>
                     </div>
                 </div>
@@ -35,11 +35,11 @@
                 <div class="col-md-4 col-sm-6 col-xs-6">
                     <div class="panel panel-back noti-box">
                         <span class="icon-box bg-color-green set-icon">
-                            <i class="fa fa-usd"></i>
+                            <i class="fa fa-money"></i>
                         </span>
                         <div class="text-box">
-                            <p class="main-text">{{str_replace($s, $r,$total_expense)}} টাকা</p>
-                            <p class="text-muted">সর্বমোট ব্যয় বা খরচ</p>
+                            <p class="main-text">{{ $total_expense }} Taka</p>
+                            <p class="text-muted">Total Expense</p>
                         </div>
                     </div>
                 </div>
@@ -48,11 +48,11 @@
                 <div class="col-md-4 col-sm-6 col-xs-6">
                     <div class="panel panel-back noti-box">
                         <span class="icon-box bg-color-green set-icon">
-                            <i class="fa fa-usd"></i>
+                            <i class="fa fa-money"></i>
                         </span>
                         <div class="text-box">
-                            <p class="main-text">{{str_replace($s, $r,$current_due)}} টাকা</p>
-                            <p class="text-muted">সর্বমোট বাকি</p>
+                            <p class="main-text">{{ $current_due }} Taka</p>
+                            <p class="text-muted">Total Due</p>
                         </div>
                     </div>
                 </div>
@@ -61,11 +61,11 @@
                 <div class="col-md-4 col-sm-6 col-xs-6">
                     <div class="panel panel-back noti-box">
                         <span class="icon-box bg-color-green set-icon">
-                            <i class="fa fa-usd"></i>
+                            <i class="fa fa-money"></i>
                         </span>
                         <div class="text-box">
-                            <p class="main-text">{{str_replace($s, $r,($total_deposit-$total_withdraw))}} টাকা</p>
-                            <p class="text-muted"> মোট ব্যাংকে জমা আছে</p>
+                            <p class="main-text">{{ $total_deposit-$total_withdraw }} Taka</p>
+                            <p class="text-muted"> Current Bank Deposit</p>
                         </div>
                     </div>
                 </div>
@@ -74,11 +74,11 @@
                 <div class="col-md-4 col-sm-6 col-xs-6">
                     <div class="panel panel-back noti-box">
                         <span class="icon-box bg-color-green set-icon">
-                            <i class="fa fa-usd"></i>
+                            <i class="fa fa-money"></i>
                         </span>
                         <div class="text-box">
-                            <p class="main-text">{{str_replace($s, $r,($total_asset))}} টাকা</p>
-                            <p class="text-muted"> সর্বমোট সম্পদ</p>
+                            <p class="main-text">{{ $total_asset }} Taka</p>
+                            <p class="text-muted"> Total Asset Amount</p>
                         </div>
                     </div>
                 </div>
@@ -87,11 +87,11 @@
                 <div class="col-md-4 col-sm-6 col-xs-6">
                     <div class="panel panel-back noti-box">
                         <span class="icon-box bg-color-green set-icon">
-                            <i class="fa fa-usd"></i>
+                            <i class="fa fa-money"></i>
                         </span>
                         <div class="text-box">
-                            <p class="main-text">{{str_replace($s, $r,($total_fine))}} টাকা</p>
-                            <p class="text-muted"> সর্বমোট জরিমানা কালেকশন</p>
+                            <p class="main-text">{{ $total_fine }} Taka</p>
+                            <p class="text-muted"> Total Fine Collection</p>
                         </div>
                     </div>
                 </div>

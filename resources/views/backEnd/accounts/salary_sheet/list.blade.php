@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'বেতন শীট পরিচালনা')
+@section('mainTitle', 'Salary Sheet Management')
 @section('head_section')
     <style>
 
@@ -11,7 +11,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h2 class="text-center text-temp">বেতন শীট</h2>
+      <h2 class="text-center text-temp">Salary Sheet</h2>
     </div>
     <div class="col-md-12">
       @if(session('success_msg'))
@@ -37,40 +37,40 @@
               <div class="row">
                   <div class="col-sm-4">
                       <div class="form-group">
-                          <label class="">মাসের নাম নির্বাচন করুন</label>
+                          <label class="">Select Month</label>
                           <div class="">
                             <select class="form-control" name="month">
-                                <option @if (date('m')=='02') selected @endif value="01">জানুয়ারি</option>
-                                <option @if (date('m')=='03') selected @endif value="02">ফেব্রুয়ারি</option>
-                                <option @if (date('m')=='04') selected @endif value="03">মার্চ</option>
-                                <option @if (date('m')=='05') selected @endif value="04">এপ্রিল</option>
-                                <option @if (date('m')=='06') selected @endif value="05">মে</option>
-                                <option @if (date('m')=='07') selected @endif value="06">জুন</option>
-                                <option @if (date('m')=='08') selected @endif value="07">জুলাই</option>
-                                <option @if (date('m')=='09') selected @endif value="08">আগস্ট</option>
-                                <option @if (date('m')=='10') selected @endif value="09">সেপ্টেম্বর</option>
-                                <option @if (date('m')=='11') selected @endif value="10">অক্টোবর</option>
-                                <option @if (date('m')=='12') selected @endif value="11">নভেম্বর</option>
-                                <option @if (date('m')=='01') selected @endif value="12">ডিসেম্বর</option>
+                                <option @if (date('m')=='02') selected @endif value="01">January</option>
+                                <option @if (date('m')=='03') selected @endif value="02">February</option>
+                                <option @if (date('m')=='04') selected @endif value="03">March</option>
+                                <option @if (date('m')=='05') selected @endif value="04">April</option>
+                                <option @if (date('m')=='06') selected @endif value="05">May</option>
+                                <option @if (date('m')=='07') selected @endif value="06">June</option>
+                                <option @if (date('m')=='08') selected @endif value="07">July</option>
+                                <option @if (date('m')=='09') selected @endif value="08">August</option>
+                                <option @if (date('m')=='10') selected @endif value="09">September</option>
+                                <option @if (date('m')=='11') selected @endif value="10">October</option>
+                                <option @if (date('m')=='12') selected @endif value="11">November</option>
+                                <option @if (date('m')=='01') selected @endif value="12">December</option>
                             </select>
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-4">
                       <div class="form-group">
-                          <label class="">মাসের নাম নির্বাচন করুন</label>
+                          <label class="">Select Year</label>
                           <div class="">
                             <select class="form-control" name="year">
-                                <option @if (date('Y')=='2019') selected @endif value="2019">২০১৯</option>
-                                <option @if (date('Y')=='2020') selected @endif value="2020">২০২০</option>
-                                <option @if (date('Y')=='2021') selected @endif value="2021">২০২১</option>
+                                <option @if (date('Y')=='2019') selected @endif value="2019">2019</option>
+                                <option @if (date('Y')=='2020') selected @endif value="2020">2020</option>
+                                <option @if (date('Y')=='2021') selected @endif value="2021">2021</option>
                             </select>
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-4">
                       <div class="form-group">
-                          <button id="save" type="submit" class="btn btn-block btn-info" style="margin-top: 20px;">বেতন শীট দেখুন</button>
+                          <button id="save" type="submit" class="btn btn-block btn-info" style="margin-top: 20px;">Salary Sheet</button>
                       </div>
                   </div>
               </div>

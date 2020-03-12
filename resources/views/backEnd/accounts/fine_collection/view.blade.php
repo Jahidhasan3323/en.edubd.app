@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'জরিমানা কালেকশন প্রিন্ট')
+@section('mainTitle', 'Fine Collection Print')
 @section('head_section')
     <style>
       .vouchar1, .vouchar2{position: relative; min-height: 1000px;}
@@ -13,7 +13,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h2 class="text-center text-temp">জরিমানা কালেকশন ভাউচার প্রিন্ট করুন</h2>
+      <h2 class="text-center text-temp">Fine Collection Print View</h2>
     </div>
     <div class="col-md-12">
       @if(session('success_msg'))
@@ -40,13 +40,13 @@
           <h5 style="margin: 0px; padding: 0px;">{{ $school->address }}</h5>
           <img id="school_logo" src="{{ Storage::url($school->logo) }}" alt="Logo" width="60" height="60" style="border: 1px solid #ddd; position: absolute;left: 2%;top: 5%;">
           <h3>{{ $account_setting->voucher_title }}</h3>
-          <span>শিক্ষার্থী কপি</span>
+          <span>Student Copy</span>
         </center>
         <div class="col-md-6 text-left" style="padding-bottom: 15px; display:inline-block; float:left;">
-          সিরিয়ালঃ {{ $fine_collection->serial }}
+          Serial: {{ $fine_collection->serial }}
         </div>
         <div class="col-md-6 text-right" style="padding-bottom: 15px;">
-          তারিখঃ {{ $fine_collection->payment_date }}
+          Date: {{ $fine_collection->payment_date }}
         </div>
         <div class="col-md-12">
           <div class="row">
@@ -54,19 +54,19 @@
               <table class="table table-bordered">
                 <tbody>
                   <tr>
-                    <th>নাম</th>
+                    <th>Name</th>
                     <td>{{ $student->user->name??'' }}</td>
                   </tr>
                   <tr>
-                    <th>আইডি</th>
+                    <th>ID No</th>
                     <td>{{ $student->student_id??'' }}</td>
                   </tr>
                   <tr>
-                    <th>শ্রেণী</th>
+                    <th>Class</th>
                     <td>{{$student->masterClass->name}}</td>
                   </tr>
                   <tr>
-                    <th>বিভাগ</th>
+                    <th>Group</th>
                     <td>{{$student->group}}</td>
                   </tr>
                 </tbody>
@@ -76,19 +76,19 @@
               <table class="table table-bordered">
                 <tbody>
                   <tr>
-                    <th>শাখা</th>
+                    <th>Section</th>
                     <td>{{$student->section}}</td>
                   </tr>
                   <tr>
-                    <th>শিফট</th>
+                    <th>Shift</th>
                     <td>{{ $student->shift??'' }}</td>
                   </tr>
                   <tr>
-                    <th>রোল</th>
+                    <th>Roll</th>
                     <td>{{$student->roll}}</td>
                   </tr>
                   <tr>
-                    <th>মোবাইল</th>
+                    <th>Mobile</th>
                     <td> {{$student->user->mobile}}</td>
                   </tr>
                 </tbody>
@@ -98,9 +98,9 @@
           <table class="table table-bordered" style="margin-top: 50px;">
             <thead>
                 <tr>
-                    <th class="text-center">ক্রমিক</th>
-                    <th class="text-center">বিবরণ</th>
-                    <th class="text-center">পরিমান</th>
+                    <th class="text-center">Serial</th>
+                    <th class="text-center">Description</th>
+                    <th class="text-center">Amount</th>
                 </tr>
             </thead>
             <tbody>
@@ -110,19 +110,19 @@
               @endphp
                 <tr>
                   <td>{{ $i++ }}</td>
-                  <td>মোট জরিমানা- <br> {{ $fine_collection->description }}</td>
+                  <td>Total Fine- <br> {{ $fine_collection->description }}</td>
                   <td class="text-right"> <b>{{ number_format($fine_collection->amount, 2) }}</b> </td>
                 </tr>
                 <tr>
-                  <td colspan="2" class="text-right">জরিমানা পেইড </td>
+                  <td colspan="2" class="text-right">Fine Paid </td>
                   <td class="text-right"> - {{ number_format($fine_collection->paid, 2) }} </td>
                 </tr>
                 <tr>
-                  <td colspan="2" class="text-right">জরিমানা মওকুফ</td>
+                  <td colspan="2" class="text-right">Fine Waiver</td>
                   <td class="text-right">- {{ number_format($fine_collection->waiver, 2) }}</td>
                 </tr>
                 <tr>
-                  <td colspan="2" class="text-right">বর্তমান মোট বাকি</td>
+                  <td colspan="2" class="text-right">Total Current Fine</td>
                   <td class="text-right"> <b>{{ number_format($fine_collection->amount-($fine_collection->paid+$fine_collection->waiver), 2) }}</b> </td>
                 </tr>
             </tbody>
@@ -132,7 +132,7 @@
           Powered by: Ehsan Software Email: infoehsansoftware@gmail.com
         </div>
         <div class="col-md-12 text-right" style="position: absolute;right: 2%;bottom: 0%;">
-          আদায়কারীর স্বাক্ষর ও সীল
+          Receiver Signature
         </div>
       </div>
       <div class="" style="height: 0.1px;">
@@ -144,13 +144,13 @@
           <h5 style="margin: 0px; padding: 0px;">{{ $school->address }}</h5>
           <img id="school_logo" src="{{ Storage::url($school->logo) }}" alt="Logo" width="60" height="60" style="border: 1px solid #ddd; position: absolute;left: 2%;top: 5%;">
           <h3>{{ $account_setting->voucher_title }}</h3>
-          <span>অফিস কপি</span>
+          <span>Office Copy</span>
         </center>
         <div class="col-md-6 text-left" style="padding-bottom: 15px; display:inline-block; float:left;">
-          সিরিয়ালঃ {{ $fine_collection->serial }}
+          Serial: {{ $fine_collection->serial }}
         </div>
         <div class="col-md-6 text-right" style="padding-bottom: 15px;">
-          তারিখঃ {{ $fine_collection->payment_date }}
+          Date: {{ $fine_collection->payment_date }}
         </div>
         <div class="col-md-12">
           <div class="row">
@@ -158,19 +158,19 @@
               <table class="table table-bordered">
                 <tbody>
                   <tr>
-                    <th>নাম</th>
+                    <th>Name</th>
                     <td>{{ $student->user->name??'' }}</td>
                   </tr>
                   <tr>
-                    <th>আইডি</th>
+                    <th>ID No</th>
                     <td>{{ $student->student_id??'' }}</td>
                   </tr>
                   <tr>
-                    <th>শ্রেণী</th>
+                    <th>Class</th>
                     <td>{{$student->masterClass->name}}</td>
                   </tr>
                   <tr>
-                    <th>বিভাগ</th>
+                    <th>Group</th>
                     <td>{{$student->group}}</td>
                   </tr>
                 </tbody>
@@ -180,19 +180,19 @@
               <table class="table table-bordered">
                 <tbody>
                   <tr>
-                    <th>শাখা</th>
+                    <th>Section</th>
                     <td>{{$student->section}}</td>
                   </tr>
                   <tr>
-                    <th>শিফট</th>
+                    <th>Shift</th>
                     <td>{{ $student->shift??'' }}</td>
                   </tr>
                   <tr>
-                    <th>রোল</th>
+                    <th>Roll</th>
                     <td>{{$student->roll}}</td>
                   </tr>
                   <tr>
-                    <th>মোবাইল</th>
+                    <th>Mobile</th>
                     <td> {{$student->user->mobile}}</td>
                   </tr>
                 </tbody>
@@ -202,9 +202,9 @@
           <table class="table table-bordered" style="margin-top: 50px;">
             <thead>
                 <tr>
-                    <th class="text-center">ক্রমিক</th>
-                    <th class="text-center">বিবরণ</th>
-                    <th class="text-center">পরিমান</th>
+                    <th class="text-center">Serial</th>
+                    <th class="text-center">Description</th>
+                    <th class="text-center">Amount</th>
                 </tr>
             </thead>
             <tbody>
@@ -214,19 +214,19 @@
               @endphp
                 <tr>
                   <td class="text-center">{{ $i++ }}</td>
-                  <td>মোট জরিমানা- <br> {{ $fine_collection->description }}</td>
+                  <td>Total Fine- <br> {{ $fine_collection->description }}</td>
                   <td class="text-right"> <b>{{ number_format($fine_collection->amount, 2) }}</b> </td>
                 </tr>
                 <tr>
-                  <td colspan="2" class="text-right">জরিমানা পেইড </td>
+                  <td colspan="2" class="text-right">Fine Paid </td>
                   <td class="text-right"> - {{ number_format($fine_collection->paid, 2) }} </td>
                 </tr>
                 <tr>
-                  <td colspan="2" class="text-right">জরিমানা মওকুফ</td>
+                  <td colspan="2" class="text-right">Fine Waiver</td>
                   <td class="text-right">- {{ number_format($fine_collection->waiver, 2) }}</td>
                 </tr>
                 <tr>
-                  <td colspan="2" class="text-right">বর্তমান মোট বাকি</td>
+                  <td colspan="2" class="text-right">Total Current Due</td>
                   <td class="text-right"> <b>{{ number_format($fine_collection->amount-($fine_collection->paid+$fine_collection->waiver), 2) }}</b> </td>
                 </tr>
             </tbody>
@@ -236,12 +236,12 @@
           Powered by: Ehsan Software Email: infoehsansoftware@gmail.com
         </div>
         <div class="col-md-12 text-right" style="position: absolute;right: 2%;bottom: 0%;">
-          আদায়কারীর স্বাক্ষর ও সীল
+          Receiver Signature
         </div>
       </div>
     </div>
     <div align="center" style="width: 100%; margin-bottom: 10px">
-      <button class="btn btn-success" id="PrintVoucher">প্রিন্ট করুন</button>
+      <button class="btn btn-success" id="PrintVoucher">Print</button>
     </div>
   </div>
 @endsection
@@ -264,7 +264,7 @@
           var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
           frameDoc.document.open();
           //Create a new HTML document.
-          frameDoc.document.write('<html><head><title>ভাউচার প্রিন্ট</title>');
+          frameDoc.document.write('<html><head><title>Print Vouchar</title>');
           frameDoc.document.write('</head><body>');
           //Append the external CSS file.
           frameDoc.document.write('<link rel="stylesheet" href="{{mix('css/all.css')}}">');

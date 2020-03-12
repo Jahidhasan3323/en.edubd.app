@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'সেন্ড জরিমানা এস,এম,এস')
+@section('mainTitle', 'Send Fine SMS')
 @section('head_section')
     <style>
       .vouchar1, .vouchar2{position: relative; min-height: 1000px;}
@@ -13,7 +13,7 @@
   <div class="row">
         <div class="col-md-12">
           <div class="page-header">
-              <h2 class="text-center text-temp"> সেন্ড জরিমানা এস,এম,এস </h2>
+              <h2 class="text-center text-temp">Send Fine SMS </h2>
           </div>
         </div>
         <div class="col-md-12">
@@ -25,10 +25,10 @@
                   @foreach (session('success_msg')[1] as $element)
                       {{ $element }},
                   @endforeach
-                  এর নাম্বার খুজে পাওয়া যায়নি । <br>
+                  Number not found ! <br>
               @endif
               @if (count(session('success_msg')[2]) > 0)
-                  নিচের শিক্ষার্থীদের নির্ধারিত এস,এম,এসের পরিমান শেষ । <br>
+                  Following students end sms limit. <br>
                   @foreach (session('success_msg')[2] as $value)
                       {{ $value }},
                   @endforeach
@@ -52,9 +52,9 @@
               <div class="row">
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="class">শ্রেণী <span class="star">*</span></label>
+                          <label class="" for="class">Class <span class="star">*</span></label>
                           <select name="master_class_id" id="master_class_id" class="form-control" required="">
-                              <option value="">শ্রেণী নির্বাচন করুন</option>
+                              <option value="">Select Class</option>
                               @foreach($classes as $class)
                                   <option value="{{$class->id}}">{{$class->name}}</option>
                               @endforeach
@@ -64,9 +64,9 @@
 
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="group1">গ্রুপ <span class="star">*</span></label>
+                          <label class="" for="group1">Group <span class="star">*</span></label>
                           <select name="group_class_id" id="group_class_id" class="form-control" required="">
-                              <option value="">গ্রুপ নির্বাচন করুন</option>
+                              <option value="">Select Group</option>
                               @foreach($groups as $group_class)
                                 <option value="{{$group_class->name}}">{{$group_class->name}}</option>
                               @endforeach
@@ -76,26 +76,26 @@
 
                   <div class="col-sm-6">
                       <div class="form-group {{$errors->has('shift') ? 'has-error' : ''}}">
-                          <label class="" for="shift">শিফট <span class="star">*</span></label>
+                          <label class="" for="shift">Shift <span class="star">*</span></label>
                           <select name="shift" id="shift" class="form-control" required="">
-                                <option value="">শিফট নির্বাচন করুন</option>
-                                <option value="সকাল">সকাল</option>
-                                <option value="দিন">দিন</option>
-                                <option value="সন্ধ্যা">সন্ধ্যা</option>
-                                <option value="রাত">রাত</option>
+                              <option value="">Select Shift</option>
+                              <option value="Morning">Morning</option>
+                              <option value="Day">Day</option>
+                              <option value="Evening">Evening</option>
+                              <option value="Night">Night</option>
                           </select>
                       </div>
                   </div>
 
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="section1">শাখা <span class="star">*</span></label>
+                          <label class="" for="section1">Section <span class="star">*</span></label>
                           <select name="section" id="section" class="form-control" required="">
-                                <option value="">...শাখা নির্বাচন করুন...</option>
-                                <option value="ক">ক</option>
-                                <option value="খ">খ</option>
-                                <option value="গ">গ</option>
-                                <option value="ঘ">ঘ</option>
+                              <option value=""> Select Section </option>
+                              <option value="A">A</option>
+                              <option value="B">B</option>
+                              <option value="C">C</option>
+                              <option value="D">D</option>
                                 @foreach($units as $unit)
                                     <option value="{{$unit->name}}">{{$unit->name}}</option>
                                 @endforeach
@@ -108,7 +108,7 @@
                   <div class="row">
                       <div class="col-sm-6 col-sm-offset-3">
                           <div class="form-group">
-                              <button id="save" type="submit" class="btn btn-block btn-success">সেন্ড এস,এম,এস</button>
+                              <button id="save" type="submit" class="btn btn-block btn-success">Send SMS</button>
                           </div>
                       </div>
                   </div>

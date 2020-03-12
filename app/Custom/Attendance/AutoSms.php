@@ -64,7 +64,7 @@
                     }
                 }
 
-                // dd(count($numbers));
+                // dd(count($attend_students));
                 $chunks = array_chunk($numbers,100);
                 foreach ($chunks as $chunk) {
                     $mobile_number = implode(',',$chunk);
@@ -113,7 +113,7 @@
                         $attend_employees = AttenEmployee::where('school_id',$school->id)->whereDate('date', date('Y-m-d'))->where('status','P')->pluck('staff_id');
                         $absent_employees = Staff::with('user')->where('school_id',$school->id)->whereNotIn('staff_id',$attend_employees)->current()->get();
                         // Check for attend must be greater than 10%
-                        if (($total_employees*10)/100 < count($absent_employees)){
+                        if (($total_employees*10)/100 < count($attend_employees)){
                             foreach ($absent_employees as $absent_employee) {
                                 if($absent_employee->user){
                                     if ($absent_employee->user->mobile) {$numbers[] = $absent_employee->user->mobile; }
@@ -204,7 +204,9 @@
                 return $student->f_mobile_no;
             }elseif ($student->m_mobile_no) {
                 return $student->m_mobile_no;
-            }else {
+            }elseif($student->user->mobile) {
+                return $student->$student->user->mobile;
+            }elseif($student->guardian_mobile){
                 return $student->guardian_mobile;
             }
         }

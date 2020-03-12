@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'নির্ধারিত জরিমানা পরিচালন')
+@section('mainTitle', 'Edit Fine Setup')
 @section('head_section')
     <style>
 
@@ -11,7 +11,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h2 class="text-center text-temp">নির্ধারিত জরিমানা পরিবর্তন করুন</h2>
+      <h2 class="text-center text-temp">Edit Fee Setup</h2>
     </div>
     <div class="col-md-12">
       @if(session('success_msg'))
@@ -30,7 +30,7 @@
       @endif
     </div>
   </div>
-  <div class="panelcol-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
+  <div class="panel col-md-8 col-md-offset-2" style="margin-top: 15px; margin-bottom: 15px;">
         <div id="error_div" style="display: none; margin-bottom: 10px;" class="col-sm-8 col-sm-offset-2 alert-danger">
             <p class="text-center error" style=""></p>
         </div>
@@ -42,7 +42,7 @@
                 <div class="row">
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="master_class_id">শ্রেণী <span class="star">*</span></label>
+                          <label class="" for="master_class_id">Select Class <span class="star">*</span></label>
                           <div class="">
                               <select style="width: 100% !important;" class="form-control" name="master_class_id" id="master_class_id">
                                   <option selected value="{{ $fine_setup->master_class_id }}">{{ $fine_setup->master_class->name??'' }}</option>
@@ -55,7 +55,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="group_class_id">গ্রুপ / বিভাগ <span class="star">*</span></label>
+                          <label class="" for="group_class_id">Select Group<span class="star">*</span></label>
                           <div class="">
                               <select style="width: 100% !important;" class="form-control" name="group_class_id" id="group_class_id">
                                   <option selected value="{{ $fine_setup->group_class_id }}">{{ $fine_setup->group_class->name??'' }}</option>
@@ -70,23 +70,23 @@
               <div class="row">
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="shift">শিফট <span class="star">*</span></label>
+                          <label class="" for="shift">Shift <span class="star">*</span></label>
                           <div class="">
                               <select class="form-control" style="width: 100% !important;" name="shift" id="shift">
                                   <option selected value="{{ $fine_setup->shift }}">{{ $fine_setup->shift }}</option>
-                                  <option value="সকাল">সকাল</option>
-                                  <option value="দিন">দিন</option>
-                                  <option value="সন্ধ্যা">সন্ধ্যা</option>
-                                  <option value="রাত">রাত</option>
+                                  <option value="Morning">Morning</option>
+                                  <option value="Day">Day</option>
+                                  <option value="Evening">Evening</option>
+                                  <option value="Night">Night</option>
                               </select>
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="amount">ফি এর পরিমান <span class="star">*</span></label>
+                          <label class="" for="amount">Fine Amount <span class="star">*</span></label>
                           <div class="">
-                              <input value="{{ $fine_setup->amount }}" type="number" name="amount" class="form-control" placeholder="ফি এর পরিমান লিখুন">
+                              <input value="{{ $fine_setup->amount }}" type="number" name="amount" class="form-control" placeholder="Enter Amount">
                           </div>
                       </div>
                   </div>
@@ -96,7 +96,7 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">আপডেট করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Update</button>
                             </div>
                         </div>
                     </div>

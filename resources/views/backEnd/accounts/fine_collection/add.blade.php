@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'জরিমানা কালেকশন করুন')
+@section('mainTitle', 'Fine Collection')
 @section('head_section')
     <style>
       .vouchar1, .vouchar2{position: relative; min-height: 1000px;}
@@ -13,20 +13,20 @@
   <div class="row">
         <div class="col-md-6">
           <div class="page-header">
-              <h2 class="text-center text-temp"> শিক্ষার্থী নির্বাচন করুন করুন </h2>
+              <h2 class="text-center text-temp"> Select Student </h2>
           </div>
         </div>
         @isset($absense)
           <div class="col-md-6">
             <div class="page-header">
-                <h2 class="text-center text-temp"> জরিমানা কালেকশন করুন </h2>
+                <h2 class="text-center text-temp"> Fine Collection </h2>
             </div>
           </div>
         @endisset
 
         @isset($fine_collection_view)
           <div class="col-md-6" style="padding: 15px;">
-            <h2 class="text-center text-temp">ভাউচার প্রিন্ট করুন</h2>
+            <h2 class="text-center text-temp">Vouchar Print</h2>
           </div>
         @endisset
         <div class="col-md-12">
@@ -59,9 +59,9 @@
               <div class="row">
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="class">শ্রেণী <span class="star">*</span></label>
+                          <label class="" for="class">Class <span class="star">*</span></label>
                           <select name="master_class_id" id="master_class_id" class="form-control" required="">
-                              <option value="">...শ্রেণী নির্বাচন করুন...</option>
+                              <option value="">Select Class</option>
                               @foreach($classes as $class)
                                   <option value="{{$class->id}}">{{$class->name}}</option>
                               @endforeach
@@ -71,9 +71,9 @@
 
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="group1">গ্রুপ / বিভাগ <span class="star">*</span></label>
+                          <label class="" for="group1">Group <span class="star">*</span></label>
                           <select name="group_class_id" id="group_class_id" class="form-control" required="">
-                              <option value="">...গ্রুপ / বিভাগ নির্বাচন করুন...</option>
+                              <option value="">Select Class</option>
                               @foreach($groups as $group_class)
                                 <option value="{{$group_class->name}}">{{$group_class->name}}</option>
                               @endforeach
@@ -83,13 +83,13 @@
 
                   <div class="col-sm-6">
                       <div class="form-group {{$errors->has('shift') ? 'has-error' : ''}}">
-                          <label class="" for="shift">শিফট <span class="star">*</span></label>
+                          <label class="" for="shift">Shift <span class="star">*</span></label>
                           <select name="shift" id="shift" class="form-control" required="">
-                              <option value="">...শিফট নির্বাচন করুন...</option>
-                              <option value="সকাল">সকাল</option>
-                              <option value="দিন">দিন</option>
-                              <option value="সন্ধ্যা">সন্ধ্যা</option>
-                              <option value="রাত">রাত</option>
+                              <option value="">Select Shift</option>
+                              <option value="Morning">Morning</option>
+                              <option value="Day">Day</option>
+                              <option value="Evening">Evening</option>
+                              <option value="Night">Night</option>
                           </select>
                       </div>
                   </div>
@@ -98,11 +98,11 @@
                       <div class="form-group">
                           <label class="" for="section1">শাখা <span class="star">*</span></label>
                           <select name="section" id="section" class="form-control" required="">
-                              <option value="">...শাখা নির্বাচন করুন...</option>
-                              <option value="ক">ক</option>
-                              <option value="খ">খ</option>
-                              <option value="গ">গ</option>
-                              <option value="ঘ">ঘ</option>
+                              <option value=""> Select Section </option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
                               @foreach($units as $unit)
                               <option value="{!!$unit->name!!}">{!!$unit->name!!}</option>
                               @endforeach
@@ -112,9 +112,9 @@
 
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="student_id">শিক্ষার্থী আইডি বা রোল <span class="star">*</span></label>
+                          <label class="" for="student_id">Student ID or Roll <span class="star">*</span></label>
                           <select name="student_id" id="student_id" class="form-control" required="">
-                              <option value="">...শিক্ষার্থী নির্বাচন করুন...</option>
+                              <option value="">Select Student</option>
                           </select>
                       </div>
                   </div>
@@ -123,7 +123,7 @@
                   <div class="row">
                       <div class="col-sm-6 col-sm-offset-3">
                           <div class="form-group">
-                              <button id="save" type="submit" class="btn btn-block btn-success">অনুসন্ধান করুন</button>
+                              <button id="save" type="submit" class="btn btn-block btn-success">Search</button>
                           </div>
                       </div>
                   </div>
@@ -136,33 +136,33 @@
         <h3 class="text-center">{{ $student->user->name??'' }}</h3>
         <table class="table" style="border: 1px solid #ddd;">
           <tr>
-            <th width="120" style="border-right: 1px solid #ddd;">মাস</th>
-            <td>{{ str_replace($s, $r, date('F Y', strtotime('-1 months'))) }}</td>
+            <th width="120" style="border-right: 1px solid #ddd;">Month</th>
+            <td>{{ date('F Y', strtotime('-1 months')) }}</td>
           </tr>
           <tr>
-            <th width="120" style="border-right: 1px solid #ddd;">মোট অনুপস্থিত</th>
-            <td>{{ $absense }} দিন</td>
+            <th width="120" style="border-right: 1px solid #ddd;">Total Absent</th>
+            <td>{{ $absense }} Days</td>
           </tr>
           <tr>
-            <th width="120" style="border-right: 1px solid #ddd;">জরিমান</th>
-            <td>{{ number_format($absense*$fine, 2) }} টাকা</td>
+            <th width="120" style="border-right: 1px solid #ddd;">Fine</th>
+            <td>{{ number_format($absense*$fine, 2) }} Taka</td>
           </tr>
           <tr>
-            <th width="120" style="border-right: 1px solid #ddd;">জরিমানা পরিশোধ</th>
-            <td>{{ number_format($current_month_fine_collection, 2) }} টাকা</td>
+            <th width="120" style="border-right: 1px solid #ddd;">Fine paid</th>
+            <td>{{ number_format($current_month_fine_collection, 2) }} Taka</td>
           </tr>
           <tr>
-            <th width="120" style="border-right: 1px solid #ddd;">পূর্বের জরিমান</th>
+            <th width="120" style="border-right: 1px solid #ddd;">Previous Due</th>
             <td>
               @if ($last_fine_collection)
                 {{ number_format($last_fine_collection->due, 2) }}
               @else
                 {{ '0.00' }}
-              @endif  টাকা
+            @endif  Taka
             </td>
           </tr>
           <tr>
-            <th width="120" style="border-right: 1px solid #ddd;">মোট জরিমান</th>
+            <th width="120" style="border-right: 1px solid #ddd;">Total Fine</th>
             <td>
               @if ($last_fine_collection)
                 @php
@@ -174,7 +174,7 @@
                   $total_amount = $absense*$fine;
                 @endphp
                 <b>{{ number_format($total_amount, 2) }}</b>
-              @endif  টাকা
+            @endif  Taka
             </td>
           </tr>
         </table>
@@ -186,7 +186,7 @@
                 <div class="row">
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label for="payment_date">গ্রহনের তারিখ <span class="star">*</span></label>
+                          <label for="payment_date">Payment Date <span class="star">*</span></label>
                           <div class="">
                               <input value="{{ date('d-m-Y') }}" class="form-control date" type="text" name="payment_date" id="payment_date"required>
                           </div>
@@ -195,31 +195,31 @@
 
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="payment_by">প্রদানকারীর নাম <span class="star">*</span></label>
+                          <label class="" for="payment_by">Name <span class="star">*</span></label>
                           <div class="">
-                              <input value="{{old('payment_by')}}" type="text" name="payment_by" class="form-control" placeholder="প্রদানকারীর নাম"required>
+                              <input value="{{old('payment_by')}}" type="text" name="payment_by" class="form-control" placeholder="Enter Name"required>
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="mobile">প্রদানকারীর মোবাইল </label>
+                          <label class="" for="mobile">Mobile </label>
                           <div class="">
-                              <input value="{{old('mobile')}}" type="number" name="mobile" class="form-control" placeholder="প্রদানকারীর মোবাইল">
+                              <input value="{{old('mobile')}}" type="number" name="mobile" class="form-control" placeholder="পEnter mobile">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="paid">পেইড <span class="star">*</span></label>
+                          <label class="" for="paid">Paid <span class="star">*</span></label>
                           <div class="">
-                              <input value="{{old('paid')}}" type="number" name="paid" class="form-control" placeholder="পরিমান দিন (ইংরেজিতে)" required>
+                              <input value="{{old('paid')}}" type="number" name="paid" class="form-control" placeholder="Enter Amount" required>
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="waiver">মওকুফ </label>
+                          <label class="" for="waiver">Waiver </label>
                           <div class="">
                               <input value="{{old('waiver')}}" type="number" name="waiver" class="form-control" placeholder="পরিমান দিন (ইংরেজিতে)">
                           </div>
@@ -227,9 +227,9 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="reference">রেফারেন্স </label>
+                          <label class="" for="reference">Reference </label>
                           <div class="">
-                              <input value="{{old('reference')}}" type="text" name="reference" class="form-control" placeholder="রেফারেন্স">
+                              <input value="{{old('reference')}}" type="text" name="reference" class="form-control" placeholder="Reference">
                           </div>
                       </div>
                   </div>
@@ -238,19 +238,19 @@
                           <label class="" for="payment_method">পেমেন্ট মেথড <span class="star">*</span></label>
                           <div class="">
                               <select class="form-control" name="payment_method" id="payment_method">
-                                  <option value="ক্যাশ">ক্যাশ</option>
-                                  <option value="বিকাশ">বিকাশ</option>
-                                  <option value="রকেট">রকেট</option>
-                                  <option value="ক্রেডিট কার্ড">ক্রেডিট কার্ড</option>
-                                  <option value="ডেবিট কার্ড">ডেবিট কার্ড</option>
-                                  <option value="ব্যাংক">ব্যাংক</option>
+                                  <option value="Cash">Cash</option>
+                                  <option value="Bkash">Bkash</option>
+                                  <option value="Rocket">Rocket</option>
+                                  <option value="Credit-Card">Credit-Card</option>
+                                  <option value="Debit-Card">Debit-Card</option>
+                                  <option value="Bank">Bank</option>
                               </select>
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="fund_id">ফান্ড নির্বাচন করুন <span class="star">*</span></label>
+                          <label class="" for="fund_id">Select Fund<span class="star">*</span></label>
                           <div class="">
                               <select class="form-control" name="fund_id" id="fund_id">
                                 @foreach ($funds as $fund)
@@ -262,7 +262,7 @@
                   </div>
                   <div class="col-sm-12">
                       <div class="form-group">
-                          <label class="" for="description">বিবরণ</label>
+                          <label class="" for="description">Description</label>
                           <div class="">
                               <textarea name="description" rows="3" class="form-control"></textarea>
                           </div>
@@ -272,7 +272,7 @@
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-success">সংরক্ষণ করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-success">Save</button>
                             </div>
                         </div>
                     </div>
@@ -291,13 +291,13 @@
             <h5 style="margin: 0px; padding: 0px;">{{ $school->address }}</h5>
             <img id="school_logo" src="{{ Storage::url($school->logo) }}" alt="Logo" width="60" height="60" style="border: 1px solid #ddd; position: absolute;left: 2%;top: 5%;">
             <h3>{{ $account_setting->voucher_title }}</h3>
-            <span>শিক্ষার্থী কপি</span>
+            <span>Student Copy</span>
           </center>
           <div class="col-md-6 text-left" style="padding-bottom: 15px; display:inline-block; float:left;">
-            সিরিয়ালঃ {{ $fine_collection_view->serial }}
+            Serial: {{ $fine_collection_view->serial }}
           </div>
           <div class="col-md-6 text-right" style="padding-bottom: 15px;">
-            তারিখঃ {{ $fine_collection_view->payment_date }}
+            Date: {{ $fine_collection_view->payment_date }}
           </div>
           <div class="col-md-12">
             <div class="row">
@@ -305,19 +305,19 @@
                 <table class="table table-bordered">
                   <tbody>
                     <tr>
-                      <th>নাম</th>
+                      <th>Name</th>
                       <td>{{ $student->user->name??'' }}</td>
                     </tr>
                     <tr>
-                      <th>আইডি</th>
+                      <th>ID Number</th>
                       <td>{{ $student->student_id??'' }}</td>
                     </tr>
                     <tr>
-                      <th>শ্রেণী</th>
+                      <th>Class</th>
                       <td>{{$student->masterClass->name}}</td>
                     </tr>
                     <tr>
-                      <th>বিভাগ</th>
+                      <th>Group</th>
                       <td>{{$student->group}}</td>
                     </tr>
                   </tbody>
@@ -327,19 +327,19 @@
                 <table class="table table-bordered">
                   <tbody>
                     <tr>
-                      <th>শাখা</th>
+                      <th>Section</th>
                       <td>{{$student->section}}</td>
                     </tr>
                     <tr>
-                      <th>শিফট</th>
+                      <th>Shift</th>
                       <td>{{ $student->shift??'' }}</td>
                     </tr>
                     <tr>
-                      <th>রোল</th>
+                      <th>Roll</th>
                       <td>{{$student->roll}}</td>
                     </tr>
                     <tr>
-                      <th>মোবাইল</th>
+                      <th>Mobile</th>
                       <td> {{$student->user->mobile}}</td>
                     </tr>
                   </tbody>
@@ -349,9 +349,9 @@
             <table class="table table-bordered" style="margin-top: 50px;">
               <thead>
                   <tr>
-                      <th class="text-center">ক্রমিক</th>
-                      <th class="text-center">বিবরণ</th>
-                      <th class="text-center">পরিমান</th>
+                      <th class="text-center">Serial</th>
+                      <th class="text-center">Description</th>
+                      <th class="text-center">Amount</th>
                   </tr>
               </thead>
               <tbody>
@@ -361,19 +361,19 @@
                 @endphp
                   <tr>
                     <td class="text-center">{{ $i++ }}</td>
-                    <td>মোট জরিমানা- <br> {{ $fine_collection_view->description }}</td>
+                    <td>Total Fine- <br> {{ $fine_collection_view->description }}</td>
                     <td class="text-right"> <b>{{ number_format($fine_collection_view->amount, 2) }}</b> </td>
                   </tr>
                   <tr>
-                    <td colspan="2" class="text-right">জরিমানা পেইড </td>
+                    <td colspan="2" class="text-right">Fine Paid </td>
                     <td class="text-right"> - {{ number_format($fine_collection_view->paid, 2) }} </td>
                   </tr>
                   <tr>
-                    <td colspan="2" class="text-right">জরিমানা মওকুফ</td>
+                    <td colspan="2" class="text-right">Fine waiver</td>
                     <td class="text-right">- {{ number_format($fine_collection_view->waiver, 2) }}</td>
                   </tr>
                   <tr>
-                    <td colspan="2" class="text-right">বর্তমান মোট বাকি</td>
+                    <td colspan="2" class="text-right">Total Current Due</td>
                     <td class="text-right"> <b>{{ number_format($fine_collection_view->amount-($fine_collection_view->paid+$fine_collection_view->waiver), 2) }}</b> </td>
                   </tr>
               </tbody>
@@ -383,7 +383,7 @@
             Powered by: Ehsan Software Email: infoehsansoftware@gmail.com
           </div>
           <div class="col-md-12 text-right" style="position: absolute;right: 2%;bottom: 0%;">
-            আদায়কারীর স্বাক্ষর ও সীল
+            Receiver Signature
           </div>
         </div>
         <div class="" style="height: 0.1px;">
@@ -395,13 +395,13 @@
             <h5 style="margin: 0px; padding: 0px;">{{ $school->address }}</h5>
             <img id="school_logo" src="{{ Storage::url($school->logo) }}" alt="Logo" width="60" height="60" style="border: 1px solid #ddd; position: absolute;left: 2%;top: 5%;">
             <h3>{{ $account_setting->voucher_title }}</h3>
-            <span>অফিস কপি</span>
+            <span>Office copy</span>
           </center>
           <div class="col-md-6 text-left" style="padding-bottom: 15px; display:inline-block; float:left;">
-            সিরিয়ালঃ {{ $fine_collection_view->serial }}
+            Serial: {{ $fine_collection_view->serial }}
           </div>
           <div class="col-md-6 text-right" style="padding-bottom: 15px;">
-            তারিখঃ {{ $fine_collection_view->payment_date }}
+            Date: {{ $fine_collection_view->payment_date }}
           </div>
           <div class="col-md-12">
             <div class="row">
@@ -409,19 +409,19 @@
                 <table class="table table-bordered">
                   <tbody>
                     <tr>
-                      <th>নাম</th>
+                      <th>Name</th>
                       <td>{{ $student->user->name??'' }}</td>
                     </tr>
                     <tr>
-                      <th>আইডি</th>
+                      <th>ID Number</th>
                       <td>{{ $student->student_id??'' }}</td>
                     </tr>
                     <tr>
-                      <th>শ্রেণী</th>
+                      <th>Class</th>
                       <td>{{$student->masterClass->name}}</td>
                     </tr>
                     <tr>
-                      <th>বিভাগ</th>
+                      <th>Group</th>
                       <td>{{$student->group}}</td>
                     </tr>
                   </tbody>
@@ -431,19 +431,19 @@
                 <table class="table table-bordered">
                   <tbody>
                     <tr>
-                      <th>শাখা</th>
+                      <th>Section</th>
                       <td>{{$student->section}}</td>
                     </tr>
                     <tr>
-                      <th>শিফট</th>
+                      <th>Shift</th>
                       <td>{{ $student->shift??'' }}</td>
                     </tr>
                     <tr>
-                      <th>রোল</th>
+                      <th>Roll</th>
                       <td>{{$student->roll}}</td>
                     </tr>
                     <tr>
-                      <th>মোবাইল</th>
+                      <th>Mobile</th>
                       <td> {{$student->user->mobile}}</td>
                     </tr>
                   </tbody>
@@ -453,9 +453,9 @@
             <table class="table table-bordered" style="margin-top: 50px;">
               <thead>
                   <tr>
-                      <th class="text-center">ক্রমিক</th>
-                      <th class="text-center">বিবরণ</th>
-                      <th class="text-center">পরিমান</th>
+                      <th class="text-center">Serial</th>
+                      <th class="text-center">Description</th>
+                      <th class="text-center">Amount</th>
                   </tr>
               </thead>
               <tbody>
@@ -465,19 +465,19 @@
                 @endphp
                   <tr>
                     <td class="text-center">{{ $i++ }}</td>
-                    <td>মোট জরিমানা- <br> {{ $fine_collection_view->description }}</td>
+                    <td>Total FIneা- <br> {{ $fine_collection_view->description }}</td>
                     <td class="text-right"> <b>{{ number_format($fine_collection_view->amount, 2) }}</b> </td>
                   </tr>
                   <tr>
-                    <td colspan="2" class="text-right">জরিমানা পেইড </td>
+                    <td colspan="2" class="text-right">Fine Paid </td>
                     <td class="text-right"> - {{ number_format($fine_collection_view->paid, 2) }} </td>
                   </tr>
                   <tr>
-                    <td colspan="2" class="text-right">জরিমানা মওকুফ</td>
+                    <td colspan="2" class="text-right">Fine Waiver</td>
                     <td class="text-right">- {{ number_format($fine_collection_view->waiver, 2) }}</td>
                   </tr>
                   <tr>
-                    <td colspan="2" class="text-right">বর্তমান মোট বাকি</td>
+                    <td colspan="2" class="text-right">Total Current Due</td>
                     <td class="text-right"> <b>{{ number_format($fine_collection_view->amount-($fine_collection_view->paid+$fine_collection_view->waiver), 2) }}</b> </td>
                   </tr>
               </tbody>
@@ -487,12 +487,12 @@
             Powered by: Ehsan Software Email: infoehsansoftware@gmail.com
           </div>
           <div class="col-md-12 text-right" style="position: absolute;right: 2%;bottom: 0%;">
-            আদায়কারীর স্বাক্ষর ও সীল
+            Receiver Signature
           </div>
         </div>
       </div>
       <div align="center" style="width: 100%; margin-bottom: 10px">
-        <button class="btn btn-success" id="PrintVoucher">প্রিন্ট করুন</button>
+        <button class="btn btn-success" id="PrintVoucher">Print</button>
       </div>
     </div>
   @endisset
@@ -509,7 +509,7 @@
               var shift = $('#shift').find(":selected").val();
               var section = $(this).val();
               // alert(master_class_id);
-              var option = '<option>আইডি বা রোল নির্বাচন করুন</option>';
+              var option = '<option>Select Student</option>';
               $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -606,7 +606,7 @@
         var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
         frameDoc.document.open();
         //Create a new HTML document.
-        frameDoc.document.write('<html><head><title>ভাউচার প্রিন্ট</title>');
+        frameDoc.document.write('<html><head><title>Print Voucher</title>');
         frameDoc.document.write('</head><body>');
         //Append the external CSS file.
         frameDoc.document.write('<link rel="stylesheet" href="{{mix('css/all.css')}}">');
