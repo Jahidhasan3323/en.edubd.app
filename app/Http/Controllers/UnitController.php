@@ -45,13 +45,13 @@ class UnitController extends Controller
             'name'=>'required'
         ]);
         if ($this->createCheck($request->name)){
-            Session::flash('errmgs', 'শাখাটি পূর্বেই যোগ করা হয়েছে !');
+            Session::flash('errmgs', 'This Section already taken !');
             return redirect()->back();
         }
         $data['name']=strtoupper($request->name);
         $data['school_id']=Auth::getSchool();
         Unit::create($data);
-        Session::flash('sccmgs', 'শাখা সফলভাবে যোগ করা হয়েছে !');
+        Session::flash('sccmgs', 'Section Added Successfully !');
             return redirect()->back();
     }
 
@@ -85,12 +85,12 @@ class UnitController extends Controller
             'name'=>'required'
         ]);
         if ($this->createCheck($request->name)){
-            Session::flash('errmgs', 'শাখাটি পূর্বেই যোগ করা হয়েছে !');
+            Session::flash('errmgs', 'This section already taken !');
             return redirect()->back();
         }
         $data['name']=$request->name;
         Unit::where(['id'=>$request->unit_id,'school_id'=>Auth::getSchool()])->update($data);
-        Session::flash('sccmgs', 'শাখা সফলভাবে আপডেট করা হয়েছে !');
+        Session::flash('sccmgs', 'Section Updated Successfully.');
         return redirect()->back();
     }
 
@@ -103,7 +103,7 @@ class UnitController extends Controller
     public function destroy($id)
     {
         Unit::where(['id'=>$id,'school_id'=>Auth::getSchool()])->delete();
-        Session::flash('sccmgs', 'শাখা সফলভাবে মুছে ফেলা হয়েছে !');
+        Session::flash('sccmgs', 'Section Deleted Successfully !');
             return redirect()->back();
     }
 }

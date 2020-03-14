@@ -67,10 +67,10 @@ class WmSpeechController extends Controller
            if($imageFile = $request->file('image')){
                $image_path=$this->imagesProcessing1($imageFile,'webmanagement/speech/',130,135);
                $data['image'] = $image_path;
-            } 
+            }
         }
         WmSpeech::create($data);
-        return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','speech');
+        return $this->returnWithSuccessRedirect('Your Information Added Successfully.','speech');
     }
 
     /**
@@ -81,7 +81,7 @@ class WmSpeechController extends Controller
      */
     public function show($id)
     {
-        
+
         if(!Auth::is('admin')){
             return redirect('/home');
         }
@@ -97,7 +97,7 @@ class WmSpeechController extends Controller
      */
     public function edit($id)
     {
-        
+
         if(!Auth::is('admin')){
             return redirect('/home');
         }
@@ -135,19 +135,19 @@ class WmSpeechController extends Controller
                 Storage::delete($wmSpeech->image);
                 }
             }
-            
+
         }else{
            if($imageFile = $request->file('image')){
                $image_path=$this->imagesProcessing1($imageFile,'webmanagement/speech/',130,135);
                $data['image'] = $image_path;
                if (isset($wmSpeech->image)&&file_exists(public_path(Storage::url($wmSpeech->image)))){
                 Storage::delete($wmSpeech->image);
-            } 
+            }
             }
 
         }
         $wmSpeech->update($data);
-        return $this->returnWithSuccessRedirect('আপনার তথ্য পরিবর্তন হয়েছে !','speech');
+        return $this->returnWithSuccessRedirect('Your Information Updated Successfully.','speech');
     }
 
     /**
@@ -166,6 +166,6 @@ class WmSpeechController extends Controller
         if (isset($wmSpeech->image)&&file_exists(public_path(Storage::url($wmSpeech->image)))){
                 Storage::delete($wmSpeech->image);
             }
-        return $this->returnWithSuccessRedirect('আপনার তথ্য মুছে দেওয়া হয়েছে ','speech');
+        return $this->returnWithSuccessRedirect('Your Information Added Successfully.','speech');
     }
 }

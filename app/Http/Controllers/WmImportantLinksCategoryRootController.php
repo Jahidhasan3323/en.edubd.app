@@ -60,8 +60,8 @@ class WmImportantLinksCategoryRootController extends Controller
                 WmImportantLinksCategory::insert(['tittle'=>$request->tittle,'school_id'=>$school->id]);
             }
         }
-        
-        return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','important_links_category_root');
+
+        return $this->returnWithSuccessRedirect('Your Information Added Successfully.','important_links_category_root');
     }
 
     /**
@@ -107,9 +107,9 @@ class WmImportantLinksCategoryRootController extends Controller
         $this->validate($request, [
             'tittle' => 'required',
         ]);
-        
+
         $important_links_category_root->update($data);
-        return $this->returnWithSuccessRedirect('আপনার তথ্য পরিবর্তন হয়েছে !','important_links_category_root');
+        return $this->returnWithSuccessRedirect('Your Information Updated Successfully.','important_links_category_root');
     }
 
     /**
@@ -125,7 +125,7 @@ class WmImportantLinksCategoryRootController extends Controller
         }
         $important_links_category_root = WmImportantLinksCategoryRoot::where(['id'=>$id])->first();
         $important_links_category_root->delete();
-       
-        return $this->returnWithSuccessRedirect('আপনার তথ্য মুছে দেওয়া হয়েছে ','important_links_category_root');
+
+        return $this->returnWithSuccessRedirect('Your Information Deleted Successfully.','important_links_category_root');
     }
 }

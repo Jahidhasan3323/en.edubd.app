@@ -52,9 +52,9 @@ class WmGalleryCategoryController extends Controller
             'tittle' => 'required',
             'type' => 'required',
         ]);
-        
+
         WmGalleryCategory::create($data);
-        return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','gallery_category');
+        return $this->returnWithSuccessRedirect('Your Information Added Successfully. !','gallery_category');
     }
 
     /**
@@ -101,9 +101,9 @@ class WmGalleryCategoryController extends Controller
             'tittle' => 'required',
             'type' => 'required',
         ]);
-        
+
         $gallery_category->update($data);
-        return $this->returnWithSuccessRedirect('আপনার তথ্য পরিবর্তন হয়েছে !','gallery_category');
+        return $this->returnWithSuccessRedirect('Your Information Updated Successfully. !','gallery_category');
     }
 
     /**
@@ -119,7 +119,7 @@ class WmGalleryCategoryController extends Controller
         }
         $gallery_category = WmGalleryCategory::where(['id'=>$id,'school_id'=> Auth::getSchool()])->first();
         $gallery_category->delete();
-       
-        return $this->returnWithSuccessRedirect('আপনার তথ্য মুছে দেওয়া হয়েছে ','gallery_category');
+
+        return $this->returnWithSuccessRedirect('Your Information Deleted Successfully. ','gallery_category');
     }
 }

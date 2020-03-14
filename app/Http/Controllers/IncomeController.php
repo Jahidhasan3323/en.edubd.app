@@ -52,7 +52,7 @@ class IncomeController extends Controller
           if ($account_setting->income_sms=="1") {
             if (!empty($request->mobile)) {
               $mobile_number = "88".$request->mobile;
-              $message = urlencode($request->payment_by.", মেমো নাম্বার-".$serial.", জমা-".$request->amount." /-, ".date('d M Y h:i a ').$school_name);
+              $message = urlencode($request->payment_by.", Memo No-".$serial.", Paid-".$request->amount." /-, ".date('d M Y h:i a ').$school_name);
               $send_sms = $this->sms_send_by_api($school,$mobile_number,$message);
             }
           }
@@ -60,7 +60,7 @@ class IncomeController extends Controller
           if ($sms_report < $sms_limit) {
               if (!empty($request->mobile)) {
                 $mobile_number = "88".$request->mobile;
-                $message = urlencode($request->payment_by.", মেমো নাম্বার-".$serial.", জমা-".$request->amount." /-, ".date('d M Y h:i a ').$school_name);
+                $message = urlencode($request->payment_by.", Memo No-".$serial.", Paid-".$request->amount." /-, ".date('d M Y h:i a ').$school_name);
                 $send_sms = $this->sms_send_by_api($school,$mobile_number,$message);
                 $success = json_decode($send_sms,true);
                 if ($success['error']==0) {
@@ -76,7 +76,7 @@ class IncomeController extends Controller
 
       $income_view = Income::where('serial', $serial)->first();
       $funds = Fund::orderBy('id', 'asc')->get();
-      $msg = 'আয় সফলভাবে যোগ করা হয়েছে ।';
+      $msg = 'Income Added Successfully';
       return view('backEnd.accounts.income.add', compact('funds', 'income_view', 'msg', 'school', 'account_setting'));
     }
 
@@ -102,7 +102,7 @@ class IncomeController extends Controller
       $data['payment_date'] = date('Y-m-d', strtotime($request->payment_date));
       // return $data;
       $income->update($data);
-      return redirect()->route('income_manage')->with('success_msg', 'আয় সফলভাবে আপডেট করা হয়েছে ।');
+      return redirect()->route('income_manage')->with('success_msg', 'Income Updated Successfully');
     }
 
     public function income_view($id){
@@ -115,7 +115,7 @@ class IncomeController extends Controller
     public function income_delete(Request $request){
       $income = Income::find($request->id);
       $income->delete();
-      return redirect()->back()->with('success_msg', 'আয় সফলভাবে মুছে ফেলা হয়েছে ।');
+      return redirect()->back()->with('success_msg', 'Income Deleted Successfully');
     }
 
 

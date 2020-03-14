@@ -81,22 +81,22 @@
   @isset($salary_sheets)
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;" style="border: 1px solid #ddd;">
         <div class="panel-body">
-          <h3 class="text-center"> {{ str_replace($s, $r, date('F', strtotime('1-'.$month.'-'.$year))) }} {{ str_replace($s, $r, $year) }} </h3>
+          <h3 class="text-center"> {{ date('F', strtotime('1-'.$month.'-'.$year)) }} {{ $year }} </h3>
             <div class="table-responsive">
                 <table id="provident_fund" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th class="text-center">আইডি</th>
-                            <th class="text-center">নাম</th>
-                            <th class="text-center">পদবী</th>
-                            <th class="text-center">বেসিক</th>
-                            <th class="text-center">অন্যান্য (+)</th>
-                            <th class="text-center">অন্যান্য (-) </th>
-                            <th class="text-center">প্রভিডেন্ট</th>
-                            <th class="text-center">অনুপস্থিত</th>
-                            <th class="text-center">অগ্রিম</th>
-                            <th class="text-center">নেট বেতন</th>
-                            <th class="text-center">একশন</th>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Designation</th>
+                            <th class="text-center">Basic</th>
+                            <th class="text-center">Other's (+)</th>
+                            <th class="text-center">Other's (-) </th>
+                            <th class="text-center">Provident</th>
+                            <th class="text-center">Absence</th>
+                            <th class="text-center">Advanced</th>
+                            <th class="text-center">Net Salary</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>

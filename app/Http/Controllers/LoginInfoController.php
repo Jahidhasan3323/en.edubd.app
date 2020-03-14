@@ -53,7 +53,7 @@ class LoginInfoController extends Controller
 			$user->save();
 
 			$school_name = $school->short_name??$sms_send->school_name_process($school->user->name);
-			$content='প্রিয় '.$user->name.' তোমার সফটওয়্যার লগইন তথ্য ! ওয়েব এড্রেস : '.$school->website.', ইমেইল : '.$new_email.', পাসওয়ার্ড : '.$new_pass.'. '.$school_name;
+			$content='Dear, '.$user->name.' Your login information ! Web address : '.$school->website.', Email : '.$new_email.', Password : '.$new_pass.'. '.$school_name;
 			$message= urlencode($content);
             // dd(urldecode($message));
 			$a = $this->sms_send_by_api($school,$user->mobile,$message);
@@ -62,7 +62,7 @@ class LoginInfoController extends Controller
                 $count++;
             }
 		}
-        return redirect()->route('loginInfo.student')->with('sccmgs', $count.' জন শিক্ষার্থীকে লগইন তথ্য পাঠানো হয়েছে ।');
+        return redirect()->route('loginInfo.student')->with('sccmgs', 'Send login information '.$count);
 	}
 
     // Employee Login Infoormation (SMS)
@@ -93,7 +93,7 @@ class LoginInfoController extends Controller
 			$user->save();
 
 			$school_name = $school->short_name??$sms_send->school_name_process($school->user->name);
-			$content='প্রিয় '.$user->name.' আপনার সফটওয়্যার লগইন তথ্য ! ওয়েব এড্রেস : '.$school->website.', ইমেইল : '.$new_email.', পাসওয়ার্ড : '.$new_pass.'. '.$school_name;
+			$content='Dear, '.$user->name.' Your software login information ! Web address : '.$school->website.', Email : '.$new_email.', Password : '.$new_pass.'. '.$school_name;
 			$message= urlencode($content);
 			$a = $this->sms_send_by_api($school,$user->mobile,$message);
             $success = json_decode($a,true);
@@ -101,7 +101,7 @@ class LoginInfoController extends Controller
                 $count++;
             }
 		}
-        return redirect()->route('loginInfo.employee')->with('sccmgs', $count.' জন শিক্ষক ও কর্মচারীকে লগইন তথ্য পাঠানো হয়েছে ।');
+        return redirect()->route('loginInfo.employee')->with('sccmgs','Send login information '.$count);
 	}
 
     // Committee Login Infoormation (SMS)
@@ -132,7 +132,7 @@ class LoginInfoController extends Controller
 			$user->save();
 
 			$school_name = $school->short_name??$sms_send->school_name_process($school->user->name);
-			$content='প্রিয় '.$user->name.' আপনার সফটওয়্যার লগইন তথ্য ! ওয়েব এড্রেস : '.$school->website.', ইমেইল : '.$new_email.', পাসওয়ার্ড : '.$new_pass.'. '.$school_name;
+			$content='Dear, '.$user->name.' your software login information ! Web address : '.$school->website.', Email : '.$new_email.', Password : '.$new_pass.'. '.$school_name;
 			$message= urlencode($content);
 			$a = $this->sms_send_by_api($school,$user->mobile,$message);
             $success = json_decode($a,true);
@@ -140,7 +140,7 @@ class LoginInfoController extends Controller
                 $count++;
             }
 		}
-        return redirect()->route('loginInfo.employee')->with('sccmgs', $count.' জন কমিটিকেে লগইন তথ্য পাঠানো হয়েছে ।');
+        return redirect()->route('loginInfo.employee')->with('sccmgs', 'Send login information '.$count);
 	}
 
 

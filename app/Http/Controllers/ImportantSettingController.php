@@ -56,9 +56,9 @@ class ImportantSettingController extends Controller
                     $imp_setting->create($data);
                 }
             }
-            return $this->returnWithSuccess('সফলভাবে পরিবর্তন করা হয়েছে !');
+            return $this->returnWithSuccess('Your Information Updated Successfully. !');
         }catch (\Exception $e) {
-            return $this->returnWithError('দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            return $this->returnWithError('Sorry, Something went wrong !'.$e->getMessage());
         }
     }
 

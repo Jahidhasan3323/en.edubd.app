@@ -46,11 +46,11 @@ class GroupClassController extends Controller
             ]);
         $check=GroupClass::where(['name'=>$request->name])->first();
         if($check){
-            Session::flash('errmgs', 'দুঃখিত, এই গ্রুপটি পূর্বেই যোগ করা হয়েছে !');
+            Session::flash('errmgs', 'Sorry, This group already taken.');
             return redirect()->back();
         }
         GroupClass::create(['name'=>$request->name]);
-        Session::flash('sccmgs', 'শ্রেণী গ্রুপ সফলভাবে যোগ করা হয়েছে !');
+        Session::flash('sccmgs', 'Group Added Successfully.');
         return redirect()->back();
     }
 
@@ -80,11 +80,11 @@ class GroupClassController extends Controller
         }
         $check=GroupClass::where(['name'=>$request->name])->first();
         if($check){
-            Session::flash('errmgs', 'দুঃখিত, এই গ্রুপটি পূর্বেই যোগ করা হয়েছে !');
+            Session::flash('errmgs', 'Sorry, This group already taken !');
             return redirect()->back();
         }
         GroupClass::where(['id'=>$request->id])->update(['name'=>$request->name]);
-        Session::flash('sccmgs', 'শ্রেণী গ্রুপ সফলভাবে আপডেট করা হয়েছে  !');
+        Session::flash('sccmgs', 'Group Updated Successfully.');
         return redirect()->back();
     }
 
@@ -97,7 +97,7 @@ class GroupClassController extends Controller
     public function destroy($id)
     {
         GroupClass::where(['id'=>$id])->delete();
-        Session::flash('sccmgs', 'শ্রেণী গ্রুপ সফলভাবে মুছে ফেলা হয়েছে  !');
+        Session::flash('sccmgs', 'Group Deleted Successfully !');
         return redirect()->back();
     }
 }

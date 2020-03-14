@@ -86,7 +86,7 @@ class StudentCardController extends Controller
            $data=$request->except('_token','student_id','issue_date','end_date');
            $students= Student::where($data)->whereIn('student_id',$request->student_id)->get();
         }else{
-          return $this->returnWithError('দয়া করে, কমপক্ষে একজন শিক্ষার্থী নির্বাচন করুন');
+          return $this->returnWithError('Please select at least 1 student.');
         }
         $school=School::with('user')->where('id',$request->school_id)->first();
 
@@ -109,7 +109,7 @@ class StudentCardController extends Controller
                ->where($data)->orderBy('id', 'desc')
                ->get();
           if(count($students)<1){
-            return $this->returnWithError('সকল শিক্ষার্থীর আইডি কার্ড আছে !!');
+            return $this->returnWithError('All students has ID card !!');
           }
           $school = School::where('id',$request->school_id)->first();
           $print=1;

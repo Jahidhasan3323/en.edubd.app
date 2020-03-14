@@ -23,7 +23,7 @@ class SalaryFundController extends Controller
       $data = $request->all();
       $data['school_id'] = Auth::getSchool();
       $salary_fund->create($data);
-      return redirect()->route('salary_fund_add')->with('success_msg', 'সেলারি ফান্ড সফলভাবে যোগ করা হয়েছে ।');
+      return redirect()->route('salary_fund_add')->with('success_msg', 'Salary Fund Added Successfully.');
     }
 
     public function salary_fund_edit($id){
@@ -40,13 +40,13 @@ class SalaryFundController extends Controller
       $salary_fund = SalaryFund::find($request->id);
       $data = $request->all();
       $salary_fund->update($data);
-      return redirect()->route('salary_fund_add')->with('success_msg', 'সেলারি ফান্ড সফলভাবে আপডেট করা হয়েছে ।');
+      return redirect()->route('salary_fund_add')->with('success_msg', 'Salary Fund Updated Successfully.');
     }
 
     public function salary_fund_delete(Request $request){
       $salary_fund = SalaryFund::find($request->id);
       $salary_fund->delete();
-      return redirect()->route('salary_fund_add')->with('success_msg', 'সেলারি ফান্ড সফলভাবে মুছে ফেলা হয়েছে ।');
+      return redirect()->route('salary_fund_add')->with('success_msg', 'Salary Fund Deleted Successfully.');
     }
 
 

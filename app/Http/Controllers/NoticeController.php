@@ -75,7 +75,7 @@ class NoticeController extends Controller
             if($notice){
             $file_size = $notice->getClientSize();
             if ($file_size > 512000){
-                Session::flash('errmgs', 'দুঃখিত, ফাইল সাইজ আরো ছোট হতে হবে !');
+                Session::flash('errmgs', 'Sorry, File size is too large !');
                 return redirect()->back();
             }
               $extension = $notice->getClientOriginalExtension();
@@ -91,7 +91,7 @@ class NoticeController extends Controller
             $noticeObject->save();
 
 
-            Session::flash('sccmgs', 'নোটিশ সফলভাবে যোগ করা হয়েছে !');
+            Session::flash('sccmgs', 'Notice Added Successfully !');
             return redirect('notice');
         } catch (\Exception $e) {
             Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
@@ -161,7 +161,7 @@ class NoticeController extends Controller
             if($notice = $request->file('notice')){
                 $file_size = $notice->getClientSize();
                 if ($file_size > 512000){
-                  Session::flash('errmgs', 'দুঃখিত, ফাইল সাইজ আরো ছোট হতে হবে !');
+                  Session::flash('errmgs', 'Sorry, File size is too large !');
                   return redirect()->back();
                 }
                 $extension = $notice->getClientOriginalExtension();
@@ -173,7 +173,7 @@ class NoticeController extends Controller
             }
 
             Notice::where(['id'=>$request->notice_id, 'school_id'=>Auth::getSchool()])->update($data);
-            Session::flash('sccmgs', 'নোটিশ সফলভাবে আপডেট করা হয়েছে !');
+            Session::flash('sccmgs', 'Notice Updated Successfully!');
             return redirect('notice');
     }
 
@@ -197,10 +197,10 @@ class NoticeController extends Controller
                 unlink($this->oldNotice);
             }
 
-            Session::flash('sccmgs', 'নোটিশ সফলভাবে মুছে ফেলা হয়েছে !');
+            Session::flash('sccmgs', 'Notice Deleted Successfully !');
             return redirect()->back();
         } catch (\Exception $e) {
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
     }

@@ -66,7 +66,7 @@ class RootSmsController extends Controller
 
 	public function multi_school_send(Request $request,SmsSendController $sms_send){
 		if ($request->id==null) {
-			return redirect()->route('rootSms.multi_school')->with('errmgs', "কমপক্ষে ১ টি প্রতিষ্ঠান নির্বাচন করুন ।");
+			return redirect()->route('rootSms.multi_school')->with('errmgs', "Please select at least 1 institute.");
 		}
 		$schools = School::whereIn('id', $request->id)->get();
 		foreach ($schools as $school) {
@@ -86,7 +86,7 @@ class RootSmsController extends Controller
                 $school_count++;
             }
 		}
-		return redirect()->route('rootSms.multi_school')->with('sccmgs', 'প্রতিষ্ঠানঃ '.$school_count.' '.$send);
+		return redirect()->route('rootSms.multi_school')->with('sccmgs', 'Institute: '.$school_count.' '.$send);
 	}
 
 

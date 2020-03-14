@@ -44,7 +44,7 @@ class WmSliderController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         if(!Auth::is('admin')){
             return redirect('/home');
         }
@@ -58,11 +58,11 @@ class WmSliderController extends Controller
            $image_path=$this->imagesProcessing1($imageFile,'webmanagement/slider/',1220,450);
            $data['image'] = $image_path;
 
-           
-           
+
+
         }
         WmSlider::create($data);
-        return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','slider');
+        return $this->returnWithSuccessRedirect('Your Information Added Successfully.','slider');
     }
 
     /**
@@ -115,10 +115,10 @@ class WmSliderController extends Controller
            if (isset($wmSlider->image)&&file_exists(public_path(Storage::url($wmSlider->image)))){
                 Storage::delete($wmSlider->image);
             }
-           
+
         }
         $wmSlider->update($data);
-        return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','slider');
+        return $this->returnWithSuccessRedirect('Your Information Update Successfully.','slider');
     }
 
     /**
@@ -137,6 +137,6 @@ class WmSliderController extends Controller
         if (isset($wmSlider->image)&&file_exists(public_path(Storage::url($wmSlider->image)))){
                 Storage::delete($wmSlider->image);
             }
-        return $this->returnWithSuccessRedirect('আপনার তথ্য মুছে দেওয়া হয়েছে ','slider');
+        return $this->returnWithSuccessRedirect('Your Information Deleted Successfully. ','slider');
     }
 }

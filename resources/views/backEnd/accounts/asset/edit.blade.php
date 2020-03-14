@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'সম্পত্তি পরিবর্তন করুন')
+@section('mainTitle', 'Edit Asset')
 @section('head_section')
     <style>
 
@@ -29,7 +29,7 @@
   </div>
   <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
       <div class="col-md-12">
-        <h2 class="text-center text-temp">সম্পত্তি পরিবর্তন করুন</h2>
+        <h2 class="text-center text-temp">Edit Asset</h2>
       </div>
       <div class="panel-body">
           <form action="{{ route('asset_update') }}" method="post" enctype="multipart/form-data">
@@ -37,31 +37,31 @@
               <input type="hidden" name="id" value="{{ $asset->id }}">
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="asset_name">সম্পত্তির নাম <span class="star">*</span></label>
+                          <label class="" for="asset_name">Asset Name <span class="star">*</span></label>
                           <div class="">
-                              <input value="{{ $asset->asset_name }}" type="text" name="asset_name" class="form-control" placeholder="সম্পত্তির নাম">
+                              <input value="{{ $asset->asset_name }}" type="text" name="asset_name" class="form-control" placeholder="Asset name">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="qty">সংখ্যা বা পরিমান <span class="star">*</span></label>
+                          <label class="" for="qty">Asset Quantity<span class="star">*</span></label>
                           <div class="">
-                              <input value="{{ $asset->qty }}" type="number" name="qty" class="form-control" placeholder="সংখ্যা বা পরিমান">
+                              <input value="{{ $asset->qty }}" type="number" name="qty" class="form-control" placeholder="Asset Quantity">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="unit_price">প্রতিটির মূল্য<span class="star">*</span></label>
+                          <label class="" for="unit_price">Asset Price<span class="star">*</span></label>
                           <div class="">
-                              <input value="{{ $asset->unit_price }}" type="number" name="unit_price" class="form-control" placeholder="প্রতিটির মূল্য">
+                              <input value="{{ $asset->unit_price }}" type="number" name="unit_price" class="form-control" placeholder="Asset Price">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="start_date">জমা করার তারিখ <span class="star">*</span></label>
+                          <label class="" for="start_date">Start Date (Increase / Decrease) <span class="star">*</span></label>
                           <div class="">
                               <input  value="{{ $asset->start_date }}" class="form-control date" type="text" name="start_date">
                           </div>
@@ -69,7 +69,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="end_date">মূল্য বৃদ্ধি বা হ্রাসের শেষ তারিখ <span class="star">*</span></label>
+                          <label class="" for="end_date">End Date (Increase / Decrease) <span class="star">*</span></label>
                           <div class="">
                               <input  value="{{ $asset->end_date }}" class="form-control date" type="text" name="end_date">
                           </div>
@@ -77,7 +77,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="asset_valuation_increase">মূল্য বৃদ্ধি ( % ) </label>
+                          <label class="" for="asset_valuation_increase">Increase Rate ( % ) </label>
                           <div class="">
                               <input value="{{ $asset->asset_valuation_increase }}" type="number" name="asset_valuation_increase" class="form-control">
                           </div>
@@ -85,7 +85,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="asset_valuation_decrease">মূল্য হ্রাস ( % ) </label>
+                          <label class="" for="asset_valuation_decrease">Decrease Rate ( % ) </label>
                           <div class="">
                               <input value="{{ $asset->asset_valuation_decrease }}" type="number" name="asset_valuation_decrease" class="form-control">
                           </div>
@@ -93,14 +93,14 @@
                   </div>
                   <div class="col-sm-12">
                       <div class="form-group">
-                          <label class="" for="description">বিবরণ </label>
+                          <label class="" for="description">Description </label>
                           <div class="">
                               <textarea name="description" rows="3" class="form-control">{{ $asset->description }}</textarea>
                           </div>
                       </div>
                   </div>
                   <div class="col-md-12">
-                    <button id="save" type="submit" class="btn btn-info">আপডেট করুন</button>
+                    <button id="save" type="submit" class="btn btn-info">Update</button>
                   </div>
               </div>
           </form>

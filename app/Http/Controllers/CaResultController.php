@@ -52,7 +52,7 @@ class CaResultController extends Controller
         $group_class=GroupClass::where('id',$request->group_class_id)->select('name')->first();
         $students=array();
         $subjects=array();
-        
+
         if($request->all()){
             $students= Student::with('user')->where([
                 'master_class_id'=>$request->master_class_id,
@@ -102,7 +102,7 @@ class CaResultController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {  
+    {
          $this->create_result_validation($request);
          foreach ($request->student_id as $key => $student_id) {
              $data=$request->except('student_id','roll','marks');
@@ -135,9 +135,9 @@ class CaResultController extends Controller
     }
 
 
- 
 
-    
+
+
     public function edit(Request $request)
     {
         $this->validation_for_update_searching($request);
@@ -151,7 +151,7 @@ class CaResultController extends Controller
         $group_class=GroupClass::where('id',$request->group_class_id)->select('name')->first();
         $students=array();
         $subjects=array();
-        
+
         if($request->all()){
             $students= Student::with('user')->where([
                 'master_class_id'=>$request->master_class_id,
@@ -189,7 +189,7 @@ class CaResultController extends Controller
         ]);
     }
 
-    
+
 
     public function editable_result_check($request)
     {
@@ -236,11 +236,11 @@ class CaResultController extends Controller
         }
       }
         dd('ok');
-        $this->returnWithSuccess('Result update success. (বিষয়-'.$request->subject_name.')');
+        $this->returnWithSuccess('Result update success. (Subject-'.$request->subject_name.')');
         return redirect()->back();
     }
 
-   
+
     public function update_grand_total_mark_procesing($total,$result)
     {
         return ($result->grand_total_mark-$result->sub_total)+$total;

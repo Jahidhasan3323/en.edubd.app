@@ -53,10 +53,10 @@ class WmImportantLinkController extends Controller
             'link' => 'required',
             'wm_important_links_category_id' => 'required',
         ]);
-       
+
         WmImportantLink::create($data);
-         
-        return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','important_link');
+
+        return $this->returnWithSuccessRedirect('Your Information Added Successfully.','important_link');
     }
 
     /**
@@ -105,9 +105,9 @@ class WmImportantLinkController extends Controller
             'link' => 'required',
             'wm_important_links_category_id' => 'required',
         ]);
-       
+
         $important_link->update($data);
-        return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','important_link');
+        return $this->returnWithSuccessRedirect('Your Information Update Successfully.','important_link');
     }
 
     /**
@@ -123,7 +123,7 @@ class WmImportantLinkController extends Controller
         }
         $important_link=WmImportantLink::where(['id'=>$id,'school_id'=> Auth::getSchool()])->first();
         $important_link->delete();
-        
-        return $this->returnWithSuccessRedirect('আপনার তথ্য মুছে দেওয়া হয়েছে ','important_link');
+
+        return $this->returnWithSuccessRedirect('Your Information Deleted Successfully.','important_link');
     }
 }

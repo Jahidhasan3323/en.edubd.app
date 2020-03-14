@@ -59,11 +59,11 @@ class ExamTypeController extends Controller
             'name' => 'required|unique:exam_types'
         ]);
         if (ExamType::create($request->all())){
-            Session::flash('sccmgs', 'পরীক্ষার ধরণ সফলভাবে যোগ করা হয়েছে !');
+            Session::flash('sccmgs', 'Exam Type Added Successfully');
             return redirect()->back();
         }
 
-        Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !');
+        Session::flash('errmgs', 'Sorry, Something went wrong !');
         return redirect()->back();
     }
 
@@ -112,11 +112,11 @@ class ExamTypeController extends Controller
         ]);
         $name = $request->only('name');
         if ($examType->update($name)){
-            Session::flash('sccmgs', 'পরীক্ষার ধরণ সফলভাবে আপডেট করা হয়েছে !');
+            Session::flash('sccmgs', 'Exam Type Updated Successfully !');
             return redirect()->back();
         }
 
-        Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !');
+        Session::flash('errmgs', 'Sorry, Something went wrong !');
         return redirect()->back();
     }
 
@@ -132,11 +132,11 @@ class ExamTypeController extends Controller
             return redirect('/home');
         }
         if ($examType->delete()){
-            Session::flash('sccmgs', 'পরীক্ষার ধরণ সফলভাবে মুছে ফেলা হয়ছে !');
+            Session::flash('sccmgs', 'Exam Type Deleted Successfully !');
             return redirect()->back();
         }
 
-        Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !');
+        Session::flash('errmgs', 'Sorry, Spmething went wrong !');
         return redirect()->back();
     }
 }

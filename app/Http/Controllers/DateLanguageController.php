@@ -21,7 +21,7 @@ class DateLanguageController extends Controller
             return redirect('/home');
         }
          $date_languages = DateLanguage::orderBy('id', 'desc')->get();
-       
+
         return view('backEnd.webmanagement.admin.date_lagnguage.index', compact('date_languages'));
     }
 
@@ -53,7 +53,7 @@ class DateLanguageController extends Controller
         $data=$request->all();
          $validator=Validator::make($request->all(), [
                    'tittle' => 'required',
-                   
+
 
            ]);;
 
@@ -64,9 +64,9 @@ class DateLanguageController extends Controller
         }
 
         DateLanguage::create($data);
-        Session::flash('sccmgs', 'আপনার তথ্য সংরক্ষণ হয়েছে ');
+        Session::flash('sccmgs', 'Your Information Added Successfully.');
             return redirect('admin_date_language');
-        
+
     }
 
     /**
@@ -106,10 +106,10 @@ class DateLanguageController extends Controller
             return redirect('/home');
         }
 
-        
+
        $validator=Validator::make($request->all(), [
                    'tittle' => 'required',
-                   
+
 
            ]);;
 
@@ -119,7 +119,7 @@ class DateLanguageController extends Controller
                         ->withInput();
         }
         DateLanguage::where(['id'=>$id])->update($data);
-            Session::flash('sccmgs', 'আপনার তথ্য পরিবর্তন হয়েছে ');
+            Session::flash('sccmgs', 'Your Information Updated Successfully.');
             return redirect('admin_date_language');
 
     }
@@ -138,7 +138,7 @@ class DateLanguageController extends Controller
         $date_language = DateLanguage::withTrashed()->where('id', $id)->first();
         $date_language->delete();
         //DateLanguage::find($id)->delete();
-        Session::flash('sccmgs', 'আপনার তথ্য মুছে দেওয়া হয়েছে ');
+        Session::flash('sccmgs', 'Your Information Deleted Successfully.');
             return redirect('admin_date_language');
 
     }

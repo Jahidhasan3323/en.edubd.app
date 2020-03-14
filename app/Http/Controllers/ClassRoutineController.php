@@ -109,7 +109,7 @@ class ClassRoutineController extends Controller
         $file = $request->file('routine');
         $file_size = $file->getClientSize();
         if ($file_size > 512000){
-            Session::flash('errmgs', 'দুঃখিত, ফাইলটি অনেক বড় !');
+            Session::flash('errmgs', 'Sorry, File size large.!');
             return redirect()->back();
         }
         $extension = $file->getClientOriginalExtension();
@@ -129,10 +129,10 @@ class ClassRoutineController extends Controller
                 $old_routine->name = $request->name;
                 $old_routine->master_class_id = $request->master_class_id;
                 $old_routine->save();
-                Session::flash('sccmgs', 'ক্লাস রুটিন সফলভাবে যোগ করা হয়েছে !');
+                Session::flash('sccmgs', 'Class Routine Added Successfully.');
                 return redirect()->back();
             } catch (\Exception $e) {
-                Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+                Session::flash('errmgs', 'Sorry, Something wrong !'.$e->getMessage());
                 return redirect()->back();
             }
         }
@@ -147,10 +147,10 @@ class ClassRoutineController extends Controller
             $classRoutine->name = $name;
             $classRoutine->path = $this->photo;
             $classRoutine->save();
-            Session::flash('sccmgs', 'ক্লাস রুটিন সফলভাবে যোগ করা হয়েছে !');
+            Session::flash('sccmgs', 'Class Routine Added Successfully.');
             return redirect()->back();
         } catch (\Exception $e) {
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
     }
@@ -201,7 +201,7 @@ class ClassRoutineController extends Controller
            if($file = $request->file('routine')){
              $file_size = $file->getClientSize();
              if ($file_size > 512000){
-               Session::flash('errmgs', 'দুঃখিত, ফাইল সাইজ আরো ছোট হতে হবে !');
+               Session::flash('errmgs', 'Sorry, File size is so big !');
                return redirect()->back();
              }
 
@@ -222,7 +222,7 @@ class ClassRoutineController extends Controller
                 'school_id'=>Auth::getSchool()
             ])->first();
             if($old_routine){
-               Session::flash('errmgs', 'দুঃখিত, আপনার নির্বাচিত শ্রেণী পূর্বেই প্রকাশিত হয়েছে।!');
+               Session::flash('errmgs', 'Sorry, Class already taken ।!');
                return redirect()->back();
             }
         }

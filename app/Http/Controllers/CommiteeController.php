@@ -98,14 +98,14 @@ class CommiteeController extends Controller
             $school=$this->school();
             if(isset($commitee->id) && $request->mobile!=NULL && $school->api_key!=NULL && $school->sender_id!=NULL){
                $school_name=$sms_send->school_name_process($school->user->name);
-               $content='প্রিয় '.$request->name.' আপনার সফটওয়্যার লগইন তথ্য ! ওয়েব এড্রেস : '.$school->website.', ইমেইল : '.$request->email.', পাসওয়ার্ড : '.$request->password.'. '.$school_name;
+               $content='Dear, '.$request->name.' Your login information ! Web Address : '.$school->website.', Email : '.$request->email.', Password : '.$request->password.'. '.$school_name;
                $message= urlencode($content);
                $mobile_number=$sms_send->validateNumber([0=>$request->mobile]);
                $mobile_number = implode(',',$mobile_number);
                $a = $this->sms_send_by_api($school,$mobile_number,$message);
             }
             DB::commit();
-            Session::flash('sccmgs', 'কমিটি সফলভাবে যোগ করা হয়েছে !'.$a);
+            Session::flash('sccmgs', 'Committee Added Successfully !'.$a);
             return redirect()->back();
 
         } catch (\Exception $e){
@@ -113,7 +113,7 @@ class CommiteeController extends Controller
             if (file_exists($this->image)) {
                 unlink($this->image);
             }
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
     }
@@ -186,11 +186,11 @@ class CommiteeController extends Controller
             }
 
             $commitee->update($data);
-            Session::flash('sccmgs', 'কমিটি সফলভাবে আপডেট করা হয়েছে ।');
+            Session::flash('sccmgs', 'Committee Updated Successfully.');
             return redirect()->back();
 
         } catch (\Exception $e) {
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে ! '.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Somthing went wrong ! '.$e->getMessage());
             return redirect()->back();
         }
 
@@ -212,10 +212,10 @@ class CommiteeController extends Controller
             $this->image = $commitee->image;
             User::where('id', $commitee->user_id)->update(['deleted_at'=>Carbon::now()]);
             $commitee->update(['deleted_at'=>Carbon::now()]);
-            Session::flash('sccmgs', 'কমিটি সফলভাবে মুছে ফেলা হয়েছে !');
+            Session::flash('sccmgs', 'Committee Deleted Successfully !');
             return redirect()->back();
         } catch (\Exception $e) {
-                Session::flash('errmgs', 'সমস্যা হয়েছে !'.$e->getMessage());
+                Session::flash('errmgs', 'Sorry, Somthing went wrong !'.$e->getMessage());
                 return redirect()->back();
         }
 

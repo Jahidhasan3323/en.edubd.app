@@ -17,7 +17,7 @@ class BirthdayTextController extends Controller
     public function store(Request $request){
 		$data = $request->all();
 		BirthdayText::create($data);
-		return redirect()->route('birthdayText.list')->with('sccmgs','জন্মদিনের বার্তা সফলভাবে যোগ করা হয়েছে ।');
+		return redirect()->route('birthdayText.list')->with('sccmgs','Birthday Message Added Successfully.');
 	}
 
     public function list(Request $request){
@@ -34,12 +34,12 @@ class BirthdayTextController extends Controller
     public function update(Request $request, $id){
        $data = $request->all();
        BirthdayText::find($id)->update($data);
-       return redirect()->route('birthdayText.list')->with('sccmgs','জন্মদিনের বার্তা সফলভাবে আপডেট করা হয়েছে ।');
+       return redirect()->route('birthdayText.list')->with('sccmgs','Birthday Message Updated Successfully.');
    }
 
     public function delete($id){
        BirthdayText::find($id)->delete();
-       return redirect()->route('birthdayText.list')->with('sccmgs','জন্মদিনের বার্তা সফলভাবে মুছে ফেলা হয়েছে ।');
+       return redirect()->route('birthdayText.list')->with('sccmgs','Birthday Message Deleted Successfully.');
    }
 
 

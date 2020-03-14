@@ -18,7 +18,7 @@ class MessageLengthController extends Controller
     public function store(Request $request){
 		$data = $request->all();
 		MessageLength::create($data);
-		return redirect()->route('messageLength.list')->with('sccmgs','বার্তা সেটিং সফলভাবে যোগ করা হয়েছে ।');
+		return redirect()->route('messageLength.list')->with('sccmgs','Message Length Added Successfully.');
 	}
 
     public function list(Request $request){
@@ -36,12 +36,12 @@ class MessageLengthController extends Controller
     public function update(Request $request, $id){
        $data = $request->all();
        MessageLength::find($id)->update($data);
-       return redirect()->route('messageLength.list')->with('sccmgs','বার্তা সফলভাবে আপডেট করা হয়েছে ।');
+       return redirect()->route('messageLength.list')->with('sccmgs','Message Length Updated Successfully.');
    }
 
     public function delete($id){
        MessageLength::find($id)->delete();
-       return redirect()->route('messageLength.list')->with('sccmgs','বার্তা সফলভাবে মুছে ফেলা হয়েছে ।');
+       return redirect()->route('messageLength.list')->with('sccmgs','Message Length Deleted Successfully');
    }
 
 }

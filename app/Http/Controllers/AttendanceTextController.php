@@ -17,7 +17,7 @@ class AttendanceTextController extends Controller
     public function store(Request $request){
         $duplicate = AttendanceText::where('school_id',$request->school_id)->where('type', $request->type)->first();
         if($duplicate){
-            return redirect()->back()->with('errmgs', 'এই প্রতিষ্ঠানের জন্য বার্তাটি পূর্বেই যোগ করা হয়েছে ।') ;
+            return redirect()->back()->with('errmgs', 'The Meessage already taken for this institute') ;
         }
 		$this->validate($request,[
 			"school_id" => "required",
@@ -25,7 +25,7 @@ class AttendanceTextController extends Controller
 		]);
 		$data = $request->all();
 		AttendanceText::create($data);
-		return redirect()->route('attendanceText.list')->with('sccmgs', 'বার্তা সফলভাবে যোগ করা হয়েছে ।');
+		return redirect()->route('attendanceText.list')->with('sccmgs', 'Message Added Successfully.');
 	}
 
     public function list(Request $request){
@@ -45,12 +45,12 @@ class AttendanceTextController extends Controller
 		]);
 		$data = $request->all();
 		AttendanceText::find($id)->update($data);
-		return redirect()->route('attendanceText.list')->with('sccmgs', 'বার্তা সফলভাবে আপডেট করা হয়েছে ।');
+		return redirect()->route('attendanceText.list')->with('sccmgs', 'Message Updated Successfully.');
 	}
 
 	public function delete($id){
 		$attendance = AttendanceText::find($id)->forceDelete();
-		return redirect()->route('attendanceText.list')->with('sccmgs', 'বার্তা সফলভাবে মুছে ফেলা হয়েছে ।');
+		return redirect()->route('attendanceText.list')->with('sccmgs', 'Message Deleted Successfully.');
 	}
 
 }

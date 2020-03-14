@@ -27,7 +27,7 @@ class ExamController extends Controller
         if(!Auth::is('admin') && !Auth::is('teacher')){
             return redirect('/home');
         }
-        $tittle="নৈর্ব্যক্তিক";
+        $tittle="MCQ";
 
         $exams=Exam::with('masterClass','group_class','subject')->where(['user_id'=>Auth::id(),'type'=>1])->get();
         return view('backEnd.exam_question.index',compact('exams','tittle'));
@@ -37,7 +37,7 @@ class ExamController extends Controller
         if(!Auth::is('admin') && !Auth::is('teacher')){
             return redirect('/home');
         }
-        $tittle="লিখিত";
+        $tittle="Written";
         $exams=Exam::with('masterClass','group_class','subject')->where(['user_id'=>Auth::id(),'type'=>2])->get();
         return view('backEnd.exam_question.index',compact('exams','tittle'));
     }
@@ -46,7 +46,7 @@ class ExamController extends Controller
         if(!Auth::is('student')){
             return redirect('/home');
         }
-        $tittle="নৈর্ব্যক্তিক";
+        $tittle="MCQ";
         $student=Student::where('user_id',Auth::id())->first();
         $group_class=GroupClass::where('name',$student->group)->value('id');
         $exams=Exam::with('masterClass','group_class','subject')->where(['type'=>1,'master_class_id'=>$student->master_class_id,'group_class_id'=>$group_class,'section'=>$student->section,'shift'=>$student->shift,'school_id'=>Auth::getSchool()])->get();
@@ -57,7 +57,7 @@ class ExamController extends Controller
         if(!Auth::is('student')){
             return redirect('/home');
         }
-        $tittle="লিখিত";
+        $tittle="Written";
         $student=Student::where('user_id',Auth::id())->first();
         $group_class=GroupClass::where('name',$student->group)->value('id');
         $exams=Exam::with('masterClass','group_class','subject')->where(['type'=>2,'master_class_id'=>$student->master_class_id,'group_class_id'=>$group_class,'section'=>$student->section,'shift'=>$student->shift,'school_id'=>Auth::getSchool()])->get();
@@ -102,7 +102,7 @@ class ExamController extends Controller
             'time' => 'required',
             'type' => 'required',
             'exam_type' => 'required',
-           
+
         ]);
 
         if($request->exam_type==1){
@@ -110,19 +110,19 @@ class ExamController extends Controller
             'pass_mark' => 'required',
             'result_type' => 'required',
             'exam_option' => 'required',
-            
-           
+
+
         ]);
         }
         Exam::create($data);
         if($request->type==1){
-            return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','exam/mcq');
+            return $this->returnWithSuccessRedirect('Your Information Added Successfully !','exam/mcq');
         }else{
-            return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','exam/written');
+            return $this->returnWithSuccessRedirect('Your Information Added Successfullyে !','exam/written');
         }
 
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -140,7 +140,7 @@ class ExamController extends Controller
         $school=School::with('user','important_setting')->where(['id'=> Auth::getSchool()])->first();
         return view('backEnd.exam_question.print_view',compact('exam','school','questions'));
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -186,7 +186,7 @@ class ExamController extends Controller
             'time' => 'required',
             'type' => 'required',
             'exam_type' => 'required',
-           
+
         ]);
 
         if($request->exam_type==1){
@@ -194,16 +194,16 @@ class ExamController extends Controller
             'pass_mark' => 'required',
             'result_type' => 'required',
             'exam_option' => 'required',
-            
-           
+
+
         ]);
         }
 
         Exam::where('id',$id)->update($data);
         if($request->type==1){
-            return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','exam/mcq');
+            return $this->returnWithSuccessRedirect('Your Information Added Successfully.','exam/mcq');
         }else{
-            return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','exam/written');
+            return $this->returnWithSuccessRedirect('Your Information Added Successfully.','exam/written');
         }
     }
 
@@ -218,13 +218,13 @@ class ExamController extends Controller
          if(!Auth::is('admin') && !Auth::is('teacher')){
             return redirect('/home');
         }
-         
+
         $exam = Exam::withTrashed()->where(['id'=> $id,'user_id'=>Auth::id()])->first();
         $exam->delete();
          if($exam->type==1){
-            return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','exam/mcq');
+            return $this->returnWithSuccessRedirect('Your Information Added Successfully.','exam/mcq');
         }else{
-            return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','exam/written');
+            return $this->returnWithSuccessRedirect('Your Information Added Successfully.','exam/written');
         }
     }
 
@@ -255,15 +255,15 @@ class ExamController extends Controller
         }
         $this->validate($request, [
             'question_id' => 'required',
-           
+
         ]);
 
         $exam_question=ExamQuestion::where(['exam_id'=>$id])->delete();
-        
+
         foreach($request->question_id as $question_id) {
             ExamQuestion::create(['exam_id'=>$id,'question_id'=>$question_id]);
         }
-        return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','exam/question/'.$id);
+        return $this->returnWithSuccessRedirect('Your Information Added Successfully.','exam/question/'.$id);
 
 
     }
@@ -276,7 +276,7 @@ class ExamController extends Controller
         $exam=Exam::with('masterClass','group_class','subject')->where(['id'=>$id,'school_id'=>Auth::getSchool()])->first();
         $result=OnlineExamResult::where(['exam_id'=>$id, 'user_id'=>Auth::id()])->first();
         if ($exam->exam_option==1 && !empty($result)) {
-            return $this->returnWithError('আপনি পরীক্ষাটি ইতিমধ্যে একবার দিয়েছেন । তাই আর দিতে পারবেন না ।');
+            return $this->returnWithError('You already attend the exam. You can not attend again.');
         }
         $questions=ExamQuestion::with('questions')->where(['exam_id'=>$id])->get();
         $school=School::with('user','important_setting')->where(['id'=> Auth::getSchool()])->first();
@@ -295,7 +295,7 @@ class ExamController extends Controller
         $exam=Exam::with('masterClass','group_class','subject')->where(['id'=>$id,'school_id'=>Auth::getSchool()])->first();
         $result=OnlineExamResult::where(['exam_id'=>$id, 'user_id'=>Auth::id()])->first();
         if ($exam->exam_option==1 && !empty($result)) {
-            return $this->returnWithError('আপনি পরীক্ষাটি ইতিমধ্যে একবার দিয়েছেন । তাই আর দিতে পারবেন না ।');
+            return $this->returnWithError('You already attend the exam. You can not attend again.');
         }
         $questions=ExamQuestion::with('questions')->where(['exam_id'=>$id])->get();
         $school=School::with('user','important_setting')->where(['id'=> Auth::getSchool()])->first();

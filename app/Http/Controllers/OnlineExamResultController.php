@@ -115,9 +115,9 @@ class OnlineExamResultController extends Controller
         $credent['status']=1;
 
         OnlineExamResult::create($credent);
-        return $this->returnWithSuccessRedirect('আপনার পরীক্ষা সম্পূর্ণ হয়েছে ! আপনি '.$mark.' নাম্বার পেয়েছেন ।','online-exam/result'); 
+        return $this->returnWithSuccessRedirect('You have successfully done. You got '.$mark.' marks.','online-exam/result'); 
     }
-    
+
 
     /**
      * Display the specified resource.

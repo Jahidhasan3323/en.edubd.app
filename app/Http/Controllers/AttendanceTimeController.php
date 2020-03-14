@@ -23,7 +23,7 @@ class AttendanceTimeController extends Controller
 		]);
 		$data = $request->all();
 		AttendanceTime::create($data);
-		return redirect()->route('attendanceTime.list')->with('sccmgs', 'উপস্থিতি সময় সফলভাবে যোগ করা হয়েছে ।');
+		return redirect()->route('attendanceTime.list')->with('sccmgs', 'Attendance Time Added Successfully.');
 	}
 
     public function list(Request $request){
@@ -44,12 +44,12 @@ class AttendanceTimeController extends Controller
 		]);
 		$data = $request->all();
 		AttendanceTime::find($id)->update($data);
-		return redirect()->route('attendanceTime.list')->with('sccmgs', 'উপস্থিতি সময় সফলভাবে আপডেট করা হয়েছে ।');
+		return redirect()->route('attendanceTime.list')->with('sccmgs', 'Attendance Time Updated Successfully.');
 	}
 
 	public function delete($id){
 		$attendance = AttendanceTime::find($id)->forceDelete();
-		return redirect()->route('attendanceTime.list')->with('sccmgs', 'উপস্থিতি সময় সফলভাবে মুছে ফেলা হয়েছে ।');
+		return redirect()->route('attendanceTime.list')->with('sccmgs', 'Attendance Time Deleted Successfully.');
 	}
 
 

@@ -205,7 +205,7 @@
             }elseif ($student->m_mobile_no) {
                 return $student->m_mobile_no;
             }elseif($student->user->mobile) {
-                return $student->$student->user->mobile;
+                return $student->user->mobile;
             }elseif($student->guardian_mobile){
                 return $student->guardian_mobile;
             }

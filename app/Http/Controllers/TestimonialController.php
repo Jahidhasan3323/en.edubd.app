@@ -35,7 +35,7 @@ class TestimonialController extends Controller
         $testimonial_reg_no=Testimonial::where(['school_id'=>Auth::getSchool()])->latest()->value('testimonial_reg_no');
         $data['testimonial_reg_no']=(int)$testimonial_reg_no+1;
         $testimonial=Testimonial::create($data);
-        
+
          return redirect('testimonial/view/'.$testimonial->id);
     }
 
@@ -53,7 +53,7 @@ class TestimonialController extends Controller
         $data['birth_day']=date('Y-m-d',strtotime($request->birth_day));
 
         $testimonial=Testimonial::where('id',$id)->update($data);
-        
+
          return redirect('testimonial/view/'.$id);
     }
     public function search_student(Request $request)
@@ -64,7 +64,7 @@ class TestimonialController extends Controller
 
         $student = Student::with('masterClass','user')->where(['school_id'=>Auth::getSchool(),'student_id'=>$request->student_id])->first();
         if (!$student) {
-            return $this->returnWithError(' আপনি শিক্ষার্থীর আইডি নং ভুল দিয়েছেন । ');
+            return $this->returnWithError(' Your student ID number is incorrect । ');
         }
         return view('backEnd.testimonial.create', ['student'=>$student,'classes'=>$classes]);
     }
@@ -120,7 +120,7 @@ class TestimonialController extends Controller
             "group" => "required",
         ]);
     }
-    
+
     public function destroy($id)
     {
         //

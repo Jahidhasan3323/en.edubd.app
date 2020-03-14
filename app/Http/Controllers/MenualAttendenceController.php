@@ -62,7 +62,7 @@ class MenualAttendenceController extends Controller
                     AttenStudent::create($data);
 
                 }
-                Session::flash('sccmgs', 'শিক্ষার্থী, প্রবেশের সময় সফলভাবে যোগ করা হয়েছে !');
+                Session::flash('sccmgs', 'Student Attendance Added Successfully !');
             }
 
         return redirect()->back();
@@ -91,7 +91,7 @@ class MenualAttendenceController extends Controller
                 $data['date']=Carbon::now()->format('Y-m-d');
                 AttenEmployee::create($data);
               }
-              Session::flash('sccmgs', 'শিক্ষক/কর্মাচারী,  প্রবেশের সময় সফলভাবে যোগ করা হয়েছ !');
+              Session::flash('sccmgs', 'Employee Attendance Added Successfully !');
           }
 
         return redirect()->back();

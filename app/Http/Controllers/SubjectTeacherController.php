@@ -78,17 +78,17 @@ class SubjectTeacherController extends Controller
         $this->validationCheck($request);
         $duplicateCheck=$this->duplicateCheck($request);
         if ($duplicateCheck){
-          Session::flash('errmgs', 'দুঃখিত, বিষয়টি পূর্বেই এসাইন করা হয়েছে !');
+          Session::flash('errmgs', 'Sorry, This subject already taken !');
           return redirect()->back();
         }
         try{
             $data = $request->all();
             $data['school_id']= Auth::getSchool();
             SubjectTeacher::create($data);
-            Session::flash('sccmgs', 'বিষয় সফলভাবে যোগ করা হয়েছে !');
+            Session::flash('sccmgs', 'Subject Added Successfully.');
             return redirect()->back();
         }catch (\Exception $e){
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
     }
@@ -150,7 +150,7 @@ class SubjectTeacherController extends Controller
         $this->validationCheck($request);
         $duplicateCheck=$this->duplicateCheck($request);
         if (isset($duplicateCheck->id)&&$duplicateCheck->id!=$id){
-          Session::flash('errmgs', 'দুঃখিত, বিষয়টি পূর্বেই এসাইন করা হয়েছে !');
+          Session::flash('errmgs', 'Sorry, This subject already taken !');
           return redirect()->back();
         }
 
@@ -159,10 +159,10 @@ class SubjectTeacherController extends Controller
 
         try{
             SubjectTeacher::where('id',$id)->update($data);
-            Session::flash('sccmgs', 'বিষয় সফলভাবে আপডেট করা হয়েছে !');
+            Session::flash('sccmgs', 'Subject Updated Successfully.');
             return redirect()->back();
         }catch (\Exception $e){
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
     }
@@ -180,10 +180,10 @@ class SubjectTeacherController extends Controller
         }
         try{
             SubjectTeacher::where(['id'=>$id, 'school_id'=>Auth::getSchool()])->delete();
-            Session::flash('sccmgs', 'বিষয় সফলভাবে মুছে ফেলা হয়েছে !');
+            Session::flash('sccmgs', 'Subject Deleted Successfully !');
             return redirect()->back();
         } catch (\Exception $e) {
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
     }

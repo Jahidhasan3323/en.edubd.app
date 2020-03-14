@@ -146,7 +146,7 @@ class SmsController extends Controller
     public function store(Request $request, SmsSendController $sms_send)
     {
         if(!$request->number){
-             return $this->returnWithError('দুঃখিত, কমপক্ষে ১ জন শিক্ষার্থী নির্বাচন করুন !');
+             return $this->returnWithError('Sorry, Please select at least 1 student');
         }
         $mobile_number=$sms_send->send_notification_for_absend($request->number);
         try {
@@ -159,18 +159,18 @@ class SmsController extends Controller
               $a = $this->sms_send_by_api($school,$mobile_number,$message);
               return $this->returnWithSuccess('SMS : '.$a.'!');
              }else{
-              return $this->returnWithError('অনুগ্রহ করে নোটিফিকেশন কনটেন্ট নির্বাচন করুন !');
+              return $this->returnWithError('Please select notification content !');
              }
 
          } catch (\Exception $e) {
-             return $this->returnWithError('দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+             return $this->returnWithError('Sorry, Something went wrong !'.$e->getMessage());
          }
     }
 
     public function store_present_student(Request $request, SmsSendController $sms_send)
     {
         if(!$request->number){
-             return $this->returnWithError('দুঃখিত, কমপক্ষে ১ জন শিক্ষার্থী নির্বাচন করুন !');
+             return $this->returnWithError('Sorry, Please select at least 1 student !');
         }
         $mobile_number=$sms_send->send_notification_for_present($request->number);
         try {
@@ -196,11 +196,11 @@ class SmsController extends Controller
 
               return $this->returnWithSuccess('SMS : '.$a.'!');
              }else{
-              return $this->returnWithError('অনুগ্রহ করে নোটিফিকেশন কনটেন্ট নির্বাচন করুন !');
+              return $this->returnWithError('Please select notification content !');
              }
 
          } catch (\Exception $e) {
-             return $this->returnWithError('দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+             return $this->returnWithError('Sorry, Something went wrong !'.$e->getMessage());
          }
     }
 
@@ -215,7 +215,7 @@ class SmsController extends Controller
     public function contentStore(Request $request)
     {
         if(!$request->student_absent_content){
-          return $this->returnWithSuccess('অনুগ্রহ করে নিচের ফিল্ডগুলো পূরণ করুন !');
+          return $this->returnWithSuccess('Please fill the following field !');
         }
         try {
             $data['student_absent_content']=$request->student_absent_content;
@@ -227,9 +227,9 @@ class SmsController extends Controller
             }else{
               AbsentContent::insert($data);
             }
-            return $this->returnWithSuccess('কনটেন্ট সেটিং সফল হয়েছে !');
+            return $this->returnWithSuccess('Content Setting Added Successfully.');
         } catch (\Exception $e) {
-            return $this->returnWithError('দুঃখিত, সমস্যা হয়েছে !');
+            return $this->returnWithError('Sorry, Something went wrong !');
         }
     }
 
@@ -243,7 +243,7 @@ class SmsController extends Controller
         ])->first();
         $max_len = $max_len?$max_len->notification-$extra_length:'250';
         if (strlen($request->message) > $max_len) {
-            return $this->returnWithError('দুঃখিত, কমপক্ষে ১ জন শিক্ষার্থী নির্বাচন করুন !');
+            return $this->returnWithError('Sorry, Please select at least 1 student !');
         }
 
       if(!$request->message){
@@ -301,7 +301,7 @@ class SmsController extends Controller
                       if ($sms_report < $sms_limit && urldecode(strlen($message)) < 305) {
                           $a = $this->send_sms_by_curl($url_AllNumber);
                       }else {
-                          return json_encode(["status"=>"আপনার নির্ধারিত এস,এম,এসের পরিমান শেষ হয়েছে ।","error"=>"1"]);
+                          return json_encode(["status"=>"Your sms limit is exceeded ।","error"=>"1"]);
                       }
                   }
 
@@ -316,7 +316,7 @@ class SmsController extends Controller
                      if ($sms_report < $sms_limit && urldecode(strlen($message)) < 305) {
                          $a = $this->send_sms_by_curl($url_AllNumber);
                      }else {
-                         return json_encode(["status"=>"আপনার নির্ধারিত এস,এম,এসের পরিমান শেষ হয়েছে ।","error"=>"1"]);
+                         return json_encode(["status"=>"Your sms limit is exceeded ।","error"=>"1"]);
                      }
                  }
                }
@@ -466,7 +466,7 @@ class SmsController extends Controller
 
     public function result_send(Request $request, SmsSendController $sms_send){
         if(!$request->students){
-             return $this->returnWithError('দুঃখিত, কমপক্ষে ১ জন শিক্ষার্থী নির্বাচন করুন !');
+             return $this->returnWithError('Sorry, Please select at least 1 student !');
         }
         foreach ($request->students as $student) {
           $array=explode(',', $student);
@@ -475,7 +475,7 @@ class SmsController extends Controller
             $sms_limit = SmsLimit::where('school_id', $school->id)->first();
             $sms_limit = $sms_limit?$sms_limit->result:'0';
             $school_name = ($school->short_name==NULL) ? $sms_send->school_name_process(Auth::user()->name) : $school->short_name;
-            $content='শিক্ষার্থী : '.$array[1].', শ্রেণী : '.$array[2].', মোট নম্বর : '.$array[3].', প্রাপ্ত জিপিএ : '.$array[4].', '.$school_name;
+            $content='Student : '.$array[1].', Class : '.$array[2].', Total Number : '.$array[3].', G.P.A : '.$array[4].', '.$school_name;
             $message= urlencode($content);
             $mobile_number=implode(',',$sms_send->validateNumber([$array[0]]));
             $url_AllNumber = "http://sms.worldehsan.org/api/send_sms?api_key=".$school->api_key."&sender_id=".$school->sender_id."&number=".$mobile_number."&message=".$message;
@@ -486,7 +486,7 @@ class SmsController extends Controller
                 if ($sms_report < $sms_limit) {
                     $a = $this->send_sms_by_curl($url_AllNumber);
                 }else {
-                    return json_encode(["status"=>"আপনার নির্ধারিত এস,এম,এসের পরিমান শেষ হয়েছে ।","error"=>"1"]);
+                    return json_encode(["status"=>"Your sms limit is exceeded ।","error"=>"1"]);
                 }
             }
             $success = json_decode($a,true);

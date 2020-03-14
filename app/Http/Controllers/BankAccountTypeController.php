@@ -21,7 +21,7 @@ class BankAccountTypeController extends Controller
       $data = $request->all();
       $data['school_id'] = Auth::getSchool();
       $bank_aacount_type->create($data);
-      return redirect()->back()->with('success_msg', 'ব্যাংক একাউন্টের ধরণ সফলভাবে যোগ করা হয়েছে ।');
+      return redirect()->back()->with('success_msg', 'Bank Account Type Added Successfully.');
     }
 
     public function bank_aacount_type_edit($id){
@@ -36,13 +36,13 @@ class BankAccountTypeController extends Controller
       $bank_aacount_type = BankAccountType::find($request->id);
       $data = $request->all();
       $bank_aacount_type->update($data);
-      return redirect()->route('bank_aacount_type_add')->with('success_msg', 'ব্যাংক একাউন্টের ধরণ সফলভাবে আপডেট করা হয়েছে ।');
+      return redirect()->route('bank_aacount_type_add')->with('success_msg', 'Bank Account Type Updated Successfully.');
     }
 
     public function bank_aacount_type_delete(Request $request){
       $bank_aacount_type = BankAccountType::find($request->id);
       $bank_aacount_type->delete();
-      return redirect()->route('bank_aacount_type_add')->with('success_msg', 'ব্যাংক একাউন্টের ধরণ সফলভাবে মুছে ফেলা হয়েছে ।');
+      return redirect()->route('bank_aacount_type_add')->with('success_msg', 'Bank Account Type Deleted Successfully.');
     }
 
 

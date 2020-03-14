@@ -87,7 +87,7 @@ class PromotionController extends Controller
             }
             return $this->returnWithError($response['error']);
         }catch (\Exception $e) {
-          return $this->returnWithError('দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+          return $this->returnWithError('Sorry, Something went wrong !'.$e->getMessage());
         }
    }
 
@@ -105,7 +105,7 @@ class PromotionController extends Controller
            if(isset($data->rate)){
              $total_message_cost = (count($success_students)+count($fail_students))*($data->rate*2);
              if($total_message_cost>$data->balance){
-                $massege['error']='আপনার যথেষ্ট পরিমান ব্যালেন্স নাই...! বর্তমান ব্যালেন্স : '.$data->balance;
+                $massege['error']='You have insufficient balance...! Current balance : '.$data->balance;
                 return $massege;
              }
            }
@@ -129,12 +129,12 @@ class PromotionController extends Controller
                'section'=>$request->section_name[$success_student->student_id],
                'session'=>$session,
                'id_card_exits'=>$id_card_exits,
-               'regularity'=>'নিয়মিত'
+               'regularity'=>'Regular'
               ]);
               if($request->sms_service=='yes'&&$school->api_key!=NULL && $school->sender_id!=NULL){
                $class=MasterClass::where('id',($request->master_class_id + 1))->first();
 
-               $content='প্রিয় '.$success_student->user->name.' তোমার বর্তমান শ্রেণী '.$class->name.', বিভাগ '.$request->group_name[$success_student->student_id].' এবং শ্রেণী রোল : '.$request->roll[$success_student->student_id].', '.$school_name;
+               $content='Dear, '.$success_student->user->name.' Your current class '.$class->name.', Group '.$request->group_name[$success_student->student_id].' and class roll : '.$request->roll[$success_student->student_id].', '.$school_name;
                $message= urlencode($content);
                $mobile_number=$sms_send->validateNumber([0=>$success_student->user->mobile]);
                $mobile_number = implode(',',$mobile_number);
@@ -148,11 +148,11 @@ class PromotionController extends Controller
                'group'=>$request->group_name[$fail_student->student_id],
                'section'=>$request->section_name[$fail_student->student_id],
                'id_card_exits'=>$id_card_exits,
-               'regularity'=>'অনিয়মিত'
+               'regularity'=>'Irregular'
               ]);
               if($request->sms_service=='yes'&&$school->api_key!=NULL && $school->sender_id!=NULL){
                $class=MasterClass::where('id',$fail_student->master_class_id)->first();
-               $content='প্রিয় '.$fail_student->user->name.' তোমার বর্তমান শ্রেণী '.$class->name.', বিভাগ '.$request->group_name[$fail_student->student_id].' এবং শ্রেণী রোল : '.$request->roll[$fail_student->student_id].', '.$school_name;
+               $content='Dear '.$fail_student->user->name.' Your current class '.$class->name.', Group '.$request->group_name[$fail_student->student_id].' and class roll : '.$request->roll[$fail_student->student_id].', '.$school_name;
                $message= urlencode($content);
                $mobile_number=$sms_send->validateNumber([0=>$fail_student->user->mobile]);
                $mobile_number = implode(',',$mobile_number);
@@ -161,9 +161,9 @@ class PromotionController extends Controller
            }
 
            if(isset($a)){
-             $massege['succes']='শ্রেণী মাইগ্রেশন সফল হয়েছে ...! মোট এস,এম,এস মূল্য : '.$total_message_cost;
+             $massege['succes']='Class Migration Successfull ...! Total SMS Price : '.$total_message_cost;
            }else{
-             $massege['succes']='শ্রেণী মাইগ্রেশন সফল হয়েছে...!!';
+             $massege['succes']='Class Migration Successfull...!!';
            }
            return $massege;
    }

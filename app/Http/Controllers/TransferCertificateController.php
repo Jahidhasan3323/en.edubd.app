@@ -37,7 +37,7 @@ class TransferCertificateController extends Controller
         $tc_reg_no=TransferCertificate::where(['school_id'=>Auth::getSchool()])->latest()->value('tc_reg_no');
         $data['tc_reg_no']=(int)$tc_reg_no+1;
         $tc=TransferCertificate::create($data);
-       
+
         return redirect('transfer_certificate/view/'.$tc->id);
     }
     public function search_student(Request $request)
@@ -48,7 +48,7 @@ class TransferCertificateController extends Controller
 
         $student = Student::with('masterClass','user')->where(['school_id'=>Auth::getSchool(),'student_id'=>$request->student_id])->first();
         if (!$student) {
-            return $this->returnWithError(' আপনি শিক্ষার্থীর আইডি নং ভুল দিয়েছেন । ');
+            return $this->returnWithError(' Your student ID number is incorrect.');
         }
         return view('backEnd.transfer_certificate.create', ['student'=>$student,'classes'=>$classes]);
     }
@@ -66,7 +66,7 @@ class TransferCertificateController extends Controller
         $data['birth_day']=date('Y-m-d',strtotime($request->birth_day));
         $data['leave_date']=date('Y-m-d',strtotime($request->leave_date));
         $tc=TransferCertificate::where('id',$id)->update($data);
-       
+
         return redirect('transfer_certificate/view/'.$id);
     }
     public function validation($request)

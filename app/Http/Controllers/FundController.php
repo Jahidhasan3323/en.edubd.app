@@ -16,7 +16,7 @@ class FundController extends Controller
       $fund = new Fund;
       $data = $request->all();
       $fund->create($data);
-      return redirect()->back()->with('success_msg', 'ফান্ড সফলভাবে যোগ করা হয়েছে ।');
+      return redirect()->back()->with('success_msg', 'Fund Added Successfully.');
     }
 
     public function fund_edit($id){
@@ -28,13 +28,13 @@ class FundController extends Controller
       $fund = Fund::find($request->id);
       $data = $request->all();
       $fund->update($data);
-      return redirect()->route('fund_create')->with('success_msg', 'ফান্ড সফলভাবে আপডেট করা হয়েছে ।');
+      return redirect()->route('fund_create')->with('success_msg', 'Fund Updated Successfully.');
     }
 
     public function fund_delete(Request $request){
       $fund = Fund::find($request->id);
       $fund->delete();
-      return redirect()->route('fund_create')->with('success_msg', 'ফান্ড সফলভাবে মুছে ফেলা হয়েছে ।');
+      return redirect()->route('fund_create')->with('success_msg', 'Fund Deleted Successfully.');
     }
 
 

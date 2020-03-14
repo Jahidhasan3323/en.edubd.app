@@ -34,7 +34,7 @@ class SmsLimitController extends Controller
 		$data = $request->all();
 		$sms_limit = SmsLimit::where('school_id', $request->school_id)->first();
 		$sms_limit?$sms_limit->update($data):SmsLimit::create($data);
-		return redirect()->route('smsLimit.sms_setup')->with('success_msg','এস,এম,এস সেটাপ সফল হয়েছে ।');
+		return redirect()->route('smsLimit.sms_setup')->with('success_msg','SMS Setup Added Successfully.');
 	}
 
 

@@ -65,7 +65,7 @@ class WmGeneralTextController extends Controller
              $request->file('file')->storeAs($to_uploaded_path, $to_uploaded_name);
         }
             WmGeneralText::create($data);
-            return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','general_text');
+            return $this->returnWithSuccessRedirect('Your Information Added Successfully.','general_text');
     }
 
     /**
@@ -108,7 +108,7 @@ class WmGeneralTextController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         if(!Auth::is('admin')){
             return redirect('/home');
         }
@@ -133,7 +133,7 @@ class WmGeneralTextController extends Controller
             }
         }
             $wmGeneralText->update($data);
-            return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','general_text');
+            return $this->returnWithSuccessRedirect('Your Information Updated Successfully.','general_text');
     }
 
     /**
@@ -152,6 +152,6 @@ class WmGeneralTextController extends Controller
         if (isset($wmGeneralText->file)&&file_exists(public_path(Storage::url($wmGeneralText->file)))){
                 Storage::delete($wmGeneralText->file);
             }
-        return $this->returnWithSuccessRedirect('আপনার তথ্য মুছে দেওয়া হয়েছে ','general_text');
+        return $this->returnWithSuccessRedirect('Your Information Deleted Successfully.','general_text');
     }
 }

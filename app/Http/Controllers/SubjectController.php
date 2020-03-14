@@ -78,7 +78,7 @@ class SubjectController extends Controller
              'school_id'=>Auth::getSchool(),
          ])->first();
          if($subject){
-             Session::flash('errmgs', 'দুঃখিত, বিষয় পূর্বেই যগ করা হয়েছে !');
+             Session::flash('errmgs', 'Sorry, This subject alread taken !');
              return redirect()->back();
          }
 
@@ -86,9 +86,9 @@ class SubjectController extends Controller
             $data = $request->all();
             $data['school_id'] = Auth::getSchool();
             Subject::create($data);
-            return $this->returnWithSuccess('বিষয় সফলভাবে যোগ করা হয়েছে !');
+            return $this->returnWithSuccess('Subject Added Successfully.');
         } catch (\Exception $e) {
-            return $this->returnWithError('errmgs', 'দুঃখিত,  সমস্যা হয়েছে !'.$e->getMessage());
+            return $this->returnWithError('errmgs', 'Sorry,  Something went wrong !'.$e->getMessage());
         }
     }
 
@@ -163,16 +163,16 @@ class SubjectController extends Controller
              'school_id'=>Auth::getSchool(),
          ])->first();
          if (isset($subject->id)&&$subject->id!=$id){
-           Session::flash('errmgs', 'দুঃখিত, বিষয়টি পূর্বেই এসাইন করা হয়েছে !');
+           Session::flash('errmgs', 'Sorry, This subject already taken.');
            return redirect()->back();
          }
         try {
             $data=$request->except('_token');
             Subject::where(['id'=>$id,'school_id'=>Auth::getSchool()])->update($data);
-            Session::flash('sccmgs', 'বিষয় সফলভাবে আপডেট করা হয়েছে !');
+            Session::flash('sccmgs', 'Subject Updated Successfully.');
             return redirect()->back();
         } catch (\Exception $e) {
-           Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+           Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
            return redirect()->back();
         }
     }
@@ -191,10 +191,10 @@ class SubjectController extends Controller
 
         try {
            Subject::where(['id'=>$id,'school_id'=>Auth::getSchool()])->forceDelete();
-           Session::flash('sccmgs', 'বিষয় সফলভাবে মুছে ফেলা হয়েছে !');
+           Session::flash('sccmgs', 'Subject Deleted Successfully !');
            return redirect()->back();
         } catch (\Exception $e) {
-           Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+           Session::flash('errmgs', 'Sorry, Something went wrong!'.$e->getMessage());
            return redirect()->back();
         }
     }

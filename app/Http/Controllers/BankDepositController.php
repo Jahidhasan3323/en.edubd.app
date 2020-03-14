@@ -40,7 +40,7 @@ class BankDepositController extends Controller
       $data['deposit_date'] = date('Y-m-d', strtotime($request->deposit_date));
       // return $data;
       $bank_deposit->create($data);
-      return redirect()->back()->with('success_msg', 'ব্যাংক ডিপোজিট সফলভাবে সংরক্ষণ করা হয়েছে ।');
+      return redirect()->back()->with('success_msg', 'Bank Deposit Added Successfully.');
     }
 
     public function bank_deposit_edit($id){
@@ -65,13 +65,13 @@ class BankDepositController extends Controller
       $data = $request->except(['deposit_date']);
       $data['deposit_date'] = date('Y-m-d', strtotime($request->deposit_date));
       $bank_deposit->update($data);
-      return redirect()->route('bank_deposit_add')->with('success_msg', 'ব্যাংক ডিপোজিট সফলভাবে আপডেট করা হয়েছে ।');
+      return redirect()->route('bank_deposit_add')->with('success_msg', 'Bank Deposit Updated Successfully.');
     }
 
     public function bank_deposit_delete(Request $request){
       $bank_deposit = BankDeposit::find($request->id);
       $bank_deposit->delete();
-      return redirect()->route('bank_deposit_add')->with('success_msg', 'ব্যাংক ডিপোজিট সফলভাবে মুছে ফেলা হয়েছে ।');
+      return redirect()->route('bank_deposit_add')->with('success_msg', 'Bank Deposit Deleted Successfully.');
     }
 
     public function bank_provident_fund_list(){

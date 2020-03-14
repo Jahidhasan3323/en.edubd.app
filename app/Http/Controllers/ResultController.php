@@ -117,7 +117,7 @@ class ResultController extends Controller
           }
         }
 
-        return $this->returnWithSuccess('ফলাফল এন্ট্রি সফল হয়েছে ।');
+        return $this->returnWithSuccess('Result Entry Successfull.');
     }
 
     protected function grand_total_mark_procesing($request){
@@ -239,7 +239,7 @@ class ResultController extends Controller
            $exam_types = ExamType::all();
            return view('backEnd.results.edit',compact('subjects','classes', 'group_classes', 'units', 'group_class', 'exam_types','result','students'));
         }else{
-          return $this->returnWithError('ফলাফল খুজে পাওয়া যায়নি..!');
+          return $this->returnWithError('Result not found..!');
         }
 
     }
@@ -279,7 +279,7 @@ class ResultController extends Controller
             }
         }
 
-        $this->returnWithSuccess('ফলাফল সফলভাবে আপডেট করা হয়েছে ।');
+        $this->returnWithSuccess('Result Updated Successfully.');
         $data_check['exam_year']=$request->exam_year;
         $data_check['exam_type_id']=$request->exam_type_id;
         $data_check['student_id']=$request->student_id;
@@ -315,7 +315,7 @@ class ResultController extends Controller
             'school_id'=> Auth::getSchool()
         ])->get();
        if(count($results)<1){
-          Session::flash('errmgs', 'দুঃখিত, ফলাফল এখনো প্রকাশিত হয়নি ।');
+          Session::flash('errmgs', 'Sorry, Result not published yet.');
           return redirect()->back();
         }
        $copulsary_results = collect($results)->where('subject_status','আবশ্যিক')->groupBy(function($element){
@@ -470,14 +470,14 @@ class ResultController extends Controller
         try {
             if ($request->unpublish){
                 Result::where($data)->update(['status' =>0]);
-                Session::flash('sccmgs', 'ফলাফল সফলভাবে প্রকাশিত হয়েছে !');
+                Session::flash('sccmgs', 'Result Published Successfully.');
             }else{
               Result::where($data)->update(['status' => 1]);
-              Session::flash('sccmgs', 'ফলাফল সফলভাবে প্রকাশিত হয়েছ !');
+              Session::flash('sccmgs', 'Result Published Successfully.');
             }
             return redirect()->back();
         }catch (\Exception $e){
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !.'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !.'.$e->getMessage());
             return redirect()->back();
         }
     }

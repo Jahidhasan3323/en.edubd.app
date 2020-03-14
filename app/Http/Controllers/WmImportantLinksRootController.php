@@ -37,7 +37,7 @@ class WmImportantLinksRootController extends Controller
     {
          $categorys=WmImportantLinksCategoryRoot::orderby('id','DESC')->get();
          $school_types=SchoolType::all();
-         
+
         return view('backEnd.webmanagement.important_link_root.add',compact('categorys','school_types'));
     }
 
@@ -61,7 +61,7 @@ class WmImportantLinksRootController extends Controller
             'school_type_id' => 'required',
             'header_status' => 'required',
         ]);
-       
+
         $school_type_id=implode("|",$request->school_type_id);
          $data['school_type_id']=$school_type_id;
         WmImportantLinksRoot::create($data);
@@ -73,7 +73,7 @@ class WmImportantLinksRootController extends Controller
                 WmImportantLink::insert(['tittle'=>$request->tittle,'link'=>$request->link,'wm_important_links_category_id'=>$wm_important_links_category_id,'school_id'=>$school->id]);
             }
         }
-        return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','important_link_root');
+        return $this->returnWithSuccessRedirect('Your Information Added Successfully.','important_link_root');
     }
 
     /**
@@ -124,9 +124,9 @@ class WmImportantLinksRootController extends Controller
             'wm_important_links_category_root_id' => 'required',
             'header_status' => 'required',
         ]);
-       
+
         $important_link->update($data);
-        return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','important_link_root');
+        return $this->returnWithSuccessRedirect('Your Information Updated Successfully.','important_link_root');
     }
 
     /**
@@ -142,7 +142,7 @@ class WmImportantLinksRootController extends Controller
         }
         $important_link=WmImportantLinksRoot::where(['id'=>$id])->first();
         $important_link->delete();
-        
-        return $this->returnWithSuccessRedirect('আপনার তথ্য মুছে দেওয়া হয়েছে ','important_link_root');
+
+        return $this->returnWithSuccessRedirect('Your Information Deleted Successfully.','important_link_root');
     }
 }

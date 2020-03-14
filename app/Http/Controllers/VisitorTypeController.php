@@ -20,7 +20,7 @@ class VisitorTypeController extends Controller
 		]);
 		$data = $request->all();
 		VisitorType::create($data);
-        return redirect()->route('visitorType.add')->with('sccmgs','ভিজিটরের ধরণ সফলভাবে জমা করা হয়েছে ।');
+        return redirect()->route('visitorType.add')->with('sccmgs','Visitor Type Added Successfully.');
 
 	}
 
@@ -35,13 +35,13 @@ class VisitorTypeController extends Controller
 		]);
 		$data = $request->all();
 		VisitorType::find($request->id)->update($data);
-        return redirect()->route('visitorType.add')->with('sccmgs','ভিজিটরের ধরণ সফলভাবে আপডেট করা হয়েছে ।');
+        return redirect()->route('visitorType.add')->with('sccmgs','Visitor Type Updated Successfully.');
 	}
 
     public function delete(Request $request){
 		$visitor_type = VisitorType::find($request->id);
 		$visitor_type->delete();
-        return redirect()->route('visitorType.add')->with('sccmgs','ভিজিটরের ধরণ সফলভাবে মুছে ফেলা হয়েছে ।');
+        return redirect()->route('visitorType.add')->with('sccmgs','Visitor Type Deleted Successfully.');
 	}
 
 
