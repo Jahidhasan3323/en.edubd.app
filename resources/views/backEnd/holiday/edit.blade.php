@@ -1,12 +1,12 @@
 @extends('backEnd.master')
- 
-@section('mainTitle', 'ছুটি এন্ট্রি')
+
+@section('mainTitle', 'Edit Holiday')
 @section('active_class1', 'active')
 
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">ছুটি সম্পাদন করুন </h1>
+            <h1 class="text-center text-temp">Edit Holiday</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -24,13 +24,13 @@
                         <input type="hidden" name="month" value="{{$month}}">
                         <input type="hidden" name="year" value="{{$year}}">
                         <div class="form-group {{$errors->has('date') ? 'has-error' : ''}}">
-                            <label for="date">দিন নির্বাচন করুন<font color="red" size="4">*</font></label>
+                            <label for="date">Day<font color="red" size="4">*</font></label>
                             <div class="">
                                     <select name="date[]" id="date" class="form-control" multiple="true">
-                                        <option value="">---দিন নির্বাচন করুন---</option>
+                                        <option value="">Select Day</option>
                                         @php($days = json_decode($days))
                                         @foreach($days as $day)
-                                         <option value="{{date('d-m-Y',strtotime($day))}}">{{str_replace($s, $r, $day)}}</option>
+                                         <option value="{{date('d-m-Y',strtotime($day))}}">{{$day}}</option>
                                         @endforeach
                                     </select>
                             </div>
@@ -48,7 +48,7 @@
                     <div class="row">
                         <div class="col-sm-2 col-sm-offset-5">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-block btn-info">হালনাগাদ করুন</button>
+                                <button type="submit" class="btn btn-block btn-info">Update</button>
                             </div>
                         </div>
                     </div>

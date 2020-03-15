@@ -26,23 +26,23 @@
                     <img src="{{Storage::url(Auth::user()->school->logo)}}" width="80">
                     <h3>{{Auth::user()->name}}</h3>
                     <p>{{Auth::user()->school->address}}</p>
-                    <h3>শিক্ষার্থীদের হাজিরা {{str_replace($s, $r,date("F", mktime(null, null, null, $search['month']))).'-'.$search['year']}}</h3>
+                    <h3>Student Attendance Sheet {{date("F", mktime(null, null, null, $search['month'])).'-'.$search['year']}}</h3>
                     <h4>{{
-                      'শ্রেণী:'.$students[0]->group.', বিভাগ:'
-                      .$students[0]->group.', শ্রেণী:'
-                      .$students[0]->শিফট.', শাখা:'
+                      'Class:'.$students[0]->group.', Group:'
+                      .$students[0]->group.', Class:'
+                      .$students[0]->Shift.', Section:'
                       .$students[0]->section
                     }}</h4>
-                </div> 
+                </div>
             </div>
              <div class="table-responsive">
               <table id="subject_tbl" class="table table-bordered table-hover table-striped">
                   <thead>
                       <tr>
                           <th style="width:5px !important">#</th>
-                          <th style="width:50px !important; ">ছবি</th>
-                          <th style="width:200px !important;">শিক্ষার্থী</th>
-                          <th style="width:10px !important; ">রোল </th>
+                          <th style="width:50px !important; ">Photo</th>
+                          <th style="width:200px !important;">Student</th>
+                          <th style="width:10px !important; ">Roll </th>
                           @foreach($days as $date)
                            <th style="width:5px !important; padding: -1px 3px 3px 3px !important;">{{date('d',strtotime($date))}}</th>
                           @endforeach
@@ -77,16 +77,16 @@
                     <img src="{{Storage::url(Auth::user()->school->logo)}}" width="80">
                     <h3>{{Auth::user()->name}}</h3>
                     <p>{{Auth::user()->school->address}}</p>
-                    <h3>কর্মকর্তাদের হাজিরা {{str_replace($s, $r,date("F", mktime(null, null, null, $search['month']))).'-'.$search['year']}}</h3>
-                </div> 
+                    <h3>Employee Attendance Shet{{date("F", mktime(null, null, null, $search['month'])).'-'.$search['year']}}</h3>
+                </div>
             </div>
              <div class="table-responsive">
               <table id="subject_tbl" class="table table-bordered table-hover table-striped">
                   <thead>
                       <tr>
                           <th style="width:5px !important">#</th>
-                          <th style="width:50px !important; ">ছবি</th>
-                          <th style="width:200px !important;">কর্মকর্তা</th>
+                          <th style="width:50px !important; ">Photo</th>
+                          <th style="width:200px !important;">Employee</th>
                           @foreach($days as $date)
                            <th style="width:5px !important;  padding: -1px 3px 3px 3px !important">{{date('d',strtotime($date))}}</th>
                           @endforeach

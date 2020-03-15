@@ -18,7 +18,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">উপস্থিতির তালিকাপত্র তৈরি করুন</h1>
+            <h1 class="text-center text-temp">Create Attendance List</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -43,7 +43,7 @@
                 <div class="row">
                     <div class="col-md-2 col-sm-12">
                         <div class="form-group {{$errors->has('exam_year') ? 'has-error' : ''}}">
-                            <label class="" for="exam_year">বছর <span class="star">*</span></label>
+                            <label class="" for="exam_year">Year <span class="star">*</span></label>
                             <div class="">
                                 <input class="form-control" name="exam_year" id="exam_year" value="{{old('exam_year',date('Y'))}}">
                             </div>
@@ -56,10 +56,10 @@
                     </div>
                     <div class="col-md-2 col-sm-12">
                         <div class="form-group {{$errors->has('master_class_id') ? 'has-error' : ''}}">
-                            <label class="" for="master_class_id">শ্রেণী <span class="star">*</span></label>
+                            <label class="" for="master_class_id">Class <span class="star">*</span></label>
                             <div class="">
                                 <select style="width: 100% !important;" class="form-control" name="master_class_id" id="master_class_id">
-                                    <option value="">...শ্রেণী নির্বাচন করুন...</option>
+                                    <option value="">Select Class</option>
                                     @foreach($classes as $class)
                                         <option value="{{$class->id}}">{{$class->name}}</option>
                                     @endforeach
@@ -74,10 +74,10 @@
                     </div>
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group {{$errors->has('group_class_id') ? 'has-error' : ''}}">
-                            <label class="" for="group_class_id">গ্রুপ / বিভাগ <span class="star">*</span></label>
+                            <label class="" for="group_class_id">Group <span class="star">*</span></label>
                             <div class="">
                                 <select style="width: 100% !important;" class="form-control" name="group_class_id" id="group_class_id">
-                                    <option value="">...গ্রুপ / বিভাগ নির্বাচন করুন...</option>
+                                    <option value="">Select Group</option>
                                     @foreach($groups as $group)
                                         <option value="{{$group->id}}">{{$group->name}}</option>
                                     @endforeach
@@ -92,14 +92,14 @@
                     </div>
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group {{$errors->has('shift') ? 'has-error' : ''}}">
-                            <label class="" for="shift">শিফট <span class="star">*</span></label>
+                            <label class="" for="shift">Shift <span class="star">*</span></label>
                             <div class="">
                                 <select class="form-control" style="width: 100% !important;" name="shift" id="shift">
-                                    <option value="">শিফট নির্বাচন করুন</option>
-                                    <option value="সকাল">সকাল</option>
-                                    <option value="দিন">দিন</option>
-                                    <option value="সন্ধ্যা">সন্ধ্যা</option>
-                                    <option value="রাত">রাত</option>
+                                    <option value="">Select Shift</option>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Day">Day</option>
+                                    <option value="Evening">Evening</option>
+                                    <option value="Night">Night</option>
                                 </select>
                             </div>
                             @if ($errors->has('shift'))
@@ -111,14 +111,14 @@
                     </div>
                     <div class="col-md-2 col-sm-12">
                         <div class="form-group {{$errors->has('section') ? 'has-error' : ''}}">
-                            <label class="" for="section">শাখা <span class="star">*</span></label>
+                            <label class="" for="section">Section <span class="star">*</span></label>
                             <div class="">
                                 <select style="width: 100% !important;" class="form-control" name="section" id="section">
-                                    <option value="">...শাখা নির্বাচন করুন...</option>
-                                    <option value="ক">ক</option>
-                                    <option value="খ">খ</option>
-                                    <option value="গ">গ</option>
-                                    <option value="ঘ">ঘ</option>
+                                    <option value="">Select Section</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
                                     @foreach($units as $unit)
                                         <option value="{{$unit->name}}">{{$unit->name}}</option>
                                     @endforeach
@@ -136,10 +136,10 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="" for="exam_type_id">পরীক্ষা (<strong>বিঃদ্রঃ</strong> নির্বাচন করুন শুধুমাত্র পরীক্ষায় অংশগ্রহণকারী শিক্ষার্থীদের হাজিরার জন্য) </label>
+                            <label class="" for="exam_type_id">Exam (<strong>Note:</strong>Select only for exam attendance students) </label>
                             <div class="">
                                 <select style="width: 100% !important;" class="form-control" name="exam_type_id" id="exam_type_id" >
-                                    <option value="">...পরীক্ষা টাইপ নির্বাচন করুন...</option>
+                                    <option value="">Select Exam Type</option>
                                     @foreach($exams as $exam)
                                         <option value="{{$exam->id}}">{{$exam->name}}</option>
                                     @endforeach
@@ -154,7 +154,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-success">সাবমিট</button>
+                                <button id="save" type="submit" class="btn btn-block btn-success">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -171,7 +171,7 @@
         var master_class_id = "{{old('master_class_id')}}";
         var group_class_id = "{{old('group_class_id')}}";
         var shift = "{{old('shift')}}";
-        var section = "{{old('section')}}"; 
+        var section = "{{old('section')}}";
         $("#exam_type_id").val(exam_type_id);
         $("#master_class_id").val(master_class_id);
         $("#group_class_id").val(group_class_id);
@@ -180,7 +180,3 @@
     </script>
   @endif
 @endsection
-
-
-
-

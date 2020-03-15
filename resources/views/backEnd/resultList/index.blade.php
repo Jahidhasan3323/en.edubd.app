@@ -7,7 +7,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">ফলাফলের তালিকা তৈরি করুন</h1>
+            <h1 class="text-center text-temp">Create Result List</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -18,22 +18,22 @@
         @endif
         <div class="panel-body">
           <ul class="nav nav-pills nav-justified">
-              <li class="{{$active_path=='all'? 'active':''}}"><a data-toggle="tab" href="#all">সব</a></li>
-              <li class="{{$active_path=='class_based'? 'active':''}}"><a data-toggle="tab" href="#class_based">শ্রেণী ভিত্তিক</a></li>
-              <li class="{{$active_path=='section_based'? 'active':''}}"><a data-toggle="tab" href="#section_based">শাখা ভিত্তিক</a></li>
-              <li class="{{$active_path=='group_based'? 'active':''}}"><a data-toggle="tab" href="#group_based">গ্রুপ/বিভাগ ভিত্তিক</a></li>
+              <li class="{{$active_path=='all'? 'active':''}}"><a data-toggle="tab" href="#all">All</a></li>
+              <li class="{{$active_path=='class_based'? 'active':''}}"><a data-toggle="tab" href="#class_based">Class Wise</a></li>
+              <li class="{{$active_path=='section_based'? 'active':''}}"><a data-toggle="tab" href="#section_based">Section Wise</a></li>
+              <li class="{{$active_path=='group_based'? 'active':''}}"><a data-toggle="tab" href="#group_based">Group Wise</a></li>
             </ul>
 
             <div class="tab-content">
               <div id="all" class="tab-pane fade {{$active_path=='all'? 'in active':''}}">
-                <h4 style="margin-bottom: 20px;" class="text-center">নিচের সব নির্বাচন করুন</h4>
+                <h4 style="margin-bottom: 20px;" class="text-center">Select All</h4>
                 <form action="{{url('result-list/search')}}" method="get">
                     {{csrf_field()}}
                       <div class="row">
                         <div class="col-md-2 col-sm-12 {{$errors->has('exam_year') ? 'has-error' : ''}}">
                           <div class="form-group">
                               <select class="form-control" style="width:100%" name="exam_year" id="exam_year">
-                                  <option value="">...পরীক্ষার বছর...</option>
+                                  <option value="">Exam Year</option>
                                   @if(!$exam_years->count())
                                       <option>No result has given</option>
                                   @endif
@@ -51,7 +51,7 @@
                         <div class="col-md-2 col-sm-12 {{$errors->has('master_class_id') ? 'has-error' : ''}}">
                             <div class="form-group">
                                 <select class="form-control" style="width:100%" name="master_class_id" id="master_class_id">
-                                    <option value="">...শ্রেণী নির্বাচন করুন...</option>
+                                    <option value="">Select Class</option>
                                     @foreach($classes as $class)
                                         <option value="{{$class->id}}" >{{$class->name}}</option>
                                     @endforeach
@@ -66,7 +66,7 @@
                         <div class="col-md-2 col-sm-12 {{$errors->has('group_class_id') ? 'has-error' : ''}}">
                             <div class="form-group">
                                 <select class="form-control" style="width:100%" name="group_class_id" id="group_class_id">
-                                    <option value="">...গ্রুপ / বিভাগ নির্বাচন করুন...</option>
+                                    <option value="">Select Group</option>
                                     @foreach($class_groups as $class_group)
                                         <option value="{{$class_group->id}}" >{{$class_group->name}}</option>
                                     @endforeach
@@ -81,11 +81,11 @@
                         <div class="col-md-2 col-sm-12 {{$errors->has('shift') ? 'has-error' : ''}}">
                             <div class="form-group">
                                 <select class="form-control" style="width:100%" name="shift" id="shift">
-                                    <option value="">শিফট নির্বাচন করুন</option>
-                                    <option value="সকাল">সকাল</option>
-                                    <option value="দিন">দিন</option>
-                                    <option value="সন্ধ্যা">সন্ধ্যা</option>
-                                    <option value="রাত">রাত</option>
+                                    <option value="">Select Shift</option>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Day">Day</option>
+                                    <option value="Evening">Evening</option>
+                                    <option value="Night">Night</option>
                                 </select>
                             </div>
                             @if($errors->has('shift'))
@@ -97,11 +97,11 @@
                         <div class="col-md-2 col-sm-12 {{$errors->has('section') ? 'has-error' : ''}}">
                             <div class="form-group">
                                 <select name="section" id="section" class="form-control" style="width:100%" required="">
-                                    <option value="">...শাখা নির্বাচন করুন...</option>
-                                    <option value="ক">ক</option>
-                                    <option value="খ">খ</option>
-                                    <option value="গ">গ</option>
-                                    <option value="ঘ">ঘ</option>
+                                    <option value="">Select Section</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
                                     @foreach($units as $unit)
                                     <option value="{!!$unit->name!!}">{!!$unit->name!!}</option>
                                     @endforeach
@@ -116,7 +116,7 @@
                         <div class="col-md-2 col-sm-12 {{$errors->has('exam_type_id') ? 'has-error' : ''}}">
                             <div class="form-group">
                                <select name="exam_type_id" id="exam_type_id" class="form-control" style="width:100%" required="">
-                                   <option value="">...পরীক্ষার ধরন...</option>
+                                   <option value="">Select Exam</option>
                                    @foreach($exam_types as $exam_type)
                                    <option value="{{$exam_type->id}}">{{$exam_type->name}}</option>
                                    @endforeach
@@ -130,21 +130,21 @@
                         </div>
                         <div class="col-md-2 col-sm-12 col-md-offset-5">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-block btn-primary">অনুসন্ধান</button>
+                                <button type="submit" class="btn btn-block btn-primary">Search</button>
                             </div>
                         </div>
                       </div>
                 </form>
               </div>
               <div id="class_based" class="tab-pane fade {{$active_path=='class_based'? 'in active':''}}">
-                <h4 style="margin-bottom: 20px;" class="text-center">নিচের সব নির্বাচন করুন</h4>
+                <h4 style="margin-bottom: 20px;" class="text-center">Select All</h4>
                 <form action="{{url('result-list/search')}}" method="get">
                     {{csrf_field()}}
                       <div class="row">
                         <div class="col-md-4 col-sm-12 {{$errors->has('exam_year') ? 'has-error' : ''}}">
                           <div class="form-group">
                               <select class="form-control" style="width:100%" name="exam_year" id="exam_year_1">
-                                  <option value="">...পরীক্ষার বছর...</option>
+                                  <option value="">Select Exam Year</option>
                                   @if(!$exam_years->count())
                                       <option>No result has given</option>
                                   @endif
@@ -162,7 +162,7 @@
                         <div class="col-md-4 col-sm-12 {{$errors->has('master_class_id') ? 'has-error' : ''}}">
                             <div class="form-group">
                                 <select class="form-control" style="width:100%" name="master_class_id" id="master_class_id_1">
-                                    <option value="">...শ্রেণী নির্বাচন করুন...</option>
+                                    <option value="">Select Class</option>
                                     @foreach($classes as $class)
                                         <option value="{{$class->id}}" >{{$class->name}}</option>
                                     @endforeach
@@ -174,11 +174,11 @@
                             </span>
                             @endif
                         </div>
-                        
+
                         <div class="col-md-4 col-sm-12 {{$errors->has('exam_type_id') ? 'has-error' : ''}}">
                             <div class="form-group">
                                <select name="exam_type_id" id="exam_type_id_1" class="form-control" style="width:100%" required="">
-                                   <option value="">...পরীক্ষার ধরন...</option>
+                                   <option value="">Select Exam Type</option>
                                    @foreach($exam_types as $exam_type)
                                    <option value="{{$exam_type->id}}">{{$exam_type->name}}</option>
                                    @endforeach
@@ -192,21 +192,21 @@
                         </div>
                         <div class="col-md-2 col-sm-12 col-md-offset-5">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-block btn-primary">অনুসন্ধান</button>
+                                <button type="submit" class="btn btn-block btn-primary">Search</button>
                             </div>
                         </div>
                       </div>
                 </form>
               </div>
               <div id="section_based" class="tab-pane fade {{$active_path=='section_based'? 'in active':''}}">
-                <h4 style="margin-bottom: 20px;" class="text-center">নিচের সব নির্বাচন করুন</h4>
+                <h4 style="margin-bottom: 20px;" class="text-center">Select All</h4>
                 <form action="{{url('result-list/search')}}" method="get">
                     {{csrf_field()}}
                       <div class="row">
                         <div class="col-md-3 col-sm-12 {{$errors->has('exam_year') ? 'has-error' : ''}}">
                           <div class="form-group">
                               <select class="form-control" style="width:100%" name="exam_year" id="exam_year_3">
-                                  <option value="">...পরীক্ষার বছর...</option>
+                                  <option value="">Select Exam Year</option>
                                   @if(!$exam_years->count())
                                       <option>No result has given</option>
                                   @endif
@@ -224,7 +224,7 @@
                         <div class="col-md-3 col-sm-12 {{$errors->has('master_class_id') ? 'has-error' : ''}}">
                             <div class="form-group">
                                 <select class="form-control" style="width:100%" name="master_class_id" id="master_class_id_3">
-                                    <option value="">...শ্রেণী নির্বাচন করুন...</option>
+                                    <option value="">Select Class</option>
                                     @foreach($classes as $class)
                                         <option value="{{$class->id}}" >{{$class->name}}</option>
                                     @endforeach
@@ -240,11 +240,11 @@
                         <div class="col-md-3 col-sm-12 {{$errors->has('section') ? 'has-error' : ''}}">
                             <div class="form-group">
                                 <select name="section" id="section_3" class="form-control" style="width: 100%" required="">
-                                    <option value="">...শাখা নির্বাচন করুন...</option>
-                                    <option value="ক">ক</option>
-                                    <option value="খ">খ</option>
-                                    <option value="গ">গ</option>
-                                    <option value="ঘ">ঘ</option>
+                                    <option value="">Select Section</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
                                     @foreach($units as $unit)
                                     <option value="{!!$unit->name!!}">{!!$unit->name!!}</option>
                                     @endforeach
@@ -256,11 +256,11 @@
                             </span>
                             @endif
                         </div>
-                        
+
                         <div class="col-md-3 col-sm-12 {{$errors->has('exam_type_id') ? 'has-error' : ''}}">
                             <div class="form-group">
                                <select name="exam_type_id" id="exam_type_id_3" class="form-control" style="width:100%" required="">
-                                   <option value="">...পরীক্ষার ধরন...</option>
+                                   <option value="">Select Exam Type</option>
                                    @foreach($exam_types as $exam_type)
                                    <option value="{{$exam_type->id}}">{{$exam_type->name}}</option>
                                    @endforeach
@@ -274,22 +274,22 @@
                         </div>
                         <div class="col-md-2 col-sm-12 col-md-offset-5">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-block btn-primary">অনুসন্ধান</button>
+                                <button type="submit" class="btn btn-block btn-primary">Search</button>
                             </div>
                         </div>
                       </div>
                 </form>
               </div>
               <div id="group_based" class="tab-pane fade {{$active_path=='group_based'? 'in active':''}}">
-                
-                <h4 style="margin-bottom: 20px;" class="text-center">নিচের সব নির্বাচন করুন</h4>
+
+                <h4 style="margin-bottom: 20px;" class="text-center">Select All</h4>
                 <form action="{{url('result-list/search')}}" method="get">
                     {{csrf_field()}}
                       <div class="row">
                         <div class="col-md-3 col-sm-12 {{$errors->has('exam_year') ? 'has-error' : ''}}">
                           <div class="form-group">
                               <select class="form-control" style="width:100%" name="exam_year" id="exam_year_4">
-                                  <option value="">...পরীক্ষার বছর...</option>
+                                  <option value="">Select Exam Year</option>
                                   @if(!$exam_years->count())
                                       <option>No result has given</option>
                                   @endif
@@ -307,7 +307,7 @@
                         <div class="col-md-3 col-sm-12 {{$errors->has('master_class_id') ? 'has-error' : ''}}">
                             <div class="form-group">
                                 <select class="form-control" style="width:100%" name="master_class_id" id="master_class_id_4">
-                                    <option value="">...শ্রেণী নির্বাচন করুন...</option>
+                                    <option value="">Select Class</option>
                                     @foreach($classes as $class)
                                         <option value="{{$class->id}}" >{{$class->name}}</option>
                                     @endforeach
@@ -323,7 +323,7 @@
                         <div class="col-md-3 col-sm-12 {{$errors->has('group_class_id') ? 'has-error' : ''}}">
                             <div class="form-group">
                                 <select class="form-control" style="width: 100%" name="group_class_id" id="group_class_id_4">
-                                    <option value="">...গ্রুপ / বিভাগ নির্বাচন করুন...</option>
+                                    <option value="">Select Group</option>
                                     @foreach($class_groups as $class_group)
                                         <option value="{{$class_group->id}}" >{{$class_group->name}}</option>
                                     @endforeach
@@ -339,7 +339,7 @@
                         <div class="col-md-3 col-sm-12 {{$errors->has('exam_type_id') ? 'has-error' : ''}}">
                             <div class="form-group">
                                <select name="exam_type_id" id="exam_type_id_4" class="form-control" style="width:100%" required="">
-                                   <option value="">...পরীক্ষার ধরন...</option>
+                                   <option value="">Select Exam Type</option>
                                    @foreach($exam_types as $exam_type)
                                    <option value="{{$exam_type->id}}">{{$exam_type->name}}</option>
                                    @endforeach
@@ -353,7 +353,7 @@
                         </div>
                         <div class="col-md-2 col-sm-12 col-md-offset-5">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-block btn-primary">অনুসন্ধান</button>
+                                <button type="submit" class="btn btn-block btn-primary">Search</button>
                             </div>
                         </div>
                       </div>
@@ -361,11 +361,11 @@
               </div>
             </div>
         </div>
-        
-        
+
+
         @if(isset($results) && count($results)>0)
         <div class="col-sm-12 text-center">
-        <h5 style="margin-bottom: 10px;" class="text-center">মোট শিক্ষার্থী : {{count($results)}}</h5>
+        <h5 style="margin-bottom: 10px;" class="text-center">Total Student : {{count($results)}}</h5>
         <br><hr>
         <a class="btn btn-primary" onclick="event.preventDefault();document.getElementById('student-list-print').submit();"><i class="glyphicon glyphicon-print"></i> প্রিন্ট করুন</a>
         <form id="student-list-print" action="{{ url('result-list/print') }}" method="POST" style="display: none;" target="_blank">
@@ -384,18 +384,18 @@
                         <table class="table table-bordered table-hover table-striped">
                             <thead>
                                 <tr>
-                                    <th class="text-center" style="width:5%">ক্র নং</th>
-                                    <th class="text-center">শিক্ষার্থীর নাম </th>
-                                    <th class="text-center">শিক্ষার্থীর আইডি</th>
-                                    <th class="text-center">শ্রেণী রোল</th>
-                                    <th class="text-center">শ্রেণীতে অবস্থান</th>
-                                    <th class="text-center">মোট নম্বর</th>
-                                    <th>প্রাপ্ত জিপিএ</th>
+                                    <th class="text-center" style="width:5%">Serialং</th>
+                                    <th class="text-center">Student Name</th>
+                                    <th class="text-center">Student ID</th>
+                                    <th class="text-center">Class Roll</th>
+                                    <th class="text-center">Class Position</th>
+                                    <th class="text-center">Total marks</th>
+                                    <th>G.P.A</th>
                                 </tr>
                             </thead>
                             <tbody>
                               @if($request->exam_type_id==1||$request->exam_type_id==4)
-                               
+
                                 @php $s=1; $fail_results=$results; @endphp
                                 @foreach($results->sortBy('grand_total_mark')->reverse() as $res)
                                 @php
@@ -462,13 +462,13 @@
                                     if($result[0]['subject_status']=='আবশ্যিক'){
                                      $total_gpa_compulsary[$subject]= Auth::calculateResult($sub_total,$total_mark)['gpa'];
                                     }else{
-                                     $total_gpa_otional[$subject]= Auth::calculateResult($sub_total,$total_mark)['gpa']; 
+                                     $total_gpa_otional[$subject]= Auth::calculateResult($sub_total,$total_mark)['gpa'];
                                     }
                                   }else{
                                     if($result[0]['subject_status']=='আবশ্যিক'){
                                      $total_gpa_compulsary[$subject]=0;
                                     }else{
-                                     $total_gpa_otional[$subject]=0; 
+                                     $total_gpa_otional[$subject]=0;
                                     }
                                   }
                                  }
@@ -485,7 +485,7 @@
                                 <tr>
                                   <td>{{$s++}}</td>
                                     <td>
-                                        
+
                                         {{$res->student->user->name}}
                                     </td>
                                     <td>
@@ -506,19 +506,19 @@
                                 </tr>
                                 @else
                                 <tr>
-                                  <td colspan="7">{{$res->student->user->name}} ফলাফলের জন্য সফটওয়্যার সেবা প্রদানকারী প্রতিষ্টানের সাথে যোগাযোগ করুন ।</td>
+                                  <td colspan="7">{{$res->student->user->name}} For result, Please contact your servic provider.</td>
                                 </tr>
                                 @endif
                                 @endif
-                                @php 
-                                $total_gpa_optional=[]; 
-                                $total_gpa_compulsary=[];  
+                                @php
+                                $total_gpa_optional=[];
+                                $total_gpa_compulsary=[];
                                 @endphp
                                 @endforeach
                               @endif
-                              
+
                               @if($request->exam_type_id==1||$request->exam_type_id==4)
-                               
+
                                 @foreach($fail_results->sortBy('grand_total_mark')->reverse() as $res)
                                 @php
                                 $student_results=\App\Result::where([
@@ -584,13 +584,13 @@
                                     if($result[0]['subject_status']=='আবশ্যিক'){
                                      $total_gpa_compulsary[$subject]= Auth::calculateResult($sub_total,$total_mark)['gpa'];
                                     }else{
-                                     $total_gpa_otional[$subject]= Auth::calculateResult($sub_total,$total_mark)['gpa']; 
+                                     $total_gpa_otional[$subject]= Auth::calculateResult($sub_total,$total_mark)['gpa'];
                                     }
                                   }else{
                                     if($result[0]['subject_status']=='আবশ্যিক'){
                                      $total_gpa_compulsary[$subject]=0;
                                     }else{
-                                     $total_gpa_otional[$subject]=0; 
+                                     $total_gpa_otional[$subject]=0;
                                     }
                                   }
                                  }
@@ -606,7 +606,7 @@
                                 <tr>
                                   <td>{{$s++}}</td>
                                     <td>
-                                       
+
                                        {{$res->student->user->name}}
                                    </td>
                                    <td>
@@ -623,18 +623,18 @@
                                 </tr>
                                 @else
                                 <tr>
-                                  <td colspan="7">{{$res->student->user->name}} ফলাফলের জন্য সফটওয়্যার সেবা প্রদানকারী প্রতিষ্টানের সাথে যোগাযোগ করুন ।</td>
+                                  <td colspan="7">{{$res->student->user->name}} For result, Please contact your servic provider.</td>
                                 </tr>
                                 @endif
                                 @endif
-                                @php 
-                                $total_gpa_optional=[]; 
-                                $total_gpa_compulsary=[];  
+                                @php
+                                $total_gpa_optional=[];
+                                $total_gpa_compulsary=[];
                                 @endphp
                                 @endforeach
                               @endif
-                           
-                           
+
+
                             </tbody>
                         </table>
                     </div>
@@ -668,17 +668,17 @@
         document.getElementById("exam_year").value="{{$request->exam_year}}"
         document.getElementById("master_class_id").value="{{$request->master_class_id}}"
         document.getElementById("group_class_id").value="{{$request->group_class_id}}"
-        document.getElementById("section").value="{{$request->section}}" 
-        document.getElementById("shift").value="{{$request->shift}}" 
-        document.getElementById("exam_type_id").value="{{$request->exam_type_id}}" 
+        document.getElementById("section").value="{{$request->section}}"
+        document.getElementById("shift").value="{{$request->shift}}"
+        document.getElementById("exam_type_id").value="{{$request->exam_type_id}}"
     </script>
     @endif
 
     @if(isset($results)&&$active_path=="class_based")
     <script type="text/javascript">
         document.getElementById("exam_year_1").value="{{$request->exam_year}}"
-        document.getElementById("master_class_id_1").value="{{$request->master_class_id}}" 
-        document.getElementById("exam_type_id_1").value="{{$request->exam_type_id}}" 
+        document.getElementById("master_class_id_1").value="{{$request->master_class_id}}"
+        document.getElementById("exam_type_id_1").value="{{$request->exam_type_id}}"
     </script>
     @endif
 
@@ -687,7 +687,7 @@
         document.getElementById("exam_year_4").value="{{$request->exam_year}}"
         document.getElementById("master_class_id_4").value="{{$request->master_class_id}}"
         document.getElementById("group_class_id_4").value="{{$request->group_class_id}}"
-        document.getElementById("exam_type_id_4").value="{{$request->exam_type_id}}" 
+        document.getElementById("exam_type_id_4").value="{{$request->exam_type_id}}"
     </script>
     @endif
 
@@ -695,8 +695,8 @@
     <script type="text/javascript">
         document.getElementById("exam_year_3").value="{{$request->exam_year}}"
         document.getElementById("master_class_id_3").value="{{$request->master_class_id}}"
-        document.getElementById("section_3").value="{{$request->section}}"  
-        document.getElementById("exam_type_id_3").value="{{$request->exam_type_id}}" 
+        document.getElementById("section_3").value="{{$request->section}}"
+        document.getElementById("exam_type_id_3").value="{{$request->exam_type_id}}"
     </script>
     @endif
 
@@ -705,9 +705,9 @@
         document.getElementById("exam_year").value="{{old('exam_year')}}"
         document.getElementById("master_class_id").value="{{old('master_class_id')}}"
         document.getElementById("group_class_id").value="{{old('group_class_id')}}"
-        document.getElementById("shift").value="{{old('shift')}}" 
-        document.getElementById("section").value="{{old('section')}}" 
-        document.getElementById("exam_type_id").value="{{old('exam_type_id')}}" 
+        document.getElementById("shift").value="{{old('shift')}}"
+        document.getElementById("section").value="{{old('section')}}"
+        document.getElementById("exam_type_id").value="{{old('exam_type_id')}}"
     </script>
     @endif
 

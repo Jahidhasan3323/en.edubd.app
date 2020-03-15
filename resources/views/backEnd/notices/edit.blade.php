@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'Add class Routine')
+@section('mainTitle', 'Edit Notice')
 @section('head_section')
     <style>
 
@@ -10,7 +10,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">নোটিশ সম্পাদন করুন</h1>
+            <h1 class="text-center text-temp">Edit Notice</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group {{$errors->has('name') ? 'has-error' : ''}}">
-                            <label class="" for="name">নোটিশের নাম <span class="star">*</span></label>
+                            <label class="" for="name"> Notice Name <span class="star">*</span></label>
                             <div class="">
                                 <input value="{{$notice->name}}" type="text" name="name" class="form-control" placeholder="Notice Name">
                             </div>
@@ -46,7 +46,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group {{$errors->has('notice') ? 'has-error' : ''}}">
-                            <label for="notice">নোটিশ ফাইল আপলোড করুন</label>
+                            <label for="notice">Upload Notice File</label>
                             <input type="file" name="notice">
                             @if ($errors->has('notice'))
                                 <span class="help-block">
@@ -57,7 +57,7 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group {{$errors->has('notice') ? 'has-error' : ''}}">
-                            <label>বর্তমান ফাইল<span class="star">*</span></label>
+                            <label>Current File<span class="star">*</span></label>
                             <br>
                             <strong>{{$file_name}}</strong>
                         </div>
@@ -67,13 +67,13 @@
                 <div class="row">
                     <div class="col-sm-6 {{$errors->has('is_admission_notice') ? 'has-error' : ''}}">
                         <div class="form-group">
-                            <label class="" for="is_admission_notice"> ভর্তি নোটিশ </label>
+                            <label class="" for="is_admission_notice"> Admission Notice </label>
                             <div class="">
                                 <select class="form-control" name="is_admission_notice" id="is_admission_notice" >
-                                    <option value=""> নির্বাচন করুন</option>
-                                    <option value="1">হ্যা</option>
-                                    <option value="0">না</option>
-                                    
+                                    <option value=""> Select</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+
                                 </select>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group {{$errors->has('description') ? 'has-error' : ''}}">
-                          <label class="" for="description">বর্ণনা </label>
+                          <label class="" for="description">Description </label>
                           <div class="">
                             <textarea  class="form-control" name="description" id="description" >{{$notice->description}}</textarea>
                           </div>
@@ -108,7 +108,7 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">হালনাগাদ</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Update</button>
                             </div>
                         </div>
                     </div>

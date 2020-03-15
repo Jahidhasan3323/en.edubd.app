@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'ভিজিটর পরিবর্তন করুন')
+@section('mainTitle', 'Edit Visitor')
 @section('active_visitor', 'active')
 @section('style')
 <style type="text/css">
@@ -12,7 +12,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">ভিজিটর পরিবর্তন করুন</h1>
+            <h1 class="text-center text-temp">Edit Visitor</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -30,9 +30,9 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group {{$errors->has('name') ? 'has-error' : ''}}">
-                            <label class="" for="name">ভিজিটরের নাম <span class="star">*</span></label>
+                            <label class="" for="name">Visitor Name <span class="star">*</span></label>
                             <div class="">
-                                <input value="{{old('name',$visitor->name)}}" class="form-control" type="text" name="name" id="name" placeholder="ভিজিটরের নাম লিখুন">
+                                <input value="{{old('name',$visitor->name)}}" class="form-control" type="text" name="name" id="name" placeholder="Enter Visitor Name">
                             </div>
                             @if ($errors->has('name'))
                                 <span class="help-block">
@@ -43,9 +43,9 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group {{$errors->has('mobile') ? 'has-error' : ''}}">
-                            <label class="" for="mobile">ভিজিটরের মোবাইল </label>
+                            <label class="" for="mobile">Visitor Mobile </label>
                             <div class="">
-                                <input value="{{old('mobile',$visitor->mobile)}}" class="form-control" type="number" name="mobile" id="mobile" placeholder="ভিজিটরের মোবাইল নাম্বার লিখুন">
+                                <input value="{{old('mobile',$visitor->mobile)}}" class="form-control" type="number" name="mobile" id="mobile" placeholder="Enter Visitor Mobile Number">
                             </div>
                             @if ($errors->has('mobile'))
                                 <span class="help-block">
@@ -56,9 +56,9 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group {{$errors->has('subject') ? 'has-error' : ''}}">
-                            <label class="" for="designation">ভিজিটরের পদবী <span class="star">*</span></label>
+                            <label class="" for="designation">Visitor Designation <span class="star">*</span></label>
                             <div class="">
-                                <input value="{{old('designation',$visitor->designation)}}" class="form-control" type="text" name="designation" id="designation" placeholder="ভিজিটরের পদবী লিখুন">
+                                <input value="{{old('designation',$visitor->designation)}}" class="form-control" type="text" name="designation" id="designation" placeholder="Visitor Designation">
                             </div>
                             @if ($errors->has('designation'))
                                 <span class="help-block">
@@ -69,7 +69,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group {{$errors->has('subject') ? 'has-error' : ''}}">
-                            <label class="" for="visitor_type_id">ভিজিটরের ধরণ <span class="star">*</span> </label>
+                            <label class="" for="visitor_type_id">Visitor Type<span class="star">*</span> </label>
                             <select class="form-control" name="visitor_type_id" required>
                                 <option selected value="{{ $visitor->visitor_type_id }}">{{ $visitor->visitor_type->name }}</option>
                                 @foreach ($visitor_types as $visitor_type)
@@ -83,7 +83,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group {{$errors->has('in_time') ? 'has-error' : ''}}">
-                            <label for="in_time">প্রবেশের সময়<span class="star">*</span></label>
+                            <label for="in_time">Visitor Enter Time<span class="star">*</span></label>
                             <input type="time" class="form-control" id="in_time" name="in_time" value="{{ $visitor->in_time }}">
                             @if ($errors->has('in_time'))
                                 <span class="help-block">
@@ -94,7 +94,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group {{$errors->has('out_time') ? 'has-error' : ''}}">
-                            <label for="out_time">বের হওয়ার সময় </label>
+                            <label for="out_time">Visitor Out Time</label>
                             <input type="time" class="form-control" id="out_time" name="out_time" value="{{ $visitor->out_time??date('h:i') }}">
                             @if ($errors->has('out_time'))
                                 <span class="help-block">
@@ -105,19 +105,19 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group {{$errors->has('purpose') ? 'has-error' : ''}}">
-                            <label for="purpose">কারণ <span class="star">*</span></label>
+                            <label for="purpose">Purpose <span class="star">*</span></label>
                             <textarea name="purpose" rows="5" class="form-control">{{ $visitor->purpose }}</textarea>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group {{$errors->has('note') ? 'has-error' : ''}}">
-                            <label for="note">নোট </label>
+                            <label for="note">Note </label>
                             <textarea name="note" rows="5" class="form-control">{{ $visitor->note }}</textarea>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group {{$errors->has('image') ? 'has-error' : ''}}">
-                            <label for="image">ছবি আপলোড </label>
+                            <label for="image">Picture Upload</label>
                             <div class="" style="width:110px;height:110px;border-radius:3px;">
                                 <img id="image_show" src="{{ Storage::url($visitor->image??'images/no_image.jpg') }}" alt="Image" width="100" height="100">
                             </div>
@@ -134,7 +134,7 @@
                 <div class="row">
                     <div class="col-sm-2 col-sm-offset-5">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-block btn-info">আপডেট করুন</button>
+                            <button type="submit" class="btn btn-block btn-info">Update</button>
                         </div>
                     </div>
                 </div>

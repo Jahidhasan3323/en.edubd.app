@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'ভিজিটরের ধরন যোগ করুন')
+@section('mainTitle', 'Edit Visitor Type')
 @section('active_visitor', 'active')
 @section('style')
 <style type="text/css">
@@ -20,7 +20,7 @@
         @endif
         <div class="panel-body col-md-8 col-md-offset-2" style="border:1px solid #ddd;">
             <div class="page-header">
-                <h1 class="text-center text-temp">ভিজিটরের ধরন পরিবর্তন করুন</h1>
+                <h1 class="text-center text-temp">Edit Visitor Type</h1>
             </div>
             <form id="validate" name="validate" action="{{ route('visitorType.update') }}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group {{$errors->has('subject') ? 'has-error' : ''}}">
-                            <label class="" for="name">ভিজিটরের ধরনের নাম </label>
+                            <label class="" for="name">Visitor Type Name </label>
                             <div class="">
                                 <input value="{{old('name',$visitor_type->name)}}" class="form-control" type="text" name="name" id="name">
                             </div>
@@ -48,7 +48,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-block btn-info">আপডেট করুন</button>
+                                <button type="submit" class="btn btn-block btn-info">Update</button>
                             </div>
                         </div>
                     </div>

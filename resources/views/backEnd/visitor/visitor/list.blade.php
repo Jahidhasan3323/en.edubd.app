@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'সমস্যার তালিকা')
+@section('mainTitle', 'Visitor List')
 @section('active_visitor', 'active')
 @section('style')
     <style>
@@ -18,23 +18,23 @@
 
         <div class="panel-body col-md-12" style="border:1px solid #ddd;">
             <div class="page-header">
-                <h1 class="text-center text-temp">নতুন সমস্যার তালিকা</h1>
+                <h1 class="text-center text-temp">Visitor List</h1>
             </div>
             <div class="table-responsive">
                 <table id="pending_tbl" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>ক্রমিক</th>
-                            <th>নাম</th>
-                            <th>মোবাইল</th>
-                            <th>পদবী</th>
-                            <th>ধরণ</th>
-                            <th>প্রবেশের সময়</th>
-                            <th>বের হওয়ার সময়</th>
-                            <th>কারণ</th>
-                            <th>নোট</th>
-                            <th>ছবি</th>
-                            <th>অ্যাকশন</th>
+                            <th>Serial</th>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>Designation</th>
+                            <th>Type</th>
+                            <th>Enter Time</th>
+                            <th>Out Time</th>
+                            <th>Purpose</th>
+                            <th>Note</th>
+                            <th>Picture</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,13 +64,13 @@
                                 <form class="action_btn" action="{{ route('visitor.edit') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $visitor->id }}">
-                                    <button type="submit" class="btn btn-primary btn-sm" title="পরিবর্তন করুন"> <i class="fa fa-edit"></i> </button>
+                                    <button type="submit" class="btn btn-primary btn-sm" title="Click for Edit"> <i class="fa fa-edit"></i> </button>
                                 </form>
                                 <form class="action_btn" action="{{ route('visitor.delete') }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <input type="hidden" name="id" value="{{ $visitor->id }}">
-                                    <button type="submit" class="btn btn-danger btn-sm" title="মুছে ফেলুন" onclick="return confirm('আপনি কি মুছে ফেলতে চান ?')"> <i class="fa fa-trash-o"></i> </button>
+                                    <button type="submit" class="btn btn-danger btn-sm" title="Click for delete" onclick="return confirm('Do you want to delete ?')"> <i class="fa fa-trash-o"></i> </button>
                                 </form>
                             </td>
                         </tr>
@@ -78,17 +78,17 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>ক্রমিক</th>
-                            <th>নাম</th>
-                            <th>মোবাইল</th>
-                            <th>পদবী</th>
-                            <th>ধরণ</th>
-                            <th>প্রবেশের সময়</th>
-                            <th>বের হওয়ার সময়</th>
-                            <th>কারণ</th>
-                            <th>নোট</th>
-                            <th>ছবি</th>
-                            <th>অ্যাকশন</th>
+                            <th>Serial</th>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>Designation</th>
+                            <th>Type</th>
+                            <th>Enter Time</th>
+                            <th>Out Time</th>
+                            <th>Purpose</th>
+                            <th>Note</th>
+                            <th>Picture</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                 </table>
