@@ -1,12 +1,12 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'প্রতিষ্ঠান ভিত্তিক বার্তা')
+@section('mainTitle', 'Institute Wise SMS')
 @section('active_sms_login_info', 'active')
 
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">প্রতিষ্ঠান ভিত্তিক বার্তা</h1>
+            <h1 class="text-center text-temp">Institute Wise SMS</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="" for="content">প্রতিষ্ঠান </label>
+                            <label class="" for="content">Institute </label>
                             <select class="form-control" name="school_id" id="school_id">
                                 {{-- <option selected value="">প্রতিষ্ঠান নির্বাচন করুন</option> --}}
                                 @foreach($schools as $school)
@@ -34,22 +34,22 @@
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="" for="text_status">বার্তার ধরণ</label>
+                            <label class="" for="text_status">Message Type</label>
                             <div class="">
                                 <input type="radio" checked="checked" name="text_status" value="Unicode (Bangla)">
                                 <span id="unicode" style="display:none;">
-                                     ইউনিকোড (বাংলা)
+                                     Unicode (Bangla)
                                 </span>
-                                <span id="regular" style="display:none;"> রিগুলার টেক্সট</span>
+                                <span id="regular" style="display:none;"> Regular Text</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="" for="content">বার্তা লিখুন</label>
+                            <label class="" for="content">Message</label>
                             <div class="">
                                 <textarea onkeyup="msgCount()" id="content" name="content" rows="3" class="form-control"></textarea>
-                                <p>বর্ণ : <span id="char_show"></span>, বার্তাঃ <span id="msg_count_show"></span></p>
+                                <p>Character : <span id="char_show"></span>, Message: <span id="msg_count_show"></span></p>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-info">সেন্ড এস,এম,এস</button>
+                                <button type="submit" class="btn btn-info">Send SMS</button>
                             </div>
                         </div>
                     </div>

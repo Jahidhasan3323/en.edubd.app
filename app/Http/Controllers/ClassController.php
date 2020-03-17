@@ -46,13 +46,13 @@ class ClassController extends Controller
             'school_type_id'=>'required'
         ]);
         if ($this->createCheck($request->name)){
-            Session::flash('errmgs', 'শ্রেণীটি পূর্বেই যোগ করা হয়েছে !');
+            Session::flash('errmgs', 'This class already taken !');
             return redirect()->back();
         }
         $data['name']=$request->name;
         $data['school_type_id']=$request->school_type_id;
         MasterClass::insert($data);
-        Session::flash('sccmgs', 'শ্রেণী সফলভাবে যোগ করা হয়েছে !');
+        Session::flash('sccmgs', 'Class Added Successfully.');
         return redirect()->back();
     }
     public function createCheck($name){
@@ -87,13 +87,13 @@ class ClassController extends Controller
             'school_type_id'=>'required'
         ]);
         if ($this->createCheck($request->name)->count() > 0 && $this->createCheck($request->name)->id != $request->class_id){
-            Session::flash('errmgs', 'শ্রেণীটি পূর্বেই যোগ করা হয়েছে ! !');
+            Session::flash('errmgs', 'This class already taken.');
             return redirect()->back();
         }
         $data['name']=$request->name;
         $data['school_type_id']=$request->school_type_id;
         MasterClass::where(['id'=>$request->class_id])->update($data);
-        Session::flash('sccmgs', 'শ্রেণীটি সফলভাবে আপডেট করা হয়েছে ! !');
+        Session::flash('sccmgs', 'Class Updated Successfully.');
             return redirect()->back();
     }
 
@@ -106,7 +106,7 @@ class ClassController extends Controller
     public function destroy($id)
     {
         MasterClass::where(['id'=>$id])->delete();
-        Session::flash('sccmgs', 'শ্রেণীটি সফলভাবে মুছে ফেলা হয়েছে !');
+        Session::flash('sccmgs', 'Class Deleted Successfully.');
         return redirect()->back();
     }
 

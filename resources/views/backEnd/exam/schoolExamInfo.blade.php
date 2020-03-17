@@ -6,7 +6,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">স্কুল পরীক্ষার ধরন তথ্য</h1>
+            <h1 class="text-center text-temp">School Exam type Informationয</h1>
         </div>
 
         <div class="col-sm-6">
@@ -24,8 +24,8 @@
         <div class="panel-body">
             <table class="table table-bordered table-responsive table-hover">
                 <tr>
-                    <th>ক্রমিক নং</th>
-                    <th>পরীক্ষার নাম</th>
+                    <th>Serial</th>
+                    <th>Exam Name</th>
                 </tr>
                 @if($exams->count())
                     @foreach($exams as $exam)
@@ -33,7 +33,7 @@
                             <td>{{$exam->id}}</td>
                             <td>{{$exam->name}}</td>
                         </tr>
-                        
+
                     @endforeach
                 @endif
             </table>

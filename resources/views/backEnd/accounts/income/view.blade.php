@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'আয় পরিচালনা')
+@section('mainTitle', 'Income Print View')
 @section('head_section')
     <style>
       .vouchar1, .vouchar2{position: relative; min-height: 500px; border: 1px solid #ddd;}
@@ -11,7 +11,7 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
-      <h2 class="text-center text-temp">ভাউচার প্রিন্ট করুন</h2>
+      <h2 class="text-center text-temp">Print Vouchar</h2>
     </div>
     <div class="col-md-12">
       @if(session('success_msg'))
@@ -38,13 +38,13 @@
           <h5 style="margin: 0px; padding: 0px;">{{ $school->address }}</h5>
           <img id="school_logo" src="{{ Storage::url($school->logo) }}" alt="Logo" width="60" height="60" style="border: 1px solid #ddd; position: absolute;left: 2%;top: 5%;">
           <h3>{{ $account_setting->voucher_title }}</h3>
-          <span>অফিস কপি</span>
+          <span>Office Copy</span>
         </center>
         <div class="col-md-6 text-left" style="padding-bottom: 15px; display:inline-block; float:left;">
-          সিরিয়ালঃ {{ $income->serial }}
+          Serial: {{ $income->serial }}
         </div>
         <div class="col-md-6 text-right" style="padding-bottom: 15px;">
-          তারিখঃ {{ $income->payment_date }}
+          Date {{ $income->payment_date }}
         </div>
         <div class="col-md-12">
           <div class="row">
@@ -52,11 +52,11 @@
               <table class="table table-bordered">
                 <tbody>
                   <tr>
-                    <th width="40%">নাম</th>
+                    <th width="40%">Name</th>
                     <td>{{ $income->payment_by??'' }}</td>
                   </tr>
                   <tr>
-                    <th width="40%">মোবাইল</th>
+                    <th width="40%">Mobile</th>
                     <td> {{$income->mobile}}</td>
                   </tr>
                 </tbody>
@@ -66,11 +66,11 @@
               <table class="table table-bordered">
                 <tbody>
                   <tr>
-                    <th width="40%">পেমেন্ট মেথোড</th>
+                    <th width="40%">Payment Method</th>
                     <td>{{$income->payment_method}}</td>
                   </tr>
                   <tr>
-                    <th width="40%">রেফারেন্স</th>
+                    <th width="40%">Reference</th>
                     <td>{{ $income->reference??'' }}</td>
                   </tr>
                 </tbody>
@@ -80,10 +80,10 @@
           <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th class="text-center">ক্রমিক</th>
-                    <th class="text-center">বিবরণ</th>
-                    <th class="text-center">ফান্ড</th>
-                    <th class="text-center">পরিমান</th>
+                    <th class="text-center">Serial</th>
+                    <th class="text-center">Description</th>
+                    <th class="text-center">Fund</th>
+                    <th class="text-center">Amount</th>
                 </tr>
             </thead>
             <tbody>
@@ -94,14 +94,14 @@
                   <td class="text-right">{{ number_format($income->amount, 2) }}</td>
                 </tr>
                 <tr>
-                  <td colspan="3" class="text-right">সর্বমোট</td>
+                  <td colspan="3" class="text-right">Total</td>
                   <td class="text-right"> <b>{{ number_format($income->amount, 2) }}</b> </td>
                 </tr>
             </tbody>
         </table>
         </div>
         <div class="col-md-12 text-right" style="margin-top: 50px;">
-          আদায়কারীর স্বাক্ষর ও সীল
+          Receiver Signature
         </div>
       </div>
       <div id="voucher" class="row vouchar2" style=" height: 50%; position: relative">
@@ -110,13 +110,12 @@
           <h5 style="margin: 0px; padding: 0px;">{{ $school->address }}</h5>
           <img id="school_logo" src="{{ Storage::url($school->logo) }}" alt="Logo" width="60" height="60" style="border: 1px solid #ddd; position: absolute;left: 2%;top: 5%;">
           <h3>{{ $account_setting->voucher_title }}</h3>
-          <span>প্রদানকারীর কপি</span>
         </center>
         <div class="col-md-6 text-left" style="padding-bottom: 15px; display:inline-block; float:left;">
-          সিরিয়ালঃ {{ $income->serial }}
+          Serial: {{ $income->serial }}
         </div>
         <div class="col-md-6 text-right" style="padding-bottom: 15px;">
-          তারিখঃ {{ $income->payment_date }}
+          Date: {{ $income->payment_date }}
         </div>
         <div class="col-md-12">
           <div class="row">
@@ -124,11 +123,11 @@
               <table class="table table-bordered">
                 <tbody>
                   <tr>
-                    <th width="40%">নাম</th>
+                    <th width="40%">Name</th>
                     <td>{{ $income->payment_by??'' }}</td>
                   </tr>
                   <tr>
-                    <th width="40%">মোবাইল</th>
+                    <th width="40%">Mobile</th>
                     <td> {{$income->mobile}}</td>
                   </tr>
                 </tbody>
@@ -138,11 +137,11 @@
               <table class="table table-bordered">
                 <tbody>
                   <tr>
-                    <th width="40%">পেমেন্ট মেথোড</th>
+                    <th width="40%">Payment Method</th>
                     <td>{{$income->payment_method}}</td>
                   </tr>
                   <tr>
-                    <th width="40%">রেফারেন্স</th>
+                    <th width="40%">Reference</th>
                     <td>{{ $income->reference??'' }}</td>
                   </tr>
                 </tbody>
@@ -152,10 +151,10 @@
           <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th class="text-center">ক্রমিক</th>
-                    <th class="text-center">বিবরণ</th>
-                    <th class="text-center">ফান্ড</th>
-                    <th class="text-center">পরিমান</th>
+                    <th class="text-center">Serial</th>
+                    <th class="text-center">Description</th>
+                    <th class="text-center">Fund</th>
+                    <th class="text-center">Amount</th>
                 </tr>
             </thead>
             <tbody>
@@ -166,7 +165,7 @@
                   <td class="text-right">{{ number_format($income->amount, 2) }}</td>
                 </tr>
                 <tr>
-                  <td colspan="3" class="text-right">সর্বমোট</td>
+                  <td colspan="3" class="text-right">Total</td>
                   <td class="text-right"> <b>{{ number_format($income->amount, 2) }}</b> </td>
                 </tr>
             </tbody>
@@ -176,12 +175,12 @@
           Powered by: Ehsan Software Email: infoehsansoftware@gmail.com
         </div>
         <div class="col-md-12 text-right" style="margin-top: 50px;">
-          আদায়কারীর স্বাক্ষর ও সীল
+          Receiver Signature
         </div>
       </div>
     </div>
     <div align="center" style="width: 100%; margin-bottom: 25px;">
-      <button class="btn btn-success" id="PrintVoucher">প্রিন্ট করুন</button>
+      <button class="btn btn-success" id="PrintVoucher">Print</button>
     </div>
   </div>
 @endsection

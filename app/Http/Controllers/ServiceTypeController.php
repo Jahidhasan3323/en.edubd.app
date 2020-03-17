@@ -18,6 +18,6 @@ class ServiceTypeController extends Controller
     {
         if($status==1){$status = 0;}else{ $status = 1;}
         ServiceType::where('id',$service_id)->update(['status'=>$status]);
-        return $this->returnWithSuccess('স্ট্যাটাস সফলভাবে পরিবর্তন হয়েছে ।');
+        return $this->returnWithSuccess('Status Updated Successfully.');
     }
 }

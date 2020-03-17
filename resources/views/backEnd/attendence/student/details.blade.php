@@ -1,15 +1,15 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'উপস্থিতি ব্যাবস্থাপনা')
+@section('mainTitle', 'Attendance Management')
 @section('active_attendance', 'active')
 
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">শিক্ষার্থী উপস্থিতি</h1>
+            <h1 class="text-center text-temp">Student Attendance</h1>
 
-            <h3 class="text-center text-temp">শিক্ষার্থী : {{$single_student->user->name}}, শ্রেণী : {{$single_student->masterClass->name}}, বিভাগ : {{$single_student->group}} , শিফট : {{$single_student->shift}} ত্ত শাখা : {{$single_student->section}}</h3>
-       
+            <h3 class="text-center text-temp">Student : {{$single_student->user->name}}, Class : {{$single_student->masterClass->name}}, Group : {{$single_student->group}} , Shift : {{$single_student->shift}} & Section : {{$single_student->section}}</h3>
+
         </div>
         @if(Session::has('errmgs'))
             @include('backEnd.includes.errors')
@@ -19,7 +19,7 @@
         @endif
         <div class="row">
             <div class="col-md-12 text-center">
-                <a class="btn btn-primary" onclick="event.preventDefault();document.getElementById('student-list-print').submit();"><i class="glyphicon glyphicon-print"></i> প্রিন্ট করুন</a>
+                <a class="btn btn-primary" onclick="event.preventDefault();document.getElementById('student-list-print').submit();"><i class="glyphicon glyphicon-print"></i> Print</a>
                 <form id="student-list-print" action="{{ url('attendence/print') }}" method="POST" style="display: none;" target="_blank">
                   {{ csrf_field() }}
                   <input type="hidden" value="{{json_encode($months,TRUE)}}" name="months">
@@ -28,7 +28,7 @@
                      <input type="hidden" value="{{$from}}" name="from">
                      <input type="hidden" value="{{$to}}" name="to">
                   @endif
-                  
+
                 </form>
                 <hr>
             </div>
@@ -63,7 +63,7 @@
                             </div>
                             <div class="col-md-2 col-sm-12">
                                 <div class="form-group">
-                                    <button id="save" type="submit" class="btn btn-block btn-success">ফিল্টারিং</button>
+                                    <button id="save" type="submit" class="btn btn-block btn-success">Filter</button>
                                 </div>
                             </div>
                          </div>
@@ -82,14 +82,14 @@
                 <table class="table table-bordered table-responsive table-hover table-striped text-center">
                     <thead>
                         <tr>
-                            <th class="text-center">ক্রমিক নং</th>
-                            <th class="text-center">তারিখ</th>
-                            <th class="text-center">উপস্থিত</th>
-                            <th class="text-center">ছুটি</th>
-                            <th class="text-center">অনুপস্থিত</th>
-                            <th class="text-center">ইন টাইম</th>
-                            <th class="text-center">আউট টাইম</th>
-                            <th class="text-center">বছর</th>
+                            <th class="text-center">Serialং</th>
+                            <th class="text-center">Date</th>
+                            <th class="text-center">Present</th>
+                            <th class="text-center">Holiday</th>
+                            <th class="text-center">Absent</th>
+                            <th class="text-center">In Time</th>
+                            <th class="text-center">Out Time</th>
+                            <th class="text-center">Year</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -120,12 +120,11 @@
     <script src="{{asset('backEnd/js/jquery-ui.js')}}"></script>
     <script>
         $( function() {
-            $( ".date" ).datepicker({ 
+            $( ".date" ).datepicker({
                 dateFormat: 'dd-mm-yy',
                 changeMonth: true,
-                changeYear: true 
+                changeYear: true
             }).val();
         } );
     </script>
 @endsection
-

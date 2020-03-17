@@ -58,7 +58,7 @@ class WmDateLanguageController extends Controller
         $data=$request->all();
          $validator=Validator::make($request->all(), [
                    'date_language_id' => 'required',
-                   
+
 
            ]);;
 
@@ -70,7 +70,7 @@ class WmDateLanguageController extends Controller
         $data['school_id']=Auth::getSchool();
 
         WmDateLanguage::create($data);
-        Session::flash('sccmgs', 'আপনার তথ্য সংরক্ষণ হয়েছে ');
+        Session::flash('sccmgs', 'Your Information Added Successfully.');
             return redirect('date_language');
     }
 
@@ -116,7 +116,7 @@ class WmDateLanguageController extends Controller
         $data=$request->except('_token','_method');
          $validator=Validator::make($request->all(), [
                    'date_language_id' => 'required',
-                   
+
 
            ]);;
 
@@ -127,7 +127,7 @@ class WmDateLanguageController extends Controller
         }
 
         WmDateLanguage::where(['id'=>$id, 'school_id'=> Auth::getSchool()])->update($data);
-        Session::flash('sccmgs', 'আপনার তথ্য পরিবর্তন হয়েছে ');
+        Session::flash('sccmgs', 'Your Information Updated Successfully. ');
             return redirect('date_language');
     }
 
@@ -145,7 +145,7 @@ class WmDateLanguageController extends Controller
         $date_language = WmDateLanguage::withTrashed()->where('id', $id)->first();
         $date_language->delete();
         //DateLanguage::find($id)->delete();
-        Session::flash('sccmgs', 'আপনার তথ্য মুছে দেওয়া হয়েছে ');
+        Session::flash('sccmgs', 'Your Information Deleted Successfully.');
             return redirect('date_language');
 
     }

@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'সম্পত্তি পরিচালনা')
+@section('mainTitle', 'Asset Management')
 @section('head_section')
     <style>
 
@@ -29,38 +29,38 @@
   </div>
   <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
       <div class="col-md-12">
-        <h2 class="text-center text-temp">সম্পত্তি জমা করুন</h2>
+        <h2 class="text-center text-temp">Add Asset</h2>
       </div>
       <div class="panel-body">
           <form action="{{ route('asset_store') }}" method="post" enctype="multipart/form-data">
               {{csrf_field()}}
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="asset_name">সম্পত্তির নাম <span class="star">*</span></label>
+                          <label class="" for="asset_name">Asset Name<span class="star">*</span></label>
                           <div class="">
-                              <input value="{{old('asset_name')}}" type="text" name="asset_name" class="form-control" placeholder="সম্পত্তির নাম">
+                              <input value="{{old('asset_name')}}" type="text" name="asset_name" class="form-control" placeholder="Asset">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="qty">সংখ্যা বা পরিমান <span class="star">*</span></label>
+                          <label class="" for="qty"> Asset Quantity <span class="star">*</span></label>
                           <div class="">
-                              <input value="{{old('qty')}}" type="number" name="qty" class="form-control" placeholder="সংখ্যা বা পরিমান">
+                              <input value="{{old('qty')}}" type="number" name="qty" class="form-control" placeholder="Asset Quantity">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="unit_price">প্রতিটির মূল্য<span class="star">*</span></label>
+                          <label class="" for="unit_price">Asset Amount<span class="star">*</span></label>
                           <div class="">
-                              <input value="{{old('unit_price')}}" type="number" name="unit_price" class="form-control" placeholder="প্রতিটির মূল্য">
+                              <input value="{{old('unit_price')}}" type="number" name="unit_price" class="form-control" placeholder="Asset Amount">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="start_date">জমা করার তারিখ <span class="star">*</span></label>
+                          <label class="" for="start_date">Start Date (Increase / Decrease)<span class="star">*</span></label>
                           <div class="">
                               <input  value="{{ date('d-m-Y') }}" class="form-control date" type="text" name="start_date">
                           </div>
@@ -68,7 +68,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="end_date">মূল্য বৃদ্ধি বা হ্রাসের শেষ তারিখ <span class="star">*</span></label>
+                          <label class="" for="end_date">End Date (Increase / Decrease) <span class="star">*</span></label>
                           <div class="">
                               <input  value="{{ date('d-m-Y', strtotime('+1 years')) }}" class="form-control date" type="text" name="end_date">
                           </div>
@@ -76,7 +76,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="asset_valuation_increase">মূল্য বৃদ্ধি ( % ) </label>
+                          <label class="" for="asset_valuation_increase">Increase Rate ( % ) </label>
                           <div class="">
                               <input value="{{old('asset_valuation_increase')}}" type="number" name="asset_valuation_increase" class="form-control">
                           </div>
@@ -84,7 +84,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="asset_valuation_decrease">মূল্য হ্রাস ( % ) </label>
+                          <label class="" for="asset_valuation_decrease">Decrease Rate ( % ) </label>
                           <div class="">
                               <input value="{{old('asset_valuation_decrease')}}" type="number" name="asset_valuation_decrease" class="form-control">
                           </div>
@@ -92,35 +92,35 @@
                   </div>
                   <div class="col-sm-12">
                       <div class="form-group">
-                          <label class="" for="purpose">বিবরণ </label>
+                          <label class="" for="purpose">Description </label>
                           <div class="">
                               <textarea name="description" rows="3" class="form-control"></textarea>
                           </div>
                       </div>
                   </div>
                   <div class="col-md-12">
-                    <button id="save" type="submit" class="btn btn-info">সংরক্ষণ করুন</button>
+                    <button id="save" type="submit" class="btn btn-info">Save</button>
                   </div>
               </div>
           </form>
   </div>
   <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
     <div class="col-md-12">
-      <h2 class="text-center text-temp">সম্পত্তি পরিচালনা করুন</h2>
+      <h2 class="text-center text-temp">Asset Management</h2>
     </div>
       <div class="panel-body">
           <div class="table-responsive">
               <table id="asset_tbl" class="table table-bordered table-hover table-striped">
                   <thead>
                       <tr>
-                          <th class="text-center">ক্রমিক</th>
-                          <th class="text-center">নাম</th>
-                          <th class="text-center">পরিমান</th>
-                          <th class="text-center">মূল্য</th>
-                          <th class="text-center">বৃদ্ধি/হ্রাস</th>
-                          <th class="text-center">বর্তমান মূল্য</th>
-                          <th class="text-center">শেষ তারিখ</th>
-                          <th class="text-center">বিবরন</th>
+                          <th class="text-center">Serial</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">Quantity</th>
+                          <th class="text-center">Amount</th>
+                          <th class="text-center">Increase/Decrease</th>
+                          <th class="text-center">Current Price</th>
+                          <th class="text-center">End Date</th>
+                          <th class="text-center">Description</th>
                           <th class="text-center">একশন</th>
                       </tr>
                   </thead>
@@ -156,7 +156,7 @@
                               @csrf
                               @method('delete')
                               <input type="hidden" name="id" value="{{ $asset->id }}">
-                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('আপনি কি সম্পত্তিটি মুছে ফেলতে চান ?')"><i class="fa fa-trash-o"></i></button>
+                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete ?')"><i class="fa fa-trash-o"></i></button>
                             </form>
                           </td>
                       </tr>

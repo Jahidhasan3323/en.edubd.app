@@ -28,13 +28,13 @@ class AdvancedPaidController extends Controller
       $data['school_id'] = Auth::getSchool();
       $data['payment_date'] = date('Y-m-d', strtotime($request->payment_date));
       $advanced_paid->create($data);
-      return redirect()->route('advanced_paid_add')->with('success_msg', 'অগ্রিম বেতন সফলভাবে যোগ করা হয়েছে ।');
+      return redirect()->route('advanced_paid_add')->with('success_msg', 'Advanced Paid Added Succsessfully.');
     }
 
     public function advanced_paid_delete(Request $request){
       $advanced_paid = AdvancedPaid::find($request->id);
       $advanced_paid->delete();
-      return redirect()->route('advanced_paid_add')->with('success_msg', 'অগ্রিম বেতন সফলভাবে মুছে ফেলা হয়েছে ।');
+      return redirect()->route('advanced_paid_add')->with('success_msg', 'Advanced Paid Deleted Succsessfully.');
     }
 
 

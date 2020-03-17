@@ -10,7 +10,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">{{isset($old)?"প্রাক্তন":""}} কমিটির তথ্য</h1>
+            <h1 class="text-center text-temp">{{isset($old)?"Former":""}} Commitee Information</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -25,13 +25,13 @@
                 <table id="commitee_tbl" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>ক্রমিক নং</th>
-                            <th>নাম</th>
-                            <th>মোবাইল নম্বর</th>
-                            <th>ইমেইল</th>
-                            <th>পদবী</th>
-                            <th>ছবি</th>
-                            <th>অ্যাকশন</th>
+                            <th>Serial No.</th>
+                            <th>Name</th>
+                            <th>Mobile No.</th>
+                            <th>Email</th>
+                            <th>Designation</th>
+                            <th>Photo</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -73,13 +73,13 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>ক্রমিক নং</th>
-                            <th>নাম</th>
-                            <th>মোবাইল নম্বর</th>
-                            <th>ইমেইল</th>
-                            <th>পদবী</th>
-                            <th>ছবি</th>
-                            <th>অ্যাকশন</th>
+                            <th>Serial No.</th>
+                            <th>Name</th>
+                            <th>Mobile No.</th>
+                            <th>Email</th>
+                            <th>Designation</th>
+                            <th>Photo</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                 </table>

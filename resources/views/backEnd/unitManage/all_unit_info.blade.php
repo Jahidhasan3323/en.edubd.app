@@ -6,7 +6,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">শাখার তালিকা </h1>
+            <h1 class="text-center text-temp">Section List</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -19,9 +19,9 @@
         <div class="panel-body">
             <table style="border: 1" class="table table-bordered table-responsive table-hover table-striped">
                 <tr>
-                    <th>ক্রমিক নং</th>
-                    <th class="text-center" width="70%">শাখা</th>
-                    <th class="text-center">অ্যাকশন</th>
+                    <th>Serial</th>
+                    <th class="text-center" width="70%">Section</th>
+                    <th class="text-center">Action</th>
                 </tr>
                 @if($units->count())
                     @php($serial = Get::serial($units))
@@ -34,7 +34,7 @@
                                 <a onclick="return confirm('Are you sure delete this???');" href="{{url('/unit/delete/'.$unit->id)}}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
                             </td>
                         </tr>
-                       
+
                         @php($serial++)
                     @endforeach
                 @endif

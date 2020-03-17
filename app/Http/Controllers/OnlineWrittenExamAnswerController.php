@@ -22,7 +22,7 @@ class OnlineWrittenExamAnswerController extends Controller
       if(!Auth::is('admin') && !Auth::is('teacher')){
             return redirect('/home');
         }
-        $tittle="লিখিত";
+        $tittle="Written";
         $exams=OnlineExamResult::with('subject')
                     ->join('exams','exams.id','=','online_exam_results.exam_id')
                     ->join('master_classes','master_classes.id','=','exams.master_class_id')
@@ -49,13 +49,13 @@ class OnlineWrittenExamAnswerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
+
     public function store(Request $request)
     {
         $exam=Exam::where('id',$request->exam_id)->withTrashed()->first();
         $data=$request->except('_token','exam_id');
         $mark=0;
-        
+
             $credent['grade']=" ";
             $credent['grade_point']=0;
             $credent['exam_id']=$exam->id;
@@ -76,9 +76,9 @@ class OnlineWrittenExamAnswerController extends Controller
                     OnlineWrittenExamAnswer::create(['exam_id'=>$request->exam_id,'answer'=>$data[0],'question_id'=>$question_id[0],'full_mark'=>$question->mark,'subject_id'=>$exam->subject_id,'master_class_id'=>$exam->master_class_id,'creator_id'=>$exam->user_id,'online_exam_result_id'=>$online_exam_result_id]);
                 }
             }
-            return $this->returnWithSuccessRedirect('আপনার পরীক্ষা সম্পূর্ণ হয়েছে ! ফলাফলের জন্য অপেক্ষা করুন','online-exam/result'); 
+            return $this->returnWithSuccessRedirect('You have done the exam. Wait for result','online-exam/result');
         }else{
-            return $this->returnWithSuccess('আপনি কোন উত্তরই দেন নাই'); 
+            return $this->returnWithSuccess('Please give the answer.');
         }
     }
     public function evaluateResult(Request $request){
@@ -120,7 +120,7 @@ class OnlineWrittenExamAnswerController extends Controller
            }
         }
        OnlineExamResult::where('id',$request->online_exam_result_id)->update(['mark'=>$mark,'status'=>1,'grade'=>$grade,'grade_point'=>$grade_point]);
-       return  $this->returnWithSuccessRedirect('পরীক্ষা মূল্যায়ন সম্পূর্ণ হয়েছে !','online-exam/result/creator/'.$exam_details->id);
+       return  $this->returnWithSuccessRedirect('Exam evaluation completed !','online-exam/result/creator/'.$exam_details->id);
     }
     /**
      * Display the specified resource.
@@ -166,5 +166,5 @@ class OnlineWrittenExamAnswerController extends Controller
     {
         //
     }
-     
+
 }

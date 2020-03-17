@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'পরামর্শ যোগ করুন')
+@section('mainTitle', 'Advice Management')
 @section('active_care', 'active')
 @section('style')
 <style type="text/css">
@@ -12,7 +12,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">পরামর্শ যোগ করুন</h1>
+            <h1 class="text-center text-temp">Add Advice</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -30,9 +30,9 @@
                     <div class="col-sm-6">
                         <div class="col-sm-12">
                             <div class="form-group {{$errors->has('subject') ? 'has-error' : ''}}">
-                                <label class="" for="subject">পরামর্শের বিষয় </label>
+                                <label class="" for="subject">Subject of Advice </label>
                                 <div class="">
-                                    <input value="{{old('subject')}}" class="form-control" type="text" name="subject" id="subject" placeholder="সমস্যার বিষয়">
+                                    <input value="{{old('subject')}}" class="form-control" type="text" name="subject" id="subject" placeholder="Subject of Advice">
                                 </div>
                                 @if ($errors->has('subject'))
                                     <span class="help-block">
@@ -44,7 +44,7 @@
 
                         <div class="col-sm-12">
                             <div class="form-group {{$errors->has('description') ? 'has-error' : ''}}">
-                                <label class="" for="description">পরামর্শের বিবরণ <span class="star">*</span></label>
+                                <label class="" for="description">Description of Advice <span class="star">*</span></label>
                                 <div class="">
                                     <textarea name="description" rows="5" class="form-control"></textarea>
                                 </div>
@@ -59,7 +59,7 @@
 
                     <div class="col-sm-6">
                         <div class="form-group {{$errors->has('image') ? 'has-error' : ''}}">
-                            <label for="image">ছবি আপলোড করুন</label>
+                            <label for="image">Upload Picture</label>
                             <div class="" style="width:210px;height:160px;border-radius:3px;">
                                 <img id="image_show" src="{{ Storage::url('images/no_image.jpg') }}" alt="Image" width="200" height="150">
                             </div>
@@ -78,12 +78,12 @@
                     <div class="row">
                         <div class="col-sm-2 col-sm-offset-5">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-block btn-info">সংরক্ষণ করুন</button>
+                                <button type="submit" class="btn btn-block btn-info">Save</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
         </form>
     </div>
 @endsection

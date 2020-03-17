@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'ব্যাংক থেকে টাকা উত্তোলন পরিবর্তন করুন')
+@section('mainTitle', 'Edit Bank Withdraw')
 @section('head_section')
     <style>
 
@@ -29,7 +29,7 @@
   </div>
   <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
       <div class="col-md-12">
-        <h2 class="text-center text-temp">ব্যাংক থেকে টাকা উত্তোলন পরিবর্তন করুন</h2>
+        <h2 class="text-center text-temp">Edit Bank Withdraw</h2>
       </div>
       <div class="panel-body">
           <form action="{{ route('bank_withdraw_update') }}" method="post" enctype="multipart/form-data">
@@ -38,10 +38,10 @@
               <div class="row">
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="">ব্যাংক নির্বাচন করুন </label>
+                          <label class="">Select Bank </label>
                           <div class="">
                             <select class="form-control" name="bank_id">
-                              <option selected value="{{ $bank_withdraw->bank_id }}">{{ $bank_withdraw->bank->name??'ব্যাংক নির্বাচন করুন' }}</option>
+                              <option selected value="{{ $bank_withdraw->bank_id }}">{{ $bank_withdraw->bank->name??'Select Bank' }}</option>
                               @foreach ($banks as $key => $bank)
                                 <option value="{{ $bank->id }}">{{ $bank->name }}</option>
                               @endforeach
@@ -51,13 +51,13 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="">একাউন্টের ধরণ নির্বাচন করুন </label>
+                          <label class="">Select Account Type</label>
                           <div class="">
                             <select class="form-control" name="account_type_id">
                               @if ($bank_withdraw->account_type_id==0)
-                                <option selected value="0">{{ 'প্রভিডেন্ট ফান্ড' }}</option>
+                                <option selected value="0">{{ 'Provident Fund' }}</option>
                               @else
-                                <option selected value="{{ $bank_withdraw->account_type_id }}">{{ $bank_withdraw->account_type->name??'একাউন্টের ধরণ নির্বাচন করুন' }}</option>
+                                <option selected value="{{ $bank_withdraw->account_type_id }}">{{ $bank_withdraw->account_type->name??'Select Account Type' }}</option>
                               @endif
                               @foreach ($account_types as $key => $account_type)
                                 <option value="{{ $account_type->id }}">{{ $account_type->name }}</option>
@@ -68,39 +68,39 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="account_number">একাউন্ট নাম্বার <span class="star">*</span></label>
+                          <label class="" for="account_number">Account Number <span class="star">*</span></label>
                           <div class="">
-                              <input value="{{ $bank_withdraw->account_number??"" }}" type="text" name="account_number" class="form-control" placeholder="একাউন্ট নাম্বার ">
+                              <input value="{{ $bank_withdraw->account_number??"" }}" type="text" name="account_number" class="form-control" placeholder="Account Number">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="check_number">চেক নাম্বার <span class="star">*</span></label>
+                          <label class="" for="check_number">Check Number<span class="star">*</span></label>
                           <div class="">
-                              <input value="{{ $bank_withdraw->check_number??"" }}" type="text" name="check_number" class="form-control" placeholder="ডিপোজিট নাম্বার ">
+                              <input value="{{ $bank_withdraw->check_number??"" }}" type="text" name="check_number" class="form-control" placeholder="Check Number ">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="amount">উত্তোলনের পরিমান <span class="star">*</span></label>
+                          <label class="" for="amount">Withdraw Amount <span class="star">*</span></label>
                           <div class="">
-                              <input value="{{ $bank_withdraw->amount??"" }}" type="number" name="amount" class="form-control" placeholder="ডিপোজিট পরিমান">
+                              <input value="{{ $bank_withdraw->amount??"" }}" type="number" name="amount" class="form-control" placeholder="Withdraw Amount">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="withdraw_by">উত্তোলনকারীর নাম <span class="star">*</span></label>
+                          <label class="" for="withdraw_by">Withdraw By <span class="star">*</span></label>
                           <div class="">
-                              <input value="{{ $bank_withdraw->withdraw_by??"" }}" type="text" name="withdraw_by" class="form-control" placeholder="ডিপোজিটকারীর নাম">
+                              <input value="{{ $bank_withdraw->withdraw_by??"" }}" type="text" name="withdraw_by" class="form-control" placeholder="Withdraw By">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="purpose">উত্তোলনের কারণ </label>
+                          <label class="" for="purpose">Purpose </label>
                           <div class="">
                               <textarea name="purpose" rows="3" class="form-control">{{ $bank_withdraw->purpose??"" }}</textarea>
                           </div>
@@ -108,7 +108,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="purpose">বিবরণ </label>
+                          <label class="" for="purpose">Description </label>
                           <div class="">
                               <textarea name="description" rows="3" class="form-control">{{ $bank_withdraw->description??"" }}</textarea>
                           </div>
@@ -116,7 +116,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="withdra_date">উত্তোলনের তারিখ <span class="star">*</span></label>
+                          <label class="" for="withdra_date">Withdraw Date <span class="star">*</span></label>
                           <div class="">
                               <input  value="{{ date('d-m-Y', strtotime($bank_withdraw->withdra_date)) }}" class="form-control date" type="text" name="withdra_date">
                           </div>
@@ -130,7 +130,7 @@
                   <div class="row">
                       <div class="col-sm-12">
                           <div class="form-group">
-                              <button id="save" type="submit" class="btn btn-block btn-info">আপডেট করুন</button>
+                              <button id="save" type="submit" class="btn btn-block btn-info">Update</button>
                           </div>
                       </div>
                   </div>

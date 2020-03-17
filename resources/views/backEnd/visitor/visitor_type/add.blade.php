@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'ভিজিটরের ধরন যোগ করুন')
+@section('mainTitle', 'Visitor Type Management')
 @section('active_visitor', 'active')
 @section('style')
 <style type="text/css">
@@ -20,14 +20,14 @@
         @endif
         <div class="panel-body col-md-6" style="border:1px solid #ddd;">
             <div class="page-header">
-                <h1 class="text-center text-temp">ভিজিটরের ধরন যোগ করুন</h1>
+                <h1 class="text-center text-temp">Add New Visitor Type</h1>
             </div>
             <form id="validate" name="validate" action="{{ route('visitorType.store') }}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group {{$errors->has('subject') ? 'has-error' : ''}}">
-                            <label class="" for="name">ভিজিটরের ধরনের নাম </label>
+                            <label class="" for="name">Visitor Type Name </label>
                             <div class="">
                                 <input value="{{old('name')}}" class="form-control" type="text" name="name" id="name">
                             </div>
@@ -46,7 +46,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-block btn-info">সংরক্ষণ করুন</button>
+                                <button type="submit" class="btn btn-block btn-info">Save</button>
                             </div>
                         </div>
                     </div>
@@ -56,15 +56,15 @@
     </div>
     <div class="panel-body col-md-6" style="border:1px solid #ddd;">
         <div class="page-header">
-            <h1 class="text-center text-temp">ভিজিটরের ধরন পরিচালনা</h1>
+            <h1 class="text-center text-temp">Visitor Type management</h1>
         </div>
         <div class="table-responsive">
             <table id="visitor_tbl" class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
-                        <th class="text-center">ক্রমিক</th>
-                        <th class="text-center">নাম</th>
-                        <th class="text-center">অ্যাকশন</th>
+                        <th class="text-center">Serial</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,13 +79,13 @@
                             <form class="action_btn" action="{{ route('visitorType.edit') }}" method="post">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $visitor_type->id }}">
-                                <button type="submit" class="btn btn-primary btn-sm" title="পরিবর্তন করুন"> <i class="fa fa-edit"></i> </button>
+                                <button type="submit" class="btn btn-primary btn-sm" title="Edit"> <i class="fa fa-edit"></i> </button>
                             </form>
                             <form class="action_btn" action="{{ route('visitorType.delete') }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <input type="hidden" name="id" value="{{ $visitor_type->id }}">
-                                <button type="submit" class="btn btn-danger btn-sm" title="মুছে ফেলুন" onclick="return confirm('আপনি কি মুছে ফেলতে চান ?')"> <i class="fa fa-trash-o"></i> </button>
+                                <button type="submit" class="btn btn-danger btn-sm" title="Click for delete" onclick="return confirm('Do you want to delete ?')"> <i class="fa fa-trash-o"></i> </button>
                             </form>
                         </td>
                     </tr>
@@ -93,9 +93,9 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th class="text-center">ক্রমিক</th>
-                        <th class="text-center">নাম</th>
-                        <th class="text-center">অ্যাকশন</th>
+                        <th class="text-center">Serial</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </tfoot>
             </table>

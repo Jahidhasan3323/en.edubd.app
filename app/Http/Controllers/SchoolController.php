@@ -222,10 +222,10 @@ class SchoolController extends Controller
                 DB::commit();
 
                 if (Auth::is('admin')){
-                    Session::flash('sccmgs', 'আপনার প্রোফাইল সফলভাবে আপডেট হয়েছে !');
+                    Session::flash('sccmgs', 'Your Profile Updated Successfully.');
                     return redirect('/editSchoolProfile');
                 }
-                Session::flash('sccmgs', 'ক্লায়েন্ট স্কুল সফলভাবে আপডেট হয়েছে !');
+                Session::flash('sccmgs', 'Client School Updated Successfully.');
                 return redirect()->back();
             }
         } catch (\Exception $e) {
@@ -236,7 +236,7 @@ class SchoolController extends Controller
             if (file_exists(public_path(Storage::url($this->logo)))){
                 Storage::delete($this->logo);
             }
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
     }

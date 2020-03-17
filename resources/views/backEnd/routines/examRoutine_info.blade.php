@@ -6,7 +6,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">পরীক্ষার রুটিন</h1>
+            <h1 class="text-center text-temp">Exam Routine</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -25,17 +25,17 @@
                             <tr>
                                 @php($status=$routine->status)
                                 <td>
-                                    <span class="glyphicon glyphicon-asterisk"></span><a class="{{($status==0) ? 'text-danger':'text-success'}}" target="_blank" href="{{Storage::url($routine->path)}}">&nbsp;{{$routine->master_class->name.' শ্রেণী-'.$routine->exam_type->name.' '.$routine->name.' ( প্রকাশিত '.$routine->updated_at->format('d-m-Y').' )'}}</a>
+                                    <span class="glyphicon glyphicon-asterisk"></span><a class="{{($status==0) ? 'text-danger':'text-success'}}" target="_blank" href="{{Storage::url($routine->path)}}">&nbsp;{{$routine->master_class->name.' Class-'.$routine->exam_type->name.' '.$routine->name.' ( Published '.$routine->updated_at->format('d-m-Y').' )'}}</a>
                                 </td>
                                 @if (Auth::is('admin'))
-                                <td>   
+                                <td>
                                         @if($status==0)
                                         <a style="margin-bottom: 10px;" href="{{url('/examRoutine/status/'.$routine->id.'/'.$routine->status)}}" class="btn btn-success">
-                                            প্রকাশিত
+                                            Published
                                         </a>
                                         @else
                                         <a style="margin-bottom: 10px;" href="{{url('/examRoutine/status/'.$routine->id.'/'.$routine->status)}}" class="btn btn-danger">
-                                            অপ্রকাশিত
+                                            Unpublished
                                         </a>
                                         @endif
                                         <a style="margin-bottom: 10px;" href="{{url('/examRoutine/edit/'.$routine->id)}}" class="btn btn-success">
@@ -51,7 +51,7 @@
                     @endforeach
                 @else
                     <div>
-                        <p class="text-info text-center">এখনো প্রকাশিত হয়নি !</p>
+                        <p class="text-info text-center">Not Published Yet !</p>
                     </div>
                 @endif
             </div>

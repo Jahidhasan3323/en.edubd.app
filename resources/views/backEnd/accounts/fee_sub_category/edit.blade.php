@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'ফি সাব ক্যাটাগরি পরিবর্তন')
+@section('mainTitle', 'Edit Fee Sub-category')
 @section('head_section')
     <style>
 
@@ -11,7 +11,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h2 class="text-center text-temp">সাব ক্যাটাগরি পরিবর্তন করুন</h2>
+      <h2 class="text-center text-temp">Edit Fee Sub-category</h2>
     </div>
     <div class="col-md-12">
       @if(session('success_msg'))
@@ -42,23 +42,23 @@
                 <div class="row">
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="name">সাব ক্যাটাগরির নাম <span class="star">*</span></label>
+                          <label class="" for="name">Fee Sub-category Name <span class="star">*</span></label>
                           <div class="">
-                              <input value="{{ $fee_sub_category->name??'' }}" type="text" name="name" class="form-control" placeholder="সাব ক্যাটাগরির নাম লিখুন">
+                              <input value="{{ $fee_sub_category->name??'' }}" type="text" name="name" class="form-control" placeholder="Enter Fee Sub-category Name">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="amount">ফি এর পরিমান </label>
+                          <label class="" for="amount">Fee Amount </label>
                           <div class="">
-                              <input value="{{ $fee_sub_category->amount??'' }}" type="text" name="amount" class="form-control" placeholder="ফি এর পরিমান লিখুন">
+                              <input value="{{ $fee_sub_category->amount??'' }}" type="text" name="amount" class="form-control" placeholder="Enter Amount">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group {{$errors->has('name') ? 'has-error' : ''}}">
-                          <label class="">ক্যাটাগরি নির্বাচন করুন <span class="star">*</span></label>
+                          <label class="">Select Category <span class="star">*</span></label>
                           <div class="">
                             <select class="form-control" name="fee_category_id">
                               <option selected value="{{ $fee_sub_category->fee_category_id }}">{{ $fee_sub_category->fee_category->name??'' }}</option>
@@ -71,7 +71,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="master_class_id">শ্রেণী <span class="star">*</span></label>
+                          <label class="" for="master_class_id">Class <span class="star">*</span></label>
                           <div class="">
                               <select style="width: 100% !important;" class="form-control" name="master_class_id" id="master_class_id">
                                   <option selected value="{{ $fee_sub_category->master_class_id }}">{{ $fee_sub_category->master_class->name??'' }}</option>
@@ -84,7 +84,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="group_class_id">গ্রুপ / বিভাগ <span class="star">*</span></label>
+                          <label class="" for="group_class_id">Group <span class="star">*</span></label>
                           <div class="">
                               <select style="width: 100% !important;" class="form-control" name="group_class_id" id="group_class_id">
                                   <option selected value="{{ $fee_sub_category->group_class_id }}">{{ $fee_sub_category->group_class->name??'' }}</option>
@@ -97,14 +97,14 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="shift">শিফট <span class="star">*</span></label>
+                          <label class="" for="shift">Shift <span class="star">*</span></label>
                           <div class="">
                               <select class="form-control" style="width: 100% !important;" name="shift" id="shift">
                                   <option selected value="{{ $fee_sub_category->shift }}">{{ $fee_sub_category->shift??'' }}</option>
-                                  <option value="সকাল">সকাল</option>
-                                  <option value="দিন">দিন</option>
-                                  <option value="সন্ধ্যা">সন্ধ্যা</option>
-                                  <option value="রাত">রাত</option>
+                                  <option value="Morning">Morning</option>
+                                  <option value="Day">Day</option>
+                                  <option value="Evening">Evening</option>
+                                  <option value="Night">Night</option>
                               </select>
                           </div>
                       </div>
@@ -117,7 +117,7 @@
                       <div class="row">
                           <div class="col-sm-12">
                               <div class="form-group">
-                                  <button id="save" type="submit" class="btn btn-block btn-info">আপডেট করুন</button>
+                                  <button id="save" type="submit" class="btn btn-block btn-info">Update</button>
                               </div>
                           </div>
                       </div>

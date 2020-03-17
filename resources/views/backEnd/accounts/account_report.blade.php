@@ -1,5 +1,5 @@
 @extends('backEnd.master')
-@section('mainTitle', 'একাউন্ট রিপোর্ট')
+@section('mainTitle', 'Account Report')
 @section('head_section')
     <style>
       .vouchar{position: relative;}
@@ -29,14 +29,14 @@
   </div>
   {{-- Date Wise Fund Balance Report --}}
   <div class="panel col-sm-6" style="margin-top: 15px; margin-bottom: 15px;border: 1px solid #ddd; min-height: 286px;">
-        <h2 class="text-center text-temp">ফান্ডের রিপোর্ট</h2>
+        <h2 class="text-center text-temp">Fund Report</h2>
         <div class="panel-body">
             <form action="{{ route('date_wise_fund_report') }}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="row">
                   <div class="col-sm-12">
                       <div class="form-group">
-                          <label class="" for="fund_id">ফান্ড নির্বাচন করুন <span class="star">*</span></label>
+                          <label class="" for="fund_id">Select Fund<span class="star">*</span></label>
                           <div class="">
                               <select class="form-control" name="fund_id" id="fund_id">
                                 @isset($fund)
@@ -52,7 +52,7 @@
 
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label for="start_date">শুরুর তারিখ <span class="star">*</span></label>
+                          <label for="start_date">Start Date<span class="star">*</span></label>
                           <div class="">
                               <input value="{{ date('d-m-Y', strtotime('-1 years')) }}" class="form-control date" type="text" name="start_date" id="start_date">
                           </div>
@@ -60,7 +60,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label for="end_date">শেষ তারিখ <span class="star">*</span></label>
+                          <label for="end_date">End Date <span class="star">*</span></label>
                           <div class="">
                               <input value="{{ date('d-m-Y') }}" class="form-control date" type="text" name="end_date" id="end_date">
                           </div>
@@ -71,7 +71,7 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <center>
-                              <button id="save" type="submit" class="btn btn-info"> ব্যালেন্স দেখুন</button>
+                              <button id="save" type="submit" class="btn btn-info"> Balance</button>
                             </center>
                         </div>
                     </div>
@@ -86,20 +86,20 @@
           <i class="fa fa-times-circle"></i>
         </div>
         <div class="">
-          <h3>{{ $return_fund->name }} রিপোর্ট</h>
+          <h3>{{ $return_fund->name }} Report</h>
         </div>
         <table class="table table-bordered">
           <tbody>
             <tr>
-              <td>মোট ফান্ডে জমা </td>
+              <td>Total Fund Amount </td>
               <td class="text-right"> {{ number_format($fee_fund+$fee_fund_due_paid+$income_fund, 2) }} </td>
             </tr>
             <tr>
-              <td>মোট খরচ</td>
+              <td>Total Expense</td>
               <td class="text-right">- {{ number_format($fee_fund_due+$expense_fund, 2) }}</td>
             </tr>
             <tr>
-              <td>বর্তমান ব্যালেন্স</td>
+              <td>Current Balance </td>
               <td class="text-right"> <b>{{ number_format($fund_balance, 2) }}</b> </td>
             </tr>
           </tbody>
@@ -108,14 +108,14 @@
     @endisset
     {{-- Date Wise Fee Collection Report --}}
   <div class="panel col-sm-6" style="margin-top: 15px; margin-bottom: 15px;border: 1px solid #ddd; min-height: 286px;">
-        <h2 class="text-center text-temp">তারিখ-ভিত্তিক ফি কালেকশন রিপোর্ট</h2>
+        <h2 class="text-center text-temp">Date Wise Fee Collection Report</h2>
         <div class="panel-body">
             <form action="{{ route('date_wise_fee_collection_report') }}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="row">
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label for="start_date">শুরুর তারিখ <span class="star">*</span></label>
+                          <label for="start_date">Start Date <span class="star">*</span></label>
                           <div class="">
                               <input value="{{ date('d-m-Y', strtotime('-1 years')) }}" class="form-control date" type="text" name="start_date" id="start_date">
                           </div>
@@ -123,7 +123,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label for="end_date">শেষ তারিখ <span class="star">*</span></label>
+                          <label for="end_date">End Date  <span class="star">*</span></label>
                           <div class="">
                               <input value="{{ date('d-m-Y') }}" class="form-control date" type="text" name="end_date" id="end_date">
                           </div>
@@ -134,7 +134,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <center>
-                              <button id="save" type="submit" class="btn btn-info"> ফি কালেকশন রিপোর্ট দেখুন</button>
+                              <button id="save" type="submit" class="btn btn-info"> Fee Collection Report</button>
                             </center>
                         </div>
                     </div>
@@ -149,24 +149,24 @@
           <i class="fa fa-times-circle"></i>
         </div>
         <div class="">
-          <h3>ফি কালেকশন রিপোর্ট</h>
+          <h3> Collection </h>
         </div>
         <table class="table table-bordered">
           <tbody>
             <tr>
-              <td>ফি কালেকশন </td>
+              <td>Fee Collection </td>
               <td class="text-right"> {{ number_format($date_fee_collection, 2) }} </td>
             </tr>
             <tr>
-              <td>বাকি কালেকশন</td>
+              <td>Due Collection</td>
               <td class="text-right">+ {{ number_format($date_fee_collection_due_paid, 2) }}</td>
             </tr>
             <tr>
-              <td>মোট ফি কালেকশন</td>
+              <td>Total Fee Collection</td>
               <td class="text-right"> <b>{{ number_format($date_fee_collection+$date_fee_collection_due_paid, 2) }}</b> </td>
             </tr>
             <tr>
-              <td>বর্তমান বাকি</td>
+              <td>Current Due </td>
               <td class="text-right"> <b style="color:red;">{{ number_format($date_fee_collection_due-$date_fee_collection_due_paid, 2) }}</b> </td>
             </tr>
           </tbody>
@@ -175,14 +175,14 @@
     @endisset
   {{-- Date Wise Total Income Report  --}}
   <div class="panel col-sm-6" style="margin-top: 15px; margin-bottom: 15px;border: 1px solid #ddd;min-height: 286px;">
-        <h2 class="text-center text-temp">তারিখ-ভিত্তিক আয় রিপোর্ট</h2>
+        <h2 class="text-center text-temp">Date Wise Income Report</h2>
         <div class="panel-body">
             <form action="{{ route('date_wise_income_report') }}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="row">
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label for="start_date">শুরুর তারিখ <span class="star">*</span></label>
+                          <label for="start_date">Start Date <span class="star">*</span></label>
                           <div class="">
                               <input value="{{ date('d-m-Y', strtotime('-1 years')) }}" class="form-control date" type="text" name="start_date" id="start_date">
                           </div>
@@ -190,7 +190,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label for="end_date">শেষ তারিখ <span class="star">*</span></label>
+                          <label for="end_date">End Date <span class="star">*</span></label>
                           <div class="">
                               <input value="{{ date('d-m-Y') }}" class="form-control date" type="text" name="end_date" id="end_date">
                           </div>
@@ -200,7 +200,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <center><button id="save" type="submit" class="btn btn-info">আয় রিপোর্ট দেখুন</button></center>
+                            <center><button id="save" type="submit" class="btn btn-info">Income Report</button></center>
                         </div>
                     </div>
                 </div>
@@ -213,20 +213,20 @@
         <i class="fa fa-times-circle"></i>
       </div>
       <div class="">
-        <h3>সর্বমোট আয় = {{ $total_income }}</h3>
+        <h3>Total Income = {{ $total_income }}</h3>
       </div>
     </div>
   @endisset
   {{-- Date Wise Total Income Report  --}}
   <div class="panel col-sm-6" style="margin-top: 15px; margin-bottom: 15px;border: 1px solid #ddd; min-height: 286px;">
-        <h2 class="text-center text-temp">তারিখ-ভিত্তিক ব্যয় রিপোর্ট</h2>
+        <h2 class="text-center text-temp">Date Wise Expense Report</h2>
         <div class="panel-body">
             <form action="{{ route('date_wise_expense_report') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="row">
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label for="start_date">শুরুর তারিখ <span class="star">*</span></label>
+                          <label for="start_date">Start Date <span class="star">*</span></label>
                           <div class="">
                               <input value="{{ date('d-m-Y', strtotime('-1 years')) }}" class="form-control date" type="text" name="start_date" id="start_date">
                           </div>
@@ -234,7 +234,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label for="end_date">শেষ তারিখ <span class="star">*</span></label>
+                          <label for="end_date">End Date<span class="star">*</span></label>
                           <div class="">
                               <input value="{{ date('d-m-Y') }}" class="form-control date" type="text" name="end_date" id="end_date">
                           </div>
@@ -244,7 +244,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <center><button id="save" type="submit" class="btn btn-info"> ব্যয় রিপোর্ট দেখুন </button></center>
+                            <center><button id="save" type="submit" class="btn btn-info"> Expense Report </button></center>
                         </div>
                     </div>
                 </div>
@@ -257,23 +257,23 @@
         <i class="fa fa-times-circle"></i>
       </div>
       <div class="">
-        <h3>সর্বমোট ব্যয় = {{ $total_expense }}</h3>
+        <h3>Total Expense = {{ $total_expense }}</h3>
       </div>
     </div>
   @endisset
 
   {{-- Class Wise Fee Collection --}}
   <div class="panel col-sm-6" style="margin-top: 15px; margin-bottom: 15px;border: 1px solid #ddd; min-height: 286px;">
-        <h2 class="text-center text-temp">শ্রেণী-ভিত্তিক ফি কালেকশন রিপোর্ট</h2>
+        <h2 class="text-center text-temp">Class Wise Fee Collection</h2>
         <div class="panel-body">
             <form action="{{ route('class_wise_fee_collection_report') }}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="row">
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="class">শ্রেণী <span class="star">*</span></label>
+                          <label class="" for="class">Class <span class="star">*</span></label>
                           <select name="master_class_id" id="master_class_id" class="form-control" required="">
-                              <option value="">...শ্রেণী নির্বাচন করুন...</option>
+                              <option value="">Select Class</option>
                               @foreach($classes as $class)
                                   <option value="{{$class->id}}">{{$class->name}}</option>
                               @endforeach
@@ -283,9 +283,9 @@
 
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="group1">গ্রুপ / বিভাগ <span class="star">*</span></label>
+                          <label class="" for="group1">Group <span class="star">*</span></label>
                           <select name="group_class_id" id="group_class_id" class="form-control" required="">
-                              <option value="">...গ্রুপ / বিভাগ নির্বাচন করুন...</option>
+                              <option value="">Select Group</option>
                               @foreach($groups as $group_class)
                                 <option value="{{$group_class->name}}">{{$group_class->name}}</option>
                               @endforeach
@@ -295,13 +295,13 @@
 
                   <div class="col-sm-6">
                       <div class="form-group {{$errors->has('shift') ? 'has-error' : ''}}">
-                          <label class="" for="shift">শিফট <span class="star">*</span></label>
+                          <label class="" for="shift">Shift <span class="star">*</span></label>
                           <select name="shift" id="shift" class="form-control" required="">
-                              <option value="">...শিফট নির্বাচন করুন...</option>
-                              <option value="সকাল">সকাল</option>
-                              <option value="দিন">দিন</option>
-                              <option value="সন্ধ্যা">সন্ধ্যা</option>
-                              <option value="রাত">রাত</option>
+                              <option value="">Select Shift</option>
+                              <option value="Morning">Morning</option>
+                              <option value="Day">Day</option>
+                              <option value="Evening">Evening</option>
+                              <option value="Night">Night</option>
                           </select>
                       </div>
                   </div>
@@ -310,7 +310,7 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <center>
-                              <button id="save" type="submit" class="btn btn-info"> ব্যালেন্স দেখুন</button>
+                              <button id="save" type="submit" class="btn btn-info"> Balance Check</button>
                             </center>
                         </div>
                     </div>
@@ -325,24 +325,24 @@
           <i class="fa fa-times-circle"></i>
         </div>
         <div class="">
-          <h3>ফি কালেকশন রিপোর্ট</h>
+          <h3>Fee Collection Report</h>
         </div>
         <table class="table table-bordered">
           <tbody>
             <tr>
-              <td>ফি কালেকশন </td>
+              <td>Fee Collection </td>
               <td class="text-right"> {{ number_format($total_fee_collection, 2) }} </td>
             </tr>
             <tr>
-              <td>বাকি কালেকশন</td>
+              <td>Due Collection</td>
               <td class="text-right">+ {{ number_format($fee_collection_due_paid, 2) }}</td>
             </tr>
             <tr>
-              <td>মোট ফি কালেকশন</td>
+              <td>Total Fee Collection</td>
               <td class="text-right"> <b>{{ number_format($total_fee_collection+$fee_collection_due_paid, 2) }}</b> </td>
             </tr>
             <tr>
-              <td>বর্তমান বাকি</td>
+              <td>Current Due</td>
               <td class="text-right"> <b style="color:red;">{{ number_format($fee_collection_due-$fee_collection_due_paid, 2) }}</b> </td>
             </tr>
           </tbody>
@@ -352,14 +352,14 @@
 
     {{-- Date Wise Total Bank Report  --}}
     <div class="panel col-sm-6" style="margin-top: 15px; margin-bottom: 15px;border: 1px solid #ddd; min-height: 286px;">
-          <h2 class="text-center text-temp">তারিখ-ভিত্তিক ব্যাংক রিপোর্ট</h2>
+          <h2 class="text-center text-temp">Date Wise Bank Report</h2>
           <div class="panel-body">
               <form action="{{ route('date_wise_bank_report') }}" method="post" enctype="multipart/form-data">
                   {{ csrf_field() }}
                   <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="start_date">শুরুর তারিখ <span class="star">*</span></label>
+                            <label for="start_date">Start Date <span class="star">*</span></label>
                             <div class="">
                                 <input value="{{ date('d-m-Y', strtotime('-1 years')) }}" class="form-control date" type="text" name="start_date" id="start_date">
                             </div>
@@ -367,7 +367,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="end_date">শেষ তারিখ <span class="star">*</span></label>
+                            <label for="end_date">End Date <span class="star">*</span></label>
                             <div class="">
                                 <input value="{{ date('d-m-Y') }}" class="form-control date" type="text" name="end_date" id="end_date">
                             </div>
@@ -375,9 +375,9 @@
                     </div>
                   </div>
                   <div class="row">
-                      <div class="col-sm-4">
+                      <div class="col-sm-12">
                           <div class="form-group">
-                              <center><button id="save" type="submit" class="btn btn-info"> ব্যাংক রিপোর্ট দেখুন </button></center>
+                              <center><button id="save" type="submit" class="btn btn-info"> Bank Report</button></center>
                           </div>
                       </div>
                   </div>
@@ -391,20 +391,20 @@
           <i class="fa fa-times-circle"></i>
         </div>
         <div class="">
-          <h3>ব্যাংক রিপোর্ট</h>
+          <h3>Bank Report</h>
         </div>
         <table class="table table-bordered">
           <tbody>
             <tr>
-              <td>মোট জমা </td>
+              <td>Total Deposit </td>
               <td class="text-right"> {{ number_format($total_deposit, 2) }} </td>
             </tr>
             <tr>
-              <td> মোট উত্তোলন </td>
+              <td> Total Withdraw</td>
               <td class="text-right">- {{ number_format($total_withdraw, 2) }}</td>
             </tr>
             <tr>
-              <td> বর্তমান জমা </td>
+              <td> Current Deposit</td>
               <td class="text-right"> <b>{{ number_format($total_deposit-$total_withdraw, 2) }}</b> </td>
             </tr>
           </tbody>

@@ -57,7 +57,7 @@ class WmGalleryController extends Controller
             'type' => 'required',
             'wm_gallery_category_id' => 'required',
         ]);
-        
+
         if($imageFile = $request->file('path')){
            $image_path=$this->imagesProcessing1($imageFile,'webmanagement/imageGallery/',850,350);
            $data['path'] = $image_path;
@@ -65,9 +65,9 @@ class WmGalleryController extends Controller
         if($date = $request->date){
             $data['date']=date_format(date_create($request->date),"Y-m-d");
         }
-        
+
         WmGallery::create($data);
-        return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','image_gallery');
+        return $this->returnWithSuccessRedirect('Your Information Added Successfully !','image_gallery');
     }
 
 
@@ -123,7 +123,7 @@ class WmGalleryController extends Controller
             'type' => 'required',
             'wm_gallery_category_id' => 'required',
         ]);
-        
+
         if($imageFile = $request->file('path')){
            $image_path=$this->imagesProcessing1($imageFile,'webmanagement/imageGallery/',850,350);
            $data['path'] = $image_path;
@@ -137,7 +137,7 @@ class WmGalleryController extends Controller
 
 
         $image_gallery->update($data);
-        return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','image_gallery');
+        return $this->returnWithSuccessRedirect('Your Information Added Successfully.','image_gallery');
     }
 
     /**
@@ -156,7 +156,7 @@ class WmGalleryController extends Controller
         if (isset($image_gallery->path)&&file_exists(public_path(Storage::url($image_gallery->path)))){
                 Storage::delete($image_gallery->path);
             }
-        return $this->returnWithSuccessRedirect('আপনার তথ্য মুছে দেওয়া হয়েছে ','image_gallery');
+        return $this->returnWithSuccessRedirect('Your Information Deleted Successfully. ','image_gallery');
     }
 
 //video
@@ -202,14 +202,14 @@ class WmGalleryController extends Controller
             'type' => 'required',
             'wm_gallery_category_id' => 'required',
         ]);
-        
-        
+
+
         if($date = $request->date){
             $data['date']=date_format(date_create($request->date),"Y-m-d");
         }
-        
+
         WmGallery::create($data);
-        return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','video_gallery');
+        return $this->returnWithSuccessRedirect('Your Information Added Successfully.','video_gallery');
     }
 
 
@@ -265,15 +265,15 @@ class WmGalleryController extends Controller
             'type' => 'required',
             'wm_gallery_category_id' => 'required',
         ]);
-        
-        
+
+
         if($date = $request->date){
             $data['date']=date_format(date_create($request->date),"Y-m-d");
         }
 
 
         $image_gallery->update($data);
-        return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','video_gallery');
+        return $this->returnWithSuccessRedirect('Your Information Added Successfully.','video_gallery');
     }
 
     /**
@@ -289,7 +289,7 @@ class WmGalleryController extends Controller
         }
         $image_gallery=WmGallery::where(['id'=>$id,'school_id'=> Auth::getSchool()])->first();
         $image_gallery->delete();
-       
-        return $this->returnWithSuccessRedirect('আপনার তথ্য মুছে দেওয়া হয়েছে ','video_gallery');
+
+        return $this->returnWithSuccessRedirect('Your Information Deleted Successfully. ','video_gallery');
     }
 }

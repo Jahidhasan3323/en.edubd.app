@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'ব্যাংক পরিবর্তন')
+@section('mainTitle', 'Edit Bank')
 @section('head_section')
     <style>
 
@@ -10,7 +10,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">ব্যাংক পরিবর্তন করুন</h1>
+            <h1 class="text-center text-temp">Edit Bank</h1>
         </div>
 
         @if(session('success_msg'))
@@ -32,14 +32,14 @@
             <p class="text-center error" style=""></p>
         </div>
 
-        <div class="panel-body">
+        <div class="panel-body col-md-8 col-md-offset-2">
             <form action="{{ route('bank_update') }}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <input type="hidden" name="id" value="{{ $bank->id }}">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="" for="name">বাংকের নাম <span class="star">*</span></label>
+                            <label class="" for="name">Bank Name <span class="star">*</span></label>
                             <div class="">
                                 <input value="{{ $bank->name??'' }}" type="text" name="name" class="form-control">
                             </div>
@@ -47,29 +47,28 @@
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="">বাংকের অবস্থা </label>
+                            <label class="">Bank Status </label>
                             <div class="">
                               <select class="form-control" name="status">
-                                <option selected value="1">{{ $bank->status==1?'সক্রিয়': 'নিষ্ক্রিয়' }}</option>
-                                <option value="1">সক্রিয়</option>
-                                <option value="0">নিষ্ক্রিয়</option>
+                                <option selected value="1">{{ $bank->status==1?'Enable': 'Disable' }}</option>
+                                <option value="1">Enable</option>
+                                <option value="0">Disable</option>
                               </select>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <hr>
-
                 <div class="">
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">আপডেট করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Update</button>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </form>
         </div>
     </div>

@@ -107,10 +107,10 @@ class ExamRoutineController extends Controller
                 $old_routine->name =$request->name;
                 $old_routine->save();
 
-                Session::flash('sccmgs', 'পরীক্ষার সময়সুচি সফলভাবে যোগ করা হয়েছে !');
+                Session::flash('sccmgs', 'Exam Routine Added Successfully.');
                 return redirect()->back();
             } catch (\Exception $e) {
-                Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+                Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
                 return redirect()->back();
             }
         }
@@ -127,10 +127,10 @@ class ExamRoutineController extends Controller
             $examRoutine->path = $this->photo;
             $examRoutine->save();
 
-            Session::flash('sccmgs', 'পরীক্ষার সময়সূচি সফলভাবে যোগ করা হয়েছে !');
+            Session::flash('sccmgs', 'Exam Routine Updated Successfully !');
             return redirect()->back();
         } catch (\Exception $e) {
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
     }
@@ -182,7 +182,7 @@ class ExamRoutineController extends Controller
         if($file = $request->file('routine')){
            $file_size = $file->getClientSize();
            if ($file_size > 512000){
-               Session::flash('errmgs', 'দুঃখিত, ফাইল সাইজ আরো কম হতে হবে !');
+               Session::flash('errmgs', 'Sorry, File size is so big !');
                return redirect()->back();
            }
                 $file = $request->file('routine');
@@ -202,12 +202,12 @@ class ExamRoutineController extends Controller
             'school_id'=>Auth::getSchool()
          ])->first();
            if($old_routine){
-              Session::flash('errmgs', 'দুঃখিত, আপনার শ্রেণী পূর্বেই প্রকাশিত হয়েছে !');
+              Session::flash('errmgs', 'Sorry, Your Class already taken.');
               return redirect()->back();
            }
        }
        ExamRoutine::where(['id'=>$request->routine_id,'school_id'=>Auth::getSchool()])->update($data);
-       Session::flash('sccmgs', 'সফলভাবে আপডেট হয়েছে !');
+       Session::flash('sccmgs', 'Exam Routine Updated Successfully!');
        return redirect()->back();
     }
 
@@ -224,7 +224,7 @@ class ExamRoutineController extends Controller
              unlink($old_routine->path);
         }
         ExamRoutine::where(['id'=>$id,'school_id'=>Auth::getSchool()])->delete();
-        Session::flash('sccmgs', 'রুটিনটি সফলভাবে মুছে ফেলা হয়েছে !');
+        Session::flash('sccmgs', 'Exam Routine Deleted Successfully !');
         return redirect()->back();
     }
 

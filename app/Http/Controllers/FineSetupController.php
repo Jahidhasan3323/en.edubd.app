@@ -26,7 +26,7 @@ class FineSetupController extends Controller
       $data = $request->all();
       $data['school_id'] = Auth::getSchool();
       $fine_setup->create($data);
-      return redirect()->back()->with('success_msg', 'জরিমানা সফলভাবে নির্ধারণ করা হয়েছে ।');
+      return redirect()->back()->with('success_msg', 'Fine Setup Added Successfully.');
     }
 
     public function fine_setup_edit($id){
@@ -47,13 +47,13 @@ class FineSetupController extends Controller
       $fine_setup = FineSetup::find($request->id);
       $data = $request->all();
       $fine_setup->update($data);
-      return redirect()->route('fine_setup_add')->with('success_msg', 'জরিমানা সফলভাবে আপডেট করা হয়েছে ।');
+      return redirect()->route('fine_setup_add')->with('success_msg', 'Fine Setup Updated Successfully.');
     }
 
     public function fine_setup_delete(Request $request){
       $fine_setup = FineSetup::find($request->id);
       $fine_setup->delete();
-      return redirect()->route('fine_setup_add')->with('success_msg', 'জরিমানা সফলভাবে মুছে ফেলা হয়েছে ।');
+      return redirect()->route('fine_setup_add')->with('success_msg', 'Fine Setup Deleted Successfully.');
     }
 
 

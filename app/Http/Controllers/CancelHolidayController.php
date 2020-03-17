@@ -20,7 +20,7 @@ class CancelHolidayController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {     
+    {
         $cancel_holidays =CancelHoliday::whereYear('date', '=', date('Y'))
                    ->where('school_id',Auth::getSchool())
                    ->groupBy(DB::raw('MONTH(date)'))
@@ -53,7 +53,7 @@ class CancelHolidayController extends Controller
                 return $date->format('Y-m-d');
              })->toArray();
          }
-         
+
          $months = json_encode($months);
          $search = $request->except('_token');
          return view('backEnd.holiday.cancel.create',compact('days','months','search','cancel_holidays'));
@@ -79,10 +79,10 @@ class CancelHolidayController extends Controller
                  }
              }
 
-             Session::flash('sccmgs', 'ছুটি সফলভাবে বাতিল করা হয়েছে !');
+             Session::flash('sccmgs', 'Holiday Cencel Successfully. !');
              return redirect()->back();
           } catch (\Exception $e) {
-              Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+              Session::flash('errmgs', 'Whoops, There are a problem !'.$e->getMessage());
               return redirect()->back();
           }
     }
@@ -111,10 +111,10 @@ class CancelHolidayController extends Controller
                               ->where(['id'=>$id,'school_id'=>Auth::getSchool()])
                               ->delete();
 
-           Session::flash('sccmgs', 'ছুটি সফলভাবে বাতিল করা হয়েছে !');
+           Session::flash('sccmgs', 'Holiday Cencel Successfully. !');
            return redirect()->back();
         } catch (\Exception $e) {
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Whoops, There are a problem !'.$e->getMessage());
             return redirect()->back();
         }
     }

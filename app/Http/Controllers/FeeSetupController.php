@@ -33,13 +33,13 @@ class FeeSetupController extends Controller
                   ->where('fee_category_id', $request->fee_category_id)
                   ->first();
       if ($duplicate) {
-        return redirect()->back()->with('success_msg', 'পূর্বেই সফলভাবে নির্ধারণ করা হয়েছে ।');
+        return redirect()->back()->with('success_msg', 'This fee setup already taken.');
       }
       $fee_setup = new FeeSetup;
       $data = $request->all();
       $data['school_id'] = Auth::getSchool();
       $fee_setup->create($data);
-      return redirect()->back()->with('success_msg', 'ফি সফলভাবে নির্ধারণ করা হয়েছে ।');
+      return redirect()->back()->with('success_msg', 'Fee Setup Added Successfully.');
     }
 
     public function fee_setup_edit($id){
@@ -62,13 +62,13 @@ class FeeSetupController extends Controller
       $fee_setup = FeeSetup::find($request->id);
       $data = $request->all();
       $fee_setup->update($data);
-      return redirect()->route('fee_setup_add')->with('success_msg', 'ফি সফলভাবে আপডেট করা হয়েছে ।');
+      return redirect()->route('fee_setup_add')->with('success_msg', 'Fee Setup Updated Successfully.');
     }
 
     public function fee_setup_delete(Request $request){
       $fee_setup = FeeSetup::find($request->id);
       $fee_setup->delete();
-      return redirect()->route('fee_setup_add')->with('success_msg', 'ফি সফলভাবে মুছে ফেলা হয়েছে ।');
+      return redirect()->route('fee_setup_add')->with('success_msg', 'Fee Setup Deleted Successfully.');
     }
 
 

@@ -32,13 +32,13 @@ class CareController extends Controller
 		}
 		Care::create($data);
         if ($request->type==1) {
-            return redirect()->route('advice.list')->with('sccmgs','পরামর্শ সফলভাবে জমা করা হয়েছে ।');
+            return redirect()->route('advice.list')->with('sccmgs','Advice Added Successfully.');
         }else {
-           return redirect()->route('problem.list')->with('sccmgs','সমস্যা সফলভাবে জমা করা হয়েছে ।');
+           return redirect()->route('problem.list')->with('sccmgs','Problem Added Successfully.');
         }
 
 	}
-	
+
 
     public function list(Request $request){
 		$pending_problems = Care::orderBy('id','desc')->where('school_id', Auth::getSchool())->where('type',2)->where('status', 0)->where('from',1)->get();
@@ -66,9 +66,9 @@ class CareController extends Controller
 		}
 		Care::find($request->id)->update($data);
         if ($request->type==1) {
-            return redirect()->route('advice.list')->with('sccmgs','পরামর্শ সফলভাবে আপডেট করা হয়েছে ।');
+            return redirect()->route('advice.list')->with('sccmgs','Advice Updated Successfully.');
         }else {
-           return redirect()->route('problem.list')->with('sccmgs','সমস্যা সফলভাবে আপডেট করা হয়েছে ।');
+           return redirect()->route('problem.list')->with('sccmgs','Problem Updated Successfully.');
         }
 
 	}
@@ -77,9 +77,9 @@ class CareController extends Controller
 		$problem = Care::find($request->id);
 		$problem->delete();
         if ($problem->type==1) {
-            return redirect()->back()->with('sccmgs','পরামর্শ সফলভাবে মুছে ফেলা হয়েছে  ।');
+            return redirect()->back()->with('sccmgs','Advice Deleted Successfully.');
         }else {
-            return redirect()->back()->with('sccmgs','সমস্যা সফলভাবে মুছে ফেলা হয়েছে ।');
+            return redirect()->back()->with('sccmgs','Problem Deleted Successfully.');
         }
 	}
 	public function website_problem(Request $request){
@@ -129,9 +129,9 @@ class CareController extends Controller
 		$data->status = 1;
         $data->save();
         if ($data->type==1) {
-            return redirect()->back()->with('sccmgs','পরামর্শ সফলভাবে পরিবর্তন করা হয়েছে  ।');
+            return redirect()->back()->with('sccmgs','Advice Updated Successfully.');
         }else {
-            return redirect()->back()->with('sccmgs','সমস্যা সফলভাবে পরিবর্তন করা হয়েছে ।');
+            return redirect()->back()->with('sccmgs','Problem Updated Successfully.');
         }
 	}
 

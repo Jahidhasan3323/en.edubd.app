@@ -6,8 +6,8 @@
 @section('content')
 <div id="forPdf" class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
   <div class="page-header text-center">
-    <h3>প্রবেশপত্র</h3>
-  </div> 
+    <h3>Admit Card</h3>
+  </div>
 
   @if(Session::has('errmgs'))
   @include('backEnd.includes.errors')
@@ -17,7 +17,7 @@
   @endif
 
   <div class="panel-body">
-    <div class="row" id="div-id-name"> 
+    <div class="row" id="div-id-name">
      <style>
       @media print
              {
@@ -36,7 +36,7 @@
        <div class="col-8 school-info">
         <h3>{{$school->user->name}}</h3>
         <p>{{$school->address}}</p>
-        <h4>{{$exam->name.'র'}} প্রবেশপত্র</h4>
+        <h4>{{$exam->name}} </h4>
       </div>
       <div class="col-2"></div>
     </div>
@@ -44,12 +44,12 @@
      <div class="col-6">
       <div class="row1">
         <div class="col-4 student-info">
-          <p>শিক্ষার্থীর নাম</p>
-          <p>আইডি নম্বর</p>
-          <p>পিতার নাম</p>
-          <p>মাতার নাম</p>
-          <p>শিক্ষার্থীর ধরন</p>
-          <p>মোবাইল নম্বর</p>
+          <p>Student Name</p>
+          <p>ID No.</p>
+          <p>Fathers's Name</p>
+          <p>Mother's Name</p>
+          <p>Student Type</p>
+          <p>Mobile Number</p>
         </div>
         <div class="col-8 student-info">
           <p>: {{$student->user->name}}</p>
@@ -64,12 +64,12 @@
     <div class="col-3">
       <div class="row1">
         <div class="col-4 student-info">
-          <p>শিক্ষাবর্ষ</p>
-          <p>শ্রেণী</p>
-          <p>শাখা</p>
-          <p>বিভাগ</p>
-          <p>শিফট</p>
-          <p>রোল</p>
+          <p>Session</p>
+          <p>Class</p>
+          <p>Section</p>
+          <p>Group</p>
+          <p>Shift</p>
+          <p>Roll</p>
         </div>
         <div class="col-8 student-info">
           <p>: {{$student->session}}</p>
@@ -93,13 +93,13 @@
 <div class="col-12" style="border:1px solid black;border-top:0;color:gray">
   <div class="row1">
     <div class="col-12">
-      <p>দ্রষ্টব্য: এই কার্ডটি নিরাপদে রাখুন এবং অবশ্যই পরীক্ষায় আনতে হবে । @Ehsan Software</p>
+      <p>Note: Keep this card safe and must be show ine the exam @Ehsan Software</p>
     </div>
   </div>
   <div class="row1" style="margin-top: 100px">
-    <div class="col-3" style="text-align: center;">অধ্যক্ষ/প্রধান শিক্ষক</div>
-    <div class="col-6" style="text-align: center;">প্রতিষ্ঠানের সীল</div>
-    <div class="col-3" style="text-align: center;">পরীক্ষা নিয়ন্ত্রক</div>
+    <div class="col-3" style="text-align: center;">Principal/Headmaster</div>
+    <div class="col-6" style="text-align: center;">Institute Seal</div>
+    <div class="col-3" style="text-align: center;">Exam Moderator</div>
   </div>
 </div>
 <div class="row1"><div class="col-12"><div class="gap"></div></div></div>
@@ -108,10 +108,10 @@
     <div class="row">
     @if($students)
     <div class="col-md-6 col-sm-12">
-      <a class="btn btn-default col-md-6" style="color:#000" href="{{url()->previous()}}">পুনরায় অনুসন্ধান করুন</a>
-    </div>   
+      <a class="btn btn-default col-md-6" style="color:#000" href="{{url()->previous()}}">Search Again</a>
+    </div>
     <div class="col-md-6 col-sm-12">
-      <a onclick="javascript:print_genarator('div-id-name')" class="btn btn-default col-md-6" style="color: #000;float: right" href="javascript:void" target="_blank">প্রিন্ট করুন</a>
+      <a onclick="javascript:print_genarator('div-id-name')" class="btn btn-default col-md-6" style="color: #000;float: right" href="javascript:void" target="_blank">Print</a>
     </div>
     @endif
     </div>
@@ -133,4 +133,3 @@
 <script charset="UTF-8" type="text/javascript"  src="{{asset('backEnd/js/pdf/jspdf.js')}}"></script>
 <script charset="UTF-8" type="text/javascript"  src="{{asset('backEnd/js/pdf/printArea.js')}}"></script>
 @endsection
-

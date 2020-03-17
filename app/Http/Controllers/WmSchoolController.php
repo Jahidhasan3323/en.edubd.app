@@ -46,7 +46,7 @@ class WmSchoolController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -131,7 +131,7 @@ class WmSchoolController extends Controller
         }else{
             $wmSchool->update($data);
         }
-        return $this->returnWithSuccess('আপনার তথ্য পরিবর্তন হয়েছে !');
+        return $this->returnWithSuccess('Your Information Updated Successfully.');
     }
 
     /**
@@ -159,7 +159,7 @@ class WmSchoolController extends Controller
         if(!Auth::is('admin')){
             return redirect('/home');
         }
-       
+
         $data['content_heading_background']='#000099';
         $data['content_heading_color']='#fff';
         $data['sidebar_heading_background']='#800040';
@@ -180,11 +180,11 @@ class WmSchoolController extends Controller
             }
             $wmSchool->update($data);
 
-            return $this->returnWithSuccess('আপনার তথ্য পরিবর্তন হয়েছে !');
+            return $this->returnWithSuccess('Your Information Updated Successfully.');
         }else{
-            return $this->returnWithError('আপনি কোন তথ্য যোগ করেন নাই !');
+            return $this->returnWithError('You have no information !');
         }
     }
 
-    
+
 }

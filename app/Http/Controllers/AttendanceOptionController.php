@@ -20,7 +20,7 @@ class AttendanceOptionController extends Controller
 		$attendance_option = School::find($request->school_id);
 		$attendance_option->attendance_option = $request->attendance_option;
 		$attendance_option->save();
-		return redirect()->route('attendanceOption.list')->with('sccmgs','অটোমেটিক উপস্থিতি অপশন সফলভাবে আপডেট হয়েছে ।');
+		return redirect()->route('attendanceOption.list')->with('sccmgs','Automatic Attendance Option Updated Successfully.');
 	}
 
 }

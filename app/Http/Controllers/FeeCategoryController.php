@@ -19,7 +19,7 @@ class FeeCategoryController extends Controller
       $fee_category = new FeeCategory;
       $data = $request->all();
       $fee_category->create($data);
-      return redirect()->back()->with('success_msg', 'ফি ক্যাটাগরি সফলভাবে যোগ করা হয়েছে ।');
+      return redirect()->back()->with('success_msg', 'Fee Category Added Successfully.');
     }
 
     public function fee_category_edit($id){
@@ -34,13 +34,13 @@ class FeeCategoryController extends Controller
       $fee_category = FeeCategory::find($request->id);
       $data = $request->all();
       $fee_category->update($data);
-      return redirect()->route('fee_category_add')->with('success_msg', 'ফি ক্যাটাগরি সফলভাবে আপডেট করা হয়েছে ।');
+      return redirect()->route('fee_category_add')->with('success_msg', 'Fee Category Updated Successfully.');
     }
 
     public function fee_category_delete(Request $request){
       $fee_category = FeeCategory::find($request->id);
       $fee_category->delete();
-      return redirect()->route('fee_category_add')->with('success_msg', 'ফি ক্যাটাগরি সফলভাবে মুছে ফেলা হয়েছে ।');
+      return redirect()->route('fee_category_add')->with('success_msg', 'Fee Category Deleted Successfully.');
     }
 
 

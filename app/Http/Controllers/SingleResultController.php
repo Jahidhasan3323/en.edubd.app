@@ -55,7 +55,7 @@ class SingleResultController extends Controller
         $group_class=GroupClass::where('id',$request->group_class_id)->select('name')->first();
         $students=array();
         $subjects=array();
-        
+
         if($request->all()){
             $students= Student::with('user')->where([
                 'master_class_id'=>$request->master_class_id,
@@ -97,7 +97,7 @@ class SingleResultController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {  
+    {
          $this->create_result_validation($request);
          foreach ($request->roll as $key => $roll) {
             if(isset($request->student_id[$roll])){
@@ -142,13 +142,13 @@ class SingleResultController extends Controller
         $query['school_id']=Auth::getSchool();
         Result::where($query)->update(['grand_total_mark'=>$data['grand_total_mark']]);
     }
-    
+
     protected function check_mark_proccess($request,$key){
        $check_mark['ca_mark']=($request->ca_mark[$key]=='--'?0:$request->ca_mark[$key]);
        $check_mark['cr_mark']=($request->cr_mark[$key]=='--'?0:$request->cr_mark[$key]);
        $check_mark['mcq_mark']=($request->mcq_mark[$key]=='--'?0:$request->mcq_mark[$key]);
        $check_mark['pr_mark']=($request->pr_mark[$key]=='--'?0:$request->pr_mark[$key]);
-       return $check_mark; 
+       return $check_mark;
     }
 
 
@@ -211,9 +211,9 @@ class SingleResultController extends Controller
     }
 
 
- 
 
-    
+
+
     public function edit(Request $request)
     {
         $this->validation_for_update_searching($request);
@@ -227,7 +227,7 @@ class SingleResultController extends Controller
         $group_class=GroupClass::where('id',$request->group_class_id)->select('name')->first();
         $students=array();
         $subjects=array();
-        
+
         if($request->all()){
             $students= Student::with('user')->where([
                 'master_class_id'=>$request->master_class_id,
@@ -333,10 +333,10 @@ class SingleResultController extends Controller
                Result::where($query)->update(['grand_total_mark'=>$grand_total_mark]);
                $result->forceDelete();
            }
-           
+
         }
 
-        $this->returnWithSuccess('Result update success. (বিষয়-'.$request->subject_name.')');
+        $this->returnWithSuccess('Result update success. (Subject-'.$request->subject_name.')');
         return redirect()->back();
     }
 

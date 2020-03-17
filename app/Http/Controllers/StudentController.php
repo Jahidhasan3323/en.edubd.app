@@ -103,7 +103,7 @@ class StudentController extends Controller
              Student::where($data)->update(['id_card_exits'=>0]);
           }
 
-          return $this->returnWithSuccess('সফলভাবে পরিবর্তন হয়েছে...!!');
+          return $this->returnWithSuccess('Student Updated Successfully...!!');
 
     }
 
@@ -150,10 +150,10 @@ class StudentController extends Controller
           return view('backEnd.students.class_view', compact('students'));
         }else{
            if($request->student_type==1){
-             Session::flash('sccmgs', 'শিক্ষার্থী সফলভাবে পুনরায় যোগ করা হয়েছে !');
+             Session::flash('sccmgs', 'Student Added Successfully Again.');
              return redirect('old_students_list');
            }
-           Session::flash('sccmgs', 'শিক্ষার্থী সফলভাবে মুছে ফেলা হয়েছে !');
+           Session::flash('sccmgs', 'Student Deleted Successfully !');
            return redirect('students_list');
         }
     }
@@ -175,11 +175,11 @@ class StudentController extends Controller
             if(count($student->atten_students)>0){$student->atten_students->delete();}
            $student->delete();
            DB::commit();
-           Session::flash('sccmgs', 'শিক্ষার্থী সফলভাবে মুছে ফেলা হয়েছে !');
+           Session::flash('sccmgs', 'Student Deleted Successfully !');
            return redirect('old_students_list');
        }catch (\Exception $e){
            DB::rollback();
-           Session::flash('errmgs', 'দুখিত, সমস্যা হয়েছে !'.$e->getMessage());
+           Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
            return redirect()->back();
        }
     }
@@ -288,7 +288,7 @@ class StudentController extends Controller
             $school=$this->school();
             if(isset($student->id) && $request->mobile!=NULL && $school->api_key!=NULL && $school->sender_id!=NULL){
                $school_name=$sms_send->school_name_process($school->user->name);
-               $content='প্রিয় '.$request->name.' তোমার সফটওয়্যার লগইন তথ্য ! ওয়েব এড্রেস : '.$school->website.', ইমেইল : '.$request->email.', পাসওয়ার্ড : '.$request->password.'. '.$school_name;
+               $content='Dear '.$request->name.' Your software login information ! web address : '.$school->website.', Email : '.$request->email.', Password : '.$request->password.'. '.$school_name;
                $message= urlencode($content);
                $mobile_number=$sms_send->validateNumber([0=>$request->mobile]);
                $mobile_number = implode(',',$mobile_number);
@@ -297,15 +297,15 @@ class StudentController extends Controller
 
             DB::commit();
             if(isset($a)){
-               Session::flash('sccmgs', 'শিক্ষার্থী সফলভাবে যোগ করা হয়েছে এবং এস,এম,এস পাঠানো হয়েছে: '.$a);
+               Session::flash('sccmgs', 'Student Added Successfully and SMS sent : '.$a);
             }else{
-               Session::flash('sccmgs', 'শিক্ষার্থী সফলভাবে যোগ করা হয়েছে !!');
+               Session::flash('sccmgs', 'Student Updated Successfully !!');
             }
             return redirect()->back();
 
         }catch (\Exception $e){
             DB::rollback();
-            Session::flash('errmgs', 'দুঃখিত, সমসয়া হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
 
@@ -398,16 +398,16 @@ class StudentController extends Controller
             if ($users->update($data) && $student->update($data)){
                 DB::commit();
                 if (Auth::is('student')){
-                    Session::flash('sccmgs', 'আপনার প্রোফাইল সফলভাবে আপডেট করা হয়েছে !');
+                    Session::flash('sccmgs', 'Your Profile Updated Successfully !');
                     return redirect()->back();
                 }
-                Session::flash('sccmgs', 'শিক্ষার্থী সফলভাবে আপডেট করা হয়েছে !');
+                Session::flash('sccmgs', 'Student Updated Successfully!');
                 return redirect()->back();
             }
 
         }catch (\Exception $e){
             DB::rollback();
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
     }
@@ -431,10 +431,10 @@ class StudentController extends Controller
             if(isset($student->atten_students)&&count($student->atten_students)>0){$student->atten_students->each->update($data);}
             $data['id_card_exits']=1;
             $student->update($data);
-            Session::flash('sccmgs', 'শিক্ষার্থী সফলভাবে মুছে ফেলা হয়েছে !');
+            Session::flash('sccmgs', 'Student Deleted Successfully !');
             return redirect()->back();
         }catch (\Exception $e){
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
     }
@@ -453,10 +453,10 @@ class StudentController extends Controller
             if(isset($student->results)&&count($student->results)>0){$student->results->each->update($data);}
             if(isset($student->atten_students)&&count($student->atten_students)>0){$student->atten_students->each->update($data);}
             $student->update($data);
-            Session::flash('sccmgs', 'শিক্ষার্থী সফলভাবে পূনরায় সফলভাবে যোগ করা হয়েছে !');
+            Session::flash('sccmgs', 'Student Added Successfully Again !');
             return redirect()->back();
         }catch (\Exception $e){
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
     }

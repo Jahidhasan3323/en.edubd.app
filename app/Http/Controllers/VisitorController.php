@@ -31,7 +31,7 @@ class VisitorController extends Controller
 			$data['image'] = $this->imagesProcessing1($request->image, 'visitor',600,400);
 		}
 		Visitor::create($data);
-        return redirect()->route('visitor.list')->with('sccmgs','ভিজিটর সফলভাবে জমা করা হয়েছে ।');
+        return redirect()->route('visitor.list')->with('sccmgs','Visitor Added Successfully.');
 
 	}
 
@@ -61,7 +61,7 @@ class VisitorController extends Controller
 		   $data['image'] = $this->imagesProcessing1($request->image, 'visitor',600,400);
 		}
 		Visitor::find($request->id)->update($data);
-		return redirect()->route('visitor.list')->with('sccmgs','ভিজিটর সফলভাবে আপডেট করা হয়েছে ।');
+		return redirect()->route('visitor.list')->with('sccmgs','Visitor Updated Successfully.');
 
 	}
 
@@ -71,7 +71,7 @@ class VisitorController extends Controller
 			Storage::delete($visitor->image);
 		}
 		$visitor->forceDelete();
-        return redirect()->route('visitor.list')->with('sccmgs','ভিজিটর সফলভাবে মুছে ফেলা হয়েছে ।');
+        return redirect()->route('visitor.list')->with('sccmgs','Visitor Deleted Successfully.');
 	}
 
 

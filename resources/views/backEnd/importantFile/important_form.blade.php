@@ -7,7 +7,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">গুরুত্বপূর্ণ ফর্ম </h1>
+            <h1 class="text-center text-temp">Important Form</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -21,13 +21,13 @@
             <div class="col-sm-12 " style="font-size: 18px; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); padding: 30px">
         <div class="row">
             <div class="col-md-12">
-               
+
                 <table id="commitee_tbl" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>ক্রমিক নং</th>
-                            <th>টাইটেল</th>
-                            <th>অ্যাকশন</th>
+                            <th>Serial</th>
+                            <th>Title</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,21 +36,21 @@
                         @foreach($important_forms as $important_form)
                             <tr>
                                 <td>{{$i++}}</td>
-                                
+
                                 <td>{{$important_form->tittle}}</td>
                                 <td>
                                     <a style="margin-bottom: 10px;" href="{{url(Storage::url($important_form->file))}}" class="btn btn-info" target="_blank"><span class="glyphicon glyphicon-eye-open" ></span></a>
                                     <a style="margin-bottom: 10px;" href="{{url(Storage::url($important_form->file))}}" download class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-download" ></span></a>
 
 
-                                   
+
                                 </td>
                             </tr>
-                            
+
                         @endforeach
                     @endif
                         </tbody>
-                        
+
                 </table>
             </div>
         </div>
@@ -76,7 +76,7 @@
     @endif
 @endsection
 @section('script')
- 
+
     <script src="{{asset('backEnd')}}/DataTables/jquery.dataTables.min.js"></script>
     <script src="{{asset('backEnd')}}/DataTables/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">

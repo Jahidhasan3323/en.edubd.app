@@ -22,7 +22,7 @@ class QuestionController extends Controller
         if(!Auth::is('admin') && !Auth::is('teacher') && !Auth::is('student')){
             return redirect('/home');
         }
-        $tittle="নৈর্ব্যক্তিক";
+        $tittle="MCQ";
         $questions=Question::with('masterClass','user','subject')->where(['school_id'=> Auth::getSchool(),'user_id'=>Auth::id(),'type'=>1])->orderby('id','DESC')->groupby('subject_id')->get();
         return view('backEnd.question.mcq.index',compact('questions','tittle'));
     }
@@ -31,12 +31,12 @@ class QuestionController extends Controller
         if(!Auth::is('admin') && !Auth::is('teacher') && !Auth::is('student')){
             return redirect('/home');
         }
-        $tittle="নৈর্ব্যক্তিক";
+        $tittle="MCQ";
         $questions=Question::with('options','user')->where(['school_id'=> Auth::getSchool(),'user_id'=>Auth::id(),'type'=>1,'subject_id'=>$subject_id])->orderby('id','DESC')->get();
         return view('backEnd.question.mcq.subjectwise_question',compact('questions','tittle'));
     }
 
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -67,7 +67,7 @@ class QuestionController extends Controller
             return redirect('/home');
         }
         $data=$request->except('option');
-        
+
         $this->validate($request, [
             'question' => 'required',
             'mark' => 'required',
@@ -93,8 +93,8 @@ class QuestionController extends Controller
                 $i++;
             }
         }
-        return $this->returnWithSuccess('আপনার তথ্য সংরক্ষণ হয়েছে !');
-        
+        return $this->returnWithSuccess('Your Information Added Successfully. !');
+
     }
 
     /**
@@ -140,7 +140,7 @@ class QuestionController extends Controller
             return redirect('/home');
         }
         $data=$request->except('_token','_method','option');
-        
+
         $this->validate($request, [
             'question' => 'required',
             'mark' => 'required',
@@ -163,8 +163,8 @@ class QuestionController extends Controller
                 $i++;
             }
         }
-        return $this->returnWithSuccess('আপনার তথ্য সংরক্ষণ হয়েছে !');
-        
+        return $this->returnWithSuccess('Your Information Added Successfully !');
+
     }
 
     /**
@@ -179,13 +179,13 @@ class QuestionController extends Controller
             return redirect('/home');
         }
         $question=Question::where(['id'=>$id,'school_id'=> Auth::getSchool(),'user_id'=>Auth::id()])->delete();
-        
-        return $this->returnWithSuccess('আপনার তথ্য মুছে ফেলা হয়েছে !');
+
+        return $this->returnWithSuccess('Your Information Delete Successfully. !');
 
 
     }
 
-    
+
 
     public function indexWritten()
     {
@@ -205,7 +205,7 @@ class QuestionController extends Controller
         $questions=Question::with('options','user')->where(['school_id'=> Auth::getSchool(),'user_id'=>Auth::id(),'type'=>2,'subject_id'=>$subject_id])->orderby('id','DESC')->get();
         return view('backEnd.question.written.subjectwise_question',compact('questions','tittle'));
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -236,7 +236,7 @@ class QuestionController extends Controller
             return redirect('/home');
         }
         $data=$request->except('option');
-        
+
         $this->validate($request, [
             'question' => 'required',
             'mark' => 'required',
@@ -252,10 +252,10 @@ class QuestionController extends Controller
         }
 
         $question=Question::create($data);
-        
-        
-        return $this->returnWithSuccess('আপনার তথ্য সংরক্ষণ হয়েছে !');
-        
+
+
+        return $this->returnWithSuccess('Your Information Added Successfully.');
+
     }
 
     /**
@@ -264,7 +264,7 @@ class QuestionController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -297,7 +297,7 @@ class QuestionController extends Controller
             return redirect('/home');
         }
         $data=$request->except('_token','_method','option');
-        
+
         $this->validate($request, [
             'question' => 'required',
             'mark' => 'required',
@@ -311,9 +311,9 @@ class QuestionController extends Controller
         }
 
         $question=Question::where(['school_id'=> Auth::getSchool(),'user_id'=>Auth::id(),'id'=>$id])->update($data);
-        
-        return $this->returnWithSuccess('আপনার তথ্য সংরক্ষণ হয়েছে !');
-        
+
+        return $this->returnWithSuccess('Your Information Added Successfully.');
+
     }
 
     /**
@@ -328,8 +328,8 @@ class QuestionController extends Controller
             return redirect('/home');
         }
         $question=Question::where(['id'=>$id,'school_id'=> Auth::getSchool(),'user_id'=>Auth::id()])->delete();
-        
-        return $this->returnWithSuccess('আপনার তথ্য মুছে ফেলা হয়েছে !');
+
+        return $this->returnWithSuccess('Your Information Deleted Successfully.');
 
 
     }
@@ -339,7 +339,7 @@ class QuestionController extends Controller
         if(!Auth::is('admin') && !Auth::is('teacher') && !Auth::is('student')){
             return redirect('/home');
         }
-        $tittle="নৈর্ব্যক্তিক";
+        $tittle="MCQ";
         $questions=Question::with('masterClass','subject')->where(['type'=>1])->orderby('id','DESC')->groupby('subject_id')->get();
         return view('backEnd.question.mcq.all_question',compact('questions','tittle'));
     }
@@ -348,7 +348,7 @@ class QuestionController extends Controller
         if(!Auth::is('admin') && !Auth::is('teacher') && !Auth::is('student')){
             return redirect('/home');
         }
-        $tittle="নৈর্ব্যক্তিক";
+        $tittle="MCQ";
         $questions=Question::with('options','user','school')->where(['type'=>1,'subject_id'=>$subject_id])->orderby('id','DESC')->get();
         return view('backEnd.question.mcq.subjectwise_all_question',compact('questions','tittle'));
     }
@@ -359,7 +359,7 @@ class QuestionController extends Controller
         if(!Auth::is('admin') && !Auth::is('teacher') && !Auth::is('student')){
             return redirect('/home');
         }
-        $tittle="লিখিত";
+        $tittle="Written";
         $questions=Question::with('masterClass','subject')->where(['type'=>2])->orderby('id','DESC')->groupby('subject_id')->get();
         return view('backEnd.question.written.all_question',compact('questions','tittle'));
     }
@@ -368,7 +368,7 @@ class QuestionController extends Controller
         if(!Auth::is('admin') && !Auth::is('teacher') && !Auth::is('student')){
             return redirect('/home');
         }
-        $tittle="লিখিত";
+        $tittle="Written";
         $questions=Question::with('options','user','school')->where(['type'=>2,'subject_id'=>$subject_id])->orderby('id','DESC')->get();
         return view('backEnd.question.written.subjectwise_all_question',compact('questions','tittle'));
     }
@@ -380,7 +380,7 @@ class QuestionController extends Controller
         if(!Auth::is('student')){
             return redirect('/home');
         }
-        $tittle="নৈর্ব্যক্তিক";
+        $tittle="MCQ";
         $class=Student::where(['user_id'=>Auth::id()])->value('master_class_id');
         $questions=Question::with('options','masterClass','user')->where(['school_id'=> Auth::getSchool(),'type'=>1,'master_class_id'=>$class])->orderby('id','DESC')->get();
         return view('backEnd.question.student_question',compact('questions','tittle'));
@@ -391,7 +391,7 @@ class QuestionController extends Controller
         if(!Auth::is('student')){
             return redirect('/home');
         }
-        $tittle="লিখিত";
+        $tittle="Written";
         $class=Student::where(['user_id'=>Auth::id()])->value('master_class_id');
         $questions=Question::with('options','masterClass','user')->where(['school_id'=> Auth::getSchool(),'type'=>2,'master_class_id'=>$class])->orderby('id','DESC')->get();
         return view('backEnd.question.student_question',compact('questions','tittle'));

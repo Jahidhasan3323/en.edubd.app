@@ -1,12 +1,12 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'routines')
+@section('mainTitle', 'Notices')
 @section('active_notice', 'active')
 
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">নোটিশ</h1>
+            <h1 class="text-center text-temp">Notice</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -22,11 +22,11 @@
                 <table id="commitee_tbl" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>ক্রমিক নং</th>
-                            <th>টাইটেল</th>
-                            <th>ফাইল</th>
-                            <th>তারিখ</th>
-                            <th>অ্যাকশন</th>
+                            <th>Serial</th>
+                            <th>Title</th>
+                            <th>File</th>
+                            <th>Date</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,21 +38,21 @@
                             <td>{{$i++}}</td>
                             <td>{{$notice->name}}</td>
                             <td>@if(!empty($notice->path))<a style="margin-bottom: 10px;" href="{{url('notice/view/'.$notice->id)}}" class="btn btn-success">ফাইল</a>@endif</td>
-                            
+
                             <td>{{$notice->updated_at->format('d-m-Y')}}</td>
-                            
+
                             <td>
                                 <a  href="{{url('notice/view/'.$notice->id)}}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span></a>
                                 @if(Auth::is('admin'))
-                                   
-                                        
+
+
                                         @if($status==0)
                                         <a href="{{url('/notice/status/'.$notice->id.'/'.$status)}}" class="btn btn-success">
-                                            প্রকাশিত
+                                            Published
                                         </a>
                                         @else
                                         <a href="{{url('/notice/status/'.$notice->id.'/'.$status)}}" class="btn btn-danger">
-                                            অপ্রকাশিত
+                                            Unpublished
                                         </a>
                                         @endif
                                         <a  class="btn btn-success"  href="{{url('/notice/edit/'.$notice->id)}}">
@@ -71,13 +71,13 @@
                                 @endif
                             </td>
                         </tr>
-                        
+
                         @endforeach
                         @endif
                     </tbody>
-                    
+
                 </table>
-                
+
             </div>
         </div>
     </div>

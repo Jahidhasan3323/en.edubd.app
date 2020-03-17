@@ -56,9 +56,9 @@ class CaSubjectController extends Controller
         $this->subject_validation($request, NULL);
         try {
             $this->subject->create($request->all());
-            return $this->returnWithSuccess('বিষয় সফলভাবে যোগ করা হয়েছে !');
+            return $this->returnWithSuccess('Subject Added Successfully.');
         } catch (\Exception $e) {
-            return $this->returnWithError('errmgs', 'দুঃখিত, বিষয় যোগ করা হয়নি !'.$e->getMessage());
+            return $this->returnWithError('errmgs', 'Sorry, Subject Added Failed.'.$e->getMessage());
         }
     }
 
@@ -108,9 +108,9 @@ class CaSubjectController extends Controller
                 'id'=>$id,
                 'id'=>Auth::getSchool(),
             ])->update($request->except('_token'));
-            return $this->returnWithSuccess('বিষয় সফলভাবে আপডেট করা হয়েছে !');
+            return $this->returnWithSuccess('Subject Updated Successfully.');
         } catch (\Exception $e) {
-            return $this->returnWithError('errmgs', 'দুঃখিত, বিষয় আপডেট করা হয়নি !'.$e->getMessage());
+            return $this->returnWithError('errmgs', 'Sorry, Subject Updated Failed !'.$e->getMessage());
         }
     }
 
@@ -135,9 +135,9 @@ class CaSubjectController extends Controller
     {
          try {
             $this->subject->where(['id'=>$id,'school_id'=>Auth::getSchool()])->forceDelete();
-            return $this->returnWithSuccess('বিষয় সফলভাবে মুছে ফেলা হয়েছে ! !');
+            return $this->returnWithSuccess('Subject Deleted Successfully.');
          } catch (\Exception $e) {
-            return $this->returnWithError('errmgs', 'দুঃখিত, বিষয়  মুছে ফেলা হয়নি !'.$e->getMessage());
+            return $this->returnWithError('errmgs', 'Sorry, Subject Deleted Failed !'.$e->getMessage());
          }
     }
 }

@@ -80,14 +80,14 @@ class HomeController extends Controller
                 $user = User::find($user->id);
                 $user->password = Hash::make($request->new_password);
                 $user->update();
-                Session::flash('sccmgs', 'আপনার পাসওয়ার্ড সফলভাবে পরিবর্তন করা হয়েছে !');
+                Session::flash('sccmgs', 'Your Password Updated Successfully. !');
                 return redirect()->back();
             }else{
-                Session::flash('errmgs', 'অনুগ্রহ করে সঠিক পাসওয়ার্ড দিন !');
+                Session::flash('errmgs', 'Please enter real password !');
                 return redirect()->back();
             }
         } catch (\Exception $e) {
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
     }

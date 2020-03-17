@@ -9,7 +9,7 @@ use Auth;
 use Storage;
 class ImportantFileController extends Controller
 {
-    
+
     public function index()
     {
         if(!Auth::is('root')){
@@ -40,16 +40,16 @@ class ImportantFileController extends Controller
         $data['file'] = $request->file('file')->storeAs('public/importantfile/', 'file'.rand(10,100000).'.'.$ext);
         }
         ImportantFile::create($data);
-        return $this->returnWithSuccess('আপনার তথ্য সংরক্ষণ হয়েছে !');
+        return $this->returnWithSuccess('Your Information Added Successfully.');
 
     }
 
     public function show($id)
     {
-        
+
     }
 
-    
+
     public function destroy($id)
     {
         if (!Auth::is('root')){
@@ -60,7 +60,7 @@ class ImportantFileController extends Controller
         if (isset($important_file->file)&&file_exists(public_path(Storage::url($important_file->file)))){
                 Storage::delete($important_file->file);
             }
-        return $this->returnWithSuccess('আপনার তথ্য মুছে দেওয়া হয়েছে ');
+        return $this->returnWithSuccess('Your Information Deleted Successfully.');
     }
 
 
@@ -73,5 +73,5 @@ class ImportantFileController extends Controller
         return view('backEnd.importantFile.important_form', compact('important_forms'));
     }
 
-    
+
 }

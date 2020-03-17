@@ -6,8 +6,8 @@
 @section('content')
 <div id="forPdf" class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
   <div class="page-header text-center">
-    <h3>পরীক্ষার আসন পরিকল্পনা</h3>
-  </div> 
+    <h3>Exam Seat Plan</h3>
+  </div>
 
   @if(Session::has('errmgs'))
   @include('backEnd.includes.errors')
@@ -17,7 +17,7 @@
   @endif
 
   <div class="panel-body">
-    <div class="row" id="div-id-name"> 
+    <div class="row" id="div-id-name">
      <style>
       @media print
       {
@@ -40,14 +40,14 @@
                     <h3>{{$school->user->name}}</h3>
                     <p>{{$school->address}}</p>
                   </div>
-                   <h4>{{$exam->name.'র'}} আসন-{{$request->exam_year}}</h4>
+                   <h4>{{$exam->name}} Seat-{{$request->exam_year}}</h4>
                 </div>
                 <div class="col-3">
                   <img src="{{Storage::url($student->photo)}}" class="student-photo" alt="Student Photo">
                 </div>
                 <div class="col-12" style="padding-top:0;padding-bottom: 0">
                   <div class="student-info" style="width: 16.5%;">
-                    <p>নাম</p>
+                    <p>Name</p>
                   </div>
                   <div class="student-info" style="width: 83.5%;">
                     <p>: {{$student->user->name}}</p>
@@ -55,12 +55,12 @@
                 </div>
                 <div class="col-8">
                   <div class="student-info" style="width: 25%;">
-                    <p>আইডি</p>
-                    <p>শ্রেণী</p>
-                    <p>শিক্ষাবর্ষ</p>
-                    <p>পরীক্ষার</p>
-                    <p>বিভাগ</p>
-                    <p>শাখা</p>
+                    <p>ID</p>
+                    <p>Class</p>
+                    <p>Seasion</p>
+                    <p>Exam</p>
+                    <p>Group</p>
+                    <p>Section</p>
                   </div>
                   <div class="student-info" style="width: 75%;">
                     <p>: {{$student->student_id}}</p>
@@ -75,7 +75,7 @@
                   <div class="table-placement">
                       <table class="table-bordered" style="border-collapse: separate !important;
             border: 3px solid #ddd;">
-                        <tr><td>রোল নং</td></tr>
+                        <tr><td>Roll No.</td></tr>
                         <tr><td>{{$student->roll}}</td></tr>
                       </table>
                   </div>
@@ -89,11 +89,11 @@
     @endforeach
   </div>
 </div>
-  <div class="row">   
+  <div class="row">
     @if($students)
-    <a class="btn btn-default col-sm-2 col-sm-offset-4" style="color:#000" href="{{url('/result')}}">পুনরায় অনুসন্ধান করুন</a>
+    <a class="btn btn-default col-sm-2 col-sm-offset-4" style="color:#000" href="{{url('/result')}}">Search Again</a>
 
-    <a onclick="javascript:print_genarator('div-id-name')" class="btn btn-default col-sm-2 col-sm-offset-" style="color: #000" href="javascript:void" target="_blank">প্রিন্ট করুন</a>
+    <a onclick="javascript:print_genarator('div-id-name')" class="btn btn-default col-sm-2 col-sm-offset-" style="color: #000" href="javascript:void" target="_blank">Print</a>
     @endif
   </div>
 </div>
@@ -115,4 +115,3 @@
 <script charset="UTF-8" type="text/javascript"  src="{{asset('backEnd/js/pdf/jspdf.js')}}"></script>
 <script charset="UTF-8" type="text/javascript"  src="{{asset('backEnd/js/pdf/printArea.js')}}"></script>
 @endsection
-

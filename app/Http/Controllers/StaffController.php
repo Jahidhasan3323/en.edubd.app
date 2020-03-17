@@ -119,14 +119,14 @@ class StaffController extends Controller
             $a='';
             if(isset($staff->id) && $request->mobile!=NULL && $school->api_key!=NULL && $school->sender_id!=NULL){
                $school_name=$sms_send->school_name_process($school->user->name);
-               $content='প্রিয় '.$request->name.' আপনার সফটওয়্যার লগইন তথ্য ! ওয়েব এড্রেস : '.$school->website.', ইমেইল : '.$request->email.', পাসওয়ার্ড : '.$request->password.'. '.$school_name;
+               $content='Dear, '.$request->name.' Your software login information ! Web address : '.$school->website.', Email : '.$request->email.', Password : '.$request->password.'. '.$school_name;
                $message= urlencode($content);
                $mobile_number=$sms_send->validateNumber([0=>$request->mobile]);
                $mobile_number = implode(',',$mobile_number);
                $a = $this->sms_send_by_api($school,$mobile_number,$message);
             }
             DB::commit();
-            Session::flash('sccmgs', 'স্টাফ সফলভাবে যোগ করা হয়েছে !'.$a);
+            Session::flash('sccmgs', 'Staff Added Successfully.'.$a);
             return redirect()->back();
 
         }catch (\Exception $e){
@@ -134,7 +134,7 @@ class StaffController extends Controller
             if (file_exists(public_path(Storage::url($this->photo)))) {
                 Storage::delete($this->photo);
             }
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
     }
@@ -220,10 +220,10 @@ class StaffController extends Controller
             $staff->update($data);
             DB::commit();
             if (Auth::is('teacher')){
-                Session::flash('sccmgs', 'স্টাফ সফলভাবে আপডেট করা হয়েছে !');
+                Session::flash('sccmgs', 'Staff Updated Successfully.');
                 return redirect()->back();
             }
-            Session::flash('sccmgs', 'স্টাফ সফলভাবে আপডেট হয়েছে !');
+            Session::flash('sccmgs', 'Staff Updated Successfully.');
             return redirect()->back();
 
         }catch (\Exception $e){
@@ -231,7 +231,7 @@ class StaffController extends Controller
             if (file_exists(public_path(Storage::url($this->photo)))){
                     Storage::delete($this->photo);
                 }
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
     }
@@ -255,12 +255,12 @@ class StaffController extends Controller
                     Storage::delete($this->photo);
                 }
             }else{
-                throwException("অপারেশন ব্যর্থ");
+                throwException("Operation Failed !");
             }
-            Session::flash('sccmgs', 'স্টাফ সফলভাবে মুছে ফেলা হয়েছে !');
+            Session::flash('sccmgs', 'Staff Deleted Successfully.');
             return redirect()->back();
         }catch (\Exception $e){
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
     }
@@ -455,10 +455,10 @@ class StaffController extends Controller
                 'deleted_at'=>Carbon::now(),
                 'retirement_date'=>$request->date
             ]);
-            Session::flash('sccmgs', 'রিজাইন সফল হয়েছে !');
+            Session::flash('sccmgs', 'Regine Added Successfully.');
             return redirect()->back();
         } catch (\Exception $e) {
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
     }

@@ -26,7 +26,7 @@ class SalarySetupController extends Controller
       $data = $request->all();
       $data['school_id'] = Auth::getSchool();
       $salary_setup->create($data);
-      return redirect()->back()->with('success_msg', 'বেসিক বেতন সফলভাবে যোগ করা হয়েছে ।');
+      return redirect()->back()->with('success_msg', 'Basic Salary Added Successfully.');
     }
 
     public function salary_setup_edit($id){
@@ -45,13 +45,13 @@ class SalarySetupController extends Controller
       $salary_setup = SalarySetup::find($request->id);
       $data = $request->all();
       $salary_setup->update($data);
-      return redirect()->route('salary_setup_add')->with('success_msg', 'বেসিক বেতন সফলভাবে আপডেট করা হয়েছে ।');
+      return redirect()->route('salary_setup_add')->with('success_msg', 'Basic Salary Updated Successfully.');
     }
 
     public function salary_setup_delete(Request $request){
       $salary_setup = SalarySetup::find($request->id);
       $salary_setup->delete();
-      return redirect()->route('salary_setup_add')->with('success_msg', 'বেসিক বেতন সফলভাবে মুছে ফেলা হয়েছে ।');
+      return redirect()->route('salary_setup_add')->with('success_msg', 'Basic Salary Deleted Successfully.');
     }
 
 

@@ -30,7 +30,7 @@ class FeeSubCategoryController extends Controller
       $data = $request->all();
       $data['school_id'] = Auth::getSchool();
       $fee_sub_category->create($data);
-      return redirect()->back()->with('success_msg', 'সাব-ক্যাটাগরি সফলভাবে যোগ করা হয়েছে ।');
+      return redirect()->back()->with('success_msg', 'Sub Category Added Successfully.');
     }
 
     public function fee_sub_category_edit($id){
@@ -52,12 +52,12 @@ class FeeSubCategoryController extends Controller
       $fee_sub_category = FeeSubCategory::find($request->id);
       $data = $request->all();
       $fee_sub_category->update($data);
-      return redirect()->route('fee_sub_category_add')->with('success_msg', 'সাব-ক্যাটাগরি সফলভাবে আপডেট করা হয়েছে ।');
+      return redirect()->route('fee_sub_category_add')->with('success_msg', 'Sub Category Updated Successfully.');
     }
 
     public function fee_sub_category_delete(Request $request){
       $fee_sub_category = FeeSubCategory::find($request->id);
       $fee_sub_category->delete();
-      return redirect()->route('fee_sub_category_add')->with('success_msg', 'সাব-ক্যাটাগরি সফলভাবে মুছে ফেলা হয়েছে ।');
+      return redirect()->route('fee_sub_category_add')->with('success_msg', 'Sub Category Deleted Successfully.');
     }
 }

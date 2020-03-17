@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'ব্যাংক ডিপোজিট পরিচালনা')
+@section('mainTitle', 'Bank Deposit Management')
 @section('head_section')
     <style>
 
@@ -29,7 +29,7 @@
   </div>
   <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
       <div class="col-md-12">
-        <h2 class="text-center text-temp">ডিপোজিট করুন</h2>
+        <h2 class="text-center text-temp">Add Bank Deposit</h2>
       </div>
       <div class="panel-body">
           <form action="{{ route('bank_deposit_store') }}" method="post" enctype="multipart/form-data">
@@ -37,7 +37,7 @@
               <div class="row">
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="">ব্যাংক নির্বাচন করুন </label>
+                          <label class="">Select Bank</label>
                           <div class="">
                             <select class="form-control" name="bank_id">
                               @foreach ($banks as $key => $bank)
@@ -49,10 +49,10 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="">একাউন্টের ধরণ নির্বাচন করুন </label>
+                          <label class="">Select Account Type</label>
                           <div class="">
                             <select class="form-control" name="account_type_id">
-                              <option value="0">প্রভিডেন্ট ফান্ড</option>
+                              <option value="0">Provident Fund</option>
                               @foreach ($account_types as $key => $account_type)
                                 <option value="{{ $account_type->id }}">{{ $account_type->name }}</option>
                               @endforeach
@@ -62,39 +62,39 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="account_number">একাউন্ট নাম্বার <span class="star">*</span></label>
+                          <label class="" for="account_number">Account Number <span class="star">*</span></label>
                           <div class="">
-                              <input value="{{old('account_number')}}" type="text" name="account_number" class="form-control" placeholder="একাউন্ট নাম্বার ">
+                              <input value="{{old('account_number')}}" type="text" name="account_number" class="form-control" placeholder="Account Number">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="deposit_number">ডিপোজিট নাম্বার <span class="star">*</span></label>
+                          <label class="" for="deposit_number">Deposit Number<span class="star">*</span></label>
                           <div class="">
-                              <input value="{{old('deposit_number')}}" type="text" name="deposit_number" class="form-control" placeholder="ডিপোজিট নাম্বার ">
+                              <input value="{{old('deposit_number')}}" type="text" name="deposit_number" class="form-control" placeholder="Deposit Number">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="amount">ডিপোজিট পরিমান <span class="star">*</span></label>
+                          <label class="" for="amount">Deposit Amount <span class="star">*</span></label>
                           <div class="">
-                              <input value="{{old('amount')}}" type="number" name="amount" class="form-control" placeholder="ডিপোজিট পরিমান">
+                              <input value="{{old('amount')}}" type="number" name="amount" class="form-control" placeholder="Enter Deposit Amount">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="deposit_by">ডিপোজিটকারীর নাম <span class="star">*</span></label>
+                          <label class="" for="deposit_by">Deposit By <span class="star">*</span></label>
                           <div class="">
-                              <input value="{{old('deposit_by')}}" type="text" name="deposit_by" class="form-control" placeholder="ডিপোজিটকারীর নাম">
+                              <input value="{{old('deposit_by')}}" type="text" name="deposit_by" class="form-control" placeholder="Deposit By">
                           </div>
                       </div>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="purpose">ডিপোজিটের কারণ </label>
+                          <label class="" for="purpose">Purpose</label>
                           <div class="">
                               <textarea name="purpose" rows="3" class="form-control"></textarea>
                           </div>
@@ -102,7 +102,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="purpose">বিবরণ </label>
+                          <label class="" for="purpose">Description </label>
                           <div class="">
                               <textarea name="description" rows="3" class="form-control"></textarea>
                           </div>
@@ -110,7 +110,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label class="" for="deposit_date">ডিপোজিট তারিখ <span class="star">*</span></label>
+                          <label class="" for="deposit_date">Deposit Date<span class="star">*</span></label>
                           <div class="">
                               <input  value="{{ date('d-m-Y') }}" class="form-control date" type="text" name="deposit_date">
                           </div>
@@ -124,7 +124,7 @@
                   <div class="row">
                       <div class="col-sm-12">
                           <div class="form-group">
-                              <button id="save" type="submit" class="btn btn-block btn-info">সংরক্ষণ করুন</button>
+                              <button id="save" type="submit" class="btn btn-block btn-info">Save</button>
                           </div>
                       </div>
                   </div>
@@ -134,23 +134,23 @@
   </div>
   <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
     <div class="col-md-12">
-      <h2 class="text-center text-temp">ডিপোজিট পরিচালনা করুন</h2>
+      <h2 class="text-center text-temp">Deposit Management</h2>
     </div>
       <div class="panel-body">
           <div class="table-responsive">
               <table id="commitee_tbl" class="table table-bordered table-hover table-striped">
                   <thead>
                       <tr>
-                          <th class="text-center">ক্রমিক</th>
-                          <th class="text-center">ব্যাংক</th>
-                          <th class="text-center">একাউন্টের ধরন</th>
-                          <th class="text-center">একাউন্ট নাম্বার</th>
-                          <th class="text-center">ডিপোজিট নাম্বার</th>
-                          <th class="text-center">পরিমান</th>
-                          <th class="text-center">ডিপজিটকারী</th>
-                          <th class="text-center">কারণ</th>
-                          <th class="text-center">বিবরন</th>
-                          <th class="text-center">একশন</th>
+                          <th class="text-center">Serial</th>
+                          <th class="text-center">Bank</th>
+                          <th class="text-center">Account Type</th>
+                          <th class="text-center">Account Number</th>
+                          <th class="text-center">Deposit Number</th>
+                          <th class="text-center">Amount</th>
+                          <th class="text-center">Depositor</th>
+                          <th class="text-center">Cause</th>
+                          <th class="text-center">Description</th>
+                          <th class="text-center">Action</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -161,7 +161,7 @@
                       <tr>
                           <td class="text-center">{{$i++}}</td>
                           <td class="text-center">{{$bank_deposit->bank->name??''}}</td>
-                          <td class="text-center">{{$bank_deposit->account_type->name??'প্রভিডেন্ট ফান্ড'}}</td>
+                          <td class="text-center">{{$bank_deposit->account_type->name??'Provident Fund'}}</td>
                           <td class="text-center">{{$bank_deposit->account_number}}</td>
                           <td class="text-center">{{$bank_deposit->deposit_number}}</td>
                           <td class="text-center">{{$bank_deposit->amount}}</td>
@@ -174,7 +174,7 @@
                               @csrf
                               @method('delete')
                               <input type="hidden" name="id" value="{{ $bank_deposit->id }}">
-                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('আপনি কি ব্যাংক ডিপোজিট মুছে ফেলতে চান ?')"><i class="fa fa-trash-o"></i></button>
+                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete ?')"><i class="fa fa-trash-o"></i></button>
                             </form>
                           </td>
                       </tr>

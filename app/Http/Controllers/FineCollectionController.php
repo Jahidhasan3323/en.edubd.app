@@ -59,7 +59,7 @@ class FineCollectionController extends Controller
       $absense = count($all_dates)-($total_attend+$total_holiday);
       // return $absense;
       if (empty($fine)) {
-        return redirect()->back()->with('error_msg', 'জরিমানা কালেকশনের পূর্বে জরিমানার পরিমান নির্ধারণ করুন ।');
+        return redirect()->back()->with('error_msg', 'Please setup fine before collecting fine !');
       }
       return view('backEnd.accounts.fine_collection.add', compact('student', 'absense', 'fine', 'last_fine_collection','current_month_fine_collection', 'funds', 'classes', 'groups', 'units'));
     }
@@ -103,10 +103,10 @@ class FineCollectionController extends Controller
                       $number = $student->f_mobile_no??$student->m_mobile_no;
                       if (!empty($number)) {
                           $mobile_number = "88".$number;
-                          $message = 'আপনার সন্তান '.$student->user->name.',শ্রেণী-'.$student->masterClass->name.', রোল-'.$student->roll.' এর '.$total_fine.' টাকা জরিমানা বকেয়া রয়েছে '.$school_name;
+                          $message = $request->payment_by.", Memo No-".$serial.", Paid-".$request->paid." /-, ".date('d M Y h:i a ').$school_name;
                           $message = urlencode($message);
                           // $send_sms = $this->sms_send_by_api($school,$mobile_number,$message);
-                          $msg = "বকেয়া জরিমানা এস,এম,এস সফলভাবে পাঠানো হয়েছে ।";
+                          $msg = "Fine Collection SMS send Successfully.";
                       }else {
                           $error[] = $student->user->name;
                       }
@@ -116,9 +116,9 @@ class FineCollectionController extends Controller
                       if ($total_fine > 0) {
                           $number = $request->mobile;
                           if (!empty($number)) {
-                              // $mobile_number = "88".$number;
-                              $mobile_number = "8801729890904";
-                              $message = $request->payment_by.", মেমো নাম্বার-".$serial.", জমা-".$request->paid." /-, ".date('d M Y h:i a ').$school_name;
+                              $mobile_number = "88".$number;
+                              // $mobile_number = "8801729890904";
+                              $message = $request->payment_by.", Memo Number-".$serial.", Paid-".$request->paid." /-, ".date('d M Y h:i a ').$school_name;
                               $message = urlencode($message);
                               $send_sms = $this->sms_send_by_api($school,$mobile_number,$message);
                               $success = json_decode($send_sms,true);
@@ -129,7 +129,7 @@ class FineCollectionController extends Controller
                                   $sms->date = now();
                                   $sms->save();
                               }
-                              $msg = "বকেয়া জরিমানা এস,এম,এস সফলভাবে পাঠানো হয়েছে ।";
+                              $msg = "Fine Collection SMS send Successfully.";
                           }else {
                               $error[] = $student->user->name;
                           }
@@ -142,15 +142,12 @@ class FineCollectionController extends Controller
           }
 
       }else {
-          $msg = "এস,এম,এস এ,পি,আই এবং সেন্ডার আইডি সেটাপ করুন ।";
-      }
-      if (empty($msg)) {
-          $msg = "বকেয়া জরিমানা খুজে পাওয়া যায়নি ।";
+          $msg = "Please setup SMS API & Sender ID.";
       }
       $fine_collection_view = FineCollection::where('serial', $serial)->first();
       $student = Student::find($request->student_id);
       $funds = Fund::orderBy('id', 'asc')->get();
-      $msg = 'জরিমানা সফলভাবে যোগ করা হয়েছে ।';
+      $msg = 'Fine Collection Added Successfully.';
       $classes = $this->getClasses();
       $groups = $this->groupClasses();
       $units = $this->getUnits();
@@ -175,7 +172,7 @@ class FineCollectionController extends Controller
     public function fine_collection_delete(Request $request){
       $fine_collection = FineCollection::find($request->id);
       $fine_collection->delete();
-      return redirect()->back()->with('success_msg', 'জরিমানা সফলভাবে মুছে ফেলা হয়েছে ।');
+      return redirect()->back()->with('success_msg', 'Fine Collection Deleted Successfully.');
     }
 
     public function fine_sms(){
@@ -210,10 +207,10 @@ class FineCollectionController extends Controller
                         $number = $student->f_mobile_no??$student->m_mobile_no;
                         if (!empty($number)) {
                             $mobile_number = "88".$number;
-                            $message = 'আপনার সন্তান '.$student->user->name.',শ্রেণী-'.$student->masterClass->name.', রোল-'.$student->roll.' এর '.$total_fine.' টাকা জরিমানা বকেয়া রয়েছে '.$school_name;
+                            $message = 'Your son '.$student->user->name.',Class-'.$student->masterClass->name.', Roll-'.$student->roll.' Fine due amount '.$total_fine.' Taka '.$school_name;
                             $message = urlencode($message);
                             $send_sms = $this->sms_send_by_api($school,$mobile_number,$message);
-                            $msg = "বকেয়া জরিমানা এস,এম,এস সফলভাবে পাঠানো হয়েছে ।";
+                            $msg = "Fine due SMS send Successfully.";
                         }else {
                             $error[] = $student->user->name;
                         }
@@ -225,7 +222,7 @@ class FineCollectionController extends Controller
                             if (!empty($number)) {
                                 $mobile_number = "88".$number;
                                 // $mobile_number = "8801729890904";
-                                $message = 'আপনার সন্তান '.$student->user->name.',শ্রেণী-'.$student->masterClass->name.', রোল-'.$student->roll.' এর '.$total_fine.' টাকা জরিমানা বকেয়া রয়েছে '.$school_name;
+                                $message = 'Your son '.$student->user->name.',Class-'.$student->masterClass->name.', Roll-'.$student->roll.' fine due amount '.$total_fine.' Taka '.$school_name;
                                 $message = urlencode($message);
                                 $send_sms = $this->sms_send_by_api($school,$mobile_number,$message);
                                 $success = json_decode($send_sms,true);
@@ -236,7 +233,7 @@ class FineCollectionController extends Controller
                                     $sms->date = now();
                                     $sms->save();
                                 }
-                                $msg = "বকেয়া জরিমানা এস,এম,এস সফলভাবে পাঠানো হয়েছে ।";
+                                $msg = "Fine due sms send successfull.";
                             }else {
                                 $error[] = $student->user->name;
                             }
@@ -249,10 +246,10 @@ class FineCollectionController extends Controller
             }
 
         }else {
-            $msg = "এস,এম,এস এ,পি,আই এবং সেন্ডার আইডি সেটাপ করুন ।";
+            $msg = "Please setup SMS api & sender ID.";
         }
         if (!isset($msg)) {
-            $msg = "বকেয়া জরিমানা খুজে পাওয়া যায়নি ।";
+            $msg = "Fine due not found !";
         }
         return redirect()->route('fine_sms')->with('success_msg',[$msg,$error,$end_limit]);
     }

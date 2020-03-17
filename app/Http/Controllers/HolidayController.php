@@ -18,12 +18,12 @@ class HolidayController extends Controller
     public $months = Array ('January','February','March','April','May','June','July','August','September','October','November','December');
 
     public function index()
-    {      
+    {
         if(Auth::is('root')){
            $school_id=[0];
         }else{
            $school_id=[Auth::getSchool(),0];
-        }        
+        }
         $holidays =Holiday::whereYear('date', '=', date('Y'))
                    ->whereIn('school_id',$school_id)
                    ->groupBy(DB::raw('MONTH(date)'))
@@ -85,10 +85,10 @@ class HolidayController extends Controller
                }
            }
 
-           Session::flash('sccmgs', 'ছুটি সফলভাবে যোগ করা হয়েছে !');
+           Session::flash('sccmgs', 'Holiday Added Successfully.');
            return redirect()->back();
         } catch (\Exception $e) {
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
 
@@ -170,10 +170,10 @@ class HolidayController extends Controller
                Holiday::create($data);
            }
 
-           Session::flash('sccmgs', 'ছুটি সফলভাবে আপডেট করা হয়েছে !');
+           Session::flash('sccmgs', 'Holiday Updated Successfully.');
            return redirect()->back();
         } catch (\Exception $e) {
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
     }
@@ -196,10 +196,10 @@ class HolidayController extends Controller
             ->whereYear('date', '=', $year)
             ->whereMonth('date', '=', $month)
             ->delete();
-           Session::flash('sccmgs', 'ছুটি সফলভাবে মুছে ফেলা হয়েছে !');
+           Session::flash('sccmgs', 'Holiday Deleted Successfully. !');
            return redirect('holiday');
         } catch (\Exception $e) {
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !'.$e->getMessage());
+            Session::flash('errmgs', 'Sorry, Something went wrong !'.$e->getMessage());
             return redirect()->back();
         }
     }

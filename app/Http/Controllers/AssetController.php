@@ -21,7 +21,7 @@ class AssetController extends Controller
         "start_date" => "required",
       ]);
       if (!empty($request->asset_valuation_increase && $request->asset_valuation_decrease)) {
-        return redirect()->back()->with('error_msg', 'সম্পত্তির মূল্য বৃদ্ধি বা হ্রাস এর যেকন একটি হবে ।');
+        return redirect()->back()->with('error_msg', 'Please add Increase rate or Decrease rate.');
       }
       $last_deposit = Asset::orderBy('id', 'desc')->where('school_id', Auth::getSchool())->first();
       if ($last_deposit) {
@@ -38,7 +38,7 @@ class AssetController extends Controller
       $data['start_date'] = date('Y-m-d', strtotime($request->start_date));
       $data['end_date'] = date('Y-m-d', strtotime($request->end_date));
       $asset->create($data);
-      return redirect()->back()->with('success_msg', 'সম্পত্তি সফলভাবে সংরক্ষণ করা হয়েছে ।');
+      return redirect()->back()->with('success_msg', 'Assed Added Successfully.');
     }
 
     public function asset_edit($id){
@@ -54,7 +54,7 @@ class AssetController extends Controller
         "start_date" => "required",
       ]);
       if (!empty($request->asset_valuation_increase && $request->asset_valuation_decrease)) {
-        return redirect()->back()->with('error_msg', 'সম্পত্তির মূল্য বৃদ্ধি বা হ্রাস এর যেকন একটি হবে ।');
+        return redirect()->back()->with('error_msg', 'Please add Increase rate or Decrease rate.');
       }
       $total_price = ($request->qty*$request->unit_price);
       $asset = Asset::find($request->id);
@@ -63,13 +63,13 @@ class AssetController extends Controller
       $data['start_date'] = date('Y-m-d', strtotime($request->start_date));
       $data['end_date'] = date('Y-m-d', strtotime($request->end_date));
       $asset->update($data);
-      return redirect()->route('asset_add')->with('success_msg', 'সম্পত্তি সফলভাবে আপডেট করা হয়েছে ।');
+      return redirect()->route('asset_add')->with('success_msg', 'Asset Updated Successfully.');
     }
 
     public function asset_delete(Request $request){
       $asset = Asset::find($request->id);
       $asset->delete();
-      return redirect()->route('asset_add')->with('success_msg', 'সম্পত্তি সফলভাবে মুছে ফেলা হয়েছে ।');
+      return redirect()->route('asset_add')->with('success_msg', 'Asset Deleted Successfully.');
     }
 
 

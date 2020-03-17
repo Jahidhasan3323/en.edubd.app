@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'Add class Routine')
+@section('mainTitle', 'Fee Category Edit')
 @section('head_section')
     <style>
 
@@ -10,7 +10,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">ফি ক্যাটাগরি পরিবর্তন করুন</h1>
+            <h1 class="text-center text-temp">Edit Fee Category</h1>
         </div>
 
         @if(session('success_msg'))
@@ -32,27 +32,27 @@
             <p class="text-center error" style=""></p>
         </div>
 
-        <div class="panel-body">
+        <div class="panel-body col-md-8 col-md-offset-2">
             <form action="{{ route('fee_category_update') }}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <input type="hidden" name="id" value="{{ $fee_category->id }}">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="" for="name">ফি ক্যাটাগরির নাম <span class="star">*</span></label>
+                            <label class="" for="name">Fee Category Name <span class="star">*</span></label>
                             <div class="">
                                 <input value="{{ $fee_category->name??'' }}" type="text" name="name" class="form-control">
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="">ফি ক্যাটাগরির অবস্থা <span class="star">*</span></label>
+                            <label class="">Fee Category Status<span class="star">*</span></label>
                             <div class="">
                               <select class="form-control" name="status">
-                                <option selected value="1">{{ $fee_category->status==1?'সক্রিয়': 'নিষ্ক্রিয়' }}</option>
-                                <option value="1">সক্রিয়</option>
-                                <option value="0">নিষ্ক্রিয়</option>
+                                <option selected value="1">{{ $fee_category->status==1?'Enable': 'Disable' }}</option>
+                                <option value="1">Enable</option>
+                                <option value="0">Disable</option>
                               </select>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">আপডেট করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Update</button>
                             </div>
                         </div>
                     </div>

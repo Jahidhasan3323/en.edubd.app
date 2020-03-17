@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'ব্যাংক একাউন্টের ধরণ পরিচালনা')
+@section('mainTitle', 'Bank Account Type Management')
 @section('head_section')
     <style>
 
@@ -11,10 +11,10 @@
 
   <div class="row">
     <div class="col-md-6">
-      <h2 class="text-center text-temp">ব্যাংক একাউন্টের ধরণ পরিচালনা করুন</h2>
+      <h2 class="text-center text-temp">Bank Account Type Management</h2>
     </div>
     <div class="col-md-6">
-      <h2 class="text-center text-temp">ব্যাংক একাউন্টের ধরণ যোগ করুন</h2>
+      <h2 class="text-center text-temp">Add Bank Account Type</h2>
     </div>
     <div class="col-md-12">
       @if(session('success_msg'))
@@ -39,11 +39,11 @@
               <table id="bank_account_type" class="table table-bordered table-hover table-striped">
                   <thead>
                       <tr>
-                          <th class="text-center">ক্রমিক</th>
-                          <th class="text-center">নাম</th>
-                          <th class="text-center">অবস্থা</th>
-                          <th class="text-center">পরিবর্তন</th>
-                          <th class="text-center">মুছুন</th>
+                          <th class="text-center">Serial</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">Status</th>
+                          <th class="text-center">Edit</th>
+                          <th class="text-center">Delete</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -54,7 +54,7 @@
                       <tr>
                           <td class="text-center">{{$i++}}</td>
                           <td class="text-center">{{$bank_aacount_type->name}}</td>
-                          <td class="text-center">{{$bank_aacount_type->status==1?'সক্রিয়': 'নিষ্ক্রিয়'}}</td>
+                          <td class="text-center">{{$bank_aacount_type->status==1?'Enable': 'Disable'}}</td>
                           <td class="text-center">
                             <a href="{{ route('bank_aacount_type_edit', $bank_aacount_type->id) }}"> <button type="button" class="btn btn-info"><i class="fa fa-pencil-square-o"></i></button> </a>
                           </td>
@@ -63,7 +63,7 @@
                               @csrf
                               @method('delete')
                               <input type="hidden" name="id" value="{{ $bank_aacount_type->id }}">
-                              <button type="submit" class="btn btn-danger" onclick="return confirm('আপনি কি ব্যাংক একাউন্টের ধরণ মুছে ফেলতে চান ?')"><i class="fa fa-trash-o"></i></button>
+                              <button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to delete ?')"><i class="fa fa-trash-o"></i></button>
                             </form>
                           </td>
                       </tr>
@@ -84,19 +84,19 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="" for="name">ব্যাংক একাউন্টের ধরণের নাম <span class="star">*</span></label>
+                            <label class="" for="name">Bank Account Type Name <span class="star">*</span></label>
                             <div class="">
-                                <input value="{{old('name')}}" type="text" name="name" class="form-control" placeholder="ব্যাংক একাউন্টের ধরণের নাম লিখুন">
+                                <input value="{{old('name')}}" type="text" name="name" class="form-control" placeholder="Bank Account Type Name">
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="">ব্যাংক একাউন্টের ধরণের অবস্থা </label>
+                            <label class="">Status</label>
                             <div class="">
                               <select class="form-control" name="status">
-                                <option selected value="1">সক্রিয়</option>
-                                <option value="0">নিষ্ক্রিয়</option>
+                                <option selected value="1">Enable</option>
+                                <option value="0">Disable</option>
                               </select>
                             </div>
                         </div>
@@ -109,7 +109,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">সংরক্ষণ করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Save</button>
                             </div>
                         </div>
                     </div>

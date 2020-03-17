@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'পরামর্শের তালিকা')
+@section('mainTitle', 'List of Advice')
 @section('active_care', 'active')
 @section('style')
     <style>
@@ -18,16 +18,16 @@
 
         <div class="panel-body col-md-6" style="border:1px solid #ddd;">
             <div class="page-header">
-                <h1 class="text-center text-temp">নতুন পরামর্শের তালিকা</h1>
+                <h1 class="text-center text-temp"> New Advice List</h1>
             </div>
             <div class="table-responsive">
                 <table id="advice_tbl" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>টোকেন</th>
-                            <th>বিষয়</th>
-                            <th>ছবি</th>
-                            <th>অ্যাকশন</th>
+                            <th>Token</th>
+                            <th>Subject</th>
+                            <th>Picture</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,18 +42,18 @@
                             </td>
                             <td class="text-center">
                                 <div class="action_btn">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#unseen{{ $advice->id }}" title="বিস্তারিত দেখুন"> <i class="fa fa-eye"></i> </button>
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#unseen{{ $advice->id }}" title="Click for details"> <i class="fa fa-eye"></i> </button>
                                 </div>
                                 <form class="action_btn" action="{{ route('advice.edit') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $advice->id }}">
-                                    <button type="submit" class="btn btn-primary btn-sm" title="পরিবর্তন করুন"> <i class="fa fa-edit"></i> </button>
+                                    <button type="submit" class="btn btn-primary btn-sm" title="Click for Edit"> <i class="fa fa-edit"></i> </button>
                                 </form>
                                 <form class="action_btn" action="{{ route('problem.delete') }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <input type="hidden" name="id" value="{{ $advice->id }}">
-                                    <button type="submit" class="btn btn-danger btn-sm" title="মুছে ফেলুন" onclick="return confirm('আপনি কি মুছে ফেলতে চান ?')"> <i class="fa fa-trash-o"></i> </button>
+                                    <button type="submit" class="btn btn-danger btn-sm" title="Click for delete" onclick="return confirm('Do you want to delete ?')"> <i class="fa fa-trash-o"></i> </button>
                                 </form>
                             </td>
                         </tr>
@@ -79,10 +79,10 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>টোকেন</th>
-                            <th>বিষয়</th>
-                            <th>ছবি</th>
-                            <th>অ্যাকশন</th>
+                            <th>Token</th>
+                            <th>Subject</th>
+                            <th>Picture</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -91,16 +91,16 @@
 
         <div class="panel-body col-md-6" style="border:1px solid #ddd;">
             <div class="page-header">
-                <h1 class="text-center text-temp">দেখা পরামর্শের তালিকা</h1>
+                <h1 class="text-center text-temp">Seen Advice</h1>
             </div>
             <div class="table-responsive">
                 <table id="advice_seen" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>টোকেন</th>
-                            <th>বিষয়</th>
-                            <th>ছবি</th>
-                            <th>অ্যাকশন</th>
+                            <th>Token</th>
+                            <th>Subject</th>
+                            <th>Picture</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -115,7 +115,7 @@
                             </td>
                             <td class="text-center">
                                 <div class="action_btn">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#seen{{ $advice->id }}" title="বিস্তারিত দেখুন"> <i class="fa fa-eye"></i> </button>
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#seen{{ $advice->id }}" title="Click for details"> <i class="fa fa-eye"></i> </button>
                                 </div>
                                 {{-- <form class="action_btn" action="{{ route('problem.delete') }}" method="post">
                                     @csrf
@@ -147,10 +147,10 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>টোকেন</th>
-                            <th>বিষয়</th>
-                            <th>ছবি</th>
-                            <th>অ্যাকশন</th>
+                            <th>Token</th>
+                            <th>Subject</th>
+                            <th>Picture</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                 </table>

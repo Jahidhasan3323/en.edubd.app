@@ -6,7 +6,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">বিষয় ভিত্তিক শিক্ষক</h1>
+            <h1 class="text-center text-temp">Subject Wise Teacher</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -15,7 +15,7 @@
         @if(Session::has('sccmgs'))
             @include('backEnd.includes.success')
         @endif
-      
+
         <div class="row">
             <div class="col-sm-12">
                 <div class="table-responsive">
@@ -23,15 +23,15 @@
                         <table id="sub_techer_tbl" class="table table-bordered table-hover table-striped">
                           <thead>
                             <tr>
-                                <th># ক্রমিক নং</th>
-                                <th>শ্রেণী</th>
-                                <th>শিফট</th>
-                                <th>শাখা</th>
-                                <th>বিভাগ</th>
-                                <th>শিক্ষক</th>
-                                <th>বিষয়</th>
+                                <th>Serial</th>
+                                <th>Class</th>
+                                <th>Shift</th>
+                                <th>Section</th>
+                                <th>Group</th>
+                                <th>Teacher</th>
+                                <th>Subject</th>
                                 @if(Auth::is('admin'))
-                                    <th>অ্যাকশন</th>
+                                    <th>Action</th>
                                 @endif
                             </tr>
                          </thead>
@@ -57,23 +57,23 @@
 
                                         </td>
                                     @endif
-                                   
+
                                 </tr>
                                 @php($sl++)
                             @endforeach
                          </tbody>
                          <tfoot>
                              <tr>
-                                <th># ক্রমিক নং</th>
-                                <th>শ্রেণী</th>
-                                <th>শিফট</th>
-                                <th>শাখা</th>
-                                <th>বিভাগ</th>
-                                <th>শিক্ষক</th>
-                                <th>বিষয়</th>
-                                @if(Auth::is('admin'))
-                                    <th>অ্যাকশন</th>
-                                @endif
+                                 <th>Serial</th>
+                                 <th>Class</th>
+                                 <th>Shift</th>
+                                 <th>Section</th>
+                                 <th>Group</th>
+                                 <th>Teacher</th>
+                                 <th>Subject</th>
+                                 @if(Auth::is('admin'))
+                                     <th>Action</th>
+                                 @endif
                              </tr>
                          </tfoot>
                         </table>

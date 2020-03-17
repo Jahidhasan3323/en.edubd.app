@@ -74,10 +74,10 @@ class DesignationController extends Controller
         $data['name'] = $request->name;
         $data['type'] = $request->type;
         if (Designation::create($data)){
-            Session::flash('sccmgs', 'পদবী সফলভাবে যোগ করা হয়েছে !');
+            Session::flash('sccmgs', 'Designation Added Successfully.');
             return redirect()->back();
         }else{
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !');
+            Session::flash('errmgs', 'Sorry, Something went wrong !');
             return redirect()->back();
         }
     }
@@ -137,10 +137,10 @@ class DesignationController extends Controller
 
         $data = $request->only('name','type');
         if ($designation->update($data)){
-            Session::flash('sccmgs', 'পদবী সফলভাবে আপডেট করা হয়েছে !');
+            Session::flash('sccmgs', 'Designation Updated Successfully.');
             return redirect()->back();
         }else{
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !');
+            Session::flash('errmgs', 'Sorry, Something went wrong !');
             return redirect()->back();
         }
     }
@@ -158,10 +158,10 @@ class DesignationController extends Controller
         }
 
         if ($designation->delete()){
-            Session::flash('sccmgs', 'পদবী সফলভাবে মুছে ফেলা হয়েছে !');
+            Session::flash('sccmgs', 'Designation Deleted Successfully.');
             return redirect()->back();
         }else{
-            Session::flash('errmgs', 'দুঃখিত, সমস্যা হয়েছে !');
+            Session::flash('errmgs', 'Sorry, Designation Deleted Successfully. !');
             return redirect()->back();
         }
     }

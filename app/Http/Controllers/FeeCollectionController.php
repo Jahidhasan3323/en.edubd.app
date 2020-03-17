@@ -55,7 +55,7 @@ class FeeCollectionController extends Controller
         return json_encode($data);
       }else {
         $view_id = substr($request->fee_view_id, 8);
-        $data = array("view_id" => $view_id, "fee_amount" => "ফি নির্ধারণ করুন");
+        $data = array("view_id" => $view_id, "fee_amount" => "Please Fee Setup");
         return json_encode($data);
       }
     }
@@ -80,7 +80,7 @@ class FeeCollectionController extends Controller
       $current_due = ($due - $due_paid);
       $fee_collection_form = "";
       if (empty($student)) {
-        return redirect()->back()->with('error_msg', 'শিক্ষার্থী খুজে পাওয়া যায়নি ।');
+        return redirect()->back()->with('error_msg', 'Student not found !');
       }
       return view('backEnd.accounts.fee_collection.add', compact('fee_collection_form', 'classes', 'groups', 'units', 'fee_categories', 'funds', 'student', 'fee_status', 'current_due'));
     }
@@ -111,10 +111,13 @@ class FeeCollectionController extends Controller
                         ->whereIn('fee_category_id', $fee_cats)
                         ->get();
         if (count($fees) < 1 ) {
-          return redirect()->route('fee_collection_add')->with('error_msg', 'ফি কালেকশনের পূর্বে ক্যাটাগরি ভিত্তিক ফি এর পরিমান নির্ধারন করুন।');
+          return redirect()->route('fee_collection_add')->with('error_msg', 'Please setup fee before collecting fee.');
         }
       }
-
+      $account_setting = AccountSetting::where('school_id', Auth::getSchool())->first();
+      if (empty($account_setting)) {
+        return redirect()->route('fee_collection_add')->with('error_msg', 'Please setup account setting before collecting fee');
+      }
       $total_amount = 0;
       foreach ($fees as $key => $fee) {
         $total_amount += $fee->amount;
@@ -155,10 +158,7 @@ class FeeCollectionController extends Controller
       $due_paid = FeeCollection::where('student_id', $student->id)->sum('due_paid');
       $current_due = ($due - $due_paid);
       // SMS Sending Code
-      $account_setting = AccountSetting::where('school_id', Auth::getSchool())->first();
-      if (empty($account_setting)) {
-        return redirect()->route('fee_collection_add')->with('error_msg', 'ফি কালেকশনের পূর্বে ভাউচারের শিরোনাম, এস,এম,এস ইত্যাদি একাউন্ট  সেটিংসে যোগ করুন ।');
-      }
+
       $student_name = User::find($student->user_id);
       $school=$this->school();
       $sms_limit = SmsLimit::where('school_id', $school->id)->first();
@@ -170,7 +170,7 @@ class FeeCollectionController extends Controller
             if (!empty($request->mobile)) {
               $mobile_number = "88".$request->mobile;
               $total_paid_amount = $amount+$due_paid;
-              $message = urlencode($student_name->name.", মেমো নাম্বার-".$serial.", জমা-".$total_paid_amount."/-, ".date('d M Y h:i a').$school_name);
+              $message = urlencode($student_name->name.", Memo No-".$serial.", Paid-".$total_paid_amount."/-, ".date('d M Y h:i a').$school_name);
               $send_sms = $this->sms_send_by_api($school,$mobile_number,$message);
             }
           }
@@ -179,7 +179,7 @@ class FeeCollectionController extends Controller
             if (!empty($request->mobile)) {
               $mobile_number = "88".$request->mobile;
               $total_paid_amount = $amount+$due_paid;
-              $message = urlencode($student_name->name.", মেমো নাম্বার-".$serial.", জমা-".$total_paid_amount."/-, ".date('d M Y h:i a').$school_name);
+              $message = urlencode($student_name->name.", Memo No-".$serial.", Paid-".$total_paid_amount."/-, ".date('d M Y h:i a').$school_name);
               $send_sms = $this->sms_send_by_api($school,$mobile_number,$message);
               $success = json_decode($send_sms,true);
               if ($success['error']==0) {
@@ -219,7 +219,7 @@ class FeeCollectionController extends Controller
     public function fee_collection_delete(Request $request){
       $fee_collection = FeeCollection::find($request->id);
       $fee_collection->delete();
-      return redirect()->back()->with('success_msg', 'ফি কালেকশন সফলভাবে মুছে ফেলা হয়েছে ।');
+      return redirect()->back()->with('success_msg', 'Fee Collection Deleted Successfully.');
     }
 
     public function due_sms(){
@@ -255,10 +255,10 @@ class FeeCollectionController extends Controller
                         $number = $student->f_mobile_no??$student->m_mobile_no;
                         if (!empty($number)) {
                             $mobile_number = "88".$number;
-                            $message = 'আপনার সন্তান '.$student->user->name.',শ্রেণী-'.$student->masterClass->name.', রোল-'.$student->roll.' এর '.$current_due.' টাকা বকেয়া রয়েছে '.$school_name;
+                            $message = 'Your son '.$student->user->name.',Class-'.$student->masterClass->name.', Roll-'.$student->roll.' due amount '.$current_due.' Taka '.$school_name;
                             $message = urlencode($message);
                             $send_sms = $this->sms_send_by_api($school,$mobile_number,$message);
-                            $msg = "বকেয়া এস,এম,এস সফলভাবে পাঠানো হয়েছে ।";
+                            $msg = "Due sms send successfully.";
                         }else {
                             $error[] = $student->user->name;
                         }
@@ -269,7 +269,7 @@ class FeeCollectionController extends Controller
                             $number = $student->f_mobile_no??$student->m_mobile_no;
                             if (!empty($number)) {
                                 $mobile_number = "88".$number;
-                                $message = 'আপনার সন্তান '.$student->user->name.',শ্রেণী-'.$student->masterClass->name.', রোল-'.$student->roll.' এর '.$current_due.' টাকা বকেয়া রয়েছে '.$school_name;
+                                $message = 'Your son '.$student->user->name.',Class-'.$student->masterClass->name.', Roll-'.$student->roll.' due amount '.$current_due.' Taka'.$school_name;
                                 $message = urlencode($message);
                                 $send_sms = $this->sms_send_by_api($school,$mobile_number,$message);
                                 $success = json_decode($send_sms,true);
@@ -280,7 +280,7 @@ class FeeCollectionController extends Controller
                                     $sms->date = now();
                                     $sms->save();
                                 }
-                                $msg = "বকেয়া এস,এম,এস সফলভাবে পাঠানো হয়েছে ।";
+                                $msg = "Due SMS send successfully.";
                             }else {
                                 $error[] = $student->user->name;
                             }
@@ -292,7 +292,7 @@ class FeeCollectionController extends Controller
             }
 
         }else {
-            $msg = "এস,এম,এস এ,পি,আই এবং সেন্ডার আইডি সেটাপ করুন ।";
+            $msg = "Please seup SMS api & sender ID.";
         }
         return redirect()->route('due_sms')->with('success_msg',[$msg,$error,$end_limit]);
     }

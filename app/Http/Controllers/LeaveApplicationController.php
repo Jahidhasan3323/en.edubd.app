@@ -16,7 +16,7 @@ class LeaveApplicationController extends Controller
     public function user_application()
     {
         if(Auth::is('teacher') || Auth::is('staff') || Auth::is('student')){
-           $tittle='ছুটির আবেদন ';
+           $tittle='Leave Application ';
             $leave_applications=LeaveApplication::where(['school_id'=> Auth::getSchool(),'user_id'=>Auth::id()])->orderby('id','DESC')->get();
         return view('backEnd.leave_application.index',compact('leave_applications','tittle'));
         }else{
@@ -30,7 +30,7 @@ class LeaveApplicationController extends Controller
              return redirect('/home');
 
         }
-        $tittle='প্রক্রিয়াধীন ছুটির আবেদন ';
+        $tittle='Pending Leave Application';
             $leave_applications=LeaveApplication::where(['school_id'=> Auth::getSchool(),'status'=>0])->orderby('id','DESC')->get();
         return view('backEnd.leave_application.index',compact('leave_applications','tittle'));
 
@@ -42,7 +42,7 @@ class LeaveApplicationController extends Controller
              return redirect('/home');
 
         }
-        $tittle='গ্রহণ করা ছুটির আবেদন ';
+        $tittle='Accepted Leave Application';
             $leave_applications=LeaveApplication::where(['school_id'=> Auth::getSchool(),'status'=>1])->orderby('id','DESC')->get();
         return view('backEnd.leave_application.index',compact('leave_applications','tittle'));
 
@@ -53,7 +53,7 @@ class LeaveApplicationController extends Controller
              return redirect('/home');
 
         }
-        $tittle='বাতিল করা ছুটির আবেদন ';
+        $tittle='Cencel Leave Application';
             $leave_applications=LeaveApplication::where(['school_id'=> Auth::getSchool(),'status'=>2])->orderby('id','DESC')->get();
         return view('backEnd.leave_application.index',compact('leave_applications','tittle'));
 
@@ -107,7 +107,7 @@ class LeaveApplicationController extends Controller
          }
 
         LeaveApplication::create($data);
-        return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','leave_application');
+        return $this->returnWithSuccessRedirect('Your Information Added Successfully!','leave_application');
     }else{
         return redirect('/home');
 
@@ -121,7 +121,7 @@ class LeaveApplicationController extends Controller
         }
         LeaveApplication::where('id',$id)->update(['status'=>1]);
 
-        return $this->returnWithSuccess('আবেদন পত্র গ্রহণ করা হয়েছে ');
+        return $this->returnWithSuccess('Leave Apllication Accepted.');
     }
     public function cancle($id)
     {
@@ -130,7 +130,7 @@ class LeaveApplicationController extends Controller
         }
         LeaveApplication::where('id',$id)->update(['status'=>2]);
 
-        return $this->returnWithSuccess('আবেদন পত্র বাতিল করা হয়েছে ');
+        return $this->returnWithSuccess('Leave Apllication Cenceled. ');
     }
 
     /**

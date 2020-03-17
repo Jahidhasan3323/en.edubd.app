@@ -7,7 +7,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">অনুপস্থিত শিক্ষার্থীদের  জন্য বিজ্ঞপ্তি সেবা</h1>
+            <h1 class="text-center text-temp">Send Absent Student SMS</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -17,14 +17,14 @@
             @include('backEnd.includes.success')
         @endif
         <div class="col-sm-12">
-            <h4 style="margin-bottom: 20px;" class="text-center">নিচের সব নির্বাচন করুন</h4>
+            <h4 style="margin-bottom: 20px;" class="text-center">Select the following items</h4>
             <div class="row">
                 <form action="{{url('/sms/search')}}" method="get">
                     {{csrf_field()}}
                     <div class="col-sm-3 {{$errors->has('master_class_id') ? 'has-error' : ''}}">
                         <div class="form-group">
                             <select class="form-control" name="master_class_id" id="master_class_id">
-                                <option value="">...শ্রেণী নির্বাচন করুন...</option>
+                                <option value="">Select Class</option>
                                 @foreach($classes as $class)
                                     <option value="{{$class->id}}" >{{$class->name}}</option>
                                 @endforeach
@@ -39,7 +39,7 @@
                     <div class="col-sm-3 {{$errors->has('group') ? 'has-error' : ''}}">
                         <div class="form-group">
                             <select class="form-control" name="group" id="group">
-                                <option value="">...গ্রুপ / বিভাগ নির্বাচন করুন...</option>
+                                <option value="">Select Group</option>
                                 @foreach($class_groups as $class_group)
                                     <option value="{{$class_group->name}}" >{{$class_group->name}}</option>
                                 @endforeach
@@ -54,11 +54,11 @@
                     <div class="col-sm-3 {{$errors->has('shift') ? 'has-error' : ''}}">
                         <div class="form-group">
                             <select class="form-control" name="shift" id="shift">
-                                <option value="">শিফট নির্বাচন করুন</option>
-                                <option value="সকাল">সকাল</option>
-                                <option value="দিন">দিন</option>
-                                <option value="সন্ধ্যা">সন্ধ্যা</option>
-                                <option value="রাত">রাত</option>
+                                <option value="">Select Shift</option>
+                                <option value="Morning">Morning</option>
+                                <option value="Day">Day</option>
+                                <option value="Evening">Evening</option>
+                                <option value="Night">Night</option>
                             </select>
                         </div>
                         @if($errors->has('shift'))
@@ -70,11 +70,11 @@
                     <div class="col-sm-3 {{$errors->has('section') ? 'has-error' : ''}}">
                         <div class="form-group">
                             <select name="section" id="section" class="form-control" required="">
-                                <option value="">...শাখা নির্বাচন করুন...</option>
-                                <option value="ক">ক</option>
-                                <option value="খ">খ</option>
-                                <option value="গ">গ</option>
-                                <option value="ঘ">ঘ</option>
+                                <option value="">Select Section</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
                                 @foreach($units as $unit)
                                 <option value="{!!$unit->name!!}">{!!$unit->name!!}</option>
                                 @endforeach
@@ -88,7 +88,7 @@
                     </div>
                     <div class="col-sm-2 col-md-offset-5">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block">অনুসন্ধান</button>
+                            <button type="submit" class="btn btn-primary btn-block">Search</button>
                         </div>
                     </div>
                 </form>
@@ -96,8 +96,8 @@
         </div>
         @if(isset($students))
         <div class="col-sm-12">
-        <h4 style="margin-bottom: 10px;" class="text-center">অনুপস্থিত শিক্ষার্থী চিহ্নিত করুন </h4>
-        <h5 style="margin-bottom: 10px;" class="text-center">মোট অনুপস্থিত : {{count($students)}}</h5>
+        <h4 style="margin-bottom: 10px;" class="text-center">Select Absent Student </h4>
+        <h5 style="margin-bottom: 10px;" class="text-center">Total Absent : {{count($students)}}</h5>
         <div class="row">
             <div class="panel-body" style="margin-top: 10px;">
                 <form action="{{url('/sms/store')}}" method="post" enctype="multipart/form-data">
@@ -109,9 +109,9 @@
                         <table class="table table-hover table-striped">
 
                             <tr>
-                                <th>শিক্ষার্থীর নাম </th>
-                                <th>শিক্ষার্থীর আইডি</th>
-                                <th>শ্রেণী রোল</th>
+                                <th>Student Name </th>
+                                <th>Student ID</th>
+                                <th>Class Roll</th>
                             </tr>
                            @foreach($students as $student)
                            @if(($school->service_type_id==1 && $student->id_card_exits==1) || $school->service_type_id!=1)
@@ -130,13 +130,13 @@
                                 </td>
                             </tr>
                             @else
-                             <tr><td colspan="3">{{$student->user->name}} এই শিক্ষার্থীর জন্য সফটওয়্যার সেবা প্রদানকারী প্রতিষ্টানের সাথে যোগাযোগ করুন ।</td></tr>
+                             <tr><td colspan="3">{{$student->user->name}} Please contact your service provider for this student information view.</td></tr>
                             @endif
                             @endforeach
                             @if(count($students)>0)
                             <tr>
                                 <td colspan="3">
-                                    <input id="all_check" class="form-check-input" onclick="checkNumber()" type="checkbox"> <label for="all_check">সব চেক / আনচেক</label>
+                                    <input id="all_check" class="form-check-input" onclick="checkNumber()" type="checkbox"> <label for="all_check">All Check / Uncheck</label>
                                 </td>
                             </tr>
                             @endif
@@ -145,7 +145,7 @@
                     </div>
                     @if(count($students)>0)
                     <hr>
-                    
+
                     <div class="">
                         <div class="row">
                             <div class="col-md-2 col-md-offset-5">
@@ -166,7 +166,7 @@
 @endsection
 
 @section('script')
-  
+
     <script type="text/javascript">
         function checkNumber(){
             // Check #x
@@ -186,16 +186,16 @@
     <script type="text/javascript">
         document.getElementById("master_class_id").value="{{$request->master_class_id}}"
         document.getElementById("group").value="{{$request->group}}"
-        document.getElementById("shift").value="{{$request->shift}}" 
-        document.getElementById("section").value="{{$request->section}}" 
+        document.getElementById("shift").value="{{$request->shift}}"
+        document.getElementById("section").value="{{$request->section}}"
     </script>
     @endif
     @if($errors->has('*'))
     <script type="text/javascript">
         document.getElementById("master_class_id").value="{{old('master_class_id')}}"
         document.getElementById("group").value="{{old('group')}}"
-        document.getElementById("shift").value="{{old('shift')}}" 
-        document.getElementById("section").value="{{old('section')}}" 
+        document.getElementById("shift").value="{{old('shift')}}"
+        document.getElementById("section").value="{{old('section')}}"
     </script>
     @endif
 

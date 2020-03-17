@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'আয় পরিচালনা করুন')
+@section('mainTitle', 'Income Management')
 @section('head_section')
 @endsection
 @section('active_accounts', 'active')
@@ -8,7 +8,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h2 class="text-center text-temp">আয় পরিচালনা করুন</h2>
+      <h2 class="text-center text-temp">Income Management</h2>
     </div>
     <div class="col-md-12">
       @if(session('success_msg'))
@@ -34,14 +34,14 @@
               <table id="commitee_tbl" class="table table-bordered table-hover table-striped">
                   <thead>
                       <tr>
-                          <th class="text-center">ক্রমিক</th>
-                          <th class="text-center">সিরিয়াল</th>
-                          <th class="text-center">নাম</th>
-                          <th class="text-center">ফান্ড</th>
-                          <th class="text-center">তারিখ</th>
-                          <th class="text-center">পরিমান</th>
-                          <th class="text-center">প্রিন্ট</th>
-                          <th class="text-center">মুছুন</th>
+                          <th class="text-center">SL</th>
+                          <th class="text-center">Serial</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">Fund</th>
+                          <th class="text-center">Date</th>
+                          <th class="text-center">Amount</th>
+                          <th class="text-center">Print</th>
+                          <th class="text-center">Delete</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -57,15 +57,15 @@
                           <td class="text-center">{{ date('d-m-Y', strtotime($income->created_at)) }}</td>
                           <td class="text-center">{{ $income->amount }}</td>
                           <td class="text-center">
-                            <a href="{{ route('income_view', $income->id) }}"> <button type="button" class="btn btn-info"><i class="fa fa-print"></i></button> </a>
+                            <a href="{{ route('income_view', $income->id) }}"> <button type="button" class="btn btn-info btn-sm"><i class="fa fa-print"></i></button> </a>
                           </td>
                           <td class="text-center">
-                            <a href="{{ route('income_edit', $income->id) }}"> <button type="button" class="btn btn-primary" style="margin: 5px;"><i class="fa fa-pencil-square-o"></i></button> </a>
+                            <a href="{{ route('income_edit', $income->id) }}"> <button type="button" class="btn btn-primary btn-sm" style="margin: 5px;"><i class="fa fa-pencil-square-o"></i></button> </a>
                             <form class="" action="{{ route('income_delete') }}" method="post">
                               @csrf
                               @method('delete')
                               <input type="hidden" name="id" value="{{ $income->id }}">
-                              <button type="submit" class="btn btn-danger" onclick="return confirm('আপনি কি জমা করা আয়টি মুছে ফেলতে চান ?')"><i class="fa fa-trash-o"></i></button>
+                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete ?')"><i class="fa fa-trash-o"></i></button>
                             </form>
                           </td>
                       </tr>

@@ -55,7 +55,7 @@ class ProgressCardController extends Controller
         ])->get();
 
         if(count($results)<1){
-          Session::flash('errmgs', 'দুঃখিত, ফলাফল এখনো প্রকাশিত হয়নি ।');
+          Session::flash('errmgs', 'Sorry, Result not published yet !');
           return redirect()->back();
         }
 
@@ -81,7 +81,7 @@ class ProgressCardController extends Controller
             return view('backEnd.results.progress_card_view', compact('results','exam','request','school','student','class_position_numbers'));
         }
 
-        Session::flash('errmgs', 'দুঃখিত, কোনো ফলাফল খুজে পাওয়া যায়নি !');
+        Session::flash('errmgs', 'Sorry, Result not found !');
         return redirect()->back();
     }
 
@@ -129,7 +129,7 @@ class ProgressCardController extends Controller
             $exam = ExamType::where('id',$request->exam_type_id)->first();
             return view('backEnd.results.class_pro_card_view', compact('all_results','exam','request','school','class_position_numbers'));
         }
-        Session::flash('errmgs', 'দুঃখিত, কোনো ফলাফল খুজে পাওয়া যায়নি !');
+        Session::flash('errmgs', 'Sorry, Result not found !');
         return redirect()->back();
     }
 

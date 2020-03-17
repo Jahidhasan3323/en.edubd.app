@@ -1,14 +1,14 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'বিষয় তথ্য')
+@section('mainTitle', 'Subject Information')
 @section('active_subject', 'active')
 
 @section('content')
-   
+
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">বিষয় তথ্য</h1>
-            <h3 class="text-center text-temp">শ্রেী : {{$subjects[0]->masterClass->name}}, ট্রেড : {{$subjects[0]->groupClass->name}}</h3>
+            <h1 class="text-center text-temp">Subject Information</h1>
+            <h3 class="text-center text-temp">Class : {{$subjects[0]->masterClass->name}}, Group : {{$subjects[0]->groupClass->name}}</h3>
         </div>
 
 
@@ -21,29 +21,29 @@
         <div class="panel-body">
            <div class="table-responsive">
             <table id="subject_tbl" class="table table-bordered table-hover table-striped">
-                
+
                 <thead>
                     <tr>
-                        <th rowspan="2"># ক্রমিক নং</th>
-                        <th rowspan="2" style="width:10%">বিষয়</th>
-                        <th rowspan="2">কোড</th>
-                        <th rowspan="2">মোট নম্বর</th>
-                        <th rowspan="2" class="text-center">মোট পাশ নম্বর</th>
-                        <th colspan="4" class="text-center">নম্বর বন্টন</th>
-                        <th colspan="4" class="text-center">পাশ নম্বর বন্টন</th>
-                        <th rowspan="2">স্টেটাস</th>
-                        <th rowspan="2">অ্যাকশন</th>
+                        <th rowspan="2">Serial</th>
+                        <th rowspan="2" style="width:10%">Subject</th>
+                        <th rowspan="2">Code</th>
+                        <th rowspan="2">Total Marks</th>
+                        <th rowspan="2" class="text-center">Total Pass marks</th>
+                        <th colspan="4" class="text-center">Marks Distribution</th>
+                        <th colspan="4" class="text-center">Pass Marks Distribution</th>
+                        <th rowspan="2">Status</th>
+                        <th rowspan="2">Action</th>
                     </tr>
                     <tr>
-                        <th>সিএ</th>
-                        <th>সিআর/তত্ত্বীয়</th>
-                        <th>এমসিকিউ</th>
-                        <th>পিআর</th>
+                        <th>CA</th>
+                        <th>CR/Written</th>
+                        <th>MCQ</th>
+                        <th>PR</th>
 
-                        <th>সিএ</th>
-                        <th>সিআর/তত্ত্বীয়</th>
-                        <th>এমসিকিউ</th>
-                        <th>পিআর</th>
+                        <th>CA</th>
+                        <th>CR/Written</th>
+                        <th>MCQ</th>
+                        <th>PR</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -77,9 +77,9 @@
                         <?php $x++; ?>
                     @endforeach
                 @endif
-                
+
                 </tbody>
-                        
+
                 </table>
            </div>
         </div>
@@ -87,7 +87,7 @@
 @endsection
 
 @section('script')
-<!--  
+<!--
     <script src="{{asset('backEnd')}}/DataTables/jquery.dataTables.min.js"></script>
     <script src="{{asset('backEnd')}}/DataTables/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">

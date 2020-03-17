@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'বেসিক বেতন পরিচালনা')
+@section('mainTitle', 'Edit basic Salary Setup')
 @section('head_section')
     <style>
 
@@ -11,7 +11,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h2 class="text-center text-temp">বেসিক বেতন আপডেট করুন</h2>
+      <h2 class="text-center text-temp">Edit Basic Salary Setup</h2>
     </div>
     <div class="col-md-12">
       @if(session('success_msg'))
@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="">কর্মকর্তা বা কর্মাচারী নির্বাচন করুন </label>
+                            <label class="">Select Employee </label>
                             <div class="">
                               <select class="form-control" name="employee_id">
                                 <option value="{{ $salary_setup->employee_id }}">{{ $salary_setup->employee->user->name }}</option>
@@ -48,9 +48,9 @@
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="" for="amount">বেসিক বেতনের পরিমান <span class="star">*</span></label>
+                            <label class="" for="amount">Basic Salary Amount<span class="star">*</span></label>
                             <div class="">
-                                <input value="{{ $salary_setup->amount }}" type="text" name="amount" class="form-control" placeholder="বেসিক বেতনের পরিমান">
+                                <input value="{{ $salary_setup->amount }}" type="text" name="amount" class="form-control" placeholder="Enter Amount">
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">আপডেট করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Update</button>
                             </div>
                         </div>
                     </div>

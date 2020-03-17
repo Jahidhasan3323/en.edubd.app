@@ -39,7 +39,7 @@ class BankWithdrawController extends Controller
       $data['serial'] = $serial;
       $data['withdra_date'] = date('Y-m-d', strtotime($request->withdra_date));
       $bank_withdraw->create($data);
-      return redirect()->back()->with('success_msg', 'ব্যাংক থেকে টাকা উত্তোলন সফলভাবে হয়েছে ।');
+      return redirect()->back()->with('success_msg', 'Bank Withdraw Added Successfully.');
     }
 
     public function bank_withdraw_edit($id){
@@ -64,13 +64,13 @@ class BankWithdrawController extends Controller
       $data = $request->except(['deposit_date']);
       $data['deposit_date'] = date('Y-m-d', strtotime($request->deposit_date));
       $bank_withdraw->update($data);
-      return redirect()->route('bank_withdraw_add')->with('success_msg', 'ব্যাংক থেকে উত্তোলন সফলভাবে আপডেট করা হয়েছে ।');
+      return redirect()->route('bank_withdraw_add')->with('success_msg', 'Bank Withdraw Updated Successfully.');
     }
 
     public function bank_withdraw_delete(Request $request){
       $bank_withdraw = BanksWithdraw::find($request->id);
       $bank_withdraw->delete();
-      return redirect()->route('bank_withdraw_add')->with('success_msg', 'ব্যাংক থেকে টাকা উত্তোলন সফলভাবে মুছে ফেলা হয়েছে ।');
+      return redirect()->route('bank_withdraw_add')->with('success_msg', 'Bank Withdraw Deleted Successfully.');
     }
 
 

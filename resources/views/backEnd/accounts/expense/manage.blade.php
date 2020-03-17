@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'খরচ পরিচালনা করুন')
+@section('mainTitle', 'Expense Management')
 @section('head_section')
 @endsection
 @section('active_accounts', 'active')
@@ -8,7 +8,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h2 class="text-center text-temp">খরচ পরিচালনা করুন</h2>
+      <h2 class="text-center text-temp">Expense Management</h2>
     </div>
     <div class="col-md-12">
       @if(session('success_msg'))
@@ -34,21 +34,21 @@
               <table id="commitee_tbl" class="table table-bordered table-hover table-striped">
                   <thead>
                       <tr>
-                          <th class="text-center">ক্রমিক</th>
-                          <th class="text-center">সিরিয়াল</th>
-                          <th class="text-center">নাম</th>
-                          <th class="text-center">ফান্ড</th>
-                          <th class="text-center">তারিখ</th>
-                          <th class="text-center">পরিমান</th>
-                          <th class="text-center">প্রিন্ট</th>
-                          <th class="text-center">একশন</th>
+                          <th class="text-center">SL</th>
+                          <th class="text-center">Serial</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">Fund</th>
+                          <th class="text-center">Date</th>
+                          <th class="text-center">Amount</th>
+                          <th class="text-center">Print</th>
+                          <th class="text-center">Action</th>
                       </tr>
                   </thead>
                   <tbody>
                     @php
                       $i = 1;
                     @endphp
-                  @foreach($expenses as $expense)
+                    @foreach($expenses as $expense)
                       <tr>
                           <td class="text-center">{{ $i++ }}</td>
                           <td class="text-center">{{ $expense->serial }}</td>
@@ -57,7 +57,7 @@
                           <td class="text-center">{{ date('d-m-Y', strtotime($expense->created_at)) }}</td>
                           <td class="text-center">{{ $expense->amount }}</td>
                           <td class="text-center">
-                            <a href="{{ route('expense_view', $expense->id) }}"> <button type="button" class="btn btn-info"><i class="fa fa-print"></i></button> </a>
+                            <a href="{{ route('expense_view', $expense->id) }}"> <button type="button" class="btn btn-info btn-sm"><i class="fa fa-print"></i></button> </a>
                           </td>
                           <td class="text-center">
                             <a href="{{ route('expense_edit', $expense->id) }}"> <button type="button" class="btn btn-info btn-sm" style="margin: 5px;"><i class="fa fa-pencil-square-o"></i></button> </a>
@@ -65,11 +65,11 @@
                               @csrf
                               @method('delete')
                               <input type="hidden" name="id" value="{{ $expense->id }}">
-                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('আপনি কি জমা করা আয়টি মুছে ফেলতে চান ?')"><i class="fa fa-trash-o"></i></button>
+                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete ?')"><i class="fa fa-trash-o"></i></button>
                             </form>
                           </td>
                       </tr>
-                  @endforeach
+                    @endforeach
                   </tbody>
               </table>
           </div>

@@ -51,7 +51,7 @@ class ExpenseController extends Controller
           if ($account_setting->income_sms=="1") {
             if (!empty($request->mobile)) {
               $mobile_number = "88".$request->mobile;
-              $message = urlencode($request->received_by.", মেমো নাম্বার-".$serial.", খরচ-".$request->amount." /-, ".date('d M Y h:i a ').$school_name);
+              $message = urlencode($request->received_by.", Memo No-".$serial.", Expense-".$request->amount." /-, ".date('d M Y h:i a ').$school_name);
               $send_sms = $this->sms_send_by_api($school,$mobile_number,$message);
             }
           }
@@ -59,7 +59,7 @@ class ExpenseController extends Controller
           if ($sms_report < $sms_limit) {
               if (!empty($request->mobile)) {
                 $mobile_number = "88".$request->mobile;
-                $message = urlencode($request->received_by.", মেমো নাম্বার-".$serial.", খরচ-".$request->amount." /-, ".date('d M Y h:i a ').$school_name);
+                $message = urlencode($request->received_by.", Memo No-".$serial.", Expense-".$request->amount." /-, ".date('d M Y h:i a ').$school_name);
                 $send_sms = $this->sms_send_by_api($school,$mobile_number,$message);
                 $success = json_decode($send_sms,true);
                 if ($success['error']==0) {
@@ -74,7 +74,7 @@ class ExpenseController extends Controller
       }
       $expense_view = Expense::where('serial', $serial)->first();
       $funds = Fund::orderBy('id', 'asc')->get();
-      $msg = 'খরচ সফলভাবে যোগ করা হয়েছে ।';
+      $msg = 'Expense Added Successfully';
       return view('backEnd.accounts.expense.add', compact('funds', 'expense_view', 'msg', 'school', 'account_setting'));
     }
 
@@ -100,7 +100,7 @@ class ExpenseController extends Controller
       $data['payment_date'] = date('Y-m-d', strtotime($request->payment_date));
       // return $data;
       $expense->update($data);
-      return redirect()->route('expense_manage')->with('success_msg', 'খরচ সফলভাবে আপডেট করা হয়েছে ।');
+      return redirect()->route('expense_manage')->with('success_msg', 'Expense Updated Successfully.');
     }
 
     public function expense_view($id){
@@ -113,7 +113,7 @@ class ExpenseController extends Controller
     public function expense_delete(Request $request){
       $expense = Expense::find($request->id);
       $expense->delete();
-      return redirect()->back()->with('success_msg', 'খরচ সফলভাবে মুছে ফেলা হয়েছে ।');
+      return redirect()->back()->with('success_msg', 'Expense Deleted Successfully.');
     }
 
 }

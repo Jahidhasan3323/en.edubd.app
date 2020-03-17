@@ -21,7 +21,7 @@ class BankController extends Controller
       $data = $request->all();
       $data['school_id'] = Auth::getSchool();
       $bank->create($data);
-      return redirect()->back()->with('success_msg', 'ব্যাংক সফলভাবে যোগ করা হয়েছে ।');
+      return redirect()->back()->with('success_msg', 'Bank Added Successfully.');
     }
 
     public function bank_edit($id){
@@ -36,12 +36,12 @@ class BankController extends Controller
       $bank = Bank::find($request->id);
       $data = $request->all();
       $bank->update($data);
-      return redirect()->route('bank_add')->with('success_msg', 'ব্যাংক সফলভাবে আপডেট করা হয়েছে ।');
+      return redirect()->route('bank_add')->with('success_msg', 'Bank Updated Successfully.');
     }
 
     public function bank_delete(Request $request){
       $bank = Bank::find($request->id);
       $bank->delete();
-      return redirect()->route('bank_add')->with('success_msg', 'ব্যাংক সফলভাবে মুছে ফেলা হয়েছে ।');
+      return redirect()->route('bank_add')->with('success_msg', 'Bank Deleted Successfully.');
     }
 }

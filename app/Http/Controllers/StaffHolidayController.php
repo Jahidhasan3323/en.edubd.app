@@ -64,7 +64,7 @@ class StaffHolidayController extends Controller
                    ])->get();
             if(count($check)<1){AttenEmployee::create($data);}
         }
-        Session::flash('sccmgs', 'স্টাফ, েন্ট্রি সফল হয়েছে !');
+        Session::flash('sccmgs', 'Staff Added Successfully.');
         return redirect()->back();
     }
 
