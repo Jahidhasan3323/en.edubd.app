@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'এস,এম,এসের পরিমার নির্ধারণ')
+@section('mainTitle', 'Setup SMS Limit')
 @section('head_section')
     <style>
 
@@ -10,7 +10,7 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
-      <h2 class="text-center text-temp">এস,এম,এসের পরিমার নির্ধারণ করুন</h2>
+      <h2 class="text-center text-temp">Setup SMS Limit</h2>
     </div>
     <div class="col-md-12">
       @if(session('success_msg'))
@@ -30,7 +30,7 @@
     </div>
   </div>
   <div class="col-md-12" style="border: 1px solid #ddd;">
-      <h4 style="margin-bottom: 20px;" class="text-center">প্রতিষ্ঠান নির্বাচন করুন</h4>
+      <h4 style="margin-bottom: 20px;" class="text-center">Select Institute</h4>
       <div class="row col-md-8 col-md-offset-2">
           <form action="{{route('smsLimit.search')}}" method="post">
               {{csrf_field()}}
@@ -51,7 +51,7 @@
 
               <div class="col-sm-4">
                   <div class="form-group">
-                      <button type="submit" class="btn btn-primary">অনুসন্ধান</button>
+                      <button type="submit" class="btn btn-primary">Search</button>
                   </div>
               </div>
           </form>
@@ -66,7 +66,7 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="" for="notification">নোটিফিকেশন</label>
+                                <label class="" for="notification">Notification Limit</label>
                                 <div class="">
                                     <input value="{{ old('notification', $sms_limit?$sms_limit->notification:'') }}" type="number" name="notification" class="form-control">
                                 </div>
@@ -74,7 +74,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="" for="result">ফলাফল এস,এম,এস</label>
+                                <label class="" for="result">Result SMS Limit</label>
                                 <div class="">
                                     <input value="{{ old('result', $sms_limit?$sms_limit->result:'') }}" type="number" name="result" class="form-control">
                                 </div>
@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="" for="due_sms">বাকি এস,এম,এস</label>
+                                <label class="" for="due_sms">Due SMS Limit</label>
                                 <div class="">
                                     <input value="{{ old('due_sms', $sms_limit?$sms_limit->due_sms:'') }}" type="number" name="due_sms" class="form-control">
                                 </div>
@@ -90,7 +90,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="" for="fee_collection">ফি কালেকশন</label>
+                                <label class="" for="fee_collection">Fee Collection SMS Limit</label>
                                 <div class="">
                                     <input value="{{ old('fee_collection', $sms_limit?$sms_limit->fee_collection:'') }}" type="number" name="fee_collection" class="form-control">
                                 </div>
@@ -98,7 +98,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="" for="fine_collection">জরিমানা কালেকশন</label>
+                                <label class="" for="fine_collection">Fine Collection SMS lImit</label>
                                 <div class="">
                                     <input value="{{ old('fine_collection', $sms_limit?$sms_limit->fine_collection:'') }}" type="number" name="fine_collection" class="form-control">
                                 </div>
@@ -106,7 +106,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="" for="income">আয় এস,এম,এস</label>
+                                <label class="" for="income">Income SMS Limit</label>
                                 <div class="">
                                     <input value="{{ old('income', $sms_limit?$sms_limit->income:'') }}" type="number" name="income" class="form-control">
                                 </div>
@@ -114,7 +114,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="" for="expense">ব্যয় বা খরচ এস,এম,এস</label>
+                                <label class="" for="expense">Expense SMS Limit</label>
                                 <div class="">
                                     <input value="{{ old('expense', $sms_limit?$sms_limit->expense:'') }}" type="number" name="expense" class="form-control">
                                 </div>
@@ -128,7 +128,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <button id="save" type="submit" class="btn btn-info">@if($sms_limit) আপডেট করুন @else সংরক্ষণ করুন  @endif</button>
+                                    <button id="save" type="submit" class="btn btn-info">@if($sms_limit) Update @else Save  @endif</button>
                                 </div>
                             </div>
                         </div>

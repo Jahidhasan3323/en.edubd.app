@@ -6,7 +6,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">পরীক্ষার ধরন তথ্য</h1>
+            <h1 class="text-center text-temp">Exam Type Information</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -19,10 +19,10 @@
         <div class="panel-body">
             <table class="table table-bordered table-responsive table-hover table-striped">
                 <tr>
-                    <th>ক্রমিক নং</th>
-                    <th>নাম</th>
+                    <th>Serial</th>
+                    <th>Name</th>
                     @if (Auth::is('root'))
-                    <th>অ্যাকশন</th>
+                    <th>Action</th>
                     @endif
                 </tr>
 

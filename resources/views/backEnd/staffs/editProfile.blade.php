@@ -23,15 +23,15 @@
 
         <!-- add Personal information -->
         <div class="page-header">
-            <h1 class="text-center text-temp">ব্যক্তিগত তথ্য সম্পাদন করুন</h1>
+            <h1 class="text-center text-temp">Edit Personal Information </h1>
         </div>
         <div class="panel-body">
-            
+
 
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group {{$errors->has('email') ? 'has-error' : ''}}">
-                        <label class="" for="email">ইমেইল <span class="star">*</span></label>
+                        <label class="" for="email">Email <span class="star">*</span></label>
                         <div class="">
                             <input value="{{$staff->user->email}}" class="form-control" type="email" name="email" id="email" placeholder="Teacher Email">
                         </div>
@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            
+
 
             <hr>
 
@@ -51,7 +51,7 @@
                 <div class="row">
                     <div class="col-sm-2 col-sm-offset-5">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-block btn-info">হালনাগাদ</button>
+                            <button type="submit" class="btn btn-block btn-info">Update</button>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
 
         </form>
     </div>
-   
+
 @endsection
 
 @section('script')
@@ -69,10 +69,10 @@
     <script src="{{asset('backEnd/js/jquery-ui.js')}}"></script>
     <script>
         $( function() {
-            $( ".date" ).datepicker({ 
+            $( ".date" ).datepicker({
                 dateFormat: 'dd-mm-yy',
                 changeMonth: true,
-                changeYear: true 
+                changeYear: true
             }).val();
         } );
     </script>

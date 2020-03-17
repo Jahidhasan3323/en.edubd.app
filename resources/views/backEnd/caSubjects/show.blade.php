@@ -1,14 +1,14 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'বিষয় তথ্য (সিএ)')
+@section('mainTitle', 'CA Subject List')
 @section('active_ca_subject', 'active')
 
 @section('content')
-   
+
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">বিষয় তথ্য</h1>
-            <h3 class="text-center text-temp">শ্রেী : {{$subjects[0]->masterClass->name}}, ট্রেড : {{$subjects[0]->groupClass->name}}</h3>
+            <h1 class="text-center text-temp">CA Subjects</h1>
+            <h3 class="text-center text-temp">Class : {{$subjects[0]->masterClass->name}}, Group : {{$subjects[0]->groupClass->name}}</h3>
         </div>
 
 
@@ -21,17 +21,17 @@
         <div class="panel-body">
            <div class="table-responsive">
             <table id="subject_tbl" class="table table-bordered table-hover table-striped">
-                
+
                 <thead>
                     <tr>
-                        <th rowspan="2"># ক্রমিক নং</th>
-                        <th rowspan="2" style="width:10%">বিষয়</th>
-                        <th rowspan="2">কোড</th>
-                        <th rowspan="2">মোট নম্বর</th>
-                        <th rowspan="2" class="text-center">পাশ নম্বর</th>
-                        <th rowspan="2">অ্যাকশন</th>
+                        <th rowspan="2">Serial</th>
+                        <th rowspan="2" style="width:10%">Subject</th>
+                        <th rowspan="2">Code</th>
+                        <th rowspan="2">Total Marks</th>
+                        <th rowspan="2" class="text-center">Pass marks</th>
+                        <th rowspan="2">Action</th>
                     </tr>
-                    
+
                 </thead>
                 <tbody>
                 <?php $x = 1; ?>
@@ -55,13 +55,11 @@
                         <?php $x++; ?>
                     @endforeach
                 @endif
-                
+
                 </tbody>
-                        
+
                 </table>
            </div>
         </div>
     </div>
 @endsection
-
-

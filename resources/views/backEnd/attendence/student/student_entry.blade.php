@@ -4,7 +4,7 @@
 @section('active_attendance', 'active')
 @section('head_section')
     <style>
-       
+
         .select2-selection.select2-selection--single {
             height:  35px;
         }
@@ -14,7 +14,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">ম্যানুয়ালি শিক্ষার্থী উপস্থিতি এন্ট্রি</h1>
+            <h1 class="text-center text-temp">Student Attendence Manually Entry</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -38,21 +38,21 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group {{$errors->has('master_class_id') ? 'has-error' : ''}}">
-                            <label class="" for="class">শ্রেণী <span class="star">*</span></label>
+                            <label class="" for="class">Class <span class="star">*</span></label>
                             <select name="master_class_id" id="class" class="form-control" required="">
-                                <option value="">...শ্রেণী নির্বাচন করুন...</option>
+                                <option value="">Select Class</option>
                                 @foreach($classes as $class)
                                     <option value="{{$class->id}}">{{$class->name}}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="col-sm-3">
                         <div class="form-group {{$errors->has('group_class_id') ? 'has-error' : ''}}">
-                            <label class="" for="group1">গ্রুপ / বিভাগ <span class="star">*</span></label>
+                            <label class="" for="group1">Group <span class="star">*</span></label>
                             <select name="group_class_id" id="group1" class="form-control" required="">
-                                <option value="">...গ্রুপ / বিভাগ নির্বাচন করুন...</option>
+                                <option value="">Select group</option>
                                 @foreach($group_classes as $group_class)
                                   <option value="{{$group_class->id}}">{{$group_class->name}}</option>
                                 @endforeach
@@ -62,26 +62,26 @@
 
                     <div class="col-sm-3">
                         <div class="form-group {{$errors->has('shift') ? 'has-error' : ''}}">
-                            <label class="" for="shift1">শিফট <span class="star">*</span></label>
+                            <label class="" for="shift1">Shift <span class="star">*</span></label>
                             <select name="shift" id="shift1" class="form-control" required="">
-                                <option value="">...শিফট নির্বাচন করুন...</option>
-                                <option value="সকাল">সকাল</option>
-                                <option value="দিন">দিন</option>
-                                <option value="সন্ধ্যা">সন্ধ্যা</option>
-                                <option value="রাত">রাত</option>
+                                <option value="">Select Shift</option>
+                                <option value="Morning">Morning</option>
+                                <option value="Day">Day</option>
+                                <option value="Evening">Evening</option>
+                                <option value="Night">Night</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="col-sm-3">
                         <div class="form-group {{$errors->has('section') ? 'has-error' : ''}}">
-                            <label class="" for="section1">শাখা <span class="star">*</span></label>
+                            <label class="" for="section1">Section <span class="star">*</span></label>
                             <select name="section" id="section1" class="form-control" required="">
-                                <option value="">...শাখা নির্বাচন করুন...</option>
-                                <option value="ক">ক</option>
-                                <option value="খ">খ</option>
-                                <option value="গ">গ</option>
-                                <option value="ঘ">ঘ</option>
+                                <option value="">Select Section</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
                                 @foreach($units as $unit)
                                 <option value="{!!$unit->name!!}">{!!$unit->name!!}</option>
                                 @endforeach
@@ -93,7 +93,7 @@
                     <div class="row">
                         <div class="col-sm-2 col-sm-offset-5">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-success">অনুসন্ধান করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-success">Search</button>
                             </div>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
             <form id="result_from" action="{{url('/menual/student-entry-store')}}" method="post" enctype="multipart/form-data">
               {{csrf_field()}}
                 <div class="row">
-                    <div class="col-sm-12"><h4>সকল উপস্থিত শিক্ষার্থীদের মার্ক করুন</h4></div>
+                    <div class="col-sm-12"><h4>Please mark all selected student</h4></div>
                 </div>
 
                 <div class="row">
@@ -118,20 +118,20 @@
                     <div class="col-sm-6">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="student_id[]" value="{{$student->student_id}}" {{($check)?'checked':''}}>{{$student->user->name}} "শ্রেণী রোল-{{str_replace($s, $r, $student->roll)}}"
+                                <input type="checkbox" name="student_id[]" value="{{$student->student_id}}" {{($check)?'checked':''}}>{{$student->user->name}} "Class Roll-{{$student->roll}}"
                             </label>
                         </div>
                     </div>
                     @endforeach
                 </div>
-                
-                
+
+
                 <hr>
                 <div class="">
                     <div class="row">
                         <div class="col-sm-2 col-sm-offset-5">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-success">সংরক্ষণ করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-success">Save</button>
                             </div>
                         </div>
                     </div>

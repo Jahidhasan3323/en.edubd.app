@@ -7,7 +7,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">উপস্থিত শিক্ষার্থীদের  জন্য বিজ্ঞপ্তি সেবা</h1>
+            <h1 class="text-center text-temp">Send Present Student SMS</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -19,8 +19,8 @@
 
         @if(isset($students))
         <div class="col-sm-12">
-        <h4 style="margin-bottom: 10px;" class="text-center">উপস্থিত শিক্ষার্থী চিহ্নিত করুন </h4>
-        <h5 style="margin-bottom: 10px;" class="text-center">মোট উপস্থিত : {{count($students)}}</h5>
+        <h4 style="margin-bottom: 10px;" class="text-center">Select the following items </h4>
+        <h5 style="margin-bottom: 10px;" class="text-center">Total Present : {{count($students)}}</h5>
         <div class="row">
             <div class="panel-body" style="margin-top: 10px;">
                 <form action="{{url('/sms/store-present-student')}}" method="post" enctype="multipart/form-data">
@@ -31,9 +31,9 @@
                     <div class="panel-body table-responsive">
                         <table class="table table-hover table-striped">
                             <tr>
-                                <th>শিক্ষার্থীর নাম </th>
-                                <th>শিক্ষার্থীর আইডি</th>
-                                <th>শ্রেণী রোল</th>
+                                <th>Student Name </th>
+                                <th>Student ID</th>
+                                <th>Class roll</th>
                             </tr>
                            @foreach($students as $student)
                            @if(($school->service_type_id==1 && $student->id_card_exits==1) || $school->service_type_id!=1)
@@ -52,13 +52,13 @@
                                 </td>
                             </tr>
                             @else
-                             <tr><td colspan="3">{{$student->user->name}} এই শিক্ষার্থীর জন্য সফটওয়্যার সেবা প্রদানকারী প্রতিষ্টানের সাথে যোগাযোগ করুন ।</td></tr>
+                             <tr><td colspan="3">{{$student->user->name}} Please contact your service provider for this student information view.</td></tr>
                             @endif
                             @endforeach
                             @if(count($students)>0)
                             <tr>
                                 <td colspan="3">
-                                    <input id="all_check" class="form-check-input" onclick="checkNumber()" type="checkbox"> <label for="all_check">সব চেক / আনচেক</label>
+                                    <input id="all_check" class="form-check-input" onclick="checkNumber()" type="checkbox"> <label for="all_check">All Check / Uncheck</label>
                                 </td>
                             </tr>
                             @endif
@@ -67,7 +67,7 @@
                     </div>
                     @if(count($students)>0)
                     <hr>
-                    
+
                     <div class="">
                         <div class="row">
                             <div class="col-md-2 col-md-offset-5">

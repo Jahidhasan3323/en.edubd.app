@@ -1,17 +1,17 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'উপস্থিতি ব্যাবস্থাপনা')
+@section('mainTitle', 'Attendance Management')
 @section('active_attendance', 'active')
 
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">কর্মকর্তা উপস্থিতি</h1>
+            <h1 class="text-center text-temp">Employee Attendance</h1>
             <h3 class="text-center text-temp">
-             মোট কর্মকর্তা : {{str_replace($s,$r,$total_employees)}} জন,
-             মোট উপস্থিতি : {{str_replace($s,$r,$employees->total_present())}} জন, 
-             মোট ছুটি : {{str_replace($s,$r,$employees->total_leave()+$employees->total_holiday())}} জন, 
-             মোট অনুপস্থিত : {{str_replace($s, $r,$total_employees-$employees->total_present()-$employees->total_leave()-$employees->total_holiday())}} জন
+             Total Employee : {{$total_employees}} ,
+             Total Present : {{$employees->total_present()}} ,
+             Total Holiday : {{$employees->total_leave()+$employees->total_holiday()}} ,
+             Total Absent : {{$total_employees-$employees->total_present()-$employees->total_leave()-$employees->total_holiday()}}
             </h3>
         </div>
         @if(Session::has('errmgs'))
@@ -24,13 +24,13 @@
             <div class="table-responsive">
                 <table class="table table-bordered table-hover table-striped">
                     <tr>
-                        <th>ক্রমিক নং</th>
-                        <th>পদবি</th>
-                        <th>কর্মকর্তা</th>
-                        <th>উপস্থিতি</th>
-                        <th>ছুটি</th>
-                        <th>অনুপস্থিত</th>
-                        <th>অ্যাকশন</th>
+                        <th>Serial</th>
+                        <th>Designation</th>
+                        <th>Employee</th>
+                        <th>Present</th>
+                        <th>Holiday</th>
+                        <th>Absent</th>
+                        <th>Action</th>
                     </tr>
                     @php $serial = Get::serial($employees) @endphp
                     @foreach($employees as $employee)
@@ -46,7 +46,7 @@
                     @endphp
                         <tr>
                             <td>{{str_replace($s, $r,$serial)}}</td>
-                            <td>{{($employee->group_id==3)?'শিক্ষক':'কর্মচারী'}}</td>
+                            <td>{{($employee->group_id==3)?'Teacher':'Staff'}}</td>
                             <td>{{str_replace($s, $r,$group_wise_employees)}}</td>
                             <td>{{str_replace($s, $r,$total_present)}}</td>
                             <td>{{str_replace($s, $r,$total_leave+$total_holiday)}}</td>
@@ -65,5 +65,3 @@
 @section('script')
 
 @endsection
-
-

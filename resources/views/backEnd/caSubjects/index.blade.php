@@ -1,12 +1,12 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'বিষয় তথ্য (সিএ)')
+@section('mainTitle', 'List of Subject (CA)')
 @section('active_ca_subject', 'active')
 
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">বিষয় তথ্য (সিএ)</h1>
+            <h1 class="text-center text-temp">CA Subject Information</h1>
         </div>
 
 
@@ -23,11 +23,11 @@
             <table id="subject_tbl" class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
-                        <th># ক্রমিক নং</th>
-                        <th>শ্রেণী</th>
-                        <th>বিভাগ</th>
-                        <th>মোট বিষয়</th>
-                        <th>অ্যাকশন</th>
+                        <th>Serial</th>
+                        <th>Class</th>
+                        <th>Group</th>
+                        <th>Total Subject</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,20 +45,20 @@
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </a>
                             </td>
-                           
+
                         </tr>
                         <?php $x++; ?>
                     @endforeach
                 @endif
-                
+
                 </tbody>
                         <tfoot>
                            <tr>
-                               <th># ক্রমিক নং</th>
-                               <th>শ্রেণী</th>
-                               <th>বিভাগ</th>
-                               <th>মোট বিষয়</th>
-                               <th>অ্যাকশন</th>
+                               <th>Serial</th>
+                               <th>Class</th>
+                               <th>Group</th>
+                               <th>Total Subject</th>
+                               <th>Action</th>
                            </tr>
                         </tfoot>
                 </table>
@@ -68,7 +68,7 @@
 @endsection
 
 @section('script')
- 
+
     <script src="{{asset('backEnd')}}/DataTables/jquery.dataTables.min.js"></script>
     <script src="{{asset('backEnd')}}/DataTables/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">

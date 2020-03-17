@@ -10,7 +10,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">{{isset($old)?"প্রাক্তন":""}} কর্মকর্তার তথ্য</h1>
+            <h1 class="text-center text-temp">{{isset($old)?"Former":""}} Employees Information</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -25,14 +25,14 @@
                 <table id="staff_tbl" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>ছবি</th>
-                            <th>নাম</th>
-                            <th>আইডি নাম্বার</th>
-                            <th>ইমেইল</th>
-                            <th>ফোন</th>
-                            <th>পদবী</th>
-                            <th>অ্যাকশন</th>
+                            <th>Serial</th>
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>ID No.</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>Designaion</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -74,24 +74,24 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>ক্রমিক নং</th>
-                            <th>ছবি</th>
-                            <th>নাম</th>
-                            <th>আইডি নাম্বার</th>
-                            <th>ইমেইল</th>
-                            <th>ফোন</th>
-                            <th>পদবী</th>
-                            <th>অ্যাকশন</th>
+                            <th>Serial</th>
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>ID No.</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>Designaion</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                 </table>
             </div>
         </div>
     </div>
- 
+
 @endsection
 @section('script')
- 
+
     <script src="{{asset('backEnd')}}/DataTables/jquery.dataTables.min.js"></script>
     <script src="{{asset('backEnd')}}/DataTables/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">

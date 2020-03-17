@@ -7,7 +7,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">ফলাফল প্রেরণ সেবা</h1>
+            <h1 class="text-center text-temp">Send Result SMS</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -17,13 +17,13 @@
             @include('backEnd.includes.success')
         @endif
         <div class="col-sm-12">
-            <h4 style="margin-bottom: 20px;" class="text-center">নিচের সব নির্বাচন করুন</h4>
+            <h4 style="margin-bottom: 20px;" class="text-center">Select All from below</h4>
                 <form action="{{url('/sms/result/search')}}" method="get">
                     {{csrf_field()}}
                     <div class="col-sm-2 {{$errors->has('exam_year') ? 'has-error' : ''}}">
                         <div class="form-group">
                             <select class="form-control" name="exam_year" id="exam_year">
-                                <option value="">...পরীক্ষার বছর...</option>
+                                <option value="">Select Exam Year</option>
                                 @if(!$exam_years->count())
                                     <option>No result has given</option>
                                 @endif
@@ -41,7 +41,7 @@
                     <div class="col-sm-2 {{$errors->has('master_class_id') ? 'has-error' : ''}}">
                         <div class="form-group">
                             <select class="form-control" name="master_class_id" id="master_class_id">
-                                <option value="">...শ্রেণী নির্বাচন করুন...</option>
+                                <option value="">Select Class</option>
                                 @foreach($classes as $class)
                                     <option value="{{$class->id}}" >{{$class->name}}</option>
                                 @endforeach
@@ -56,7 +56,7 @@
                     <div class="col-sm-2 {{$errors->has('group') ? 'has-error' : ''}}">
                         <div class="form-group">
                             <select class="form-control" name="group" id="group">
-                                <option value="">...গ্রুপ / বিভাগ নির্বাচন করুন...</option>
+                                <option value="">Select Group</option>
                                 @foreach($class_groups as $class_group)
                                     <option value="{{$class_group->name}}" >{{$class_group->name}}</option>
                                 @endforeach
@@ -71,11 +71,11 @@
                     <div class="col-sm-2 {{$errors->has('shift') ? 'has-error' : ''}}">
                         <div class="form-group">
                             <select class="form-control" name="shift" id="shift">
-                                <option value="">শিফট নির্বাচন করুন</option>
-                                <option value="সকাল">সকাল</option>
-                                <option value="দিন">দিন</option>
-                                <option value="সন্ধ্যা">সন্ধ্যা</option>
-                                <option value="রাত">রাত</option>
+                                <option value="">Select Shift</option>
+                                <option value="Morning">Morning</option>
+                                <option value="Day">Day</option>
+                                <option value="Evening">Evening</option>
+                                <option value="Night">Night</option>
                             </select>
                         </div>
                         @if($errors->has('shift'))
@@ -87,11 +87,11 @@
                     <div class="col-sm-2 {{$errors->has('section') ? 'has-error' : ''}}">
                         <div class="form-group">
                             <select name="section" id="section" class="form-control" required="">
-                                <option value="">...শাখা নির্বাচন করুন...</option>
-                                <option value="ক">ক</option>
-                                <option value="খ">খ</option>
-                                <option value="গ">গ</option>
-                                <option value="ঘ">ঘ</option>
+                                <option value="">Select Section</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
                                 @foreach($units as $unit)
                                 <option value="{!!$unit->name!!}">{!!$unit->name!!}</option>
                                 @endforeach
@@ -106,7 +106,7 @@
                     <div class="col-sm-2 {{$errors->has('exam_type_id') ? 'has-error' : ''}}">
                         <div class="form-group">
                            <select name="exam_type_id" id="exam_type_id" class="form-control" required="">
-                               <option value="">...পরীক্ষার ধরন...</option>
+                               <option value="">Select Exam Type</option>
                                @foreach($exam_types as $exam_type)
                                <option value="{{$exam_type->id}}">{{$exam_type->name}}</option>
                                @endforeach
@@ -120,15 +120,15 @@
                     </div>
                     <div class="col-sm-2 col-md-offset-5">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-block btn-primary">অনুসন্ধান</button>
+                            <button type="submit" class="btn btn-block btn-primary">Search</button>
                         </div>
                     </div>
                 </form>
         </div>
         @if(isset($results))
         <div class="col-sm-12">
-        <h4 style="margin-bottom: 10px;" class="text-center">শিক্ষার্থী চিহ্নিত করুন </h4>
-        <h5 style="margin-bottom: 10px;" class="text-center">মোট শিক্ষার্থী : {{count($results)}}</h5>
+        <h4 style="margin-bottom: 10px;" class="text-center">Select Students </h4>
+        <h5 style="margin-bottom: 10px;" class="text-center">Total Students: {{count($results)}}</h5>
         <div class="row">
             <div class="panel-body" style="margin-top: 10px;">
                 <form action="{{url('/sms/result-send')}}" method="post" enctype="multipart/form-data">
@@ -139,12 +139,12 @@
                     <div class="panel-body table-responsive">
                         <table class="table table-hover table-striped">
                             <tr>
-                                <th>শিক্ষার্থীর নাম </th>
-                                <th>শিক্ষার্থীর আইডি</th>
-                                <th>মোবাইল নং</th>
-                                <th>শ্রেণী রোল</th>
-                                <th>মোট নম্বর</th>
-                                <th>প্রাপ্ত জিপিএ</th>
+                                <th>Student Name </th>
+                                <th>Student ID</th>
+                                <th>Mobile</th>
+                                <th>Class Roll</th>
+                                <th>Total Marks</th>
+                                <th>G.P.A</th>
                             </tr>
                            @foreach($results as $res)
                            @if(($school->service_type_id==1 && $res->student->id_card_exits==1) || $school->service_type_id!=1)
@@ -252,13 +252,13 @@
                                 </td>
                             </tr>
                            @else
-                            <tr><td colspan="6">{{$res->student->user->name}} ফলাফলের জন্য সফটওয়্যার সেবা প্রদানকারী প্রতিষ্টানের সাথে যোগাযোগ করুন ।</td></tr>
+                            <tr><td colspan="6">{{$res->student->user->name}} Please contact your service provider for result.</td></tr>
                            @endif
                             @endforeach
                             @if(count($results)>0)
                             <tr>
                                 <td colspan="5">
-                                    <input id="all_check" class="form-check-input" onclick="checkNumber()" type="checkbox"> <label for="all_check">সব চেক / আনচেক</label>
+                                    <input id="all_check" class="form-check-input" onclick="checkNumber()" type="checkbox"> <label for="all_check">All Check / Uncheck</label>
                                 </td>
                             </tr>
                             @endif

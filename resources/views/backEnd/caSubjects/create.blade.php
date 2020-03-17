@@ -1,12 +1,12 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'বিষয় যুক্ত করুন (সিএ)')
+@section('mainTitle', 'Add New Subject (CA)')
 @section('active_ca_subject', 'active')
 
 @section('content')
     <div class="panel col-md-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">বিষয় যুক্ত করুন (সিএ)</h1>
+            <h1 class="text-center text-temp">Add New Subject (CA)</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -32,9 +32,9 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group {{$errors->has('subject_name') ? 'has-error' : ''}}">
-                            <label class="control-label" for="subject_name">বিষয়<span class="star">*</span></label>
+                            <label class="control-label" for="subject_name">Subject Name<span class="star">*</span></label>
                             <div class="">
-                                <input value="{{old('subject_name')}}" class="form-control" type="text" name="subject_name" id="subject_name" placeholder="বিষয়ের নাম">
+                                <input value="{{old('subject_name')}}" class="form-control" type="text" name="subject_name" id="subject_name" placeholder="Subject Name">
                             </div>
                             @if ($errors->has('subject_name'))
                                 <span class="help-block">
@@ -46,9 +46,9 @@
 
                     <div class="col-md-4">
                         <div class="form-group {{$errors->has('subject_code') ? 'has-error' : ''}}">
-                            <label class="control-label" for="subject_code">বিষয় কোড</label>
+                            <label class="control-label" for="subject_code">Subject Code</label>
                             <div class="">
-                                <input value="{{old('subject_code')}}" class="form-control" type="text" name="subject_code" id="subject_code" placeholder="বিষয় কোড">
+                                <input value="{{old('subject_code')}}" class="form-control" type="text" name="subject_code" id="subject_code" placeholder="Subject Code">
                             </div>
                             @if ($errors->has('subject_code'))
                                 <span class="help-block">
@@ -59,9 +59,9 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group {{$errors->has('total_mark') ? 'has-error' : ''}}">
-                            <label class="control-label" for="total_mark">মোট নম্বর <span class="star">*</span></label>
+                            <label class="control-label" for="total_mark">Total Marks<span class="star">*</span></label>
                             <div class="">
-                                <input value="{{old('total_mark')}}" class="form-control" type="text" name="total_mark" id="total_mark" placeholder="মোট নম্বর">
+                                <input value="{{old('total_mark')}}" class="form-control" type="text" name="total_mark" id="total_mark" placeholder="Total Marks">
                             </div>
                             @if ($errors->has('total_mark'))
                                 <span class="help-block">
@@ -69,16 +69,16 @@
                                 </span>
                             @endif
                         </div>
-                    </div>  
+                    </div>
                 </div>
 
                 <div class="row">
 
                     <div class="col-md-4">
                         <div class="form-group {{$errors->has('pass_mark') ? 'has-error' : ''}}">
-                            <label class="control-label" for="pass_mark">পাশ নম্বর <span class="star">*</span></label>
+                            <label class="control-label" for="pass_mark">Pass Marks <span class="star">*</span></label>
                             <div class="">
-                                <input value="{{old('pass_mark')}}" class="form-control" type="text" name="pass_mark" id="pass_mark" placeholder="মোট পাশ নম্বর">
+                                <input value="{{old('pass_mark')}}" class="form-control" type="text" name="pass_mark" id="pass_mark" placeholder="Pass Marks">
                             </div>
                             @if ($errors->has('pass_mark'))
                                 <span class="help-block">
@@ -89,10 +89,10 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group {{$errors->has('master_class_id') ? 'has-error' : ''}}">
-                            <label class="control-label" for="master_class_id">শ্রেণী <span class="star">*</span></label>
+                            <label class="control-label" for="master_class_id">Class <span class="star">*</span></label>
                             <div class="">
                                 <select name="master_class_id" id="master_class_id" class="form-control">
-                                    <option value="">... শ্রেণী নির্বাচন করুন ...</option>
+                                    <option value="">Select Class</option>
                                     @foreach($master_classes as $class)
                                         <option value="{{$class->id}}">{{$class->name}}</option>
                                     @endforeach
@@ -105,10 +105,10 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group {{$errors->has('group_class_id') ? 'has-error' : ''}}">
-                            <label class="control-label" for="group_class_id">গ্রুপ / বিভাগ <span class="star">*</span></label>
+                            <label class="control-label" for="group_class_id">Group <span class="star">*</span></label>
                             <div class="">
                                 <select name="group_class_id" id="group_class_id" class="form-control">
-                                    <option value="">... গ্রুপ / বিভাগ নির্বাচন করুন ...</option>
+                                    <option value="">Select group</option>
                                     @foreach($group_classes as $group_class)
                                         <option value="{{$group_class->id}}">{{$group_class->name}}</option>
                                     @endforeach
@@ -140,7 +140,7 @@
                 <div class="row">
                     <div class="col-md-2 col-md-offset-5">
                         <div class="form-group">
-                            <button id="save_btn" type="submit" class="btn btn-block btn-info">সংরক্ষণ করুন</button>
+                            <button id="save_btn" type="submit" class="btn btn-block btn-info">Save</button>
                         </div>
                     </div>
                 </div>

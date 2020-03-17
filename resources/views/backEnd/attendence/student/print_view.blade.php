@@ -10,11 +10,11 @@
             <h2 class="text-center text-temp">{{$school->user->name}}</h2>
             <h4 class="text-center text-temp">{{$school->address}}</h4>
             <p><img src="{{Storage::url($school->logo)}}" alt="Schoo Logo" width="80px;" height="80px;"></p>
-            <h3 class="text-center text-temp">শিক্ষার্থী উপস্থিতি</h3>
-            <h4 class="text-center text-temp">শিক্ষার্থী : {{$single_student->user->name}}</h4>
-            <h5>শ্রেণী : {{$single_student->master_class->name}}, বিভাগ : {{$single_student->group}} , শিফট : {{$single_student->shift}} ত্ত শাখা : {{$single_student->section}}</h5>
+            <h3 class="text-center text-temp">Student Attendance</h3>
+            <h4 class="text-center text-temp">Student : {{$single_student->user->name}}</h4>
+            <h5>Class : {{$single_student->master_class->name}}, Group : {{$single_student->group}} , Shift : {{$single_student->shift}} & Section : {{$single_student->section}}</h5>
         </div>
-       
+
 
         <div class="panel-body">
             @foreach($months as $month)
@@ -25,14 +25,14 @@
                 <table class="table table-bordered table-responsive table-hover table-striped text-center">
                     <thead>
                         <tr>
-                            <th class="text-center">ক্রমিক নং</th>
-                            <th class="text-center">তারিখ</th>
-                            <th class="text-center">উপস্থিত</th>
-                            <th class="text-center">ছুটি</th>
-                            <th class="text-center">অনুপস্থিত</th>
-                            <th class="text-center">ইন টাইম</th>
-                            <th class="text-center">আউট টাইম</th>
-                            <th class="text-center">বছর</th>
+                            <th class="text-center">Serial</th>
+                            <th class="text-center">Date</th>
+                            <th class="text-center">Attendance</th>
+                            <th class="text-center">Holiday</th>
+                            <th class="text-center">Absent</th>
+                            <th class="text-center">In Time</th>
+                            <th class="text-center">Out Time</th>
+                            <th class="text-center">Year</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,5 +69,3 @@
  </script>
 </body>
 </html>
-
-

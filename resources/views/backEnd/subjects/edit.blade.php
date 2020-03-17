@@ -1,12 +1,12 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'বিষয় যুক্ত করুন')
+@section('mainTitle', 'Edit Subject')
 @section('active_subject', 'active')
 
 @section('content')
     <div class="panel col-md-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">বিষয় সম্পাদন করুন</h1>
+            <h1 class="text-center text-temp">Edit Subject</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -31,9 +31,9 @@
                <div class="row">
                    <div class="col-md-8">
                        <div class="form-group {{$errors->has('subject_name') ? 'has-error' : ''}}">
-                           <label class="control-label" for="subject_name">বিষয়<span class="star">*</span></label>
+                           <label class="control-label" for="subject_name">Subject Name<span class="star">*</span></label>
                            <div class="">
-                               <input value="{{old('subject_name',$subject->subject_name)}}" class="form-control" type="text" name="subject_name" id="subject_name" placeholder="বিষয়ের নাম">
+                               <input value="{{old('subject_name',$subject->subject_name)}}" class="form-control" type="text" name="subject_name" id="subject_name" placeholder="Subject Name">
                            </div>
                            @if ($errors->has('subject_name'))
                                <span class="help-block">
@@ -45,9 +45,9 @@
 
                    <div class="col-md-4">
                        <div class="form-group {{$errors->has('subject_code') ? 'has-error' : ''}}">
-                           <label class="control-label" for="subject_code">বিষয় কোড</label>
+                           <label class="control-label" for="subject_code">Subject Code</label>
                            <div class="">
-                               <input value="{{old('subject_code',$subject->subject_code)}}" class="form-control" type="text" name="subject_code" id="subject_code" placeholder="বিষয় কোড">
+                               <input value="{{old('subject_code',$subject->subject_code)}}" class="form-control" type="text" name="subject_code" id="subject_code" placeholder="Subject Code">
                            </div>
                            @if ($errors->has('subject_code'))
                                <span class="help-block">
@@ -57,15 +57,15 @@
                        </div>
                    </div>
 
-                   
+
                </div>
 
                <div class="row">
                    <div class="col-md-2">
                        <div class="form-group {{$errors->has('ca_mark') ? 'has-error' : ''}}">
-                           <label class="control-label" for="ca_mark">সিএ নম্বর</label>
+                           <label class="control-label" for="ca_mark">CA Marks</label>
                            <div class="">
-                               <input value="{{old('ca_mark',$subject->ca_mark)}}" class="form-control" type="text" name="ca_mark" id="ca_mark" placeholder="সিএ নম্বর" onkeyup="totalMark();">
+                               <input value="{{old('ca_mark',$subject->ca_mark)}}" class="form-control" type="text" name="ca_mark" id="ca_mark" placeholder="CA Marks" onkeyup="totalMark();">
                            </div>
                            @if ($errors->has('ca_mark'))
                                <span class="help-block">
@@ -76,9 +76,9 @@
                    </div>
                    <div class="col-md-2">
                        <div class="form-group {{$errors->has('cr_mark') ? 'has-error' : ''}}">
-                           <label class="control-label" for="cr_mark">সিআর/তত্ত্বীয় নম্বর</label>
+                           <label class="control-label" for="cr_mark">CR/Written</label>
                            <div class="">
-                               <input value="{{old('cr_mark',$subject->cr_mark)}}" class="form-control" type="text" name="cr_mark" id="cr_mark" placeholder="সিআর নম্বর" onkeyup="totalMark();">
+                               <input value="{{old('cr_mark',$subject->cr_mark)}}" class="form-control" type="text" name="cr_mark" id="cr_mark" placeholder="CR/Written" onkeyup="totalMark();">
                            </div>
                            @if ($errors->has('cr_mark'))
                                <span class="help-block">
@@ -89,9 +89,9 @@
                    </div>
                    <div class="col-md-2">
                        <div class="form-group {{$errors->has('mcq_mark') ? 'has-error' : ''}}">
-                           <label class="control-label" for="mcq_mark">এমসিকিউ নম্বর</label>
+                           <label class="control-label" for="mcq_mark">MCQ Marks</label>
                            <div class="">
-                               <input value="{{old('mcq_mark',$subject->mcq_mark)}}" class="form-control" type="text" name="mcq_mark" id="mcq_mark" placeholder="এমসিকিউ নম্বর" onkeyup="totalMark();">
+                               <input value="{{old('mcq_mark',$subject->mcq_mark)}}" class="form-control" type="text" name="mcq_mark" id="mcq_mark" placeholder="MCQ Marks" onkeyup="totalMark();">
                            </div>
                            @if ($errors->has('mcq_mark'))
                                <span class="help-block">
@@ -102,9 +102,9 @@
                    </div>
                    <div class="col-md-2">
                        <div class="form-group {{$errors->has('pr_mark') ? 'has-error' : ''}}">
-                           <label class="control-label" for="pr_mark">পিআর নম্বর</label>
+                           <label class="control-label" for="pr_mark">PR/Practical Marks</label>
                            <div class="">
-                               <input value="{{old('pr_mark',$subject->pr_mark)}}" class="form-control" type="text" name="pr_mark" id="pr_mark" placeholder="পিআর নম্বর" onkeyup="totalMark();">
+                               <input value="{{old('pr_mark',$subject->pr_mark)}}" class="form-control" type="text" name="pr_mark" id="pr_mark" placeholder="PR/Practical Marks" onkeyup="totalMark();">
                            </div>
                            @if ($errors->has('pr_mark'))
                                <span class="help-block">
@@ -115,9 +115,9 @@
                    </div>
                    <div class="col-md-4">
                        <div class="form-group {{$errors->has('total_mark') ? 'has-error' : ''}}">
-                           <label class="control-label" for="total_mark">মোট নম্বর<span class="star">*</span></label>
+                           <label class="control-label" for="total_mark">Total Marks<span class="star">*</span></label>
                            <div class="">
-                               <input value="{{old('total_mark',$subject->total_mark)}}" class="form-control" type="text" name="total_mark" id="total_mark" placeholder="মোট নম্বর">
+                               <input value="{{old('total_mark',$subject->total_mark)}}" class="form-control" type="text" name="total_mark" id="total_mark" placeholder="Total Marks">
                            </div>
                            @if ($errors->has('total_mark'))
                                <span class="help-block">
@@ -130,12 +130,12 @@
 
 
                <div class="row">
-                   
+
                    <div class="col-md-2">
                        <div class="form-group {{$errors->has('ca_pass_mark') ? 'has-error' : ''}}">
-                           <label class="control-label" for="ca_pass_mark">সিএ পাশ</label>
+                           <label class="control-label" for="ca_pass_mark">CA Pass</label>
                            <div class="">
-                               <input value="{{old('ca_pass_mark',$subject->ca_pass_mark)}}" class="form-control" type="text" name="ca_pass_mark" id="ca_pass_mark" placeholder="সিএ পাশ নম্বর">
+                               <input value="{{old('ca_pass_mark',$subject->ca_pass_mark)}}" class="form-control" type="text" name="ca_pass_mark" id="ca_pass_mark" placeholder="CA Pass">
                            </div>
                            @if ($errors->has('ca_pass_mark'))
                                <span class="help-block">
@@ -146,9 +146,9 @@
                    </div>
                    <div class="col-md-2">
                        <div class="form-group {{$errors->has('cr_pass_mark') ? 'has-error' : ''}}">
-                           <label class="control-label" for="cr_pass_mark">সিআর/তত্ত্বীয় পাশ নম্বর</label>
+                           <label class="control-label" for="cr_pass_mark">CR/Written Pass Marks</label>
                            <div class="">
-                               <input value="{{old('cr_pass_mark',$subject->cr_pass_mark)}}" class="form-control" type="text" name="cr_pass_mark" id="cr_pass_mark" placeholder="সিআর পাশ নম্বর">
+                               <input value="{{old('cr_pass_mark',$subject->cr_pass_mark)}}" class="form-control" type="text" name="cr_pass_mark" id="cr_pass_mark" placeholder="CR/Written Pass Marks">
                            </div>
                            @if ($errors->has('cr_pass_mark'))
                                <span class="help-block">
@@ -159,9 +159,9 @@
                    </div>
                    <div class="col-md-2">
                        <div class="form-group {{$errors->has('mcq_pass_mark') ? 'has-error' : ''}}">
-                           <label class="control-label" for="mcq_pass_mark">এমসিকিউ পাশ নম্বর</label>
+                           <label class="control-label" for="mcq_pass_mark">MCQ Pass Marks</label>
                            <div class="">
-                               <input value="{{old('mcq_pass_mark',$subject->mcq_pass_mark)}}" class="form-control" type="text" name="mcq_pass_mark" id="mcq_pass_mark" placeholder="এমসিকিউ পাশ নম্বর">
+                               <input value="{{old('mcq_pass_mark',$subject->mcq_pass_mark)}}" class="form-control" type="text" name="mcq_pass_mark" id="mcq_pass_mark" placeholder="MCQ Pass Marks">
                            </div>
                            @if ($errors->has('mcq_pass_mark'))
                                <span class="help-block">
@@ -172,9 +172,9 @@
                    </div>
                    <div class="col-md-2">
                        <div class="form-group {{$errors->has('pr_pass_mark') ? 'has-error' : ''}}">
-                           <label class="control-label" for="pr_pass_mark">পিআর পাশ নম্বর</label>
+                           <label class="control-label" for="pr_pass_mark">PR Pass marks</label>
                            <div class="">
-                               <input value="{{old('pr_pass_mark',$subject->pr_pass_mark)}}" class="form-control" type="text" name="pr_pass_mark" id="pr_pass_mark" placeholder="পিআর পাশ নম্বর">
+                               <input value="{{old('pr_pass_mark',$subject->pr_pass_mark)}}" class="form-control" type="text" name="pr_pass_mark" id="pr_pass_mark" placeholder="PR Pass marks">
                            </div>
                            @if ($errors->has('pr_pass_mark'))
                                <span class="help-block">
@@ -186,9 +186,9 @@
 
                    <div class="col-md-4">
                        <div class="form-group {{$errors->has('total_pass_mark') ? 'has-error' : ''}}">
-                           <label class="control-label" for="total_pass_mark">মোট পাশ নম্বর</label>
+                           <label class="control-label" for="total_pass_mark">Total Pass marks</label>
                            <div class="">
-                               <input value="{{old('total_pass_mark',$subject->total_pass_mark)}}" class="form-control" type="text" name="total_pass_mark" id="total_pass_mark" placeholder="মোট পাশ নম্বর">
+                               <input value="{{old('total_pass_mark',$subject->total_pass_mark)}}" class="form-control" type="text" name="total_pass_mark" id="total_pass_mark" placeholder="Total Pass marks">
                            </div>
                            @if ($errors->has('total_pass_mark'))
                                <span class="help-block">
@@ -203,13 +203,13 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group {{$errors->has('status') ? 'has-error' : ''}}">
-                            <label class="" for="status">সাবজেক্ট স্টেটাস <span class="star">*</span></label>
+                            <label class="" for="status">Subject Status<span class="star">*</span></label>
                             <div class="">
                                 <select name="status" id="status" class="form-control">
-                                    <option value="">সাবজেক্টের স্টেটাস নির্বাচন করুন</option>
-                                    <option value="আবশ্যিক">আবশ্যিক</option>
-                                    <option value="ঐচ্ছিক">ঐচ্ছিক</option>
-                                    <option value="কমন">কমন</option>
+                                    <option value="">Select Subject Status</option>
+                                    <option value="Compulsory">Compulsory</option>
+                                    <option value="Optional">Optional</option>
+                                    <option value="Common">Common</option>
                                 </select>
                             </div>
                             @if ($errors->has('status'))
@@ -221,13 +221,13 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group {{$errors->has('subject_type') ? 'has-error' : ''}}">
-                            <label class="" for="subject_type">সাবজেক্ট ধরণ<span class="star">*</span></label>
+                            <label class="" for="subject_type">Subject Type<span class="star">*</span></label>
                             <div class="">
                                 <select name="subject_type" id="subject_type" class="form-control">
-                                    <option value="">সাবজেক্টের ধরণ নির্বাচন করুন</option>
-                                    <option value="সাধারণ">সাধারণ</option>
-                                    <option value="নির্বাচনী">নির্বাচনী</option>
-                                    <option value="ধর্ম শিক্ষা">ধর্ম শিক্ষা</option>
+                                    <option value="">Select Subject Type</option>
+                                    <option value="General">General</option>
+                                    <option value="Elective">Elective</option>
+                                    <option value="Religion Education">Religion Education</option>
                                 </select>
                             </div>
                             @if ($errors->has('subject_type'))
@@ -239,10 +239,10 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group {{$errors->has('master_class_id') ? 'has-error' : ''}}">
-                            <label class="" for="master_class_id">শ্রেণী <span class="star">*</span></label>
+                            <label class="" for="master_class_id">Class <span class="star">*</span></label>
                             <div class="">
                                 <select name="master_class_id" id="master_class_id" class="form-control">
-                                    <option value="">... শ্রেণী নির্বাচন করুন ...</option>
+                                    <option value="">Select Class</option>
                                     @foreach($master_classes as $class)
                                         <option value="{{$class->id}}">{{$class->name}}</option>
                                     @endforeach
@@ -251,14 +251,14 @@
                             <span class="help-block">
                                 <strong>{{($errors->has('master_class_id')?$errors->first('master_class_id'):'')}}</strong>
                             </span>
-                        </div> 
+                        </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group {{$errors->has('group_class_id') ? 'has-error' : ''}}">
-                            <label class="" for="group_class_id">গ্রুপ / বিভাগ <span class="star">*</span></label>
+                            <label class="" for="group_class_id">Group<span class="star">*</span></label>
                             <div class="">
                                 <select name="group_class_id" id="group_class_id" class="form-control">
-                                    <option value="">... গ্রুপ / বিভাগ নির্বাচন করুন ...</option>
+                                    <option value="">Select Group</option>
                                     @foreach($group_classes as $group_class)
                                         <option value="{{$group_class->id}}">{{$group_class->name}}</option>
                                     @endforeach
@@ -288,7 +288,7 @@
                 <div class="row">
                     <div class="col-md-2 col-md-offset-5">
                         <div class="form-group">
-                            <button id="save_btn" type="submit" class="btn btn-block btn-info">হালনাগাদ করুন</button>
+                            <button id="save_btn" type="submit" class="btn btn-block btn-info">Update</button>
                         </div>
                     </div>
                 </div>
@@ -318,13 +318,13 @@
             var tik_mark = document.getElementById('tik_mark').value;
             var practical_mark = document.getElementById('practical_mark').value;
             if(written_mark==''){
-               var written_mark = 0; 
+               var written_mark = 0;
             }
             if(tik_mark==''){
-               var tik_mark = 0; 
+               var tik_mark = 0;
             }
             if(practical_mark==''){
-               var practical_mark = 0; 
+               var practical_mark = 0;
             }
             var total = (parseInt(written_mark) + parseInt(tik_mark) + parseInt(practical_mark));
             document.getElementById('total_mark').value = total;

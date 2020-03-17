@@ -6,7 +6,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">কমিটির প্রোফাইল সম্পাদনা করুন</h1>
+            <h1 class="text-center text-temp">Edit Committee Profile</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -20,12 +20,12 @@
             <form id="validate" name="validate" action="{{url('/commitee/'.$commiteeData->id)}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 {{method_field('patch')}}
-                
+
                 <div class="row">
 
                     <div class="col-sm-6">
                         <div class="form-group {{$errors->has('email') ? 'has-error' : ''}}">
-                            <label class="" for="email">ইমেইল <span class="star">*</span></label>
+                            <label class="" for="email">Email <span class="star">*</span></label>
                             <div class="">
                                 <input value="{{$commiteeData->user->email}}" class="form-control" type="email" name="email" id="email" placeholder="Teacher Email">
                             </div>
@@ -36,8 +36,8 @@
                             @endif
                         </div>
                     </div>
-               
-                   
+
+
                 </div>
                 <hr>
 
@@ -45,7 +45,7 @@
                     <div class="row">
                         <div class="col-sm-2 col-sm-offset-5">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-block btn-info">হালনাগাদ</button>
+                                <button type="submit" class="btn btn-block btn-info">Update</button>
                             </div>
                         </div>
                     </div>
@@ -69,10 +69,10 @@
     <script src="{{asset('backEnd/js/jquery-ui.js')}}"></script>
     <script>
         $( function() {
-            $( ".date" ).datepicker({ 
+            $( ".date" ).datepicker({
                 dateFormat: 'dd-mm-yy',
                 changeMonth: true,
-                changeYear: true 
+                changeYear: true
             }).val();
         } );
     </script>
