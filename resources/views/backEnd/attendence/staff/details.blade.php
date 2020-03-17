@@ -1,14 +1,14 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'উপস্থিতি ব্যাবস্থাপনা')
+@section('mainTitle', 'Attendance Management')
 @section('active_attendance', 'active')
 
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">{{($single_employee->user->group_id==3)?'শিক্ষক':'কর্মচারী'}} উপস্থিতি</h1>
+            <h1 class="text-center text-temp">{{($single_employee->user->group_id==3)?'Teacher':'Employee'}} Present</h1>
 
-            <h3 class="text-center text-temp">{{($single_employee->user->group_id==3)?'শিক্ষক':'কর্মচারী'}} : {{$single_employee->user->name}}</h3>
+            <h3 class="text-center text-temp">{{($single_employee->user->group_id==3)?'Teacher':'কর্মচারী'}} : {{$single_employee->user->name}}</h3>
         </div>
         @if(Session::has('errmgs'))
             @include('backEnd.includes.errors')
@@ -27,7 +27,7 @@
                      <input type="hidden" value="{{$from}}" name="from">
                      <input type="hidden" value="{{$to}}" name="to">
                   @endif
-                  
+
                 </form>
                 <hr>
             </div>
@@ -120,12 +120,11 @@
     <script src="{{asset('backEnd/js/jquery-ui.js')}}"></script>
     <script>
         $( function() {
-            $( ".date" ).datepicker({ 
+            $( ".date" ).datepicker({
                 dateFormat: 'dd-mm-yy',
                 changeMonth: true,
-                changeYear: true 
+                changeYear: true
             }).val();
         } );
     </script>
 @endsection
-
