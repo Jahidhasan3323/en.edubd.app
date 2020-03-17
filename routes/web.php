@@ -209,6 +209,14 @@ Route::group(['middleware' => 'auth','prefix' => 'result'], function(){
 });
 
 
+Route::group(['middleware' => 'auth','prefix' => 'elective'], function(){
+    Route::get('setting', 'ElectiveSettingController@create');
+    Route::post('store', 'ElectiveSettingController@store');
+    Route::get('edit/{id}', 'ElectiveSettingController@edit');
+    Route::post('update/{id}', 'ElectiveSettingController@update');
+    Route::get('delete/{id}', 'ElectiveSettingController@destroy');
+});
+
 /*
  * Progess Cart Management Routes here................
  */

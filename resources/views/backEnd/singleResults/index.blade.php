@@ -13,7 +13,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">ফলাফল সম্পাদনার জন্য অনুসন্ধান করুন</h1>
+            <h1 class="text-center text-temp">Search for Edit Result</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -37,9 +37,9 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group {{$errors->has('exam_type_id') ? 'has-error' : ''}}">
-                            <label class="" for="class">পরীক্ষা <span class="star">*</span></label>
+                            <label class="" for="class">Exam <span class="star">*</span></label>
                             <select name="exam_type_id" id="exam_type_id" class="form-control">
-                                <option value="">...পরীক্ষা নির্বাচন করুন...</option>
+                                <option value="">...Select Exam...</option>
                                 @foreach($exam_types as $exam)
                                     <option value="{{$exam->id}}">{{$exam->name}}</option>
                                 @endforeach
@@ -53,10 +53,10 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group {{$errors->has('exam_year') ? 'has-error' : ''}}">
-                            <label class="" for="exam_year">শিক্ষাবর্ষ <span class="star">*</span></label>
+                            <label class="" for="exam_year">Exam Year <span class="star">*</span></label>
                             <div class="">
                                 <select name="exam_year" id="exam_year" class="form-control">
-                                <option value="">...শিক্ষাবর্ষ নির্বাচন করুন...</option>
+                                <option value="">...Select Exam Year...</option>
                                 <option value="{{date('Y')}}">{{date('Y')}}</option>
                                 <option value="{{date('Y')-1}}">{{date('Y')-1}}</option>
                             </select>
@@ -70,9 +70,9 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group {{$errors->has('master_class_id') ? 'has-error' : ''}}">
-                            <label class="" for="master_class_id">শ্রেণী <span class="star">*</span></label>
+                            <label class="" for="master_class_id">Class <span class="star">*</span></label>
                             <select name="master_class_id" id="master_class_id" class="form-control">
-                                <option value="">...শ্রেণী নির্বাচন করুন...</option>
+                                <option value="">...Select Class...</option>
                                 @foreach($classes as $class)
                                     <option value="{{$class->id}}">{{$class->name}}</option>
                                 @endforeach
@@ -87,9 +87,9 @@
                     
                     <div class="col-sm-3">
                         <div class="form-group {{$errors->has('group_class_id') ? 'has-error' : ''}}">
-                            <label class="" for="group_class_id">গ্রুপ / বিভাগ <span class="star">*</span></label>
+                            <label class="" for="group_class_id">Group / Division <span class="star">*</span></label>
                             <select name="group_class_id" id="group_class_id" class="form-control">
-                                <option value="">...গ্রুপ / বিভাগ নির্বাচন করুন...</option>
+                                <option value="">...Select Group / Division...</option>
                                 @foreach($group_classes as $group_class)
                                   <option value="{{$group_class->id}}">{{$group_class->name}}</option>
                                 @endforeach
@@ -105,13 +105,13 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group {{$errors->has('shift') ? 'has-error' : ''}}">
-                            <label class="" for="shift">শিফট <span class="star">*</span></label>
+                            <label class="" for="shift">Shift <span class="star">*</span></label>
                             <select name="shift" id="shift" class="form-control">
-                                <option value="">...শিফট নির্বাচন করুন...</option>
-                                <option value="সকাল">সকাল</option>
-                                <option value="দিন">দিন</option>
-                                <option value="সন্ধ্যা">সন্ধ্যা</option>
-                                <option value="রাত">রাত</option>
+                                <option value="">Select Shift</option>
+                                <option value="Morning">Morning</option>
+                                <option value="Day">Day</option>
+                                <option value="Evening">Evening</option>
+                                <option value="Night">Night</option>
                             </select>
                             @if ($errors->has('shift'))
                                 <span class="help-block">
@@ -123,13 +123,13 @@
 
                     <div class="col-sm-3">
                         <div class="form-group {{$errors->has('section') ? 'has-error' : ''}}">
-                            <label class="" for="section">শাখা <span class="star">*</span></label>
+                            <label class="" for="section">Section <span class="star">*</span></label>
                             <select name="section" id="section" class="form-control">
-                                <option value="">...শাখা নির্বাচন করুন...</option>
-                                <option value="ক">ক</option>
-                                <option value="খ">খ</option>
-                                <option value="গ">গ</option>
-                                <option value="ঘ">ঘ</option>
+                                <option value="">...Select Section...</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
                                 @foreach($units as $unit)
                                 <option value="{!!$unit->name!!}">{!!$unit->name!!}</option>
                                 @endforeach
@@ -143,7 +143,7 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group {{$errors->has('subject_id') ? 'has-error' : ''}}">
-                            <label class="" for="subject_id">বিষয় <span class="star">*</span></label>
+                            <label class="" for="subject_id">Subject <span class="star">*</span></label>
                             <div class="">
                                 <select name="subject_id" id="subject_id" class="form-control" onchange="select_subject_details();">
                                     @if($errors->any())
@@ -160,7 +160,7 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group {{$errors->has('subject_status') ? 'has-error' : ''}}">
-                            <label class="" for="subject_status">সাবজেক্ট স্টেটাস<span class="star">*</span></label>
+                            <label class="" for="subject_status">Subject Status<span class="star">*</span></label>
                             <div class="">
                                 <select name="subject_status" id="subject_status" class="form-control">
                                     @if($errors->any())
@@ -180,7 +180,7 @@
                     <div class="row">
                         <div class="col-sm-2 col-sm-offset-5">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-success">অনুসন্ধান করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-success">Search</button>
                             </div>
                         </div>
                     </div>
@@ -216,18 +216,18 @@
                 $('#subject_type').val(data.subject_type);
                 $('#subject_name').val(data.subject_name);
                 
-                if(data.subject_type=='সাধারণ' && data.status=='আবশ্যিক'){
-                  var html="<option value='আবশ্যিক'>আবশ্যিক</option>";
+                if(data.subject_type=='General' && data.status=='Compulsory'){
+                  var html="<option value='Compulsory'>Compulsory</option>";
                 }
-                else if(data.subject_type=='সাধারণ' && data.status=='ঐচ্ছিক'){
-                  var html="<option value='ঐচ্ছিক'>ঐচ্ছিক</option>";
+                else if(data.subject_type=='General' && data.status=='Optional'){
+                  var html="<option value='Optional'>Optional</option>";
                 }
 
-                else if(data.subject_type=='ধর্ম শিক্ষা'){
-                 var html="<option value='আবশ্যিক'>আবশ্যিক</option>"; 
+                else if(data.subject_type=='Religion Education'){
+                 var html="<option value='Compulsory'>Compulsory</option>"; 
                 }
                 else{
-                  var html="<option value=''>স্টেটাস নির্বাচন করুন</option><option value='আবশ্যিক'>আবশ্যিক</option><option value='ঐচ্ছিক'>ঐচ্ছিক</option>";
+                  var html="<option value=''>Select Status</option><option value='Compulsory'>Compulsory</option><option value='Optional'>Optional</option>";
                 }
                 $('#subject_status').html(html);
             }

@@ -13,6 +13,7 @@ use App\GroupClass;
 use App\SchoolType;
 use App\CaResult;
 use App\User;
+use App\ElectiveSetting;
 use function GuzzleHttp\Psr7\copy_to_stream;
 use Illuminate\CustomClasses\ResultCalculate;
 use Illuminate\Http\Request;
@@ -318,13 +319,13 @@ class ResultController extends Controller
           Session::flash('errmgs', 'Sorry, Result not published yet.');
           return redirect()->back();
         }
-       $copulsary_results = collect($results)->where('subject_status','আবশ্যিক')->groupBy(function($element){
-        return str_replace(['১ম পত্র','২য় পত্র','প্রথম পত্র','দ্বিতীয় পত্র','১ম','২য়','প্রথম','দ্বিতীয়'], '', $element['subject_name']);
+       $copulsary_results = collect($results)->where('subject_status','Compulsory')->groupBy(function($element){
+        return str_replace(['1st letter', '2nd letter', '1st paper', '2nd paper', 'first paper', 'second paper', '1st', '2nd', 'first', 'second','1st Letter', '2nd Letter', '1st Paper', '2nd Paper', 'first Paper', 'second Paper', '1st', '2nd', 'First', 'Second'], '', $element['subject_name']);
        });
 
 
-       $optional_results = collect($results)->where('subject_status','ঐচ্ছিক')->groupBy(function($element){
-        return str_replace(['১ম পত্র','২য় পত্র','প্রথম পত্র','দ্বিতীয় পত্র','১ম','২য়','প্রথম','দ্বিতীয়'], '', $element['subject_name']);
+       $optional_results = collect($results)->where('subject_status','Optional')->groupBy(function($element){
+        return str_replace(['1st letter', '2nd letter', '1st paper', '2nd paper', 'first paper', 'second paper', '1st', '2nd', 'first', 'second','1st Letter', '2nd Letter', '1st Paper', '2nd Paper', 'first Paper', 'second Paper', '1st', '2nd', 'First', 'Second'], '', $element['subject_name']);
        });
        $school=School::with('user','important_setting')->where(['id'=> Auth::getSchool()])->first();
         if($results->count()){
@@ -407,21 +408,30 @@ class ResultController extends Controller
             'section' => 'required',
         ]);
         $data['school_id'] = Auth::getSchool();
-        $result = Result::where($data)->orderBy('grand_total_mark','desc')->get();
-        $res = collect($result)->sortBy('grand_total_mark');
+        if($request->roll_serialize == 'yes'){
+          $result = Result::where($data)->orderBy('roll','asc')->get();
+          $res = collect($result)->sortBy('roll');
+        }else{
+          $result = Result::where($data)->orderBy('grand_total_mark','desc')->get();
+          $res = collect($result)->sortBy('grand_total_mark'); 
+        }
         $position=[];
         if(count($res)>0){
           $position=$resultList->class_position_identify_number($request,$res);
         }
-        $results = collect($res->reverse())->groupBy(['student_id']);
+        if($request->roll_serialize == 'yes'){
+          $results = collect($res)->groupBy(['student_id']);
+        }else{
+          $results = collect($res->reverse())->groupBy(['student_id']); 
+        }
         $check_subjects =Result::where($data)->select(['subject_name','subject_status','subject_type','subject_id'])->get();
         $check_subjects =collect($check_subjects)->sortBy('subject_id');
 
         if(count($results)<1&&count($check_subjects)<1){
           return "<div style='text-align:center;margin:20% 20%;height:200px;background:red;color:#ffffff;'> <h2 style='    line-height: 200px;'> Nothing Found ! Sorry to Say, Please check your selected value. </h2> </div>";
         }
-        $copulsary_subject = collect($check_subjects)->where('subject_status','আবশ্যিক')->groupBy(function($element){
-         return str_replace(['১ম পত্র','২য় পত্র','প্রথম পত্র','দ্বিতীয় পত্র','১ম','২য়','প্রথম','দ্বিতীয়','ইসলাম','হিন্দু'], '', $element['subject_name']);
+        $copulsary_subject = collect($check_subjects)->where('subject_status','Compulsory')->groupBy(function($element){
+         return str_replace(['1st letter', '2nd letter', '1st paper', '2nd paper', 'first paper', 'second paper', '1st', '2nd', 'first', 'second','1st Letter', '2nd Letter', '1st Paper', '2nd Paper', 'first Paper', 'second Paper', '1st', '2nd', 'First', 'Second','Islam religion','islam religion','Hindu religion','Hindu Religion','hindu religion','Hindu Religion','Islam','islam','Hindu','hindu','Hinduism','hinduism'], '', $element['subject_name']);
         });
         $subject_status=collect($check_subjects)->pluck('subject_status')->toArray();
         $subject_type=collect($check_subjects)->pluck('subject_type')->toArray();
@@ -429,7 +439,15 @@ class ResultController extends Controller
         $exam=ExamType::where('id',$request->exam_type_id)->first();
         $class=MasterClass::where('id',$request->master_class_id)->first();
         $group=GroupClass::where('id',$request->group_class_id)->first();
-        return view('backEnd.results.tebulationList', compact('results','school','data','exam','class','group','copulsary_subject','subject_status','subject_type','position'));
+        $elective_count=ElectiveSetting::where([
+          'master_class_id'=>$request->master_class_id,
+          'group_class_id'=>$request->group_class_id,
+          'school_id'=>Auth::getSchool(),
+        ])->value('compulsary_elective');
+        if($request->roll_serialize == 'yes'){
+          return view('backEnd.results.tebulation_list_by_roll', compact('results','school','data','exam','class','group','copulsary_subject','subject_status','subject_type','position','elective_count'));
+        }
+        return view('backEnd.results.tebulationList', compact('results','school','data','exam','class','group','copulsary_subject','subject_status','subject_type','position','elective_count'));
     }
 
 

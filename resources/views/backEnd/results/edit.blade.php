@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'ফলাফল সম্পাদনা করুন')
+@section('mainTitle', 'Edit Result')
 @section('head_section')
     <style>
        
@@ -14,7 +14,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">ফলাফল সম্পাদনা করুন</h1>
+            <h1 class="text-center text-temp">Edit Result</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -38,9 +38,9 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group {{$errors->has('master_class_id') ? 'has-error' : ''}}">
-                            <label class="" for="class">পরীক্ষা <span class="star">*</span></label>
+                            <label class="" for="class">Exam Type <span class="star">*</span></label>
                             <select name="exam_type_id" id="exam_type_id" class="form-control" required="">
-                                <option value="">...পরীক্ষা নির্বাচন করুন...</option>
+                                <option value="">...Select Exam Type...</option>
                                 @foreach($exam_types as $exam)
                                     <option value="{{$exam->id}}" {{($result->exam_type_id==$exam->id)?'selected':''}}>{{$exam->name}}</option>
                                 @endforeach
@@ -54,7 +54,7 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group {{$errors->has('master_class_id') ? 'has-error' : ''}}">
-                            <label class="" for="class">পরীক্ষার বছর <span class="star">*</span></label>
+                            <label class="" for="class">Exam Year <span class="star">*</span></label>
                             <input type="text" name="exam_year" placeholder="সাল" class="form-control" id="exam_year" value="{{old('exam_year',$result->exam_year)}}">
                             @if ($errors->has('exam_year'))
                                 <span class="help-block" style="color: red;">
@@ -65,10 +65,10 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group {{$errors->has('student_id') ? 'has-error' : ''}}">
-                            <label class="" for="student_id">শিক্ষার্থী <span class="star">*</span></label>
+                            <label class="" for="student_id">Student <span class="star">*</span></label>
                             <div class="">
                                 <select name="student_id" id="student_id" class="form-control" onchange="select_student_roll();" required="">
-                                <option  value="">...শিক্ষার্থী নির্বাচন করুন...</option>
+                                <option  value="">...Select Student...</option>
                                 @foreach($students as $student)
                                     <option value="{{$student->student_id}}" {{($result->student_id==$student->student_id)?'selected':''}}>{{$student->user->name}} ({{$student->student_id}})</option>
                                 @endforeach
@@ -83,9 +83,9 @@
                     </div>
                     <div class="col-sm-2">
                         <div class="form-group {{$errors->has('roll') ? 'has-error' : ''}}">
-                            <label class="" for="roll">শ্রেণী রোল<span class="star">*</span></label>
+                            <label class="" for="roll">Class Roll<span class="star">*</span></label>
                             <div class="">
-                                <input type="text" placeholder="Class Roll" name="roll" id="roll" class="form-control" value="{{old('roll',$result->student->roll)}}" readonly="readonly">
+                                <input type="text" placeholder="শ্রেণী রোল" name="roll" id="roll" class="form-control" value="{{old('roll',$result->student->roll)}}" readonly="readonly">
                             </div>
                             @if ($errors->has('roll'))
                                 <span class="help-block">
@@ -133,7 +133,7 @@
                             </div>
                             <div class="col-md-2" style="display: {{in_array($result->master_class_id,['8','9','10','11','12'])?'block':'none'}};">
                                 <div class="form-group {{$errors->has('ca_mark') ? 'has-error' : ''}}">
-                                    <label class="" for="ca_mark">সিএ নম্বর</label>
+                                    <label class="" for="ca_mark">CA Number</label>
                                     <div class="">
                                         <input value="{{isset($sub_result->ca_mark)?$sub_result->ca_mark:'--'}}" class="form-control" type="text" name="ca_mark[]">
                                     </div>
@@ -146,7 +146,7 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group {{$errors->has('cr_mark') ? 'has-error' : ''}}">
-                                    <label class="" for="cr_mark">সিআর/তত্ত্বীয় নম্বর</label>
+                                    <label class="" for="cr_mark">CR Number</label>
                                     <div class="">
                                         <input value="{{isset($sub_result->cr_mark)?$sub_result->cr_mark:'--'}}" class="form-control" type="text" name="cr_mark[]">
                                     </div>
@@ -159,7 +159,7 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group {{$errors->has('mcq_mark') ? 'has-error' : ''}}">
-                                    <label class="" for="mcq_mark">এমসিকিউ নম্বর</label>
+                                    <label class="" for="mcq_mark">MCQ Number</label>
                                     <div class="">
                                         <input value="{{isset($sub_result->mcq_mark)?$sub_result->mcq_mark:'--'}}" class="form-control" type="text" name="mcq_mark[]">
                                     </div>
@@ -172,7 +172,7 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group {{$errors->has('pr_mark') ? 'has-error' : ''}}">
-                                    <label class="" for="pr_mark">পিআর নম্বর</label>
+                                    <label class="" for="pr_mark">PR Number</label>
                                     <div class="">
                                         <input value="{{isset($sub_result->pr_mark)?$sub_result->pr_mark:'--'}}" class="form-control" type="text" name="pr_mark[]">
                                     </div>
@@ -194,20 +194,20 @@
 
                             <div class="{{in_array($result->master_class_id,['8','9','10','11','12'])?'col-sm-2':'col-sm-3'}}">
                                 <div class="form-group {{$errors->has('subject_status') ? 'has-error' : ''}}">
-                                    <label class="" for="subject_status">সাবজেক্ট স্টেটাস<span class="star">*</span></label>
+                                    <label class="" for="subject_status">Subject Status<span class="star">*</span></label>
                                     <div class="">
-                                        @if($subject->status=='কমন'||$subject->status=='ঐচ্ছিক'||$subject->subject_type=='ধর্ম শিক্ষা')
+                                        @if($subject->status=='Common'||$subject->status=='Optional'||$subject->subject_type=='Religion Education')
                                         <select name="subject_status[]" id="subject_status" class="form-control">
-                                            <option value="">স্টেটাস নির্বাচন করুন</option>
-                                            @if($subject->subject_type=='ধর্ম শিক্ষা')
-                                            <option value="আবশ্যিক" {{isset($sub_result->subject_status)?($sub_result->subject_status=='আবশ্যিক'?'selected':''):''}}>আবশ্যিক</option>
+                                            <option value="">Select Subject Status</option>
+                                            @if($subject->subject_type=='Religion Education')
+                                            <option value="Compulsory" {{isset($sub_result->subject_status)?($sub_result->subject_status=='Compulsory'?'selected':''):''}}>Compulsory</option>
                                             @endif
                                             @if($subject->status=='Common')
-                                            <option value="আবশ্যিক" {{isset($sub_result->subject_status)?($sub_result->subject_status=='আবশ্যিক'?'selected':''):''}}>আবশ্যিক</option>
-                                            <option value="ঐচ্ছিক" {{isset($sub_result->subject_status)?($sub_result->subject_status=='ঐচ্ছিক'?'selected':''):''}}>ঐচ্ছিক</option>
+                                            <option value="Compulsory" {{isset($sub_result->subject_status)?($sub_result->subject_status=='Compulsory'?'selected':''):''}}>Compulsory</option>
+                                            <option value="Optional" {{isset($sub_result->subject_status)?($sub_result->subject_status=='Optional'?'selected':''):''}}>Optional</option>
                                             @endif
-                                            @if($subject->status=='ঐচ্ছিক')
-                                            <option value="ঐচ্ছিক" {{isset($sub_result->subject_status)?($sub_result->subject_status=='ঐচ্ছিক'?'selected':''):''}}>ঐচ্ছিক</option>
+                                            @if($subject->status=='Optional')
+                                            <option value="Optional" {{isset($sub_result->subject_status)?($sub_result->subject_status=='Optional'?'selected':''):''}}>Optional</option>
                                             @endif
                                         </select>
                                         @else
@@ -228,7 +228,7 @@
                     <div class="row">
                         <div class="col-sm-2 col-sm-offset-5">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-success">হালনাগাদ</button>
+                                <button id="save" type="submit" class="btn btn-block btn-success">Update</button>
                             </div>
                         </div>
                     </div>

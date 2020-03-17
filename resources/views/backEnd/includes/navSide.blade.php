@@ -448,6 +448,11 @@
                                 <a href="{{url('/elective/setting')}}">Elective Settings</a>
                             </li>
                         @endif
+                        @if(Auth::is('student'))
+                            <li>
+                                <a href="{{url('/online-exam/result')}}">See Online Exam Result</a>
+                             </li>
+                        @endif
                     </ul>
                 </li>
             @endif
