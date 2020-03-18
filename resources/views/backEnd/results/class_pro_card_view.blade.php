@@ -1,12 +1,12 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'Result View')
+@section('mainTitle', 'Progress Report Card View')
 @section('active_result', 'active')
 
 @section('content')
 <div id="forPdf" class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
 <div class="page-header text-center">
-    <h3>প্রগ্রেস রিপোর্ট কার্ড</h3>
+    <h3>Progress Report Card</h3>
 </div>
 
 @if(Session::has('errmgs'))
@@ -29,15 +29,15 @@
      @if(($school->service_type_id==1 && $student->id_card_exits==1) || $school->service_type_id!=1)
         @php
           $copulsary_results = collect($results)->groupBy(function($element){
-           return str_replace(['১ম পত্র','২য় পত্র','প্রথম পত্র','দ্বিতীয় পত্র','১ম','২য়','প্রথম','দ্বিতীয়'], '', $element['subject_name']);
-          });
+         return str_replace(['1st letter', '2nd letter', '1st paper', '2nd paper', 'first paper', 'second paper', '1st', '2nd', 'first', 'second','1st Letter', '2nd Letter', '1st Paper', '2nd Paper', 'first Paper', 'second Paper', '1st', '2nd', 'First', 'Second'], '', $element['subject_name']);
+         });
          $i=1;
          foreach ($copulsary_results as $key=>$c_results) {
             $subjects[$i++]=$c_results;
          }
          foreach ($subjects as $key => $subject){
              if(count($subject)>1){
-             $name=str_replace(['১ম পত্র','২য় পত্র','প্রথম পত্র','দ্বিতীয় পত্র','১ম','২য়','প্রথম','দ্বিতীয়'], '', $subject[0]->subject_name);
+             $name=str_replace(['1st letter', '2nd letter', '1st paper', '2nd paper', 'first paper', 'second paper', '1st', '2nd', 'first', 'second','1st Letter', '2nd Letter', '1st Paper', '2nd Paper', 'first Paper', 'second Paper', '1st', '2nd', 'First', 'Second'], '', $subject[0]->subject_name);
              $ca_mark[$name]=($subject[0]->ca_mark=='--'?0:$subject[0]->ca_mark)+
                      ($subject[1]->ca_mark=='--'?0:$subject[1]->ca_mark);
              $cr_mark[$name]=($subject[0]->cr_mark=='--'?0:$subject[0]->cr_mark)+
@@ -56,7 +56,7 @@
              $pr_pass_mark[$name]=($subject[0]->pr_pass_mark=='--'?0:$subject[0]->pr_pass_mark)+
                      ($subject[1]->pr_pass_mark=='--'?0:$subject[1]->pr_pass_mark);
              }else{
-              $name=str_replace(['১ম পত্র','২য় পত্র','প্রথম পত্র','দ্বিতীয় পত্র','১ম','২য়','প্রথম','দ্বিতীয়'], '', $subject[0]->subject_name);
+              $name=str_replace(['1st letter', '2nd letter', '1st paper', '2nd paper', 'first paper', 'second paper', '1st', '2nd', 'first', 'second','1st Letter', '2nd Letter', '1st Paper', '2nd Paper', 'first Paper', 'second Paper', '1st', '2nd', 'First', 'Second'], '', $subject[0]->subject_name);
               $ca_mark[$name]=($subject[0]->ca_mark=='--'?0:$subject[0]->ca_mark);
               $cr_mark[$name]=($subject[0]->cr_mark=='--'?0:$subject[0]->cr_mark);
               $mcq_mark[$name]=($subject[0]->mcq_mark=='--'?0:$subject[0]->mcq_mark);
@@ -81,13 +81,13 @@
           if($ca_mark[$subject]>=$ca_pass_mark[$subject]&&$cr_mark[$subject]>=$cr_pass_mark[$subject]&&$mcq_mark[$subject]>=$mcq_pass_mark[$subject]&&$pr_mark>$pr_pass_mark[$subject]){
             $sub_total=$sub_totals[$subject];
             $total_mark=$total_marks[$subject];
-            if($c_result[0]['subject_status']=='আবশ্যিক'){
+            if($c_result[0]['subject_status']=='Compulsory'){
              $total_gpa_compulsary[$subject]= Auth::calculateResult($sub_total,$total_mark)['gpa'];
             }else{
              $total_gpa_otional[$subject]= Auth::calculateResult($sub_total,$total_mark)['gpa']; 
             }
           }else{
-            if($c_result[0]['subject_status']=='আবশ্যিক'){
+            if($c_result[0]['subject_status']=='Compulsory'){
              $total_gpa_compulsary[$subject]=0;
             }else{
              $total_gpa_otional[$subject]=0; 
@@ -120,7 +120,7 @@
                 <div class="col-100 school-info">
                    <h3>{{$school->user->name}}</h3> 
                    <h5>{{$school->address}}</h5>
-                   <h4>{{$exam->name.'র প্রগ্রেস রিপোর্ট- '.str_replace($s, $r, $request->exam_year).' খ্রি:'}}</h4>
+                   <h4>{{$exam->name."'s Progress Report - ".$request->exam_year}}</h4>
                 </div>
             </div>
             <div class="row1">
@@ -128,22 +128,22 @@
                 
                 @if($school->important_setting!=NULL&&$school->important_setting->result_photo_permission=='yes')
                 <div style="width:48%;padding:3px;border:1px solid gray">
-                  <img src="{{Storage::url($student->photo)}}" alt="শিক্ষার্থীর ছবি" width="100%" height="100px;">
+                  <img src="{{Storage::url($student->photo)}}" alt="Student Photo" width="100%" height="100px;">
                 </div>
                 @endif
               </div>
                 <div class="col-33 school-logo">
                 <img src="{{Storage::url($school->logo)}}" alt="School Logo">
-                <h3>প্রগ্রেস রিপোর্ট কার্ড</h3>
+                <h3>Progress Report Card</h3>
                 </div>
                 <div class="col-33">
                     <div class="table-place">
                         <table class="letter-grade letter-grade-bordered">
                           <thead>
                             <tr>
-                              <th>লেটার গ্রেড</th>
-                              <th>ক্লাস ইন্টারভ্যাল</th>
-                              <th>গ্রেড পয়েন্ট</th>
+                              <th>Letter Grade</th>
+                              <th>Class Interval</th>
+                              <th>Grade Point</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -177,10 +177,10 @@
             <div class="row1">
               <div class="col-50 student-info-s" style="padding:15px;padding-top: 0;">
                 <div class="col-25 student-info-s">
-                    <p>শিক্ষার্থীর নাম</p>
-                    <p>পিতার নাম</p>
-                    <p>মাতার নাম</p>
-                    <p>আইডি</p>
+                    <p>Student Name</p>
+                    <p>Father's Name</p>
+                    <p>Mother's Name</p>
+                    <p>ID No.</p>
                 </div class="col-75 student-info-s">
                 <div>
                     <p>: {{$student->user->name}}</p>
@@ -191,16 +191,16 @@
               </div>
               <div class="col-50 student-info-s" style="padding:15px;padding-top: 0;">
                 <div class="col-25 student-info-s">
-                    <p>শ্রেণী</p>
-                    <p>শ্রেণী রোল</p>
-                    <p>গ্রুপ</p>
-                    <p>শিক্ষার্থীর ধরণ</p>
+                    <p>Class</p>
+                    <p>Class Roll</p>
+                    <p>Group</p>
+                    <p>Student Type</p>
                 </div class="col-75 student-info-s">
                 <div>
                     <p>: {{App\MasterClass::where(['id'=>$request->master_class_id])->value('name')}}</p>
                     <p>: {{$results[1]['roll']}}</p>
-                    <p>: {{App\GroupClass::where(['id'=>$request->group_class_id])->value('name')}}, ({{'শাখা - '.$request->section.', শিফট - '.$request->shift}})</p> 
-                    <p>: {{$results[1]['regularity']}}</p>
+                    <p>: {{$student->group}} (Section - {{$student->section}})</p> 
+                    <p>: {{$student->regularity}}</p>
                 </div>
               </div>
             </div>
@@ -210,12 +210,12 @@
                     <table class="table table-bordered table-hover table-striped text-center">
                         <thead>
                           <tr>
-                            <th width="10%">ক্রমিক নং</th>
-                            <th width="30%">বিষয়ের নাম</th>
-                            <th width="10%">মোট নম্বর</th>
-                            <th width="10%">অবস্থান</th>
-                            <th width="13%">প্রথম অবস্থান</th>
-                            <th width="28%">শ্রেণী রোল</th>
+                            <th width="10%">Serial No.</th>
+                            <th width="30%">Subject Name</th>
+                            <th width="10%">Total Number</th>
+                            <th width="10%">Position</th>
+                            <th width="13%">First Position</th>
+                            <th width="28%">Class Roll</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -266,8 +266,7 @@
                     @php 
                      $fainal_gpa=(array_product($total_gpa_compulsary)>0)?$total_gpa:'0.00';
                     @endphp
-                          <p style="padding: 0;margin:0">
-                            মোট নম্বর : {{$results[0]['grand_total_mark']}}, প্রাপ্ত জিপিএ : {{$fainal_gpa}}, শ্রেণী অবস্থান : 
+                          <p style="padding: 0;margin:0">Total Number : {{$results[0]['grand_total_mark']}}, GPA : {{$fainal_gpa}}, Class Position : 
                             @php
                              if(in_array($results[0]['student_id'].''.($fainal_gpa+$results[0]['grand_total_mark']),$class_position_numbers['success_numbers']))
                              {
@@ -283,33 +282,33 @@
                             @endphp
                             {{$update_roll}}
                           </p>
-                            <p style="padding: 0;margin:0">মন্তব্য : 
+                            <p style="padding: 0;margin:0">Comment : 
                               @if($fainal_gpa==5)
-                              অপূর্ব
+                              Awesome
                               @elseif($fainal_gpa<5&&$fainal_gpa>=4)
-                              উত্তম
+                              Best
                               @elseif($fainal_gpa<4.00&&$fainal_gpa>=3.50)
-                              ভাল
+                              Better
                               @elseif($fainal_gpa<3.50&&$fainal_gpa>=3.00)
-                              ভাল
+                              Good
                               @elseif($fainal_gpa<3.00&&$fainal_gpa>=2.00)
-                              মোটামুটি
+                              Average
                               @elseif($fainal_gpa<2.00&&$fainal_gpa>=1.00)
-                              সান্তনামূলক
+                              Comfortable
                               @else
-                              দুঃখজনক
+                              Unfortunate
                               @endif
                             </p>
 
                         <div class="col-100" style="text-align: right;margin-top:15px;padding-right:2.5%;"><img src="{{Storage::url($school->signature_p)}}" height="30px;"></div>
                         <div class="col-33 pirnt-date">
-                          <p>ফলাফল প্রিন্ট করার তারিখ : {{date('Y-m-d')}} <br>Email: infoehsansoftware@gmail.com  <br>@Ehsan Software</p>
+                          <p>Date of printing the results : {{date('Y-m-d')}} <br>Email: infoehsansoftware@gmail.com  <br>@Ehsan Software</p>
                         </div>
                         <div class="col-33 s-teacher-s">
-                          <p>শ্রেণী শিক্ষকের স্বাক্ষর : </p>
+                          <p>Signature of class teacher : </p>
                         </div>
                         <div class="col-33 p-teacher-s">
-                          <p>প্রধান শিক্ষকের স্বাক্ষর :</p>
+                          <p>Signature of head teacher/principal :</p>
                         </div>
                      </div>
                 </div>
@@ -321,8 +320,8 @@
     @endphp
     @else
     <div class="text-center">
-      <p>{{$student->user->name}} ফলাফলের জন্য</p>
-      <h3>সফটওয়্যার সেবা প্রদানকারী প্রতিষ্টানের সাথে যোগাযোগ করুন ।</h3>
+      <h3>Please, Contact software service provider</h3>
+      <p>for {{$student->user->name."'s"}} result</p>
     </div>
     @endif
     @endforeach

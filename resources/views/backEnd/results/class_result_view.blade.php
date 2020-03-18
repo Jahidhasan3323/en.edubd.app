@@ -6,7 +6,7 @@
 @section('content')
     <div id="forPdf" class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header text-center">
-            <h3>মার্কশীট</h3>
+            <h3>Marksheet</h3>
         </div> 
 
         @if(Session::has('errmgs'))
@@ -25,19 +25,17 @@
         @foreach($results as $result)
             @php
             $result=$result->sortBy('subject_id');
-             $student=\App\Student::with(['user','masterClass'])->where([
-             'school_id'=>Auth::getSchool(),
-             'student_id'=>$result[0]->student_id,
-             ])->first();
+            $student=\App\Student::with(['user','masterClass'])->where([
+            'school_id'=>Auth::getSchool(),'student_id'=>$result[0]->student_id
+            ])->first();
+            $copulsary_results = collect($result)->where('subject_status','Compulsory')->groupBy(function($element){
+             return str_replace(['1st letter', '2nd letter', '1st paper', '2nd paper', 'first paper', 'second paper', '1st', '2nd', 'first', 'second','1st Letter', '2nd Letter', '1st Paper', '2nd Paper', 'first Paper', 'second Paper', '1st', '2nd', 'First', 'Second'], '', $element['subject_name']);
+            });
 
-             $copulsary_results = collect($result)->where('subject_status','আবশ্যিক')->groupBy(function($element){
-              return str_replace(['১ম পত্র','২য় পত্র','প্রথম পত্র','দ্বিতীয় পত্র','১ম','২য়','প্রথম','দ্বিতীয়'], '', $element['subject_name']);
-             });
-
-             
-             $optional_results = collect($result)->where('subject_status','ঐচ্ছিক')->groupBy(function($element){
-              return str_replace(['১ম পত্র','২য় পত্র','প্রথম পত্র','দ্বিতীয় পত্র','১ম','২য়','প্রথম','দ্বিতীয়'], '', $element['subject_name']);
-             });
+            
+            $optional_results = collect($result)->where('subject_status','Optional')->groupBy(function($element){
+             return str_replace(['1st letter', '2nd letter', '1st paper', '2nd paper', 'first paper', 'second paper', '1st', '2nd', 'first', 'second','1st Letter', '2nd Letter', '1st Paper', '2nd Paper', 'first Paper', 'second Paper', '1st', '2nd', 'First', 'Second'], '', $element['subject_name']);
+            });
             @endphp
             @if(($school->service_type_id==1 && $student->id_card_exits==1) || $school->service_type_id!=1)
             <div class="col-md-12 root-bg" style="margin-bottom: 58px;">
@@ -46,7 +44,7 @@
                     <div class="col-100 school-info">
                        <h3>{{$school->user->name}}</h3> 
                        <h5>{{$school->address}}</h5>
-                       <h4>{{$exam->name.'র ফলাফল - '.str_replace($s, $r, $request->exam_year).' খ্রি:'}}</h4>
+                       <h4>{{$exam->name."'s Result - ". $request->exam_year}}</h4>
                     </div>
                 </div>
 
@@ -54,22 +52,22 @@
                     <div class="col-33" style="height:100px;padding-left:15px;">
                       @if($school->important_setting!=NULL&&$school->important_setting->result_photo_permission=='yes')
                       <div style="width:48%;padding:3px;border:1px solid gray">
-                        <img src="{{Storage::url($student->photo)}}" alt="শিক্ষার্থীর ছবি" width="100%" height="100px;">
+                        <img src="{{Storage::url($student->photo)}}" alt="Student Photo" width="100%" height="100px;">
                       </div>
                       @endif
                     </div>
                     <div class="col-33 school-logo">
                     <img src="{{Storage::url($school->logo)}}" alt="School Logo">
-                    <h3>মার্কশীট</h3>
+                    <h3>Marksheet</h3>
                     </div>
                     <div class="col-33">
                         <div class="table-place">
                             <table class="letter-grade letter-grade-bordered">
                               <thead>
                                 <tr>
-                                  <th>লেটার গ্রেড</th>
-                                  <th>ক্লাস ইন্টারভ্যাল</th>
-                                  <th>গ্রেড পয়েন্ট</th>
+                                  <th>Letter Grade</th>
+                                  <th>Class Interval</th>
+                                  <th>Grade Point</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -103,10 +101,10 @@
                 <div class="row1">
                   <div class="col-50 student-info-s" style="padding:15px;padding-top: 0;">
                     <div class="col-25 student-info-s">
-                        <p>শিক্ষার্থীর নাম</p>
-                        <p>পিতার নাম</p>
-                        <p>মাতার নাম</p>
-                        <p>আইডি</p>
+                        <p>Student Name</p>
+                        <p>Father's Name</p>
+                        <p>Mother's Name</p>
+                        <p>ID No.</p>
                     </div class="col-75 student-info-s">
                     <div>
                         <p>: {{$student->user->name}}</p>
@@ -117,16 +115,16 @@
                   </div>
                   <div class="col-50 student-info-s" style="padding:15px;padding-top: 0;">
                     <div class="col-25 student-info-s">
-                        <p>শ্রেণী</p>
-                        <p>শ্রেণী রোল</p>
-                        <p>গ্রুপ</p>
-                        <p>শিক্ষার্থীর ধরণ</p>
-                    </div>
+                        <p>Class</p>
+                        <p>Class Roll</p>
+                        <p>Group</p>
+                        <p>Student Type</p>
+                    </div class="col-75 student-info-s">
                     <div>
-                        <p>: {{App\MasterClass::where(['id'=>$request->master_class_id])->value('name')}}</p>
-                        <p>: {{$result[1]['roll']}}</p>
-                        <p>: {{App\GroupClass::where(['id'=>$request->group_class_id])->value('name')}}, ({{'শাখা - '.$request->section.', শিফট - '.$request->shift}})</p> 
-                        <p>: {{$result[1]['regularity']}}</p>
+                        <p>: {{$student->masterClass->name}}</p>
+                        <p>: {{$student->roll}}</p>
+                        <p>: {{$student->group}} (শাখা - {{$student->section}})</p> 
+                        <p>: {{$student->regularity}}</p>
                     </div>
                   </div>
                 </div>
@@ -136,20 +134,20 @@
                                 <table class="table table-bordered table-hover table-striped text-center">
                                     <thead>
                                       <tr>
-                                        <th rowspan="2">ক্রমিক নং</th>
-                                        <th rowspan="2" style="width:34%">বিষয়ের নাম</th>
-                                        <th colspan="{{in_array($student->master_class_id,['8','9','10','11','12'])?'4':'3'}}" style="text-align: center">নম্বর বন্টন</th>
-                                        <th rowspan="2">মোট নম্বর</th>
-                                        <th rowspan="2">লেটার গ্রেড</th>
-                                        <th rowspan="2">প্রাপ্ত জিপিএ</th>
+                                        <th rowspan="2">Serial No.</th>
+                                        <th rowspan="2" style="width:34%">Subject Name</th>
+                                        <th colspan="{{in_array($student->master_class_id,['8','9','10','11','12'])?'4':'3'}}" style="text-align: center">Number Distribution</th>
+                                        <th rowspan="2">Total Number</th>
+                                        <th rowspan="2">Letter Grade</th>
+                                        <th rowspan="2">GPA</th>
                                       </tr>
                                       <tr>
                             @if(in_array($student->master_class_id,['8','9','10','11','12']))
-                                        <th>সিএ</th>
+                                        <th>CA</th>
                             @endif
-                                        <th>{{in_array($student->master_class_id,['8','9','10','11','12'])?'সিআর':'তত্ত্বীয়'}}</th>
-                                        <th>এমসিকিউ</th>
-                                        <th>পিআর</th>
+                                        <th>{{in_array($student->master_class_id,['8','9','10','11','12'])?'CR':'Theoretical'}}</th>
+                                        <th>MCQ</th>
+                                        <th>PR</th>
                                       </tr>
                                     </thead>
                                     <tbody>
@@ -160,7 +158,7 @@
                          }
                          foreach ($subjects as $key => $subject){
                              if(count($subject)>1){
-                             $name=str_replace(['১ম পত্র','২য় পত্র','প্রথম পত্র','দ্বিতীয় পত্র','১ম','২য়','প্রথম','দ্বিতীয়'], '', $subject[0]->subject_name);
+                             $name=str_replace(['1st letter', '2nd letter', '1st paper', '2nd paper', 'first paper', 'second paper', '1st', '2nd', 'first', 'second','1st Letter', '2nd Letter', '1st Paper', '2nd Paper', 'first Paper', 'second Paper', '1st', '2nd', 'First', 'Second'], '', $subject[0]->subject_name);
                              $ca_mark[$name]=($subject[0]->ca_mark=='--'?0:$subject[0]->ca_mark)+
                                      ($subject[1]->ca_mark=='--'?0:$subject[1]->ca_mark);
                              $cr_mark[$name]=($subject[0]->cr_mark=='--'?0:$subject[0]->cr_mark)+
@@ -179,7 +177,7 @@
                              $pr_pass_mark[$name]=($subject[0]->pr_pass_mark=='--'?0:$subject[0]->pr_pass_mark)+
                                      ($subject[1]->pr_pass_mark=='--'?0:$subject[1]->pr_pass_mark);
                              }else{
-                              $name=str_replace(['১ম পত্র','২য় পত্র','প্রথম পত্র','দ্বিতীয় পত্র','১ম','২য়','প্রথম','দ্বিতীয়'], '', $subject[0]->subject_name);
+                              $name=str_replace(['1st letter', '2nd letter', '1st paper', '2nd paper', 'first paper', 'second paper', '1st', '2nd', 'first', 'second','1st Letter', '2nd Letter', '1st Paper', '2nd Paper', 'first Paper', 'second Paper', '1st', '2nd', 'First', 'Second'], '', $subject[0]->subject_name);
                               $ca_mark[$name]=($subject[0]->ca_mark=='--'?0:$subject[0]->ca_mark);
                               $cr_mark[$name]=($subject[0]->cr_mark=='--'?0:$subject[0]->cr_mark);
                               $mcq_mark[$name]=($subject[0]->mcq_mark=='--'?0:$subject[0]->mcq_mark);
@@ -203,7 +201,7 @@
                         @endphp
                         @foreach($copulsary_results as $ke=>$result)
                           @foreach($result as $key => $res)
-                            @if($res->subject_status=='আবশ্যিক')
+                            @if($res->subject_status=='Compulsory')
                               <tr>
                                 <td>{{$i++}}</td>
                                 <td>{{$res->subject_name}}</td>
@@ -215,7 +213,7 @@
                                 <td>{{$res->pr_mark}}</td>
                               @if($key==0)
                                 @php
-                                 $name= str_replace(['১ম পত্র','২য় পত্র','প্রথম পত্র','দ্বিতীয় পত্র','১ম','২য়','প্রথম','দ্বিতীয়'], '', $res->subject_name);
+                                 $name= str_replace(['1st letter', '2nd letter', '1st paper', '2nd paper', 'first paper', 'second paper', '1st', '2nd', 'first', 'second','1st Letter', '2nd Letter', '1st Paper', '2nd Paper', 'first Paper', 'second Paper', '1st', '2nd', 'First', 'Second'], '', $res->subject_name);
                                  $sub_total=$sub_totals[$name];
 
                                  $total_mark=$total_marks[$name];
@@ -261,7 +259,7 @@
                           @endforeach
                         @endforeach
                                       <tr>
-                                        <td colspan="{{in_array($student->master_class_id,['8','9','10','11','12'])?'6':'5'}}"><span class="total_mark">সর্বমোট = </span>
+                                        <td colspan="{{in_array($student->master_class_id,['8','9','10','11','12'])?'6':'5'}}"><span class="total_mark">Total = </span>
                                         </td>
                                         <td>
                                           @php $grand_total=array_sum($sub_totals->toArray()) @endphp {{$grand_total}}
@@ -285,21 +283,21 @@
 
                                   </table>
                                    @if(count($optional_results)>0)
-                                      <h4 style="font-size: 14px;">অতিরিক্ত বিষয়</h4>
+                                      <h4 style="font-size: 14px;">Extra Subject</h4>
                                       <table class="table table-bordered">
                                           <thead>
                                             <tr>
-                                              <th>ক্রমিক নং</th>
-                                              <th>বিষয়ের নাম</th>
-                                        @if(in_array($student->master_class_id,['8','9','10','11','12']))
-                                              <th>সিএ</th>
-                                        @endif
-                                              <th>{{in_array($student->master_class_id,['8','9','10','11','12'])?'সিআর':'তত্ত্বীয়'}}</th>
-                                              <th>এমসিকিউ</th>
-                                              <th>পিআর</th>
-                                              <th>মোট নম্বর</th>
-                                              <th>লেটার গ্রেড</th>
-                                              <th>জিপিএ</th>
+                                                <th>Serial No.</th>
+                                                <th>Subject Name</th>
+                                                @if(in_array($student->master_class_id,['8','9','10','11','12']))
+                                                <th>CA</th>
+                                                @endif
+                                                <th>{{in_array($student->master_class_id,['8','9','10','11','12'])?'CR':'Theoretical'}}</th>
+                                                <th>MCQ</th>
+                                                <th>PR</th>
+                                                <th>Total Number</th>
+                                                <th>Letter Grade</th>
+                                                <th>GPA</th>
                                             </tr>
                                           </thead>
                                           <tbody>
@@ -311,7 +309,7 @@
                              }
                              foreach ($subjects as $key => $subject){
                                  if(count($subject)>1){
-                                 $name=str_replace(['১ম পত্র','২য় পত্র','প্রথম পত্র','দ্বিতীয় পত্র','১ম','২য়','প্রথম','দ্বিতীয়'], '', $subject[0]->subject_name);
+                                 $name=str_replace(['1st letter', '2nd letter', '1st paper', '2nd paper', 'first paper', 'second paper', '1st', '2nd', 'first', 'second','1st Letter', '2nd Letter', '1st Paper', '2nd Paper', 'first Paper', 'second Paper', '1st', '2nd', 'First', 'Second'], '', $subject[0]->subject_name);
                                  $ca_mark[$name]=($subject[0]->ca_mark=='--'?0:$subject[0]->ca_mark)+
                                          ($subject[1]->ca_mark=='--'?0:$subject[1]->ca_mark);
                                  $cr_mark[$name]=($subject[0]->cr_mark=='--'?0:$subject[0]->cr_mark)+
@@ -330,7 +328,7 @@
                                  $pr_pass_mark[$name]=($subject[0]->pr_pass_mark=='--'?0:$subject[0]->pr_pass_mark)+
                                          ($subject[1]->pr_pass_mark=='--'?0:$subject[1]->pr_pass_mark);
                                  }else{
-                                  $name=str_replace(['১ম পত্র','২য় পত্র','প্রথম পত্র','দ্বিতীয় পত্র','১ম','২য়','প্রথম','দ্বিতীয়'], '', $subject[0]->subject_name);
+                                  $name=str_replace(['1st letter', '2nd letter', '1st paper', '2nd paper', 'first paper', 'second paper', '1st', '2nd', 'first', 'second','1st Letter', '2nd Letter', '1st Paper', '2nd Paper', 'first Paper', 'second Paper', '1st', '2nd', 'First', 'Second'], '', $subject[0]->subject_name);
                                   $ca_mark[$name]=($subject[0]->ca_mark=='--'?0:$subject[0]->ca_mark);
                                   $cr_mark[$name]=($subject[0]->cr_mark=='--'?0:$subject[0]->cr_mark);
                                   $mcq_mark[$name]=($subject[0]->mcq_mark=='--'?0:$subject[0]->mcq_mark);
@@ -360,7 +358,7 @@
                                               @endphp
                                               @foreach($result as $key => $res)
                                               
-                                                @if($res->subject_status=='ঐচ্ছিক')
+                                                @if($res->subject_status=='Optional')
                                                   <tr>
                                                     <td>{{$i++}}</td>
                                                     <td>{{$res->subject_name}}</td>
@@ -372,7 +370,7 @@
                                                     <td>{{$res->pr_mark}}</td>
                     @if($key==0)
                       @php
-                       $name= str_replace(['১ম পত্র','২য় পত্র','প্রথম পত্র','দ্বিতীয় পত্র','১ম','২য়','প্রথম','দ্বিতীয়'], '', $res->subject_name); 
+                       $name= str_replace(['1st letter', '2nd letter', '1st paper', '2nd paper', 'first paper', 'second paper', '1st', '2nd', 'first', 'second','1st Letter', '2nd Letter', '1st Paper', '2nd Paper', 'first Paper', 'second Paper', '1st', '2nd', 'First', 'Second'], '', $res->subject_name); 
                        $sub_total=$sub_totals[$name];
 
                        $total_mark=$total_marks[$name];
@@ -430,9 +428,9 @@
                             }
                             $fainal_4j_gpa=number_format(($fainal_4j_gpa>5?5:$fainal_4j_gpa), 2, '.', '');
                             @endphp
-                                        <p>সবেমাট নম্বর ( অতিরিক্ত বিষয় সহ ) &nbsp; &nbsp; &nbsp; &nbsp; : {{$grand_total+array_sum($sub_totals->toArray())}}</p>
+                                        <p>The total number( With additional subject ) &nbsp; &nbsp; &nbsp; &nbsp; : {{$grand_total+array_sum($sub_totals->toArray())}}</p>
                                         </span>
-                                        <p>প্রাপ্ত জিপিএ ( অতিরিক্ত বিষয় সহ ) &nbsp; &nbsp; &nbsp; &nbsp; : {{$fainal_4j_gpa}}</p>
+                                        <p>GPA ( With additional issues ) &nbsp; &nbsp; &nbsp; &nbsp; : {{$fainal_4j_gpa}}</p>
                                         </span>
                                      @endif
 @php
@@ -446,15 +444,15 @@ $ca_results=App\CaResult::where($q_data)->get();
 
                 @if(count($ca_results)>0)
                 <div class="col-100">
-                  <h4>কন্টিনুয়াস এটাচমেন্ট</h4>
+                  <h4>Continuous Attachment</h4>
                   <table class="table table-bordered table-hover table-striped text-center">
                       <thead>
                         <tr>
-                          <th style="width:10%">ক্রমিক নং</th>
-                          <th>বিষয়</th>
-                          <th>নম্বর</th>
-                          <th>লেটার গ্রেড</th>
-                          <th>প্রাপ্ত জিপিএ</th>
+                          <th style="width:10%">Serial No.</th>
+                          <th>Subject</th>
+                          <th>Number</th>
+                          <th>Letter Grade</th>
+                          <th>GPA</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -474,13 +472,13 @@ $ca_results=App\CaResult::where($q_data)->get();
                 @endif
                                     <div class="col-100" style="text-align: right;margin-top:15px;padding-right:2.5%;"><img src="{{Storage::url($school->signature_p)}}" height="30px;"></div>
                                     <div class="col-33 pirnt-date">
-                                      <p>ফলাফল প্রিন্ট করার তারিখ : {{date('Y-m-d')}} <br>Email: infoehsansoftware@gmail.com  <br>@Ehsan Software</p>
+                                      <p>Date of print : {{date('Y-m-d')}} <br>Email: infoehsansoftware@gmail.com  <br>@Ehsan Software</p>
                                     </div>
                                     <div class="col-33 s-teacher-s">
-                                      <p>শ্রেণী শিক্ষকের স্বাক্ষর : </p>
+                                      <p>Signature of class teacher : </p>
                                     </div>
                                     <div class="col-33 p-teacher-s">
-                                      <p>প্রধান শিক্ষকের স্বাক্ষর :</p>
+                                      <p>Signature of head teacher/principal :</p>
                                     </div>
                                  </div>
                             </div>
@@ -488,8 +486,8 @@ $ca_results=App\CaResult::where($q_data)->get();
                     </div>
             @else
             <div class="text-center">
-              <p>{{$student->user->name}} ফলাফলের জন্য</p>
-              <h3>সফটওয়্যার সেবা প্রদানকারী প্রতিষ্টানের সাথে যোগাযোগ করুন ।</h3>
+              <h3>Please, Contact software service provider</h3>
+              <p>for {{$student->user->name."'s"}} result</p>
             </div>
             @endif
 

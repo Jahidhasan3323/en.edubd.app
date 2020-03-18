@@ -17,7 +17,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">প্রগ্রেস কার্ড দেখুন</h1>
+            <h1 class="text-center text-temp">Showing Progress Report Card</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -42,10 +42,10 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group {{$errors->has('exam_year') ? 'has-error' : ''}}">
-                                <label class="" for="exam_year">বছর <span class="star">*</span></label>
+                                <label class="" for="exam_year">Exam Year <span class="star">*</span></label>
                                 <div class="">
                                     <select style="width: 100% !important;" class="form-control" name="exam_year" id="exam_year">
-                                        <option>...বছর নির্বাচন করুন...</option>
+                                        <option>...Select Exam Year...</option>
                                         @if(!$years->count())
                                             <option>No result has given</option>
                                         @endif
@@ -66,10 +66,10 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group {{$errors->has('exam_type_id') ? 'has-error' : ''}}">
-                                <label class="" for="exam_type_id">পরীক্ষা <span class="star">*</span></label>
+                                <label class="" for="exam_type_id">Exam Type <span class="star">*</span></label>
                                 <div class="">
                                     <select style="width: 100% !important;" class="form-control" name="exam_type_id" id="exam_type_id">
-                                        <option>...পরীক্ষা টাইপ নির্বাচন করুন...</option>
+                                        <option>...Select Exam Type...</option>
                                         @foreach($exams as $exam)
                                             <option value="{{$exam->id}}">{{$exam->name}}</option>
                                         @endforeach
@@ -86,7 +86,7 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group {{$errors->has('student_id') ? 'has-error' : ''}}">
-                                <label class="" for="teacher_id">শিক্ষার্থীর আইডি <span class="star">*</span></label>
+                                <label class="" for="teacher_id">Student ID <span class="star">*</span></label>
                                 <div class="">
                                     <input autocomplete="off" class="form-control" type="text" name="student_id" id="student_id" placeholder="Student ID">
                                 </div>
@@ -105,7 +105,7 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-success">সাবমিট</button>
+                                <button id="save" type="submit" class="btn btn-block btn-success">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -123,3 +123,4 @@
     </script>
 
 @endsection
+
