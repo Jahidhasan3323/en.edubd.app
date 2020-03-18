@@ -19,116 +19,116 @@
             </li>
 
             <li>
-                <a class="active-menu" href="{{url('/home')}}"><i class="fa fa-angle-double-up fa-3x"></i> এডমিন প্যানেল</a>
+                <a class="active-menu" href="{{url('/home')}}"><i class="fa fa-angle-double-up fa-3x"></i> Admin Panel</a>
             </li>
-           
-            
+
+
             @if(Auth::is('admin'))
                 @if(isset($bg))
                 @else
                  @php $bg=''; @endphp
                 @endif
-               
+
                 <li class="@yield('language')">
-                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>ভাষার তারিখ<span
+                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>Language Date<span
                                 class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                      
-                        
+
+
                         <li>
-                            <a href="{{url('/date_language/create')}}">ভাষার তারিখ যোগ করুন</a>
+                            <a href="{{url('/date_language/create')}}">Add language date</a>
                         </li>
                         <li>
-                            <a href="{{url('/date_language')}}">ভাষার তারিখের তালিকা</a>
+                            <a href="{{url('/date_language')}}">Language date list</a>
                         </li>
                     </ul>
                 </li>
                 <li class="@yield('slider')">
-                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>স্লাইডার<span
+                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>Sliders<span
                                 class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                      
-                        
+
+
                         <li>
-                            <a href="{{url('/slider/create')}}">স্লাইডার যোগ করুন</a>
+                            <a href="{{url('/slider/create')}}">Add Slider</a>
                         </li>
                          <li>
-                            <a href="{{url('/slider')}}">স্লাইডার তালিকা</a>
+                            <a href="{{url('/slider')}}">Slider List</a>
                         </li>
                     </ul>
                 </li>
                  <li class="@yield('information')">
-                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>তথ্য<span
+                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>Information<span
                                 class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                      
-                        
+
+
                          <li>
-                            <a href="{{url('/speech/create')}}">বাণী যোগ করুন</a>
+                            <a href="{{url('/speech/create')}}">Add Speech</a>
                         </li>
                         <li>
-                            <a href="{{url('/speech')}}">বাণীর তালিকা</a>
+                            <a href="{{url('/speech')}}">Speech list</a>
                         </li>
                         <li>
-                            <a href="{{url('/general_text/create')}}">অন্যান্য তথ্য যোগ করুন</a>
+                            <a href="{{url('/general_text/create')}}">Add others information</a>
                         </li>
                         <li>
-                            <a href="{{url('/general_text')}}">অন্যান্য তথ্যর তালিকা</a>
+                            <a href="{{url('/general_text')}}">Other information list</a>
                         </li>
                     </ul>
                 </li>
                 <li class="@yield('gallery')">
-                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>গ্যালারি<span
+                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>Gallery<span
                                 class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="{{url('/gallery_category/create')}}">গ্যালারি ক্যাটাগরি যোগ করুন</a>
+                            <a href="{{url('/gallery_category/create')}}">Add Gallery category</a>
                         </li>
                         <li>
-                            <a href="{{url('/gallery_category')}}">গ্যালারি ক্যাটাগরি তালিকা</a>
+                            <a href="{{url('/gallery_category')}}">Gallery category list</a>
                         </li>
                         <li>
-                            <a href="{{url('/image_gallery/create')}}">ছবি যোগ করুন</a>
+                            <a href="{{url('/image_gallery/create')}}">Add Photo</a>
                         </li>
                         <li>
-                            <a href="{{url('/image_gallery')}}">ছবির তালিকা</a>
+                            <a href="{{url('/image_gallery')}}">Photo list</a>
                         </li>
                         <li>
-                            <a href="{{url('/video_gallery/create')}}">ভিডিও যোগ করুন</a>
+                            <a href="{{url('/video_gallery/create')}}">Add Video</a>
                         </li>
                         <li>
-                            <a href="{{url('/video_gallery')}}">ভিডিওর তালিকা</a>
+                            <a href="{{url('/video_gallery')}}">Video list</a>
                         </li>
 
                     </ul>
                 </li>
                 <li class="@yield('important_link')">
-                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>গুরুত্বপূর্ণ লিঙ্ক<span
+                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>Important links<span
                                 class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                      
+
                       <li>
-                            <a href="{{url('/important_links_category/create')}}">গুরুত্বপূর্ণ লিঙ্ক ক্যাটাগরি যোগ করুন</a>
+                            <a href="{{url('/important_links_category/create')}}">Add important link category</a>
                         </li>
                         <li>
-                            <a href="{{url('/important_links_category')}}">গুরুত্বপূর্ণ লিঙ্ক ক্যাটাগরি তালিকা</a>
+                            <a href="{{url('/important_links_category')}}">Important link category liist</a>
                         </li>
-                        
+
                         <li>
-                            <a href="{{url('/important_link/create')}}">গুরুত্বপূর্ণ লিঙ্ক যোগ করুন</a>
+                            <a href="{{url('/important_link/create')}}">Add important link</a>
                         </li>
                          <li>
-                            <a href="{{url('/important_link')}}">গুরুত্বপূর্ণ লিঙ্কের তালিকা</a>
+                            <a href="{{url('/important_link')}}">Important link list</a>
                         </li>
                     </ul>
                 </li>
                  <li class="@yield('school_settings') ">
-                    <a href="{{url('school_settings')}}" style="background:<?=$bg== 'active' ? '#4D4D4D' : ''?>"><i class="fa fa-gears fa-2x"></i>সেটিং</span></a>
-                    
+                    <a href="{{url('school_settings')}}" style="background:<?=$bg== 'active' ? '#4D4D4D' : ''?>"><i class="fa fa-gears fa-2x"></i>Settings</span></a>
+
                 </li>
             @endif
 
-        
+
 
         </ul>
 

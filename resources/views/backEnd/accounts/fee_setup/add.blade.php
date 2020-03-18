@@ -124,7 +124,7 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
+                      </div>
                       <div class="col-sm-6">
                           <div class="form-group {{$errors->has('name') ? 'has-error' : ''}}">
                               <label class="">Select Fee Category <span class="star">*</span></label>

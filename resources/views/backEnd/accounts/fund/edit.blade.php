@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'ফান্ড পরিবর্তন')
+@section('mainTitle', 'Edit Fund')
 @section('head_section')
     <style>
 
@@ -10,7 +10,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">ফান্ড পরিবর্তন করুন</h1>
+            <h1 class="text-center text-temp">Edit Fund</h1>
         </div>
 
         @if(session('success_msg'))
@@ -39,20 +39,20 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label class="" for="name">ফান্ডের নাম <span class="star">*</span></label>
+                            <label class="" for="name">Fund Name <span class="star">*</span></label>
                             <div class="">
-                                <input value="{{ $fund->name??'' }}" type="text" name="name" class="form-control" placeholder="ফান্ডের নাম লিখুন">
+                                <input value="{{ $fund->name??'' }}" type="text" name="name" class="form-control" placeholder="Enter Fund Name">
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label class="">ফান্ডের অবস্থা <span class="star">*</span></label>
+                            <label class="">Fund Status<span class="star">*</span></label>
                             <div class="">
                               <select class="form-control" name="status">
-                                <option selected value="1">{{ $fund->status==1?'সক্রিয়': 'নিষ্ক্রিয়' }}</option>
-                                <option value="1">সক্রিয়</option>
-                                <option value="0">নিষ্ক্রিয়</option>
+                                <option selected value="1">{{ $fund->status==1?'Enable': 'Disable' }}</option>
+                                <option value="1">Enable</option>
+                                <option value="0">Disable</option>
                               </select>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">আপডেট করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Update</button>
                             </div>
                         </div>
                     </div>

@@ -6,9 +6,9 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">{{($single_employee->user->group_id==3)?'Teacher':'Employee'}} Present</h1>
+            <h1 class="text-center text-temp">{{($single_employee->user->group_id==3)?'Teacher':'Staff'}} Attendance</h1>
 
-            <h3 class="text-center text-temp">{{($single_employee->user->group_id==3)?'Teacher':'কর্মচারী'}} : {{$single_employee->user->name}}</h3>
+            <h3 class="text-center text-temp">{{($single_employee->user->group_id==3)?'Teacher':'Staff'}} : {{$single_employee->user->name}}</h3>
         </div>
         @if(Session::has('errmgs'))
             @include('backEnd.includes.errors')
@@ -18,7 +18,7 @@
         @endif
         <div class="row">
             <div class="col-md-12 text-center">
-                <a class="btn btn-primary" onclick="event.preventDefault();document.getElementById('student-list-print').submit();"><i class="glyphicon glyphicon-print"></i> প্রিন্ট করুন</a>
+                <a class="btn btn-primary" onclick="event.preventDefault();document.getElementById('student-list-print').submit();"><i class="glyphicon glyphicon-print"></i> Print</a>
                 <form id="student-list-print" action="{{ url('atten_employee/print') }}" method="POST" style="display: none;" target="_blank">
                   {{ csrf_field() }}
                   <input type="hidden" value="{{json_encode($months,TRUE)}}" name="months">
@@ -62,7 +62,7 @@
                             </div>
                             <div class="col-md-2 col-sm-12">
                                 <div class="form-group">
-                                    <button id="save" type="submit" class="btn btn-block btn-success">ফিল্টারিং</button>
+                                    <button id="save" type="submit" class="btn btn-block btn-success">Filtering</button>
                                 </div>
                             </div>
                          </div>
@@ -80,14 +80,14 @@
                 <table class="table table-bordered table-responsive table-hover table-striped text-center">
                     <thead>
                         <tr>
-                            <th class="text-center">ক্রমিক নং</th>
-                            <th class="text-center">তারিখ</th>
-                            <th class="text-center">উপস্থিত</th>
-                            <th class="text-center">ছুটি</th>
-                            <th class="text-center">অনুপস্থিত</th>
-                            <th class="text-center">ইন টাইম</th>
-                            <th class="text-center">আউট টাইম</th>
-                            <th class="text-center">বছর</th>
+                            <th class="text-center">Serial</th>
+                            <th class="text-center">Date</th>
+                            <th class="text-center">Present</th>
+                            <th class="text-center">Holiday</th>
+                            <th class="text-center">Absent</th>
+                            <th class="text-center">In Time</th>
+                            <th class="text-center">Out Time</th>
+                            <th class="text-center">Year</th>
                         </tr>
                     </thead>
                     <tbody>

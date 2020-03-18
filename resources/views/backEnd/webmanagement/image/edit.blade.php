@@ -10,7 +10,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">ছবি পরিবর্তন করুন</h1>
+            <h1 class="text-center text-temp">Edit Image</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -29,11 +29,11 @@
                 {{csrf_field()}}
                 {{method_field('PUT')}}
                 <div class="row">
-                  
+
                    <div class="col-sm-4">
                       <div class="form-group {{$errors->has('tittle') ? 'has-error' : ''}}">
-                           <label for="photo">টাইটেল </label>
-                           <input type="text" name="tittle" class="form-control" placeholder="টাইটেল"  value="{{$image_gallery->tittle}}">
+                           <label for="photo">Title </label>
+                           <input type="text" name="tittle" class="form-control" placeholder="Title"  value="{{$image_gallery->tittle}}">
                            @if ($errors->has('tittle'))
                                <span class="help-block">
                                    <strong>{{$errors->first('tittle')}}</strong>
@@ -43,10 +43,10 @@
                     </div>
                    <div class="col-sm-4 {{$errors->has('wm_gallery_category_id') ? 'has-error' : ''}}">
                         <div class="form-group">
-                            <label class="" for="wm_gallery_category_id">গ্যালারির ক্যাটাগরি <span class="star">*</span></label>
+                            <label class="" for="wm_gallery_category_id">Gallery Category<span class="star">*</span></label>
                             <div class="">
                                 <select class="form-control" name="wm_gallery_category_id" id="wm_gallery_category_id" data-validation="required" required>
-                                    <option value="">ক্যাটাগরি নির্বাচন</option>
+                                    <option value="">Select Gallery</option>
                                     @if($categorys)
                                         @foreach($categorys as $category)
                                             <option value="{{$category->id}}">{{$category->tittle}}</option>
@@ -63,13 +63,13 @@
                     </div>
                     <div class="col-sm-4 {{$errors->has('type') ? 'has-error' : ''}}">
                         <div class="form-group">
-                            <label class="" for="type">গ্যালারির ধরণ <span class="star">*</span></label>
+                            <label class="" for="type">Gallery Type <span class="star">*</span></label>
                             <div class="">
                                 <select class="form-control" name="type" id="type" data-validation="required " required>
-                                    <option value="">ধরণ নির্বাচন</option>
-                                    <option value="1">ছবি</option>
-                                    <option value="2">ভিডিও</option>
-                                    
+                                    <option value="">Select Type</option>
+                                    <option value="1">Photo</option>
+                                    <option value="2">Video</option>
+
                                 </select>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
 
                    <div class="col-sm-4">
                        <div class="form-group {{$errors->has('path') ? 'has-error' : ''}}">
-                           <label for="photo">ছবি <span class="star">*</span></label>
+                           <label for="photo">Photo <span class="star">*</span></label>
                            <input type="file" name="path" onchange="openFile(event)" accept="image/*"  data-validation="mime size"
                               data-validation-allowing="jpg, png, gif,jpeg,svg"
                               data-validation-max-size="2mb"
@@ -100,8 +100,8 @@
                    </div>
                    <div class="col-sm-4">
                       <div class="form-group {{$errors->has('date') ? 'has-error' : ''}}">
-                           <label for="photo">তারিখ </label>
-                           <input type="text" name="date" class="form-control date" placeholder="তারিখ"  value="{{$image_gallery->date}}">
+                           <label for="photo">Date </label>
+                           <input type="text" name="date" class="form-control date" placeholder="Date"  value="{{$image_gallery->date}}">
                            @if ($errors->has('date'))
                                <span class="help-block">
                                    <strong>{{$errors->first('date')}}</strong>
@@ -109,8 +109,8 @@
                            @endif
                        </div>
                     </div>
-                    
-                   
+
+
                </div>
                <div class="row">
                    <div class="col-sm-4">
@@ -123,7 +123,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group {{$errors->has('details') ? 'has-error' : ''}}">
-                          <label class="" for="details">বর্ণনা </label>
+                          <label class="" for="details">Description </label>
                           <div class="">
                             <textarea  class="form-control" name="details" id="details" >{{$image_gallery->details}}</textarea>
                           </div>
@@ -137,13 +137,13 @@
                 </div>
                <hr>
 
-                
+
 
                 <div class="">
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">পরিবর্তন করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Update</button>
                             </div>
                         </div>
                     </div>
@@ -151,7 +151,7 @@
             </form>
         </div>
     </div>
-    
+
     <script type="text/javascript">
        var openFile = function(event) {
        var input = event.target;
@@ -187,10 +187,10 @@
     <script src="{{asset('backEnd/js/jquery-ui.js')}}"></script>
     <script>
         $( function() {
-            $( ".date" ).datepicker({ 
+            $( ".date" ).datepicker({
                 dateFormat: 'dd-mm-yy',
                 changeMonth: true,
-                changeYear: true 
+                changeYear: true
             }).val();
         } );
     </script>

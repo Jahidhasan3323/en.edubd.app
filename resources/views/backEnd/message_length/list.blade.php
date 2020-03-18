@@ -1,12 +1,12 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'বার্তা সেটিং')
+@section('mainTitle', 'Message Seting List')
 @section('message_length', 'active')
 
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">বার্তা সেটিং তালিকা</h1>
+            <h1 class="text-center text-temp">Message Seting List</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -21,11 +21,11 @@
                 <table id="birthday_tbl" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th class="text-center">ক্রমিক</th>
-                            <th class="text-center">প্রতিষ্ঠান</th>
-                            <th class="text-center">নোটিফিকেশন</th>
-                            <th class="text-center">জন্মদিনের বার্তা</th>
-                            <th class="text-center">অ্যাকশন</th>
+                            <th class="text-center">Serial</th>
+                            <th class="text-center">Institute</th>
+                            <th class="text-center">Notification</th>
+                            <th class="text-center">Birthday Status</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     @php
@@ -38,8 +38,8 @@
                                 <td>{{ $message_length->school->user->name }}</td>
                                 <td class="text-center">{{ $message_length->notification }}</td>
                                 <td class="text-center">
-                                    @if ($message_length->birthday_sms==1) <span class="text-success">সক্রিয়</span>
-                                    @else <span class="text-danger">নিষ্ক্রিয়</span>
+                                    @if ($message_length->birthday_sms==1) <span class="text-success">Enable</span>
+                                    @else <span class="text-danger">Disable</span>
                                     @endif
                                 </td>
                                 <td class="text-center">

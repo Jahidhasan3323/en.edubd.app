@@ -1,12 +1,12 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'জন্মদিনের বার্তা')
+@section('mainTitle', 'Birthday SMS Text List')
 @section('active_birthday_text', 'active')
 
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">জন্মদিনের বার্তার তালিকা</h1>
+            <h1 class="text-center text-temp">Birthday SMS Text List</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -21,10 +21,10 @@
                 <table id="birthday_tbl" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th class="text-center">ক্রমিক</th>
-                            <th class="text-center">প্রতিষ্ঠান</th>
-                            <th class="text-center">বার্তা</th>
-                            <th class="text-center">অ্যাকশন</th>
+                            <th class="text-center">Serial</th>
+                            <th class="text-center">Institute</th>
+                            <th class="text-center">Message</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     @php

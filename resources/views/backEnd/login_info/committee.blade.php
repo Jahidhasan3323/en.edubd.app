@@ -7,7 +7,7 @@
 @section('content')
     <div class="panel col-md-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">লগিনের তথ্য সেবা</h1>
+            <h1 class="text-center text-temp">Send login information</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -17,7 +17,7 @@
             @include('backEnd.includes.success')
         @endif
         <div class="col-md-12" style="border: 1px solid #ddd;">
-            <h4 style="margin-bottom: 20px;" class="text-center">প্রতিষ্ঠান নির্বাচন করুন</h4>
+            <h4 style="margin-bottom: 20px;" class="text-center">Select institute</h4>
             <div class="row col-md-8 col-md-offset-2">
                 <form action="{{route('loginInfo.comm_search')}}" method="post">
                     {{csrf_field()}}
@@ -38,7 +38,7 @@
 
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">অনুসন্ধান</button>
+                            <button type="submit" class="btn btn-primary">Search</button>
                         </div>
                     </div>
                 </form>
@@ -46,8 +46,8 @@
         </div>
         @if(isset($committees))
         <div class="col-sm-12">
-        <h4 style="margin-bottom: 10px;" class="text-center"> কমিটি চিহ্নিত করুন </h4>
-        <h5 style="margin-bottom: 10px;" class="text-center">মোট কমিটি : {{count($committees)}}</h5>
+        <h4 style="margin-bottom: 10px;" class="text-center"> Select Committee </h4>
+        <h5 style="margin-bottom: 10px;" class="text-center">Total Committee : {{count($committees)}}</h5>
         <div class="row">
             <div class="panel-body" style="margin-top: 10px;">
                 <form action="{{route('loginInfo.comm_sms')}}" method="post" enctype="multipart/form-data">
@@ -58,9 +58,9 @@
                            <div class="panel-body table-responsive">
                             <table class="table table-hover table-striped">
                                 <tr>
-                                    <th> নাম </th>
-                                    <th>পদবী</th>
-                                    <th>মোবাইল নাম্বার</th>
+                                    <th> Name </th>
+                                    <th>Designation</th>
+                                    <th>Mobile Number</th>
                                 </tr>
                                @foreach($committees as $committee)
                                 <tr>
@@ -82,7 +82,7 @@
                                 @if(count($committees)>0)
                                 <tr>
                                     <td colspan="3">
-                                        <input id="all_check" class="form-check-input" onclick="checkNumber()" type="checkbox"> <label for="all_check">সব চেক / আনচেক</label>
+                                        <input id="all_check" class="form-check-input" onclick="checkNumber()" type="checkbox"> <label for="all_check">Check All / Uncheck</label>
                                     </td>
                                 </tr>
                                 @endif

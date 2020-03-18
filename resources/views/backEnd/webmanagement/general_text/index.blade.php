@@ -7,7 +7,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">অন্যান্য তথ্য </h1>
+            <h1 class="text-center text-temp">Others information list </h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -20,15 +20,15 @@
         <div class="panel-body" style="margin-top: 10px; padding-bottom: 50px">
             <div class="col-sm-12 " style="font-size: 18px; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); padding: 30px">
 
-               
+
                 <table id="commitee_tbl" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>ক্রমিক নং</th>
-                            <th>ফাইল</th>
-                            <th>টাইটেল</th>
-                            <th>বাণীর ধরণ </th>
-                            <th>অ্যাকশন</th>
+                            <th>Serial</th>
+                            <th>File</th>
+                            <th>Title</th>
+                            <th>Speech Type</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,11 +37,11 @@
                         @foreach($general_texts as $general_text)
                         <tr>
                             <td>{{$i++}}</td>
-                            <td>@if(!empty($general_text->file))<a style="margin-bottom: 10px;" href="{{url('general_text/view/'.$general_text->id)}}" class="btn btn-success">ফাইল</a>@endif</td>
+                            <td>@if(!empty($general_text->file))<a style="margin-bottom: 10px;" href="{{url('general_text/view/'.$general_text->id)}}" class="btn btn-success">File</a>@endif</td>
                             <td>{{$general_text->tittle}}</td>
                             <td>{{$general_text->general_text_type->tittle}}</td>
-                            
-                            
+
+
                             <td>
                                 <a style="margin-bottom: 10px;" href="{{url('general_text/view/'.$general_text->id)}}" class="btn btn-success"><span class="glyphicon glyphicon-eye-open"></span></a>
                                 <a style="margin-bottom: 10px;" href="{{url('general_text/edit/'.$general_text->id)}}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></span></a>
@@ -61,11 +61,11 @@
                                 </script>
                             </td>
                         </tr>
-                        
+
                         @endforeach
                         @endif
                     </tbody>
-                    
+
                 </table>
             </div>
         </div>
@@ -73,7 +73,7 @@
 
 @endsection
 @section('script')
- 
+
     <script src="{{asset('backEnd')}}/DataTables/jquery.dataTables.min.js"></script>
     <script src="{{asset('backEnd')}}/DataTables/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">

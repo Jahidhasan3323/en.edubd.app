@@ -1,12 +1,12 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'বিজ্ঞাপন ব্যাবস্থাপনা ')
+@section('mainTitle', 'Advertisement Management')
 @section('active_commitee', 'active')
 
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">বিজ্ঞাপন ব্যাবস্থাপনা </h1>
+            <h1 class="text-center text-temp">Advertisement Management</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -18,12 +18,12 @@
         <div class="panel-body">
             <form id="validate" name="validate" action="{{url($advertisement?'/advertisement/update/'.$advertisement->id : '/advertisement/store')}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
-                
+
 
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group {{$errors->has('top_banner_advertisement') ? 'has-error' : ''}}">
-                            <label for="top_banner_advertisement">ব্যানার বিজ্ঞাপন<font color="red" size="4">*</font></label>
+                            <label for="top_banner_advertisement">Banner Advertisement<font color="red" size="4">*</font></label>
                             <label>( Mini-Width=1140px, Max-Width=1200px )</label>
                             <input type="file" name="top_banner_advertisement" onchange="openFile(event,1)" accept="top_banner_advertisement/*" id="top_banner_advertisement">
                             @if ($errors->has('top_banner_advertisement'))
@@ -43,7 +43,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group {{$errors->has('slider_bottom_advertisement') ? 'has-error' : ''}}">
-                            <label for="slider_bottom_advertisement">স্লাইডারের নীচে বিজ্ঞাপন<font color="red" size="4">*</font></label>
+                            <label for="slider_bottom_advertisement">Advertisement Below SLider<font color="red" size="4">*</font></label>
                             <label>( Mini-Width=500px, Max-Width=800px )</label>
                             <input type="file" name="slider_bottom_advertisement" onchange="openFile(event,2)" accept="slider_bottom_advertisement/*" id="slider_bottom_advertisement">
                             @if ($errors->has('slider_bottom_advertisement'))
@@ -64,7 +64,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group {{$errors->has('footer_advertisement') ? 'has-error' : ''}}">
-                            <label for="footer_advertisement">ফুটার বিজ্ঞাপন<font color="red" size="4">*</font></label>
+                            <label for="footer_advertisement">Footer Advertisement<font color="red" size="4">*</font></label>
                             <label>( Mini-Width=500px, Max-Width=800px )</label>
                             <input type="file" name="footer_advertisement" onchange="openFile(event,3)" accept="footer_advertisement/*" id="footer_advertisement">
                             @if ($errors->has('footer_advertisement'))
@@ -88,7 +88,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group {{$errors->has('slider_right_advertisement') ? 'has-error' : ''}}">
-                                    <label for="slider_right_advertisement">স্লাইডারের ডানের বিজ্ঞাপন<font color="red" size="4">*</font></label>
+                                    <label for="slider_right_advertisement">Sidebar right side Advertisement<font color="red" size="4">*</font></label>
                                     <label>( Mini-Width=100px, Max-Width=200px )</label>
                                     <input type="file" name="slider_right_advertisement" onchange="openFile(event,4)" accept="slider_right_advertisement/*" id="slider_right_advertisement">
                                     @if ($errors->has('slider_right_advertisement'))
@@ -104,7 +104,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group {{$errors->has('slider_left_advertisement') ? 'has-error' : ''}}">
-                                    <label for="slider_left_advertisement">স্লাইডারের বামের বিজ্ঞাপন<font color="red" size="4">*</font></label>
+                                    <label for="slider_left_advertisement">SLider left Advertisement<font color="red" size="4">*</font></label>
                                     <label>( Mini-Width=100px, Max-Width=200px )</label>
                                     <input type="file" name="slider_left_advertisement" onchange="openFile(event,5)" accept="slider_bottom_advertisement/*" id="slider_left_advertisement">
                                     @if ($errors->has('slider_left_advertisement'))
@@ -120,7 +120,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group {{$errors->has('sitebar_right_advertisement') ? 'has-error' : ''}}">
-                                    <label for="sitebar_right_advertisement">সাইডবারে ডানের বিজ্ঞাপন<font color="red" size="4">*</font></label>
+                                    <label for="sitebar_right_advertisement">Sidebar right Advertisement<font color="red" size="4">*</font></label>
                                     <label>( Mini-Width=100px, Max-Width=200px )</label>
                                     <input type="file" name="sitebar_right_advertisement" onchange="openFile(event,6)" accept="sitebar_right_advertisement/*" id="sitebar_right_advertisement">
                                     @if ($errors->has('sitebar_right_advertisement'))
@@ -136,7 +136,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group {{$errors->has('sitebar_bottom_advertisement') ? 'has-error' : ''}}">
-                                    <label for="sitebar_bottom_advertisement">সাইডবারে নিচের বিজ্ঞাপন<font color="red" size="4">*</font></label>
+                                    <label for="sitebar_bottom_advertisement">Sidebar bottom Advertisement<font color="red" size="4">*</font></label>
                                     <label>( Mini-Width=100px, Max-Width=200px )</label>
                                     <input type="file" name="sitebar_bottom_advertisement" onchange="openFile(event,7)" accept="sitebar_bottom_advertisement/*" id="sitebar_bottom_advertisement">
                                     @if ($errors->has('sitebar_bottom_advertisement'))
@@ -158,12 +158,12 @@
                     <div class="row">
                         <div class="col-sm-2 col-sm-offset-5">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-block btn-info">সংরক্ষণ করুন</button>
+                                <button type="submit" class="btn btn-block btn-info">Save</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form> 
+            </form>
         </div>
     </div>
 
@@ -172,4 +172,3 @@
 @section('script')
     <script src="{{asset('backEnd/js/appsJs/advertisement.js')}}"></script>
 @endsection
-

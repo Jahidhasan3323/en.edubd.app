@@ -5,7 +5,7 @@
 
 @section('content')
        <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
-       
+
            @if(Session::has('errmgs'))
                @include('backEnd.includes.errors')
            @endif
@@ -18,14 +18,14 @@
                    {{csrf_field()}}
                     <div class="row">
                        <div class="col-sm-12 text-center">
-                           <h3>কর্মীদের আইডি তৈরি করুন</h3><hr> 
+                           <h3>Create employee ID card</h3><hr>
                        </div>
                            <div class="col-sm-6">
                                <div class="form-group {{$errors->has('school_id') ? 'has-error' : ''}}">
-                                   <label class="" for="school_id">প্রতিষ্ঠান <span class="star">*</span></label>
+                                   <label class="" for="school_id">Institute <span class="star">*</span></label>
                                    <div class="">
                                        <select class="form-control" name="school_id" id="school_id">
-                                           <option value="">প্রতিষ্ঠান নির্বাচন করুন</option>
+                                           <option value="">Select Institute</option>
                                            @foreach($schools as $school)
                                            <option value="{{$school->id}}">{{$school->user->name}}</option>
                                            @endforeach
@@ -41,13 +41,13 @@
 
                            <div class="col-sm-6">
                                <div class="form-group {{$errors->has('staff') ? 'has-error' : ''}}">
-                                   <label class="" for="staff">কর্মী <span class="star">*</span></label>
+                                   <label class="" for="staff">Employee <span class="star">*</span></label>
                                    <div class="">
                                        <select class="form-control" name="staff" id="staff" onchange="chechSelect();">
-                                           <option value="">কর্মী নির্বাচন করুন</option>
-                                           <option value="all">সকল কর্মী</option>
-                                           <option value="id">সিঙ্গেল কর্মী</option>
-                                           
+                                           <option value="">Select Employee</option>
+                                           <option value="all">All Employee</option>
+                                           <option value="id"> Single Employee</option>
+
                                        </select>
                                    </div>
                                    @if ($errors->has('staff'))
@@ -59,18 +59,18 @@
                            </div>
 
                            <div class="col-sm-6" id="staff_id_se">
-                               
+
                            </div>
-                          
+
                     </div>
                     <div class="row">
                            <div class="col-sm-12">
                                <hr>
-                               <input type="submit" class="btn btn-default btn-info" value="তৈরী করুন">
+                               <input type="submit" class="btn btn-default btn-info" value="Create">
                            </div>
                     </div>
                 </form>
-            </div>                
+            </div>
       <script type="text/javascript">
         function chechSelect() {
             var staff=document.getElementById('staff').value;
@@ -81,5 +81,5 @@
                document.getElementById("staff_id_se").innerHTML=" ";
             }
         }
-      </script>             
+      </script>
 @endsection

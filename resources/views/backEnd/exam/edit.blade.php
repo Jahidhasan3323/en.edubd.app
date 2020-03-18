@@ -1,12 +1,12 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'Edit Teacher Designation')
+@section('mainTitle', 'Edit Examination Type')
 @section('active_exam', 'active')
 
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">পদ সম্পাদনা করুন</h1>
+            <h1 class="text-center text-temp">Edit Examination Type</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group {{$errors->has('name') ? 'has-error' : ''}}">
-                            <label class="" for="name">পরীক্ষার ধরন <span class="star">*</span></label>
+                            <label class="" for="name">Exam type <span class="star">*</span></label>
                             <div class="">
                                 <input class="form-control" type="text" value="{{$examType->name}}" name="name" id="name">
                             </div>
@@ -41,7 +41,7 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-block btn-info">হালনাগাদ</button>
+                                <button type="submit" class="btn btn-block btn-info">Update</button>
                             </div>
                         </div>
                     </div>

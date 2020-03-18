@@ -1,6 +1,6 @@
 @extends('backEnd.master',['nav'=>'active'])
 
-@section('mainTitle', 'Speech Details')
+@section('mainTitle', 'Image Details')
 @section('head_section')
     <style>
 
@@ -10,7 +10,7 @@
 @section('content')
     <div class="panel panel-info col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">ছবির বর্ণনা</h1>
+            <h1 class="text-center text-temp">Image Description</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -33,9 +33,9 @@
             {!!$image_gallery->details!!}
         </div>
     </div>
-    
-    
-    
+
+
+
 @endsection
 
 @section('script')

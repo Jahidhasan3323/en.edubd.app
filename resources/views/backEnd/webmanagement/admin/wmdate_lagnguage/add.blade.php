@@ -10,7 +10,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">তারিখের ভাষা যোগ করুন</h1>
+            <h1 class="text-center text-temp">Setup Date Language</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -30,10 +30,10 @@
                 <div class="row">
                     <div class="col-sm-6 {{$errors->has('date_language_id') ? 'has-error' : ''}}">
                         <div class="form-group">
-                            <label class="" for="date_language_id">ভাষা <span class="star">*</span></label>
+                            <label class="" for="date_language_id">Language <span class="star">*</span></label>
                             <div class="">
                                 <select class="form-control" name="date_language_id" id="date_language_id" required>
-                                    <option value="">ভাষা নির্বাচন</option>
+                                    <option value="">Select Language</option>
                                     @if($date_languages)
                                         @foreach($date_languages as $date_language)
                                             <option value="{{$date_language->id}}">{{$date_language->tittle}}</option>
@@ -49,14 +49,14 @@
                         @endif
                     </div>
                 </div>
-                
+
                 <hr>
 
                 <div class="">
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">সংরক্ষণ করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Save</button>
                             </div>
                         </div>
                     </div>

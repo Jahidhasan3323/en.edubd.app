@@ -1,12 +1,12 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'বার্তা সেটিং')
-@section('active_birthday_text', 'active')
+@section('mainTitle', 'Message Settings')
+@section('message_length', 'active')
 
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">বার্তা সেটিং পরিবর্তন করুন</h1>
+            <h1 class="text-center text-temp">Edit Message Settings</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="" for="content">প্রতিষ্ঠান নির্বাচন করুন</label>
+                            <label class="" for="content">Select Institute</label>
                             <select class="form-control" name="school_id" id="school_id">
                                 <option selected value="{{ $message_length->school_id }}">{{ $message_length->school->user->name }}</option>
                                 @foreach($schools as $school)
@@ -33,17 +33,17 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="" for="content">জন্মদিনের বার্তা (অটোমেটিক)</label>
+                            <label class="" for="content">Birthday Wish Text</label>
                             <select class="form-control" name="birthday_sms" id="birthday_sms" required>
-                                <option selected value="{{ $message_length->birthday_sms }}">{{ $message_length->birthday_sms==1?'সক্রিয়':'নিষ্ক্রিয়' }}</option>
-                                <option value="0">নিষ্ক্রিয়</option>
-                                <option value="1">সক্রিয়</option>
+                                <option selected value="{{ $message_length->birthday_sms }}">{{ $message_length->birthday_sms==1?'Enable':'Disable' }}</option>
+                                <option value="0">Disable</option>
+                                <option value="1">Enable</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="" for="content">নোটিফিকেশন বার্তার লিমিট </label>
+                            <label class="" for="content">Notification SMS Text Limit</label>
                             <div class="">
                                 <input type="number" name="notification" value="{{ old('notification',$message_length->notification) }}" class="form-control">
                             </div>
@@ -55,7 +55,7 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-info">আপডেট করুন</button>
+                                <button type="submit" class="btn btn-info">Update</button>
                             </div>
                         </div>
                     </div>

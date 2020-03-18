@@ -6,7 +6,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">স্টাফ পদ তালিকা</h1>
+            <h1 class="text-center text-temp">Designations Information</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -20,11 +20,11 @@
             <table id="commitee_tbl" class="table table-bordered table-responsive table-hover table-striped">
                 <thead>
                     <tr>
-                        <th>ক্রমিক নং</th>
-                        <th>নাম</th>
-                        <th>পদবীর ধরণ</th>
+                        <th>Serial</th>
+                        <th>Name</th>
+                        <th>Type</th>
                         @if (Auth::is('root'))
-                        <th>অ্যাকশন</th>
+                        <th>Action</th>
                         @endif
                     </tr>
                 </thead>
@@ -34,7 +34,7 @@
                         <tr>
                             <td>{{$serial}}</td>
                             <td>{{$designation->name}}</td>
-                            <td>{{$designation->type==1?'শিক্ষক ও কর্মচারী':'কমিটি'}}</td>
+                            <td>{{$designation->type==1?'Employee':'Committee'}}</td>
                             @if (Auth::is('root'))
                             <td>
                                 <a style="margin-bottom: 10px;" href="{{url('/designations/'.$designation->id.'/edit')}}" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit"></span></a>

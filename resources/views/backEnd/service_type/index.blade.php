@@ -6,7 +6,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">সেবার ধরণ তালিকা</h1>
+            <h1 class="text-center text-temp">Service Type List</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -22,9 +22,9 @@
                 <table id="service_type_tbl" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>ধরণ তালিকা</th>
-                            <th>স্টেটাস </th>
+                            <th>Serial</th>
+                            <th>Type</th>
+                            <th>Status </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,16 +36,16 @@
                             <td>{{$service_type->type}}</td>
                             <td>
                                 <a href="{{url('/service-type/status/'.$service_type->id.'/'.$status)}}" class="btn {{$status=='1'?'btn-danger':'btn-success'}}">
-                                    {{$status=='1'?'নিষ্ক্রিয়':'সক্রিয়'}}
+                                    {{$status=='1'?'Disable':'Enable'}}
                                 </a>
                             </td>
                         </tr>
-                        
+
                         @endforeach
                     </tbody>
-                    
+
                 </table>
-                
+
             </div>
         </div>
     </div>

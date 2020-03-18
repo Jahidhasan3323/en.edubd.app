@@ -10,7 +10,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">তারিখের ভাষা পরিবর্তন করুন</h1>
+            <h1 class="text-center text-temp">Edit Date Language</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -31,9 +31,9 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group {{$errors->has('tittle') ? 'has-error' : ''}}">
-                            <label class="" for="tittle">ভাষার নাম <span class="star">*</span></label>
+                            <label class="" for="tittle">Language Name <span class="star">*</span></label>
                             <div class="">
-                                <input  type="text" name="tittle" class="form-control" placeholder="ভাষার নাম" value="{{$date_language->tittle}}">
+                                <input  type="text" name="tittle" class="form-control" placeholder="Language Name" value="{{$date_language->tittle}}">
                             </div>
                             @if ($errors->has('tittle'))
                                 <span class="help-block">
@@ -43,14 +43,14 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <hr>
 
                 <div class="">
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">পরিবর্তন করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Update</button>
                             </div>
                         </div>
                     </div>

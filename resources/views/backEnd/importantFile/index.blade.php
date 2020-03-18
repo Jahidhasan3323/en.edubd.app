@@ -7,7 +7,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">গুরুত্বপূর্ণ ফাইল </h1>
+            <h1 class="text-center text-temp">Important Files </h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -21,14 +21,14 @@
             <div class="col-sm-12 " style="font-size: 18px; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); padding: 30px">
         <div class="row">
             <div class="col-md-7">
-               
+
                 <table id="commitee_tbl" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>ক্রমিক নং</th>
-                            <th>টাইটেল</th>
-                            <th>টাইপ</th>
-                            <th>অ্যাকশন</th>
+                            <th>Serial</th>
+                            <th>Title</th>
+                            <th>Type</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,9 +37,9 @@
                         @foreach($important_forms as $important_form)
                             <tr>
                                 <td>{{$i++}}</td>
-                                
+
                                 <td>{{$important_form->tittle}}</td>
-                                <td>{{$important_form->type==1 ? 'ফর্ম' : 'সফটওয়্যার'}}</td>
+                                <td>{{$important_form->type==1 ? 'Form' : 'Software'}}</td>
                                 <td>
                                     <a style="margin-bottom: 10px;" href="{{url(Storage::url($important_form->file))}}" class="btn btn-info" target="_blank"><span class="glyphicon glyphicon-eye-open" ></span></a>
 
@@ -59,11 +59,11 @@
                                     </script>
                                 </td>
                             </tr>
-                            
+
                         @endforeach
                     @endif
                         </tbody>
-                        
+
                 </table>
             </div>
             <div class="col-md-5" style="border-left: 1px solid #eee">
@@ -72,9 +72,9 @@
                 <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group {{$errors->has('tittle') ? 'has-error' : ''}}">
-                          <label class="" for="tittle">টাইটেল <span class="star">*</span></label>
+                          <label class="" for="tittle">Title <span class="star">*</span></label>
                           <div class="">
-                            <input type="text" class="form-control" name="tittle" id="tittle" placeholder="টাইটেল" data-validation="required length " data-validation-length="max100" value="{{old('tittle')}}">
+                            <input type="text" class="form-control" name="tittle" id="tittle" placeholder="Title" data-validation="required length " data-validation-length="max100" value="{{old('tittle')}}">
                           </div>
                           @if ($errors->has('tittle'))
                               <span class="help-block">
@@ -84,13 +84,12 @@
                       </div>
                       <div class="col-md-12 {{$errors->has('type') ? 'has-error' : ''}}">
                         <div class="form-group">
-                            <label class="" for="type">ফাইলের ধরণ <span class="star">*</span></label>
+                            <label class="" for="type">File Type <span class="star">*</span></label>
                             <div class="">
                                 <select class="form-control" name="type" id="type" data-validation="required " required >
-                                    <option value="">ধরণ নির্বাচন</option>
-                                    <option value="1">ফর্ম</option>
-                                    <option value="2">সফটওয়্যার</option>
-                                    
+                                    <option value="">Select Type</option>
+                                    <option value="1">Form</option>
+                                    <option value="2">Software</option>
                                 </select>
                             </div>
                         </div>
@@ -102,7 +101,7 @@
                     </div>
                       <div class="col-md-12">
                        <div class="form-group {{$errors->has('file') ? 'has-error' : ''}}">
-                           <label for="photo">ফাইল <span class="star">*</span></label>
+                           <label for="photo">File <span class="star">*</span></label>
                            <input id="file" type="file" name="file" onchange="openFile(event)"   data-validation="required size"
                               data-validation-max-size="200mb"
                               data-validation-error-msg-size="You can not upload images larger than 200mb">
@@ -115,13 +114,13 @@
                    </div>
                     </div>
                 </div>
-                
+
                 <hr>
 
                 <div class="">
                     <div class="row">
                         <div class="form-group">
-                            <button id="save" type="submit" class="btn btn-block btn-info">সংরক্ষণ করুন</button>
+                            <button id="save" type="submit" class="btn btn-block btn-info">Save</button>
                         </div>
                     </div>
                 </div>
@@ -150,7 +149,7 @@
     @endif
 @endsection
 @section('script')
- 
+
     <script src="{{asset('backEnd')}}/DataTables/jquery.dataTables.min.js"></script>
     <script src="{{asset('backEnd')}}/DataTables/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">

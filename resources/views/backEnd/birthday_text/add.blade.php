@@ -1,12 +1,12 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'জন্মদিনের বার্তা')
+@section('mainTitle', 'Birthday SMS text')
 @section('active_birthday_text', 'active')
 
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">জন্মদিনের বার্তা যোগ করুন</h1>
+            <h1 class="text-center text-temp">Add Birthday SMS text</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="" for="content">প্রতিষ্ঠান নির্বাচন করুন</label>
+                            <label class="" for="content">Select institute</label>
                             <select class="form-control" name="school_id" id="school_id">
                                 @foreach($schools as $school)
                                     <option value="{{$school->id}}" >{{$school->user->name}}</option>
@@ -33,22 +33,22 @@
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="" for="text_status">বার্তার ধরণ</label>
+                            <label class="" for="text_status">Text type</label>
                             <div class="">
                                 <input type="radio" checked="checked" value="Unicode (Bangla)">
                                 <span id="unicode" style="display:none;">
-                                     ইউনিকোড (বাংলা)
+                                     Unicode (Bangla)
                                 </span>
-                                <span id="regular" style="display:none;"> রিগুলার টেক্সট</span>
+                                <span id="regular" style="display:none;"> Regular Text</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="" for="content">জন্মদিনের বার্তা </label>
+                            <label class="" for="content">Birthday Text</label>
                             <div class="">
                                 <textarea onkeyup="msgCount()" id="content" name="content" rows="3" class="form-control"></textarea>
-                                <p>বর্ণ : <span id="char_show"></span>, বার্তাঃ <span id="msg_count_show"></span></p>
+                                <p>Character : <span id="char_show"></span>, Message : <span id="msg_count_show"></span></p>
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-info">সংরক্ষণ করুন</button>
+                                <button type="submit" class="btn btn-info">Save</button>
                             </div>
                         </div>
                     </div>
