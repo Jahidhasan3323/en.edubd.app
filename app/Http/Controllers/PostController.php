@@ -20,8 +20,8 @@ class PostController extends Controller
      */
     public function index()
     {
-       
-        
+
+
         $posts=Post::with('school.user','school2.user','school3.user','school4.user','school','school2','school3','school4','user.school','user.student','user.staff','user.committee','user2.school','user2.student','user2.staff','user2.committee','user3.school','user3.student','user3.staff','user4.school','user4.student','user4.staff','user4.committee','likes','loves','comments')->where('status',1)->orderby('id','DESC')->get();
         //dd($posts);
         return view('backEnd.post.index',compact('posts'));
@@ -34,7 +34,7 @@ class PostController extends Controller
      */
     public function create(Request $request)
     {
-        
+
     }
 
     /**
@@ -54,9 +54,9 @@ class PostController extends Controller
              $a=implode("@",$abc);
             $data['file']=$a;
         }
-      
+
        Post::create($data);
-       return $this->returnWithSuccessRedirect('আপনার পোস্ট আপলোড হয়েছে','post'); 
+       return $this->returnWithSuccessRedirect('Your Post Upload successfully.','post');
     }
 
     /**
@@ -78,7 +78,7 @@ class PostController extends Controller
  public function details($id)
     {
         $post=Post::with('school.user','user','likes','loves')->where(['id'=>$id,'status'=>1])->first();
-       
+
         return view('backEnd.post.post_details',compact('post'));
     }
 
@@ -155,7 +155,7 @@ class PostController extends Controller
 
         if(Auth::is('admin')){
             if($this->school()->social_post_access==0){
-                return $this->returnWithErrorRedirect('আপনার এই অংশের এক্সেস নেই ! ', 'home');
+                return $this->returnWithErrorRedirect('You have no ! ', 'home');
             }
             $posts=Post::with('school.user','user')->where(['status'=>0,'school_id'=>Auth::getSchool(),'db'=>1])->orderby('id','DESC')->get();
         }
@@ -208,7 +208,7 @@ class PostController extends Controller
         }else{
             Post::where(['id'=>$id, 'school_id'=>Auth::getSchool()])->update(['status'=>1]);
         }
-        return $this->returnWithSuccess('পোস্ট একসেপ্ট হয়েছে'); 
+        return $this->returnWithSuccess('পোস্ট একসেপ্ট হয়েছে');
     }
     public function cancel($id)
     {
@@ -217,6 +217,6 @@ class PostController extends Controller
         }else{
             Post::where(['id'=>$id, 'school_id'=>Auth::getSchool()])->update(['status'=>2]);
         }
-        return $this->returnWithSuccess('পোস্ট বাতিল করা হয়েছে'); 
+        return $this->returnWithSuccess('পোস্ট বাতিল করা হয়েছে');
     }
 }
