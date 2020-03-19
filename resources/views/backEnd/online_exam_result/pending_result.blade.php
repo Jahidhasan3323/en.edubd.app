@@ -56,10 +56,10 @@
 </style>
 <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
     <div class="page-header">
-        <h1 class="text-center text-temp">পেন্ডিং ফলাফল</h1>
+        <h1 class="text-center text-temp">Pending Result</h1>
     </div>
     <div class="row">
-      
+
 
       @if(Session::has('errmgs'))
           @include('backEnd.includes.errors')
@@ -73,11 +73,11 @@
        <table id="result_tbl" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th>ক্রমিক নং</th>
-                    <th>নাম </th>
-                    <th>আইডি </th>
-                    <th>তারিখ </th>
-                    <th>অ্যাকশন</th>
+                    <th>Serial</th>
+                    <th>Name </th>
+                    <th>ID No. </th>
+                    <th>Date </th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -94,12 +94,12 @@
                                 <a style="margin-bottom: 10px;" href="{{url('/online-exam/result/evaluate/'.$id)}}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span></a>
                               </td>
                         </tr>
-                       
+
                         @php($x++)
                     @endforeach
                 @endif
             </tbody>
-            
+
         </table>
     </div>
 </div>

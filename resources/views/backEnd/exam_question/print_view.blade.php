@@ -1,13 +1,13 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'প্রশ্নপত্র')
+@section('mainTitle', 'Question paper')
 @section('question', 'active')
 
 @section('content')
 
     <div class="panel col-md-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">প্রশ্নপত্র</h1>
+            <h1 class="text-center text-temp">Question paper</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -20,10 +20,10 @@
 <div class="row pull-left">
     <div class="col-md-12">
       @if($exam->type==1)
-        <a href="{{url('exam/question',$exam->id)}}" class="btn btn-success"><i class="fa fa-plus"></i> প্রশ্নযোগ করুন</a>
+        <a href="{{url('exam/question',$exam->id)}}" class="btn btn-success"><i class="fa fa-plus"></i>Add Question</a>
       @endif
       @if($exam->type==2)
-        <a href="{{url('exam/question/written',$exam->id)}}" class="btn btn-success"><i class="fa fa-plus"></i> প্রশ্নযোগ করুন</a>
+        <a href="{{url('exam/question/written',$exam->id)}}" class="btn btn-success"><i class="fa fa-plus"></i> Add Question</a>
       @endif
     </div>
 </div>
@@ -82,7 +82,7 @@
                        border-top: 1px solid #eee;
                    }
                    .dowon-mark{
-                    border-bottom: 1px dashed black; 
+                    border-bottom: 1px dashed black;
                     padding: 0 30px 0 30px;
                    }
 
@@ -108,7 +108,7 @@
                     padding-right: 15px;
                     padding-left: 15px;
                    }
-                  
+
                </style>
                 <div class="col-md-12" style=" height: 1015px;z-index:1; width: 100%">
                   <div class="bg-logo"></div>
@@ -117,11 +117,11 @@
 
                         <p>{{Auth::user()->school->address}}</p>
                         <p>{{$exam->name}}</p>
-                        <p>শিফটঃ {{$exam->shift}}, গ্রুপঃ {{$exam->group_class->name}}</p>
-                        <p>শ্রেনিঃ {{$exam->masterClass->name}}, শাখাঃ {{$exam->section}}</p>
-                        <p>বিষয়ঃ {{$exam->subject->subject_name}}</p>
-                        <span style="size:16px !important;float:left"><b>সময়ঃ </b> <span class="dowon-mark">{{$exam->time}}</span>মিনিট</span>
-                        <span  style="size:16px !important; float:right"><b>পূর্ণমানঃ </b> <span class="dowon-mark">{{$exam->full_mark}}</span></span>
+                        <p>Shift : {{$exam->shift}}, Group : {{$exam->group_class->name}}</p>
+                        <p>Class : {{$exam->masterClass->name}}, Secton : {{$exam->section}}</p>
+                        <p>Subject : {{$exam->subject->subject_name}}</p>
+                        <span style="size:16px !important;float:left"><b>Time : </b> <span class="dowon-mark">{{$exam->time}}</span>Minute :</span>
+                        <span  style="size:16px !important; float:right"><b>Full marks : </b> <span class="dowon-mark">{{$exam->full_mark}}</span></span>
                     </div>
                     <div style="padding: 10px"><hr></div>
                     <div class="content-testimonial">
@@ -138,23 +138,23 @@
                                 <p style="margin-left: 20px; line-height: 0">{{$option->serial}}. {{$option->option}}</p>
                               </div>
                             @endforeach
-                            
+
                             </div>
                           <?php $o++; ?>
                         </div>
                       </div>
                         @endforeach
                       @endif
-                        
+
                     </div>
                     <div style="height: 150px"></div>
-                     
+
                 </div>
 
             </div>
-            
+
         </div>
-            
+
     </div>
      <script>
          function print_genarator(lyear){
