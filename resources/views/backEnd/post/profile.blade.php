@@ -11,7 +11,7 @@
       margin: auto;
       text-align: center;
       font-family: arial;
-      
+
     }
     .card p{
          text-align: left;
@@ -60,7 +60,7 @@
 
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">প্রোফাইল</h1>
+            <h1 class="text-center text-temp">Profile</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -101,7 +101,7 @@
                             }
                             ?>{{Storage::url($user->school->logo)}}" alt="John" >
                         @endif
-                      
+
                       @if(($user->group_id==4))
                         <img src="
                         <?php if($db==2){
@@ -147,32 +147,32 @@
                       <h3>{{$user->name}}</h3>
                       <h4 style="color:#A6A6A6">{{$user->group->name}}</h4>
                       @if(($user->group_id==4))
-                        <p>প্রতিষ্ঠান: {{$user->student->school->user->name}}</p>
-                        <p><b>আইডি: </b> {{$user->student->student_id}}</p>
-                        <p><b>জন্মদিন: </b> {{$user->student->birth_day}}</p>
-                        <p><b>রক্তের গ্রুপ: </b> {{$user->student->blood_group}}</p>
-                        <p><b>ধর্ম: </b> {{$user->student->religion}}</p>
-                        <p><b>লিঙ্গ: </b> {{$user->student->gender}}</p>
+                        <p>Institute: {{$user->student->school->user->name}}</p>
+                        <p><b>ID No.: </b> {{$user->student->student_id}}</p>
+                        <p><b>Date of birth: </b> {{$user->student->birth_day}}</p>
+                        <p><b>Blood Group: </b> {{$user->student->blood_group}}</p>
+                        <p><b>Religion: </b> {{$user->student->religion}}</p>
+                        <p><b>Gender: </b> {{$user->student->gender}}</p>
                       @endif
                       @if(($user->group_id==3 || $user->group_id==5))
-                      
-                         <p>প্রতিষ্ঠান: {{$user->staff->school->user->name}}</p>
-                        <p><b>আইডি: </b> {{$user->staff->staff_id}}</p>
-                        <p><b>জন্মদিন: </b> {{$user->staff->birthday}}</p>
-                        <p><b>রক্তের গ্রুপ: </b> {{$user->staff->blood_group}}</p>
-                        <p><b>ধর্ম: </b> {{$user->staff->religion}}</p>
-                        <p><b>লিঙ্গ: </b> {{$user->staff->gender}}</p>
-                      @endif 
-                      @if(($user->group_id==6))
-                         <p>প্রতিষ্ঠান: {{$user->committee->school->user->name}}</p>
-                        <p><b>জন্মদিন: </b> {{$user->committee->birth_day}}</p>
-                        <p><b>রক্তের গ্রুপ: </b> {{$user->committee->blood}}</p>
-                        <p><b>ধর্ম: </b> {{$user->committee->religion}}</p>
-                        <p><b>লিঙ্গ: </b> {{$user->committee->gender}}</p>
-                      @endif
-                     
 
-                      
+                         <p>Institute: {{$user->staff->school->user->name}}</p>
+                        <p><b>ID No.: </b> {{$user->staff->staff_id}}</p>
+                        <p><b>Date of birth: </b> {{$user->staff->birthday}}</p>
+                        <p><b>Blood Group: </b> {{$user->staff->blood_group}}</p>
+                        <p><b>Religion: </b> {{$user->staff->religion}}</p>
+                        <p><b>Gender: </b> {{$user->staff->gender}}</p>
+                      @endif
+                      @if(($user->group_id==6))
+                         <p>Institute: {{$user->committee->school->user->name}}</p>
+                        <p><b>Date of birth: </b> {{$user->committee->birth_day}}</p>
+                        <p><b>Blood Group: </b> {{$user->committee->blood}}</p>
+                        <p><b>Religion: </b> {{$user->committee->religion}}</p>
+                        <p><b>Gender: </b> {{$user->committee->gender}}</p>
+                      @endif
+
+
+
                       <p><button>{{$user->email}}</button></p>
                     </div>
                 </div>
@@ -188,14 +188,14 @@
                                 @if(($post->user->group_id==1))
                                     <img src="{{Storage::url('img/ehsan-logo.png')}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;">
                                 @elseif(($post->user->group_id==2))
-                                    <img src="{{Storage::url($post->school->logo)}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;"> 
+                                    <img src="{{Storage::url($post->school->logo)}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;">
                                 @elseif(($post->user->group_id==3 || $post->user->group_id==5))
                                     <img src="{{Storage::url($post->user->staff->photo)}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;">
                                 @elseif(($post->user->group_id==4))
                                     <img src="{{Storage::url($post->user->student->photo)}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;">
                                 @elseif(($post->user->group_id==6))
                                     <img src="{{Storage::url($post->user->committee->image)}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;">
-                                @endif 
+                                @endif
                             </div>
                             <div class="text">
                                 <h6><a href="{{url('post/creator/profile/'.$post->user_id.'/'.$post->db)}}"><b>{{$post->user->name}}</b></a> , <span>
@@ -212,14 +212,14 @@
                                 @if(($post->user2->group_id==1))
                                         <img src="{{Helpers::db2_url()}}{{Storage::url('img/ehsan-logo.png')}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;">
                                     @elseif(($post->user2->group_id==2))
-                                        <img src="{{Helpers::db2_url()}}{{Storage::url($post->school2->logo)}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;"> 
+                                        <img src="{{Helpers::db2_url()}}{{Storage::url($post->school2->logo)}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;">
                                     @elseif(($post->user2->group_id==3 || $post->user->group_id==5))
                                         <img src="{{Helpers::db2_url()}}{{Storage::url($post->user2->staff->photo)}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;">
                                     @elseif(($post->user2->group_id==4))
                                         <img src="{{Helpers::db2_url()}}{{Storage::url($post->user2->student->photo)}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;">
                                     @elseif(($post->user2->group_id==6))
                                         <img src="{{Helpers::db2_url()}} {{Storage::url($post->user2->committee->image)}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;">
-                                    @endif 
+                                    @endif
                                 </div>
                                 <div class="text">
                                     <h6><a href="{{url('post/creator/profile/'.$post->user_id.'/'.$post->db)}}"><b>{{$post->user2->name}}</b></a> , <span>
@@ -236,7 +236,7 @@
                                 @if(($post->user3->group_id==1))
                                         <img src="{{Helpers::db3_url()}}{{Storage::url('img/ehsan-logo.png')}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;">
                                     @elseif(($post->user3->group_id==2))
-                                        <img src="{{Helpers::db3_url()}}{{Storage::url($post->school3->logo)}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;"> 
+                                        <img src="{{Helpers::db3_url()}}{{Storage::url($post->school3->logo)}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;">
                                     @elseif(($post->user3->group_id==3 || $post->user->group_id==5))
                                         <img src="{{Helpers::db3_url()}}{{Storage::url($post->user3->staff->photo)}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;">
                                     @elseif(($post->user3->group_id==4))
@@ -255,20 +255,20 @@
                                     </span></h6>
                                     <p><span>{{$post->user3->group->name}},  </span> {{$post->created_at->diffForHumans()}}</p>
                                 </div>
-                            @endif 
+                            @endif
 
                             @if($post->db==4)
                                 @if(($post->user4->group_id==1))
                                         <img src="{{Helpers::db4_url()}}{{Storage::url('img/ehsan-logo.png')}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;">
                                     @elseif(($post->user4->group_id==2))
-                                        <img src="{{Helpers::db4_url()}}{{Storage::url($post->school4->logo)}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;"> 
+                                        <img src="{{Helpers::db4_url()}}{{Storage::url($post->school4->logo)}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;">
                                     @elseif(($post->user4->group_id==3 || $post->user->group_id==5))
                                         <img src="{{Helpers::db4_url()}}{{Storage::url($post->user4->staff->photo)}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;">
                                     @elseif(($post->user4->group_id==4))
                                         <img src="{{Helpers::db4_url()}}{{Storage::url($post->user4->student->photo)}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;">
                                     @elseif(($post->user4->group_id==6))
                                         <img src="{{Helpers::db4_url()}} {{Storage::url($post->user4->committee->image)}}" height="50px" width="50px" style="width: 50px !important; border-radius: 50%;">
-                                @endif 
+                                @endif
                                 </div>
                                 <div class="text">
                                     <h6><a href="{{url('post/creator/profile/'.$post->user_id.'/'.$post->db)}}"><b>{{$post->user4->name}}</b></a> , <span>
@@ -287,9 +287,9 @@
                         <div class="post">
                             <hr>
                                 <p>{!!$post->message!!}</p>
-                                @php $images=explode('@', $post->file); @endphp 
+                                @php $images=explode('@', $post->file); @endphp
 
-                                @if(count($images)==1) 
+                                @if(count($images)==1)
                                  <div class="post-image">
                                     @if($images[0])
                                     <a class="example-image-link" href="{{Storage::url($images[0])}}" data-lightbox="example-set" ><img  style="width: 100%; margin-bottom: 20px; height: 300px" class="example-image" src="{{Storage::url($images[0])}}" alt=""/></a>
@@ -309,7 +309,7 @@
                                 @elseif(count($images)==3)                               <div class="post-image">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            
+
                                             <a class="example-image-link" href="{{Storage::url($images[0])}}" data-lightbox="example-set" ><img height="300px" style="width: 100%; margin-bottom: 20px" class="example-image" src="{{Storage::url($images[0])}}" alt=""/></a>
                                         </div>
                                         <div class="col-md-6">
@@ -319,12 +319,12 @@
                                             <a class="example-image-link" href="{{Storage::url($images[2])}}" data-lightbox="example-set" ><img style="width: 100%; margin-bottom: 20px" class="example-image" src="{{Storage::url($images[2])}}" alt=""/></a>
                                         </div>
                                     </div>
-                                </div>   
+                                </div>
                                 @elseif(count($images)==4)
                                 <div class="post-image" style="padding-top: 20px">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            
+
                                             <a class="example-image-link" href="{{Storage::url($images[0])}}" data-lightbox="example-set" ><img style="width: 100%; margin-bottom: 20px" class="example-image" src="{{Storage::url($images[0])}}" alt=""/></a>
                                         </div>
                                         <div class="col-md-6">
@@ -342,7 +342,7 @@
                                 <div class="post-image" style="padding-top: 20px">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            
+
                                             <a class="example-image-link" href="{{Storage::url($images[0])}}" data-lightbox="example-set" ><img style="width: 100%; margin-bottom: 20px" class="example-image" src="{{Storage::url($images[0])}}" alt=""/></a>
                                         </div>
                                         <div class="col-md-6">
@@ -384,14 +384,14 @@
                                                             @if(($comment->user->group_id==1))
                                                                 <img src="{{Storage::url('img/ehsan-logo.png')}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                             @elseif(($post->user->group_id==2))
-                                                                <img src="{{Storage::url($comment->school->logo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;"> 
+                                                                <img src="{{Storage::url($comment->school->logo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                             @elseif(($comment->user->group_id==3 || $post->user->group_id==5))
                                                                 <img src="{{Storage::url($comment->user->staff->photo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                             @elseif(($comment->user->group_id==4))
                                                                 <img src="{{Storage::url($comment->user->student->photo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                             @elseif(($comment->user->group_id==6))
                                                                 <img src="{{Storage::url($comment->user->committee->image)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
-                                                            @endif 
+                                                            @endif
                                                         </div>
                                                         <div class="text">
                                                             <h6><a href="{{url('comment/creator/profile/'.$comment->user_id.'/'.$comment->db)}}"><b>{{$comment->user->name}}</b></a> , <span>
@@ -402,7 +402,7 @@
                                                                 @endif
                                                             </span></h6>
                                                             <p><span>{{$comment->user->group->name}},  </span> {{$comment->created_at->diffForHumans()}}</p>
-                                                            
+
                                                         </div>
                                                         @endif
                                                         @if($comment->db==2)
@@ -410,14 +410,14 @@
                                                             @if(($comment->user2->group_id==1))
                                                                     <img src="{{Helpers::db2_url()}}{{Storage::url('img/ehsan-logo.png')}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($comment->user2->group_id==2))
-                                                                    <img src="{{Helpers::db2_url()}}{{Storage::url($comment->school2->logo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;"> 
+                                                                    <img src="{{Helpers::db2_url()}}{{Storage::url($comment->school2->logo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($comment->user2->group_id==3 || $comment->user->group_id==5))
                                                                     <img src="{{Helpers::db2_url()}}{{Storage::url($comment->user2->staff->photo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($comment->user2->group_id==4))
                                                                     <img src="{{Helpers::db2_url()}}{{Storage::url($comment->user2->student->photo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($comment->user2->group_id==6))
                                                                     <img src="{{Helpers::db2_url()}} {{Storage::url($comment->user2->committee->image)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
-                                                                @endif 
+                                                                @endif
                                                             </div>
                                                             <div class="text">
                                                                 <h6><a href="{{url('comment/creator/profile/'.$comment->user_id.'/'.$comment->db)}}"><b>{{$comment->user2->name}}</b></a> , <span>
@@ -435,7 +435,7 @@
                                                             @if(($comment->user3->group_id==1))
                                                                     <img src="{{Helpers::db3_url()}}{{Storage::url('img/ehsan-logo.png')}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($comment->user3->group_id==2))
-                                                                    <img src="{{Helpers::db3_url()}}{{Storage::url($comment->school3->logo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;"> 
+                                                                    <img src="{{Helpers::db3_url()}}{{Storage::url($comment->school3->logo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($comment->user3->group_id==3 || $comment->user->group_id==5))
                                                                     <img src="{{Helpers::db3_url()}}{{Storage::url($comment->user3->staff->photo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($comment->user3->group_id==4))
@@ -454,7 +454,7 @@
                                                                 </span></h6>
                                                                 <p><span>{{$comment->user3->group->name}},  </span> {{$comment->created_at->diffForHumans()}}</p>
                                                             </div>
-                                                        @endif 
+                                                        @endif
 
                                                         @if($comment->db==4)
                                                         <div class="image">
@@ -462,14 +462,14 @@
 
                                                                     <img src="{{Helpers::db4_url()}}{{Storage::url('img/ehsan-logo.png')}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($comment->user4->group_id==2))
-                                                                    <img src="{{Helpers::db4_url()}}{{Storage::url($comment->school4->logo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;"> 
+                                                                    <img src="{{Helpers::db4_url()}}{{Storage::url($comment->school4->logo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($comment->user4->group_id==3 || $comment->user->group_id==5))
                                                                     <img src="{{Helpers::db4_url()}}{{Storage::url($comment->user4->staff->photo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($comment->user4->group_id==4))
                                                                     <img src="{{Helpers::db4_url()}}{{Storage::url($comment->user4->student->photo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($comment->user4->group_id==6))
                                                                     <img src="{{Helpers::db4_url()}} {{Storage::url($comment->user4->committee->image)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
-                                                            @endif 
+                                                            @endif
                                                             </div>
                                                             <div class="text">
                                                                 <h6><a href="{{url('comment/creator/profile/'.$comment->user_id.'/'.$comment->db)}}"><b>{{$comment->user3->name}}</b></a> , <span>
@@ -481,17 +481,17 @@
                                                                 </span></h6>
                                                                 <p><span>{{$comment->user3->group->name}},  </span> {{$comment->created_at->diffForHumans()}}</p>
                                                             </div>
-                                                        @endif 
+                                                        @endif
                                                         <div class="clearfix" style="width: 100%; float: right; padding-left: 50px;">
-                                                            
+
                                                                 {{$comment->text}}
-                                                            
+
                                                         </div>
                                                     <hr>
                                                         @php
                                                         $reply=Helpers::comment_reply($comment->id);@endphp
 
-                                                            @foreach($reply as $reply) 
+                                                            @foreach($reply as $reply)
                                                 <ul style="list-style: none;">
                                                     <li>
                                                     <div class="image">
@@ -499,14 +499,14 @@
                                                             @if(($reply->user->group_id==1))
                                                                 <img src="{{Storage::url('img/ehsan-logo.png')}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                             @elseif(($post->user->group_id==2))
-                                                                <img src="{{Storage::url($reply->school->logo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;"> 
+                                                                <img src="{{Storage::url($reply->school->logo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                             @elseif(($reply->user->group_id==3 || $post->user->group_id==5))
                                                                 <img src="{{Storage::url($reply->user->staff->photo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                             @elseif(($reply->user->group_id==4))
                                                                 <img src="{{Storage::url($reply->user->student->photo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                             @elseif(($reply->user->group_id==6))
                                                                 <img src="{{Storage::url($reply->user->committee->image)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
-                                                            @endif 
+                                                            @endif
                                                         </div>
                                                         <div class="text">
                                                             <h6><a href="{{url('reply/creator/profile/'.$reply->user_id.'/'.$reply->db)}}"><b>{{$reply->user->name}}</b></a> , <span>
@@ -517,7 +517,7 @@
                                                                 @endif
                                                             </span></h6>
                                                             <p><span>{{$reply->user->group->name}},  </span> {{$reply->created_at->diffForHumans()}}</p>
-                                                            
+
                                                         </div>
                                                         @endif
                                                         @if($reply->db==2)
@@ -525,14 +525,14 @@
                                                             @if(($reply->user2->group_id==1))
                                                                     <img src="{{Helpers::db2_url()}}{{Storage::url('img/ehsan-logo.png')}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($reply->user2->group_id==2))
-                                                                    <img src="{{Helpers::db2_url()}}{{Storage::url($reply->school2->logo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;"> 
+                                                                    <img src="{{Helpers::db2_url()}}{{Storage::url($reply->school2->logo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($reply->user2->group_id==3 || $reply->user->group_id==5))
                                                                     <img src="{{Helpers::db2_url()}}{{Storage::url($reply->user2->staff->photo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($reply->user2->group_id==4))
                                                                     <img src="{{Helpers::db2_url()}}{{Storage::url($reply->user2->student->photo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($reply->user2->group_id==6))
                                                                     <img src="{{Helpers::db2_url()}} {{Storage::url($reply->user2->committee->image)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
-                                                                @endif 
+                                                                @endif
                                                             </div>
                                                             <div class="text">
                                                                 <h6><a href="{{url('reply/creator/profile/'.$reply->user_id.'/'.$reply->db)}}"><b>{{$reply->user2->name}}</b></a> , <span>
@@ -550,7 +550,7 @@
                                                             @if(($reply->user3->group_id==1))
                                                                     <img src="{{Helpers::db3_url()}}{{Storage::url('img/ehsan-logo.png')}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($reply->user3->group_id==2))
-                                                                    <img src="{{Helpers::db3_url()}}{{Storage::url($reply->school3->logo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;"> 
+                                                                    <img src="{{Helpers::db3_url()}}{{Storage::url($reply->school3->logo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($reply->user3->group_id==3 || $reply->user->group_id==5))
                                                                     <img src="{{Helpers::db3_url()}}{{Storage::url($reply->user3->staff->photo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($reply->user3->group_id==4))
@@ -569,21 +569,21 @@
                                                                 </span></h6>
                                                                 <p><span>{{$reply->user3->group->name}},  </span> {{$reply->created_at->diffForHumans()}}</p>
                                                             </div>
-                                                        @endif 
+                                                        @endif
 
                                                         @if($reply->db==4)
                                                         <div class="image">
                                                             @if(($reply->user4->group_id==1))
                                                                     <img src="{{Helpers::db4_url()}}{{Storage::url('img/ehsan-logo.png')}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($reply->user4->group_id==2))
-                                                                    <img src="{{Helpers::db4_url()}}{{Storage::url($reply->school4->logo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;"> 
+                                                                    <img src="{{Helpers::db4_url()}}{{Storage::url($reply->school4->logo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($reply->user4->group_id==3 || $reply->user->group_id==5))
                                                                     <img src="{{Helpers::db4_url()}}{{Storage::url($reply->user4->staff->photo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($reply->user4->group_id==4))
                                                                     <img src="{{Helpers::db4_url()}}{{Storage::url($reply->user4->student->photo)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
                                                                 @elseif(($reply->user4->group_id==6))
                                                                     <img src="{{Helpers::db4_url()}} {{Storage::url($reply->user4->committee->image)}}" height="50px" width="50px" style="width: 50px !important; height: 50px; border-radius: 50%;">
-                                                            @endif 
+                                                            @endif
                                                             </div>
                                                             <div class="text">
                                                                 <h6><a href="{{url('reply/creator/profile/'.$reply->user_id.'/'.$reply->db)}}"><b>{{$reply->user4->name}}</b></a> , <span>
@@ -596,17 +596,17 @@
                                                                 </span></h6>
                                                                 <p><span>{{$reply->user4->group->name}},  </span> {{$reply->created_at->diffForHumans()}}</p>
                                                             </div>
-                                                        @endif 
+                                                        @endif
                                                         <div class="clearfix" style="width: 100%; float: right; padding-left: 50px;">
-                                                            
+
                                                                 {{$reply->text}}
-                                                            
+
                                                         </div>
                                                     </li>
                                                     <hr>
                                                 </ul>
                                             @endforeach
-                                                    
+
                                                     <form class="form-horizontal submit_comment" >
                                                     {{csrf_field()}}
                                                       <div class="form-group">
@@ -650,17 +650,17 @@
             @endif
                 </div>
                 <div class="col-md-12">
-                   
+
                 </div>
             </div>
-                
+
             </div>
         </div>
     </div>
 @endsection
 @section('script')
     <script src="{{asset('js/lightbox-plus-jquery.js')}}"></script>
-    
+
     <script type="text/javascript">var scrolltotop={setting:{startline:100,scrollto:0,scrollduration:1e3,fadeduration:[500,100]},controlHTML:'<img src="https://i1155.photobucket.com/albums/p559/scrolltotop/arrow23.png" />',controlattrs:{offsetx:5,offsety:5},anchorkeyword:"#top",state:{isvisible:!1,shouldvisible:!1},scrollup:function(){this.cssfixedsupport||this.$control.css({opacity:0});var t=isNaN(this.setting.scrollto)?this.setting.scrollto:parseInt(this.setting.scrollto);t="string"==typeof t&&1==jQuery("#"+t).length?jQuery("#"+t).offset().top:0,this.$body.animate({scrollTop:t},this.setting.scrollduration)},keepfixed:function(){var t=jQuery(window),o=t.scrollLeft()+t.width()-this.$control.width()-this.controlattrs.offsetx,s=t.scrollTop()+t.height()-this.$control.height()-this.controlattrs.offsety;this.$control.css({left:o+"px",top:s+"px"})},togglecontrol:function(){var t=jQuery(window).scrollTop();this.cssfixedsupport||this.keepfixed(),this.state.shouldvisible=t>=this.setting.startline?!0:!1,this.state.shouldvisible&&!this.state.isvisible?(this.$control.stop().animate({opacity:1},this.setting.fadeduration[0]),this.state.isvisible=!0):0==this.state.shouldvisible&&this.state.isvisible&&(this.$control.stop().animate({opacity:0},this.setting.fadeduration[1]),this.state.isvisible=!1)},init:function(){jQuery(document).ready(function(t){var o=scrolltotop,s=document.all;o.cssfixedsupport=!s||s&&"CSS1Compat"==document.compatMode&&window.XMLHttpRequest,o.$body=t(window.opera?"CSS1Compat"==document.compatMode?"html":"body":"html,body"),o.$control=t('<div id="topcontrol">'+o.controlHTML+"</div>").css({position:o.cssfixedsupport?"fixed":"absolute",bottom:o.controlattrs.offsety,right:o.controlattrs.offsetx,opacity:0,cursor:"pointer"}).attr({title:"Scroll to Top"}).click(function(){return o.scrollup(),!1}).appendTo("body"),document.all&&!window.XMLHttpRequest&&""!=o.$control.text()&&o.$control.css({width:o.$control.width()}),o.togglecontrol(),t('a[href="'+o.anchorkeyword+'"]').click(function(){return o.scrollup(),!1}),t(window).bind("scroll resize",function(t){o.togglecontrol()})})}};scrolltotop.init();</script>
 
 
@@ -677,7 +677,7 @@
             $(".more_div").append('<div class="col-sm-3" style="padding-top: 10px;"> <input type="file" name="file[]" onchange="openFile(event)" accept="image/*" class="file" id="file-'+i+'"></div>');
 
             $(".more_div").append('<div class="col-sm-3" style="padding-top: 10px;"> <img id="header_background_logo-file-'+i+'" width="100px" height="120px" src="" style="border: 4px solid #fff;"></div>');
-                      
+
           });
 
         });
@@ -721,7 +721,7 @@
       });
     });
 });
-  
+
 </script>
 <script type="text/javascript">
   $(document).ready(function(){
@@ -748,7 +748,7 @@
       });
     });
 });
-  
+
 </script>
 <script type="text/javascript">
   $(document).ready(function(){
@@ -772,6 +772,6 @@
         return false;
     });
 });
-  
+
 </script>
 @endsection
