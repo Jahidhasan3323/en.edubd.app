@@ -10,7 +10,7 @@
 @section('content')
     <div class="panel panel-info col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">সম্পূর্ণ বাণী</h1>
+            <h1 class="text-center text-temp">Full Speech</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -31,7 +31,7 @@
             {!!$speech->speech!!}
         </div>
     </div>
-    
+
     <script type="text/javascript">
        var openFile = function(event) {
        var input = event.target;

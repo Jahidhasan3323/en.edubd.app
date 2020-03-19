@@ -50,18 +50,6 @@
             @endif
 
             @if(Auth::is('root'))
-                <li class="@yield('active_designation')">
-                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>Staff Designation Management<span
-                                class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="{{url('/designations/create')}}">Add Designation</a>
-                        </li>
-                        <li>
-                            <a href="{{url('/designations')}}">Designations</a>
-                        </li>
-                    </ul>
-                </li>
                 <li class="@yield('active_sms_login_info')">
                     <a href="#"><i class="fa fa-sitemap fa-2x"></i>SMS<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -135,7 +123,7 @@
 
             @if(Auth::is('root'))
                 <li class="@yield('active_designation')">
-                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>Employee Designation Management<span
+                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>Designation Management<span
                                 class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
@@ -259,7 +247,7 @@
             @endif
 
 
-            
+
 
             @if(Auth::is('admin')|| Auth::is('teacher') || Auth::is('student'))
                 <li class="@yield('active_subject')">
@@ -276,7 +264,7 @@
                                 <a href="{{url('/subjects')}}">Subjects</a>
                             </li>
                             @endif
-                            
+
                             @if(Auth::is('admin'))
                             <li>
                                 <a href="{{url('/subjectTeachers/create')}}">Subject Teacher</a>
@@ -794,11 +782,11 @@
                         @endif
                     </ul>
                 </li>
+                @if(Auth::is('admin'))
                 <li class="@yield('active_visitor')">
                     <a href="#"><i class="fa fa-sitemap fa-2x"></i>Visitor Management<span
                                 class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        @if(Auth::is('admin'))
                         <li>
                             <a href="{{ route('visitorType.add') }}">Visitor Type</a>
                         </li>
@@ -808,9 +796,9 @@
                         <li>
                             <a href="{{ route('visitor.list') }}">Visitors</a>
                         </li>
-                        @endif
                     </ul>
                 </li>
+                @endif
 
             @endif
             @if(Auth::is('admin'))
@@ -819,7 +807,40 @@
 
                 </li>
             @endif
+            @if(Auth::is('root') || Auth::is('teacher') || Auth::is('staff') || Auth::is('student'))
+            {{-- <li>
+                <a href="{{url('chat')}}" ><i class="fa fa-comment fa-2x"></i>Ehsan Chatting Application</a>
 
+            </li> --}}
+            @endif
+            {{-- <li class="@yield('post')">
+                    <a href="#">
+                        <i class="fa fa-sitemap fa-2x"></i>Ehsan Education Social Site  <span
+                                class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{url('/post/')}}">Timeline</a>
+                        </li>
+                        <li>
+                            <a href="{{url('/post/profile',1)}}">Profile</a>
+                        </li>
+                        @if(Auth::is('root') || Auth::is('admin'))
+                        <li>
+                            <a href="{{url('/post/pending_list')}}">Pending list</a>
+                        </li>
+                        <li>
+                            <a href="{{url('/post/accept_list')}}">Accepted list</a>
+                        </li>
+                        <li>
+                            <a href="{{url('/post/cancel_list')}}">Cencel list</a>
+                        </li>
+                        <li>
+                            <a href="{{url('/post/delete_list')}}">Trash</a>
+                        </li>
+                        @endif
+
+                    </ul>
+                </li> --}}
             <!-- @if(Auth::is('admin'))
              <li>
                  <a href="{{url('qbank')}}"><i class="fa fa-sitemap fa-2x"></i>প্রশ্নপত্র সংরক্ষণ</a>

@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<?php 
+<?php
   use App\ExamQuestion;
 ?>
 <style type="text/css">
@@ -60,10 +60,10 @@
 </style>
 <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
     <div class="page-header">
-        <h1 class="text-center text-temp">প্রশ্নের তালিকা</h1>
+        <h1 class="text-center text-temp">Question List</h1>
     </div>
     <div class="row">
-      
+
 
       @if(Session::has('errmgs'))
           @include('backEnd.includes.errors')
@@ -79,13 +79,13 @@
        <table id="question_tbl" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th>ক্রমিক নং</th>
-                    <th>প্রশ্ন</th>
-                     <th>মার্ক</th>
-                     <th>উত্তর</th>
-                    <th>প্রস্তুতকারী</th>
-                    <th>প্রস্তুতকারীর ধরণ</th>
-                    <th>বিদ্যালয়</th>
+                    <th>Serial</th>
+                    <th>Question</th>
+                     <th>Mark</th>
+                     <th>Ans.</th>
+                    <th>Creator</th>
+                    <th>Creator Type</th>
+                    <th>Institute</th>
                 </tr>
             </thead>
             <tbody>
@@ -93,7 +93,7 @@
 
                     @php($x = Get::serial($questions))
                     @foreach($questions as $question)
-                    <?php 
+                    <?php
                       $exam_question=ExamQuestion::where(['question_id'=>$question->id,'exam_id'=>$id])->first();
                       //dd($exam_question);
                     ?>
@@ -116,17 +116,17 @@
                             <td>{{$question->user->name}}</td>
                             <td>{{$question->user->group->name}}</td>
                             <td>{{$question->school->user->name}}</td>
-                            
+
                         </tr>
-                       
+
                         @php($x++)
                     @endforeach
                 @endif
             </tbody>
         </table>
 
-            <input id="all_check" class="form-check-input" onclick="checkNumber()" type="checkbox"> <label for="all_check">সব চেক / আনচেক</label><br>
-            <button id="save_btn" type="submit" class="btn  btn-info">যোগ করুন</button>
+            <input id="all_check" class="form-check-input" onclick="checkNumber()" type="checkbox"> <label for="all_check">Check All / Uncheck</label><br>
+            <button id="save_btn" type="submit" class="btn  btn-info">Save</button>
       </form>
     </div>
 </div>

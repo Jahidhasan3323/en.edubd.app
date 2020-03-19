@@ -10,7 +10,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">স্লাইডার যোগ করুন</h1>
+            <h1 class="text-center text-temp">Add Slider</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -30,7 +30,7 @@
                 <div class="row">
                    <div class="col-sm-6">
                        <div class="form-group {{$errors->has('image') ? 'has-error' : ''}}">
-                           <label for="photo">ছবি <span class="star">*</span></label>
+                           <label for="photo">Photo <span class="star">*</span></label>
                            <input type="file" name="image" onchange="openFile(event)" accept="image/*"  data-validation="required mime size"
                               data-validation-allowing="jpg, png, gif,jpeg,svg"
                               data-validation-max-size="2mb"
@@ -46,8 +46,8 @@
                    </div>
                    <div class="col-sm-6">
                        <div class="form-group {{$errors->has('position') ? 'has-error' : ''}}">
-                           <label for="photo">পজিশন <span class="star">*</span></label>
-                           <input type="text" name="position" class="form-control" placeholder="পজিশন" data-validation="required length number" data-validation-length="max10" value="{{old('position')}}">
+                           <label for="photo">Position <span class="star">*</span></label>
+                           <input type="text" name="position" class="form-control" placeholder="Position" data-validation="required length number" data-validation-length="max10" value="{{old('position')}}">
                            @if ($errors->has('position'))
                                <span class="help-block">
                                    <strong>{{$errors->first('position')}}</strong>
@@ -67,7 +67,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group {{$errors->has('tittle') ? 'has-error' : ''}}">
-                          <label class="" for="tittle">টাইটেল </label>
+                          <label class="" for="tittle">Tiitle </label>
                           <div class="">
                             <textarea  class="form-control" name="tittle" id="tittle" >{{old('tittle')}}</textarea>
                           </div>
@@ -79,15 +79,15 @@
                       </div>
                     </div>
                 </div>
-                 
-                
+
+
                 <hr>
 
                 <div class="">
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">সংরক্ষণ করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Save</button>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
             </form>
         </div>
     </div>
-    
+
     <script type="text/javascript">
        var openFile = function(event) {
        var input = event.target;

@@ -56,10 +56,10 @@
 </style>
 <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
     <div class="page-header">
-        <h1 class="text-center text-temp">{{$tittle}} পরীক্ষার তালিকা</h1>
+        <h1 class="text-center text-temp">{{$tittle}} Exam List</h1>
     </div>
     <div class="row">
-      
+
 
       @if(Session::has('errmgs'))
           @include('backEnd.includes.errors')
@@ -68,19 +68,19 @@
           @include('backEnd.includes.success')
       @endif
     </div>
-    
+
     <div class="table-responsive">
        <table id="exam_tbl" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th>ক্রমিক নং</th>
-                    <th>নাম</th>
-                    <th>পরীক্ষার ধরণ </th>
-                    <th>পূর্ণমান</th>
-                    <th>সময়</th>
-                    <th>শ্রেণী</th>
-                    <th>বিষয়</th>
-                    <th>অ্যাকশন</th>
+                    <th>Serial</th>
+                    <th>Name</th>
+                    <th>Exam type</th>
+                    <th>Full Marks</th>
+                    <th>Time</th>
+                    <th>Class</th>
+                    <th>Subject</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -97,7 +97,7 @@
                             <td>{{$exam->masterClass->name}}</td>
                             <td>{{$exam->subject->subject_name}}</td>
                             <td>
-                                
+
                                 <a style="margin-bottom: 10px;" href="{{url('/exam/show/'.$exam->id)}}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span></a>
                                 <a style="margin-bottom: 10px;" href="{{url('/exam/edit/'.$exam->id)}}" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></a>
 
@@ -118,12 +118,12 @@
                                 </script>
                             </td>
                         </tr>
-                       
+
                         @php($x++)
                     @endforeach
                 @endif
             </tbody>
-            
+
         </table>
     </div>
 </div>
@@ -137,5 +137,5 @@
          });
     </script>
 
-    
+
 @endsection

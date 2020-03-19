@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'Fee Seup Management')
+@section('mainTitle', 'Fee Setup Management')
 @section('head_section')
     <style>
 
@@ -124,7 +124,8 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
+                      </div>
+
                       <div class="col-sm-6">
                           <div class="form-group {{$errors->has('name') ? 'has-error' : ''}}">
                               <label class="">Select Fee Category <span class="star">*</span></label>
@@ -137,6 +138,7 @@
                               </div>
                           </div>
                       </div>
+
                       <div class="col-sm-6">
                           <div class="form-group">
                               <label class="" for="amount">Fee Amount <span class="star">*</span></label>

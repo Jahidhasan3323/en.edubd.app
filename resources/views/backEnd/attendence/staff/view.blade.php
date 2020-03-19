@@ -1,12 +1,12 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'উপস্থিতি ব্যাবস্থাপনা')
+@section('mainTitle', 'Attendance Management')
 @section('active_attendance', 'active')
 
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">{{($group_id==3)?'শিক্ষক':'কর্মচারী'}} উপস্থিতি</h1>
+            <h1 class="text-center text-temp">{{($group_id==3)?'Teacher':'Staff'}} Attendance</h1>
         </div>
         @if(Session::has('errmgs'))
             @include('backEnd.includes.errors')
@@ -20,11 +20,11 @@
                 <table id="student_tbl" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>ক্রমিক নং</th>
-                            <th>শিক্ষার্থী</th>
-                            <th>আইডি নম্বর</th>
-                            <th>উপস্থিতি</th>
-                            <th>অ্যাকশন</th>
+                            <th>Serial</th>
+                            <th>Student</th>
+                            <th>ID Number</th>
+                            <th>Attendance</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,7 +34,7 @@
                             <td>{{$serial}}</td>
                             <td>{{$attendance->staff->user->name}}</td>
                             <td>{{$attendance->staff_id}}</td>
-                            <td>{{($attendance->status=="L"||$attendance->status=="H")?'ছুটি':($attendance->status=="P"?'উপস্থিত':($attendance->status=="A"?'অনুপস্থিত':''))}}</td>
+                            <td>{{($attendance->status=="L"||$attendance->status=="H")?'Holiday':($attendance->status=="P"?'Present':($attendance->status=="A"?'Absent':''))}}</td>
                             <td><a href="{{url('atten_employee/details',[$attendance->staff_id])}}" class="btn btn-info" title="Details view ...!!!"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                         </tr>
                         @php($serial++)
@@ -42,11 +42,11 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>ক্রমিক নং</th>
-                            <th>শিক্ষার্থী</th>
-                            <th>আইডি নম্বর</th>
-                            <th>উপস্থিতি</th>
-                            <th>অ্যাকশন</th>
+                            <th>Serial</th>
+                            <th>Student</th>
+                            <th>ID Number</th>
+                            <th>Attendance</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -65,5 +65,3 @@
          });
     </script>
 @endsection
-
-

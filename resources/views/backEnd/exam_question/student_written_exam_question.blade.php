@@ -1,13 +1,13 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'প্রশ্নপত্র')
+@section('mainTitle', 'Question Paper')
 @section('online_exam', 'active')
 
 @section('content')
   <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
     <div class="panel col-md-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">প্রশ্নপত্র</h1>
+            <h1 class="text-center text-temp">Question Paper</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -19,11 +19,11 @@
 
 <div class="row pull-left">
     <div class="col-md-12">
-      
+
     </div>
 </div>
 <div class="row pull-right">
-    
+
 </div>
 <div class="row">
     <div class="col-md-12">
@@ -75,7 +75,7 @@
                        border-top: 1px solid #eee;
                    }
                    .dowon-mark{
-                    border-bottom: 1px dashed black; 
+                    border-bottom: 1px dashed black;
                     padding: 0 30px 0 30px;
                    }
 
@@ -101,7 +101,7 @@
                     padding-right: 15px;
                     padding-left: 15px;
                    }
-                  
+
                </style>
                 <div class="col-md-12" style=" height: 1015px;z-index:1; width: 100%">
                   <div class="bg-logo"></div>
@@ -110,11 +110,11 @@
 
                         <p>{{$school->address}}</p>
                         <p>{{$exam->name}}</p>
-                        <p>শিফটঃ {{$exam->shift}}, গ্রুপঃ {{$exam->group_class->name}}</p>
-                        <p>শ্রেনিঃ {{$exam->masterClass->name}}, শাখাঃ {{$exam->section}}</p>
-                        <p>বিষয়ঃ {{$exam->subject->subject_name}}</p>
-                        <span style="size:16px !important;float:left"><b>সময়ঃ </b> <span class="dowon-mark">{{$exam->time}}</span>মিনিট <span id="demo">{{$exam->time}}</span></span>
-                        <span  style="size:16px !important; float:right"><b>পূর্ণমানঃ </b> <span class="dowon-mark">{{$exam->full_mark}}</span></span>
+                        <p>Shift : {{$exam->shift}}, Group : {{$exam->group_class->name}}</p>
+                        <p>Class : {{$exam->masterClass->name}}, Section : {{$exam->section}}</p>
+                        <p>Subject : {{$exam->subject->subject_name}}</p>
+                        <span style="size:16px !important;float:left"><b>Time : </b> <span class="dowon-mark">{{$exam->time}}</span>Minute <span id="demo"></span></span>
+                        <span  style="size:16px !important; float:right"><b>Full Marks : </b> <span class="dowon-mark">{{$exam->full_mark}}</span></span>
                     </div>
                     <div style="padding: 10px"><hr></div>
                     <div class="content-testimonial">
@@ -127,7 +127,7 @@
                         <div class="row">
                           <div class="col-md-12">
 
-                          {{$o}}.<span style="float: right;">{{$question->questions->mark}}</span> {!!$question->questions->question!!} 
+                          {{$o}}.<span style="float: right;">{{$question->questions->mark}}</span> {!!$question->questions->question!!}
                             <textarea class="form-control" id="answer{{$question->id}}" name="{{$question->questions->id}}_answer[]"></textarea>
 
                           <?php $o++; ?>
@@ -147,20 +147,20 @@
                         <hr>
                         <div class="form-group pull-right">
                           <button class="btn btn-info" id="submit" type="submit">Submit</button>
-                          
+
                         </div>
                       </form>
                       @endif
-                        
+
                     </div>
                     <div style="height: 150px"></div>
-                     
+
                 </div>
 
             </div>
-            
+
         </div>
-            
+
     </div>
      <script>
          function print_genarator(lyear){
@@ -173,44 +173,38 @@
          }
      </script>
      <script>
-     // Set the date we're counting down to
-     var countDownDate = 30;
+      // Set the date we're counting down to
+      var countDownDate = <?= strtotime(Session::get('end_time'))?>* 1000;
+      console.log(countDownDate);
+      // Get today's date and time
+        var now = <?php echo time() ?> * 1000;
+      // Update the count down every 1 second
+      var x = setInterval(function() {
+        now = now + 1000;
 
-     // Update the count down every 1 second
-     var x = setInterval(function() {
 
-       // Get today's date and time
-       var now = 0;
-         
-       // Find the distance between now and the count down date
-       var distance = countDownDate - now;
-         
-       // Time calculations for days, hours, minutes and seconds
-      /* var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-       var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-       var seconds = Math.floor((distance % (1000 * 60)) / 1000);*/
-         
-       // Output the result in an element with id="demo"
-       document.getElementById("demo").innerHTML = distance;
-         
-       // If the count down is over, write some text 
-       if (distance < 0) {
-         clearInterval(x);
-         document.getElementById("demo").innerHTML = "EXPIRED";
-       }
-     }, 1000);
-     </script>
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
 
-@endsection
-@section('script')
- 
-  <script language="javascript" type="text/javascript">
-    console.log('abc');
-    $(document).ready(function(){
-       setTimeout(function(){
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+        // Output the result in an element with id="demo"
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+
+
+        // If the count down is over, write some text
+        if (distance < 0) {
+          clearInterval(x);
           $("#formId").submit();
-       },1000);
-    });
+        }
+      }, 1000);
+</script>
   </script>
 @endsection

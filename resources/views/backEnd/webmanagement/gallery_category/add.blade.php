@@ -10,7 +10,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">গ্যালারি ক্যাটাগরি যোগ করুন</h1>
+            <h1 class="text-center text-temp">Add Gallery Category</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -27,13 +27,13 @@
         <div class="panel-body">
             <form action="{{url('/gallery_category/create')}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
-               
-              
+
+
                 <div class="row">
                     <div class="col-sm-6">
                       <div class="form-group {{$errors->has('tittle') ? 'has-error' : ''}}">
-                          <label for="photo">টাইটেল <span class="star">*</span></label>
-                          <input type="text" name="tittle" class="form-control" placeholder="টাইটেল" data-validation="required length " data-validation-length="max100" value="{{old('tittle')}}">
+                          <label for="photo">Title <span class="star">*</span></label>
+                          <input type="text" name="tittle" class="form-control" placeholder="Title" data-validation="required length " data-validation-length="max100" value="{{old('tittle')}}">
                           @if ($errors->has('tittle'))
                               <span class="help-block">
                                   <strong>{{$errors->first('tittle')}}</strong>
@@ -43,13 +43,13 @@
                     </div>
                     <div class="col-sm-6 {{$errors->has('type') ? 'has-error' : ''}}">
                         <div class="form-group">
-                            <label class="" for="type">গ্যালারির ধরণ <span class="star">*</span></label>
+                            <label class="" for="type">Gallery Type <span class="star">*</span></label>
                             <div class="">
                                 <select class="form-control" name="type" id="type" data-validation="required " required>
-                                    <option value="">ধরণ নির্বাচন</option>
-                                    <option value="1">ছবি</option>
-                                    <option value="2">ভিডিও</option>
-                                    
+                                    <option value="">Select Type</option>
+                                    <option value="1">Photo</option>
+                                    <option value="2">Video</option>
+
                                 </select>
                             </div>
                         </div>
@@ -60,15 +60,15 @@
                         @endif
                     </div>
                 </div>
-                 
-                
+
+
                 <hr>
 
                 <div class="">
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">সংরক্ষণ করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Save</button>
                             </div>
                         </div>
                     </div>
@@ -76,8 +76,8 @@
             </form>
         </div>
     </div>
-    
-    
+
+
    @if($errors->any())
     <script type="text/javascript">
         document.getElementById('type').value="{{old('type')}}";

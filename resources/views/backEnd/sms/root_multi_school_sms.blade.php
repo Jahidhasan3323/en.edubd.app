@@ -35,7 +35,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <input id="all_check" class="form-check-input" onclick="checkNumber()" type="checkbox"> <label for="all_check">সব চেক / আনচেক</label>
+                        <input id="all_check" class="form-check-input" onclick="checkNumber()" type="checkbox"> <label for="all_check">Check All / Uncheck</label>
                      </div>
                 </div>
 

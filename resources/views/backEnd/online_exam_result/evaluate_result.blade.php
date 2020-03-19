@@ -56,10 +56,10 @@
 </style>
 <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
     <div class="page-header">
-        <h1 class="text-center text-temp">পেন্ডিং ফলাফল</h1>
+        <h1 class="text-center text-temp">Pending Result</h1>
     </div>
     <div class="row">
-      
+
 
       @if(Session::has('errmgs'))
           @include('backEnd.includes.errors')
@@ -74,11 +74,11 @@
         {{csrf_field()}}
         @php $i=1; @endphp
         @foreach($results as $result)
-          <p><b>প্রশ্নঃ </b>{{ $i }}.{!! $result->question->question !!}</p>
-          <p><b>উত্তরঃ </b>{!! $result->answer !!}</p>
+          <p><b>Question : </b>{{ $i }}.{!! $result->question->question !!}</p>
+          <p><b>Answer : </b>{!! $result->answer !!}</p>
           <p>
-            <b>পূর্ণমানঃ </b>{{ $result->full_mark }} 
-            <label style="padding-left:20px">প্রাপ্ত মার্কঃ </label> 
+            <b>Full marks </b>{{ $result->full_mark }}
+            <label style="padding-left:20px"> Marks : </label> 
             <input type="text" name="mark_{{$result->id}}" class="form-control" data-validation="required length number" data-validation-length="max10" data-validation-allowing="float">
           </p>
           <?php $i++ ?>

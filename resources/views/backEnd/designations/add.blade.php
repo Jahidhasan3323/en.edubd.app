@@ -1,12 +1,12 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'Add Teacher Designation')
+@section('mainTitle', 'Add Designation')
 @section('active_designation', 'active')
 
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">পদবী যোগ করুন</h1>
+            <h1 class="text-center text-temp">Add Designation</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group {{$errors->has('name') ? 'has-error' : ''}}">
-                            <label class="" for="name">পদবী নাম <span class="star">*</span></label>
+                            <label class="" for="name">Designation Name<span class="star">*</span></label>
                             <div class="">
                                 <input class="form-control" type="text" name="name" id="name" placeholder="Designation Name">
                             </div>
@@ -36,11 +36,11 @@
                     </div>
                     <div class="col-sm-12 {{$errors->has('type') ? 'has-error' : ''}}">
                         <div class="form-group">
-                            <label class="" for="type">পদবীর ধরণ<span class="star">*</span></label>
+                            <label class="" for="type">Designation Type<span class="star">*</span></label>
                             <div class="">
                                 <select class="form-control" name="type" id="type">
-                                    <option value="1">শিক্ষক ও কর্মচারী </option>
-                                    <option value="2">কমিটি</option>
+                                    <option value="1">Employee </option>
+                                    <option value="2">Committee</option>
                                 </select>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-info">সংরক্ষণ করুন</button>
+                            <button type="submit" class="btn btn-info">Save</button>
                         </div>
                     </div>
                 </div>

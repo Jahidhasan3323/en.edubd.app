@@ -976,28 +976,106 @@ Route::group(['middleware' => 'auth','prefix' => 'important_form', 'as'=>'import
 });
 
 
-//question
-Route::group(['middleware' => 'auth','prefix' => 'question', 'as'=>'question'], function(){
-    Route::get('mcq/','QuestionController@index')->name('mcq');
-    Route::get('written','QuestionController@writtenQuestion')->name('written');
+//question mcq
+Route::group(['middleware' => 'auth','prefix' => 'mcq/question', 'as'=>'mcq.question'], function(){
+    Route::get('/','QuestionController@index')->name('');
+    Route::get('/subjectwise/{subject_id}','QuestionController@subjectwiseQuestion')->name('.subjectwise');
+    Route::get('/student','QuestionController@mcqStudent')->name('.student');
     Route::get('/create','QuestionController@create')->name('.create');
     Route::post('/create','QuestionController@store')->name('.create');
     Route::get('/edit/{id}','QuestionController@edit')->name('.edit');
     Route::put('/edit/{id}','QuestionController@update')->name('.edit');
     Route::delete('/delete/{id}','QuestionController@destroy')->name('.delete');
+
+    Route::get('/all','QuestionController@allMcqQuestion')->name('.all');
+    Route::get('/all/subjectwise/{subject_id}','QuestionController@subjectwiseAllMcqQuestion')->name('.all.subjectwise');
+});
+
+//question written
+Route::group(['middleware' => 'auth','prefix' => 'written/question', 'as'=>'written.question'], function(){
+    Route::get('/','QuestionController@indexWritten')->name('');
+    Route::get('/subjectwise/{subject_id}','QuestionController@subjectwiseWrittenQuestion')->name('subjectwise');
+    Route::get('/student','QuestionController@writtenStudent')->name('.student');
+    Route::get('/create','QuestionController@createWritten')->name('.create');
+    Route::post('/create','QuestionController@storeWritten')->name('.create');
+    Route::get('/edit/{id}','QuestionController@editWritten')->name('.edit');
+    Route::put('/edit/{id}','QuestionController@updateWritten')->name('.edit');
+    Route::delete('/delete/{id}','QuestionController@destroyWritten')->name('.delete');
+
+    Route::get('/all','QuestionController@allWrittenQuestion')->name('.all');
+    Route::get('/all/subjectwise/{subject_id}','QuestionController@subjectwiseAllWrittenQuestion')->name('.all.subjectwise');
 });
 
 
 //exam
 Route::group(['middleware' => 'auth','prefix' => 'exam', 'as'=>'exam'], function(){
-    Route::get('/mcq','ExamController@index')->name('mcq');
-    Route::get('/written','ExamController@index')->name('written');
-    Route::get('/show/{id}','ExamController@show')->name('show');
-    Route::get('/question/{id}','ExamController@exam_question')->name('question');
-    Route::post('/question/{id}','ExamController@exam_question_store')->name('question');
+    Route::get('/mcq','ExamController@index')->name('.mcq');
+    Route::get('/written','ExamController@written')->name('.written');
+    Route::get('/mcq/student','ExamController@student_mcq')->name('.mcq.student');
+    Route::get('/written/student','ExamController@student_written')->name('.written.student');
+    Route::get('/show/{id}','ExamController@show')->name('.show');
+    Route::get('/mcq/question/{id}','ExamController@mcq_question')->name('.mcq_question');
+    Route::get('/written/question/{id}','ExamController@written_question')->name('.mcq_question');
+    Route::get('/question/{id}','ExamController@exam_question_mcq')->name('.question');
+    Route::get('/question/written/{id}','ExamController@exam_question_written')->name('.question.written');
+    Route::post('/question/{id}','ExamController@exam_question_store')->name('.question');
     Route::get('/create','ExamController@create')->name('.create');
     Route::post('/create','ExamController@store')->name('.create');
     Route::get('/edit/{id}','ExamController@edit')->name('.edit');
     Route::post('/edit/{id}','ExamController@update')->name('.edit');
     Route::delete('/delete/{id}','ExamController@destroy')->name('.delete');
 });
+
+//exam
+Route::group(['middleware' => 'auth','prefix' => 'online-exam/result', 'as'=>'online-exam.result'], function(){
+    Route::get('/','OnlineExamResultController@index')->name('');
+    Route::post('/create','OnlineExamResultController@store')->name('.create');
+    Route::get('/creator/{id}','OnlineExamResultController@creatorResult')->name('.creator');
+    Route::get('/pending/{id}/{exam_id}','OnlineExamResultController@pendingResult')->name('.pending');
+    Route::get('/evaluate/{id}','OnlineExamResultController@evaluateResult')->name('.evaluate');
+    Route::get('/edit/{id}','OnlineExamResultController@evaluateResultEdit')->name('.evaluate');
+    Route::get('/view/{id}','OnlineExamResultController@evaluateResultView')->name('.evaluate');
+});
+Route::group(['middleware' => 'auth','prefix' => 'online-exam', 'as'=>'online-exam'], function(){
+    Route::get('written','OnlineWrittenExamAnswerController@index')->name('.written');
+    Route::post('written','OnlineWrittenExamAnswerController@store')->name('.written');
+    Route::post('/evaluate','OnlineWrittenExamAnswerController@evaluateResult')->name('.evaluate');
+
+});
+
+
+//chat app 
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/chat', function () {
+        return view('backEnd/chatApp/index');
+    });
+    Route::get('/profile/image/','ChattingController@profile_image');
+    Route::get('/contacts','ChattingController@contacts');
+    Route::get('/contacts/search/{data}','ChattingController@contacts');
+    Route::get('/convertation/{id}','ChattingController@index');
+    Route::post('/message/send','ChattingController@store');
+    Route::get('all/convertation/','ChattingController@allConvertation');
+});
+
+//social app 
+Route::group(['middleware' => 'auth','prefix' => 'post', 'as'=>'post'], function(){
+    Route::get('/','PostController@index');
+    Route::get('/profile/{db}','PostController@profile')->name('.profile');
+    Route::get('creator/profile/{id}/{db}','PostController@creator_profile')->name('creator.profile');
+    Route::get('/details/{id}','PostController@details')->name('.details');
+    Route::post('/create','PostController@store')->name('.create');
+    Route::get('/edit/{id}','PostController@edit')->name('.edit');
+    Route::post('/edit/{id}','PostController@update')->name('.edit');
+    Route::get('/view/{id}','PostController@show')->name('.view');
+    Route::get('/delete/{id}','PostController@delete')->name('.delete');
+    Route::get('/pending_list','PostController@pending_list')->name('.pending_list');
+    Route::get('/accept_list','PostController@accept_list')->name('.accept_list');
+    Route::get('/cancel_list','PostController@cancel_list')->name('.cancel_list');
+    Route::get('/delete_list','PostController@delete_list')->name('.delete_list');
+    Route::get('/accept/{id}','PostController@accept')->name('.accept');
+    Route::get('/cancel/{id}','PostController@cancel')->name('.cancel');
+});
+    Route::get('/post/like','PostReactController@store')->name('post.like');
+    Route::get('/post/love','PostReactController@loveStore')->name('post.like');
+
+    Route::post('/add/comment','PostCommentController@store')->name('add.comment')->middleware('auth');

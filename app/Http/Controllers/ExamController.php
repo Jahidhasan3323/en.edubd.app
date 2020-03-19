@@ -116,9 +116,9 @@ class ExamController extends Controller
         }
         Exam::create($data);
         if($request->type==1){
-            return $this->returnWithSuccessRedirect('Your Information Added Successfully !','exam/mcq');
+            return $this->returnWithSuccessRedirect('Your information added successfully !','exam/mcq');
         }else{
-            return $this->returnWithSuccessRedirect('Your Information Added Successfullyে !','exam/written');
+            return $this->returnWithSuccessRedirect('Your information added successfully !','exam/written');
         }
 
     }
@@ -201,9 +201,9 @@ class ExamController extends Controller
 
         Exam::where('id',$id)->update($data);
         if($request->type==1){
-            return $this->returnWithSuccessRedirect('Your Information Added Successfully.','exam/mcq');
+            return $this->returnWithSuccessRedirect('Your information added successfully !','exam/mcq');
         }else{
-            return $this->returnWithSuccessRedirect('Your Information Added Successfully.','exam/written');
+            return $this->returnWithSuccessRedirect('Your information added successfully !','exam/written');
         }
     }
 
@@ -222,9 +222,9 @@ class ExamController extends Controller
         $exam = Exam::withTrashed()->where(['id'=> $id,'user_id'=>Auth::id()])->first();
         $exam->delete();
          if($exam->type==1){
-            return $this->returnWithSuccessRedirect('Your Information Added Successfully.','exam/mcq');
+            return $this->returnWithSuccessRedirect('Your information added successfully !','exam/mcq');
         }else{
-            return $this->returnWithSuccessRedirect('Your Information Added Successfully.','exam/written');
+            return $this->returnWithSuccessRedirect('Your information added successfully !','exam/written');
         }
     }
 
@@ -263,7 +263,7 @@ class ExamController extends Controller
         foreach($request->question_id as $question_id) {
             ExamQuestion::create(['exam_id'=>$id,'question_id'=>$question_id]);
         }
-        return $this->returnWithSuccessRedirect('Your Information Added Successfully.','exam/question/'.$id);
+        return $this->returnWithSuccessRedirect('Your information added successfully !','exam/question/'.$id);
 
 
     }
@@ -276,14 +276,16 @@ class ExamController extends Controller
         $exam=Exam::with('masterClass','group_class','subject')->where(['id'=>$id,'school_id'=>Auth::getSchool()])->first();
         $result=OnlineExamResult::where(['exam_id'=>$id, 'user_id'=>Auth::id()])->first();
         if ($exam->exam_option==1 && !empty($result)) {
-            return $this->returnWithError('You already attend the exam. You can not attend again.');
+            return $this->returnWithError('You already attend the exam.');
         }
         $questions=ExamQuestion::with('questions')->where(['exam_id'=>$id])->get();
         $school=School::with('user','important_setting')->where(['id'=> Auth::getSchool()])->first();
         /*Session::forget('end_time');
         return "yes";*/
+        //Session::forget('end_time');
         if(!Session::get('end_time')){
          Session::put('end_time', date('M d, Y H:i:s', strtotime('+'. $exam->time .' minutes')));
+         Session::put('start_time',time() * 1000);
         }
         return view('backEnd.exam_question.student_mcq_exam_question',compact('exam','school','questions'));
     }
@@ -295,10 +297,14 @@ class ExamController extends Controller
         $exam=Exam::with('masterClass','group_class','subject')->where(['id'=>$id,'school_id'=>Auth::getSchool()])->first();
         $result=OnlineExamResult::where(['exam_id'=>$id, 'user_id'=>Auth::id()])->first();
         if ($exam->exam_option==1 && !empty($result)) {
-            return $this->returnWithError('You already attend the exam. You can not attend again.');
+            return $this->returnWithError('You already attend the exam.');
         }
         $questions=ExamQuestion::with('questions')->where(['exam_id'=>$id])->get();
         $school=School::with('user','important_setting')->where(['id'=> Auth::getSchool()])->first();
+        if(!Session::get('end_time')){
+            Session::put('end_time', date('M d, Y H:i:s', strtotime('+'. $exam->time .' minutes')));
+            Session::put('start_time',time() * 1000);
+        }
         return view('backEnd.exam_question.student_written_exam_question',compact('exam','school','questions'));
     }
 }

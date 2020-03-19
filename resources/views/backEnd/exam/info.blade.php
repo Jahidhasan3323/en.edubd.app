@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'Designations Information')
+@section('mainTitle', 'Exam Type Information')
 @section('active_exam', 'active')
 
 @section('content')

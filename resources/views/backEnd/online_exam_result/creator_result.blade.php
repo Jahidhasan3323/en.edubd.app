@@ -56,10 +56,10 @@
 </style>
 <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
     <div class="page-header">
-        <h1 class="text-center text-temp">ফলাফল</h1>
+        <h1 class="text-center text-temp">Result</h1>
     </div>
     <div class="row">
-      
+
 
       @if(Session::has('errmgs'))
           @include('backEnd.includes.errors')
@@ -73,19 +73,19 @@
        <table id="result_tbl" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th>ক্রমিক নং</th>
-                    <th>নাম </th>
-                    <th>পরীক্ষা </th>
-                    <th>বিষয় </th>
-                    <th>মার্ক </th>
-                    <th>পূর্ণমান </th>
-                    <th>ব্যায়িত সময় </th>
-                    <th>পরীক্ষার ধরণ </th>
-                    <th>ফলাফলের ধরণ </th>
-                    <th>গ্রেড </th>
-                    <th>গ্রেড পয়েন্ট </th>
-                    <th>স্ট্যাটাস ও তারিখ </th>
-                    <th>অ্যাকশন </th>
+                    <th>Serial</th>
+                    <th>Name </th>
+                    <th>Exam </th>
+                    <th>Subject </th>
+                    <th>Marks </th>
+                    <th>Full marks </th>
+                    <th>Spend Time </th>
+                    <th>Exam Type </th>
+                    <th>Result Type </th>
+                    <th>Garde </th>
+                    <th>Grade Point </th>
+                    <th>Status & Date</th>
+                    <th>Action </th>
                 </tr>
             </thead>
             <tbody>
@@ -101,25 +101,25 @@
                             <td>{{$result->mark}}</td>
                             <td>{{$result->exam->full_mark}}</td>
                             <td>{{$result->time_stay}}</td>
-                            <td>{{$result->exam->type==1 ? 'নৈর্ব্যক্তিক' : 'লিখিত'}}</td>
-                            <td>{{$result->result_type==1 ? 'গ্রেড' : 'সাধারণ'}}</td>
+                            <td>{{$result->exam->type==1 ? 'MCQ' : 'Written'}}</td>
+                            <td>{{$result->result_type==1 ? 'Grade' : 'General'}}</td>
                             <td>{{$result->grade}}</td>
                             <td>{{$result->grade_point}}</td>
-                            <td> <label class="label label-success">{{$result->status==1 ? 'গ্রহণ হয়েছে' : 'প্রক্রিয়াধীন'}}</label><br>{{date('d-m-Y',strtotime($result->created_at))}}</td>
+                            <td> <label class="label label-success">{{$result->status==1 ? 'Accepted' : 'Pending'}}</label><br>{{date('d-m-Y',strtotime($result->created_at))}}</td>
                               <td>
                               @if($result->status==1 && $result->exam->type==2)
                                 <a style="margin-bottom: 10px;" href="{{url('/online-exam/result/view/'.$result->id)}}" class="btn btn-success"><span class="glyphicon glyphicon-eye-open"></span></a>
                                 <a style="margin-bottom: 10px;" href="{{url('/online-exam/result/edit/'.$result->id)}}" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></a>
                               @endif
                               </td>
-                            
+
                         </tr>
-                       
+
                         @php($x++)
                     @endforeach
                 @endif
             </tbody>
-            
+
         </table>
     </div>
 </div>

@@ -9,7 +9,7 @@ use App\Exam;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
-
+use Session;
 class OnlineWrittenExamAnswerController extends Controller
 {
     /**
@@ -54,18 +54,18 @@ class OnlineWrittenExamAnswerController extends Controller
     {
         $exam=Exam::where('id',$request->exam_id)->withTrashed()->first();
         $data=$request->except('_token','exam_id');
+        $time_stay=(time()*1000)-Session::get('start_time');
         $mark=0;
 
             $credent['grade']=" ";
             $credent['grade_point']=0;
             $credent['exam_id']=$exam->id;
             $credent['mark']=0;
-            $credent['time_stay']=0;
+            $credent['time_stay']=floor(($time_stay % (1000 * 60 * 60)) / (1000 * 60)).'.'.floor(($time_stay % (1000 * 60)) / 1000);
             $credent['result_type']=$exam->result_type;
             $credent['subject_id']=$exam->subject_id;
             $credent['creator_id']=$exam->user_id;
             $credent['status']=0;
-
             $online_exam_result_id=OnlineExamResult::create($credent);
 
             if ($data) {
@@ -76,9 +76,12 @@ class OnlineWrittenExamAnswerController extends Controller
                     OnlineWrittenExamAnswer::create(['exam_id'=>$request->exam_id,'answer'=>$data[0],'question_id'=>$question_id[0],'full_mark'=>$question->mark,'subject_id'=>$exam->subject_id,'master_class_id'=>$exam->master_class_id,'creator_id'=>$exam->user_id,'online_exam_result_id'=>$online_exam_result_id]);
                 }
             }
-            return $this->returnWithSuccessRedirect('You have done the exam. Wait for result','online-exam/result');
+
+            Session::forget('end_time');
+            Session::forget('start_time');
+            return $this->returnWithSuccessRedirect('You have done the exam ! Wait for result.','online-exam/result');
         }else{
-            return $this->returnWithSuccess('Please give the answer.');
+            return $this->returnWithError('Please give answer');
         }
     }
     public function evaluateResult(Request $request){

@@ -6,7 +6,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">বিভাগ সম্পাদন করুন</h1>
+            <h1 class="text-center text-temp">Edit Group</h1>
         </div>
         @if(Session::has('errmgs'))
             @include('backEnd.includes.errors')
@@ -20,9 +20,9 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group {{$errors->has('name') ? 'has-error' : ''}}">
-                            <label for="name">বিভাগের নাম<span class="star">*</span></label>
+                            <label for="name">Group name<span class="star">*</span></label>
                             <input class="form-control" type="text" placeholder="Type a group name.." id="name" value="{{$group_class->name}}" name="name">
-                              
+
                             @if ($errors->has('name'))
                                 <span class="help-block">
                                     <strong>{{$errors->first('name')}}</strong>
@@ -37,7 +37,7 @@
                     <div class="row">
                         <div class="col-sm-2 col-sm-offset">
                             <div class="form-group">
-                                <button id="save_btn" type="submit" class="btn btn-block btn-info">হালনাগাদ</button>
+                                <button id="save_btn" type="submit" class="btn btn-block btn-info">Update</button>
                             </div>
                         </div>
                     </div>
@@ -45,6 +45,6 @@
             </form>
         </div>
 
-       
+
     </div>
 @endsection

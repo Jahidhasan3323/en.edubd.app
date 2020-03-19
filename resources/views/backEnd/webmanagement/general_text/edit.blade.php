@@ -10,7 +10,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">অন্যান্য তথ্য পরিবর্তন করুন</h1>
+            <h1 class="text-center text-temp">Edit others information</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -31,7 +31,7 @@
                 <div class="row">
                    <div class="col-sm-4">
                        <div class="form-group {{$errors->has('file') ? 'has-error' : ''}}">
-                           <label for="photo">ছবি </label>
+                           <label for="photo">Photo </label>
                            <input type="file" name="file"    data-validation="mime size"
                               data-validation-allowing="jpg,png,gif,jpeg,svg,pdf"
                               data-validation-max-size="2mb"
@@ -47,8 +47,8 @@
                    </div>
                    <div class="col-sm-4">
                        <div class="form-group {{$errors->has('tittle') ? 'has-error' : ''}}">
-                           <label for="photo">টাইটেল </label>
-                           <input type="text" name="tittle" class="form-control" placeholder="টাইটেল" value="{{$general_text->tittle}}">
+                           <label for="photo">Title </label>
+                           <input type="text" name="tittle" class="form-control" placeholder="Title" value="{{$general_text->tittle}}">
                            @if ($errors->has('tittle'))
                                <span class="help-block">
                                    <strong>{{$errors->first('tittle')}}</strong>
@@ -59,10 +59,10 @@
                    <div class="col-sm-4">
                        <div class="col-sm-6 {{$errors->has('wm_general_text_type_id') ? 'has-error' : ''}}">
                         <div class="form-group">
-                            <label class="" for="wm_general_text_type_id">বাণীর ধরণ <span class="star">*</span></label>
+                            <label class="" for="wm_general_text_type_id">Speech Type<span class="star">*</span></label>
                             <div class="">
                                 <select class="form-control" name="wm_general_text_type_id" id="wm_general_text_type_id" data-validation="required" required>
-                                    <option value="">বাণী নির্বাচন</option>
+                                    <option value="">Select Speech</option>
                                     @if($types)
                                         @foreach($types as $type)
                                             <option value="{{$type->id}}">{{$type->tittle}}</option>
@@ -79,12 +79,12 @@
                     </div>
                    </div>
                </div>
-               
+
                <hr>
                 <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group {{$errors->has('speech') ? 'has-error' : ''}}">
-                          <label class="" for="speech">বাণী </label>
+                          <label class="" for="speech">Speech </label>
                           <div class="">
                             <textarea  class="form-control" name="speech" id="speech" >{{$general_text->speech}}</textarea>
                           </div>
@@ -96,15 +96,15 @@
                       </div>
                     </div>
                 </div>
-                 
-                
+
+
                 <hr>
 
                 <div class="">
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">সংরক্ষণ করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Save</button>
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
             </form>
         </div>
     </div>
-    
+
     <script type="text/javascript">
        var openFile = function(event) {
        var input = event.target;

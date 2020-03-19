@@ -7,7 +7,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">স্কুল সেটিংস্‌</h1>
+            <h1 class="text-center text-temp">School Settings</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -28,7 +28,7 @@
                 <div class="row">
                   <div class="col-sm-3">
                       <div class="form-group {{$errors->has('content_heading_background') ? 'has-error' : ''}}">
-                          <label class="" for="content_heading_background">কন্টেন্ট হেডিং ব্যাকগ্রাউন্ড কালার </label>
+                          <label class="" for="content_heading_background">Content heading Background Color </label>
                           <div class="">
                               <input value="@if($school_details){{$school_details->content_heading_background}}@endif" class="form-control my-colorpicker1" type="text" name="content_heading_background" id="content_heading_background" >
                           </div>
@@ -41,7 +41,7 @@
                   </div>
                   <div class="col-sm-2">
                       <div class="form-group {{$errors->has('content_heading_color') ? 'has-error' : ''}}">
-                          <label class="" for="content_heading_color">কন্টেন্ট হেডিং কালার </label>
+                          <label class="" for="content_heading_color">Content Heading Color</label>
                           <div class="">
                               <input value="@if($school_details){{$school_details->content_heading_color}}@endif" class="form-control my-colorpicker1" type="text" name="content_heading_color" id="content_heading_color" >
                           </div>
@@ -54,7 +54,7 @@
                   </div>
                   <div class="col-sm-3">
                       <div class="form-group {{$errors->has('sidebar_heading_background') ? 'has-error' : ''}}">
-                          <label class="" for="sidebar_heading_background">সাইডবার হেডিং ব্যাকগ্রাউন্ড কালার </label>
+                          <label class="" for="sidebar_heading_background">Sidebar heading background color</label>
                           <div class="">
                               <input value="@if($school_details){{$school_details->sidebar_heading_background}}@endif" class="form-control my-colorpicker1" type="text" name="sidebar_heading_background" id="sidebar_heading_background" >
 
@@ -65,10 +65,10 @@
                               </span>
                           @endif
                       </div>
-                  </div> 
+                  </div>
                   <div class="col-sm-2">
                       <div class="form-group {{$errors->has('sidebar_heading_color') ? 'has-error' : ''}}">
-                          <label class="" for="sidebar_heading_color">সাইডবার হেডিং  কালার </label>
+                          <label class="" for="sidebar_heading_color">Sidebar heading color</label>
                           <div class="">
                               <input value="@if($school_details){{$school_details->sidebar_heading_color}}@endif" class="form-control my-colorpicker1" type="text" name="sidebar_heading_color" id="sidebar_heading_color" >
                           </div>
@@ -81,7 +81,7 @@
                   </div>
                   <div class="col-sm-2">
                       <div class="form-group {{$errors->has('name_color') ? 'has-error' : ''}}">
-                          <label class="" for="name_color">স্কুলের নামের কালার </label>
+                          <label class="" for="name_color">School Name color</label>
                           <div class="">
                               <input value="@if($school_details){{$school_details->name_color}}@endif" class="form-control my-colorpicker1" type="text" name="name_color" id="name_color" >
                           </div>
@@ -93,12 +93,12 @@
                       </div>
                   </div>
 
-                       
+
                 </div>
                 <div class="row">
                   <div class="col-sm-6">
                       <div class="form-group {{$errors->has('copyright') ? 'has-error' : ''}}">
-                          <label class="" for="copyright">কপিরাইট <span class="star">*</span></label>
+                          <label class="" for="copyright">Copyright <span class="star">*</span></label>
                           <div class="">
                             <textarea  class="form-control" name="copyright" id="copyright" required>@if($school_details){{$school_details->copyright}}@endif</textarea>
                           </div>
@@ -111,7 +111,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group {{$errors->has('map') ? 'has-error' : ''}}">
-                          <label class="" for="map">গুগল ম্যাপ </label>
+                          <label class="" for="map">Google Map</label>
                           <div class="">
                             <textarea placeholder="how to you get code ? &#10; map->share-> embed a map->copy src code &#10; i.e. : https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7496722.01896206!2d85.8471739812547!3d23.442104785813886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30adaaed80e18ba7%3A0xf2d28e0c4e1fc6b!2z4Kas4Ka-4KaC4Kay4Ka-4Kam4KeH4Ka2!5e0!3m2!1sbn!2sbd!4v1579760305880!5m2!1sbn!2sbd "  class="form-control" name="map" id="map" >@if($school_details){{$school_details->map}}@endif</textarea>
                           </div>
@@ -122,13 +122,13 @@
                           @endif
                       </div>
                   </div>
-                                       
+
                 </div>
-                   
+
                 <div class="row">
                        <div class="col-sm-4">
                            <div class="form-group {{$errors->has('body_background') ? 'has-error' : ''}}">
-                               <label for="photo">বডি ব্যাকগ্রাউন্ড</label>
+                               <label for="photo">Body Background</label>
                                <input type="file" name="body_background" onchange="openFile(event)" accept="image/*">
                                @if ($errors->has('body_background'))
                                    <span class="help-block">
@@ -139,7 +139,7 @@
                        </div>
                        <div class="col-sm-4">
                            <div class="form-group {{$errors->has('header_background_logo') ? 'has-error' : ''}}">
-                               <label for="photo">হেডার ব্যাকগ্রাউন্ড</label>
+                               <label for="photo">Header Background</label>
                                <input type="file" name="header_background_logo" onchange="openFile1(event)" accept="image/*">
                                @if ($errors->has('header_background_logo'))
                                    <span class="help-block">
@@ -162,7 +162,7 @@
                            </div>
                        </div> --}}
                </div>
-               
+
                </div>
                    <div class="row">
 
@@ -181,7 +181,7 @@
                               <video src="@if($school_details){{Storage::url($school_details->video)}}@endif"  controls loop width="100px" height="120px"></video>
                           </div>
                        </div> --}}
-                      
+
                    </div>
 
                 <hr>
@@ -190,12 +190,12 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">পরিবর্তন করুণ</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Edit</button>
                             </div>
                         </div>
                         <div class="col-sm-2 col-sm-offset-8 pull-right">
                             <div class="form-group">
-                                <a href="{{'school_settings/reset_color'}}" class="btn btn-block btn-info">ডিফল্ট অবস্থায় ফিরে যান</a>
+                                <a href="{{'school_settings/reset_color'}}" class="btn btn-block btn-info">Default Settings</a>
                             </div>
                         </div>
                     </div>

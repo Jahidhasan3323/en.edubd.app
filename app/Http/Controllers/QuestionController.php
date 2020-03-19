@@ -93,7 +93,7 @@ class QuestionController extends Controller
                 $i++;
             }
         }
-        return $this->returnWithSuccess('Your Information Added Successfully. !');
+        return $this->returnWithSuccess('Your information added successfully !');
 
     }
 
@@ -163,7 +163,7 @@ class QuestionController extends Controller
                 $i++;
             }
         }
-        return $this->returnWithSuccess('Your Information Added Successfully !');
+        return $this->returnWithSuccess('Your information added successfully !');
 
     }
 
@@ -180,7 +180,7 @@ class QuestionController extends Controller
         }
         $question=Question::where(['id'=>$id,'school_id'=> Auth::getSchool(),'user_id'=>Auth::id()])->delete();
 
-        return $this->returnWithSuccess('Your Information Delete Successfully. !');
+        return $this->returnWithSuccess('Your information deleted successfullyে !');
 
 
     }
@@ -192,7 +192,7 @@ class QuestionController extends Controller
         if(!Auth::is('admin') && !Auth::is('teacher') && !Auth::is('student')){
             return redirect('/home');
         }
-        $tittle="লিখিত";
+        $tittle="Written";
         $questions=Question::with('masterClass','subject')->where(['school_id'=> Auth::getSchool(),'user_id'=>Auth::id(),'type'=>2])->orderby('id','DESC')->groupby('subject_id')->get();
         return view('backEnd.question.written.index',compact('questions','tittle'));
     }
@@ -201,7 +201,7 @@ class QuestionController extends Controller
         if(!Auth::is('admin') && !Auth::is('teacher') && !Auth::is('student')){
             return redirect('/home');
         }
-        $tittle="লিখিত";
+        $tittle="Written";
         $questions=Question::with('options','user')->where(['school_id'=> Auth::getSchool(),'user_id'=>Auth::id(),'type'=>2,'subject_id'=>$subject_id])->orderby('id','DESC')->get();
         return view('backEnd.question.written.subjectwise_question',compact('questions','tittle'));
     }
@@ -254,7 +254,7 @@ class QuestionController extends Controller
         $question=Question::create($data);
 
 
-        return $this->returnWithSuccess('Your Information Added Successfully.');
+        return $this->returnWithSuccess('Your information added successfully !');
 
     }
 
@@ -312,7 +312,7 @@ class QuestionController extends Controller
 
         $question=Question::where(['school_id'=> Auth::getSchool(),'user_id'=>Auth::id(),'id'=>$id])->update($data);
 
-        return $this->returnWithSuccess('Your Information Added Successfully.');
+        return $this->returnWithSuccess('Your information added successfully !');
 
     }
 
@@ -329,7 +329,7 @@ class QuestionController extends Controller
         }
         $question=Question::where(['id'=>$id,'school_id'=> Auth::getSchool(),'user_id'=>Auth::id()])->delete();
 
-        return $this->returnWithSuccess('Your Information Deleted Successfully.');
+        return $this->returnWithSuccess('Your information deleted successfully !');
 
 
     }

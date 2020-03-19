@@ -105,7 +105,7 @@
                         <div class="form-group {{$errors->has('salary') ? 'has-error' : ''}}">
                             <label class="" for="salary">Monthly Salary </label>
                             <div class="">
-                                <input value="{{old('salary')}}" class="form-control" type="text" name="salary" id="salary" placeholder="Monthly Salary">
+                                <input value="{{old('salary')}}" class="form-control" type="number" name="salary" id="salary" placeholder="Monthly Salary">
                             </div>
                             @if ($errors->has('salary'))
                                 <span class="help-block">
@@ -193,7 +193,7 @@
                         <div class="form-group {{$errors->has('index_no') ? 'has-error' : ''}}">
                             <label for="index_no">Index No. </label>
                             <div class="">
-                                <input value="{{old('index_no')}}" class="form-control" type="text" name="index_no" id="index_no" placeholder="Index Number">
+                                <input value="{{old('index_no')}}" class="form-control" type="number" name="index_no" id="index_no" placeholder="Index Number">
                             </div>
                             @if ($errors->has('index_no'))
                                 <span class="help-block">
@@ -307,7 +307,7 @@
                     <div class="form-group {{$errors->has('mobile') ? 'has-error' : ''}}">
                         <label class="" for="mobile">Mobile Number <span class="star">*</span></label>
                         <div class="">
-                            <input value="{{old('mobile')}}" class="form-control" type="text" name="mobile" id="mobile" placeholder=" Contact">
+                            <input value="{{old('mobile')}}" class="form-control" type="number" name="mobile" id="mobile" placeholder=" Contact">
                         </div>
                         <div id="mobileError" class="has-error" style="display: none">
                             <span class="help-block">
@@ -578,7 +578,7 @@
                    <div class="form-group {{$errors->has('pre_postc') ? 'has-error' : ''}}">
                        <label for="pre_postc">The postal code number</label>
                        <div>
-                           <input value="{{old('pre_postc')}}" type="text" class="form-control" name="pre_postc" id="pre_postc" placeholder="Post Code">
+                           <input value="{{old('pre_postc')}}" type="number" class="form-control" name="pre_postc" id="pre_postc" placeholder="Post Code">
                        </div>
                        @if ($errors->has('pre_postc'))
                            <span class="help-block">
@@ -714,7 +714,7 @@
                     <div class="form-group {{$errors->has('per_postc') ? 'has-error' : ''}}">
                         <label for="per_postc">The postal code number</label>
                         <div>
-                            <input value="{{old('per_postc')}}" type="text" class="form-control" name="per_postc" id="per_postc" placeholder="Post Code">
+                            <input value="{{old('per_postc')}}" type="number" class="form-control" name="per_postc" id="per_postc" placeholder="Post Code">
                         </div>
                         @if ($errors->has('per_postc'))
                             <span class="help-block">
@@ -768,7 +768,7 @@
                             <div class="form-group {{$errors->has('f_m_income') ? 'has-error' : ''}}">
                                 <label class="" for="f_m_income">Monthly Income</label>
                                 <div class="">
-                                    <input value="{{old('f_m_income')}}" class="form-control" type="text" name="f_m_income" id="f_m_income" placeholder="Father Monthly Income">
+                                    <input value="{{old('f_m_income')}}" class="form-control" type="number" name="f_m_income" id="f_m_income" placeholder="Father Monthly Income">
                                 </div>
                                 @if ($errors->has('f_m_income'))
                                    <span class="help-block">
@@ -796,7 +796,7 @@
                             <div class="form-group">
                                 <label class="" for="f_mobile_no">Phone Number</label>
                                 <div class="">
-                                    <input value="{{old('f_mobile_no')}}" class="form-control" type="text" name="f_mobile_no" id="f_mobile_no" placeholder=" Father Mobile No.">
+                                    <input value="{{old('f_mobile_no')}}" class="form-control" type="number" name="f_mobile_no" id="f_mobile_no" placeholder=" Father Mobile No.">
                                 </div>
                             </div>
                             <div id="f_mobile_Error" class="has-error" style="display: none">
@@ -881,7 +881,7 @@
                            <div class="form-group {{$errors->has('f_nid') ? 'has-error' : ''}}">
                                <label class="" for="m_m_income">Monthly Income</label>
                                <div class="">
-                                   <input value="{{old('m_m_income')}}" class="form-control" type="text" name="m_m_income" id="m_m_income" placeholder="Mother Monthly Income">
+                                   <input value="{{old('m_m_income')}}" class="form-control" type="number" name="m_m_income" id="m_m_income" placeholder="Mother Monthly Income">
                                </div>
                                @if ($errors->has('m_m_income'))
                                     <span class="help-block">
@@ -909,7 +909,7 @@
                            <div class="form-group">
                                <label class="" for="m_mobile_no">Phone number </label>
                                <div class="">
-                                   <input value="{{old('m_mobile_no')}}" class="form-control" type="text" name="m_mobile_no" id="m_mobile_no" placeholder=" Mother Mobile No.">
+                                   <input value="{{old('m_mobile_no')}}" class="form-control" type="number" name="m_mobile_no" id="m_mobile_no" placeholder=" Mother Mobile No.">
                                </div>
                            </div>
                            <div id="m_mobile_Error" class="has-error" style="display: none">
@@ -1033,7 +1033,7 @@
                     <div class="form-group {{$errors->has('h_w_mobile_no') ? 'has-error' : ''}}">
                         <label class="" for="h_w_mobile_no">Mobile Number</label>
                         <div class="">
-                            <input value="{{old('h_w_mobile_no')}}" class="form-control" type="text" name="h_w_mobile_no" id="h_w_mobile_no" placeholder="Mobile Number">
+                            <input value="{{old('h_w_mobile_no')}}" class="form-control" type="number" name="h_w_mobile_no" id="h_w_mobile_no" placeholder="Mobile Number">
                         </div>
                         @if ($errors->has('h_w_mobile_no'))
                              <span class="help-block">

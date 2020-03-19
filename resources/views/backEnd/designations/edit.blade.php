@@ -1,12 +1,12 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'Edit Teacher Designation')
+@section('mainTitle', 'Edit Designation')
 @section('active_designation', 'active')
 
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">পদ সম্পাদন করুন</h1>
+            <h1 class="text-center text-temp">Edit Designation</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group {{$errors->has('name') ? 'has-error' : ''}}">
-                            <label class="" for="name">পদবী নাম <span class="star">*</span></label>
+                            <label class="" for="name">Designation Name <span class="star">*</span></label>
                             <div class="">
                                 <input class="form-control" type="text" value="{{$designation->name}}" name="name" id="name" placeholder="Designation Name">
                             </div>
@@ -37,12 +37,12 @@
                     </div>
                     <div class="col-md-12 {{$errors->has('type') ? 'has-error' : ''}}">
                         <div class="form-group">
-                            <label class="" for="type">পদবীর ধরণ<span class="star">*</span></label>
+                            <label class="" for="type">Designation Type<span class="star">*</span></label>
                             <div class="">
                                 <select class="form-control" name="type" id="type">
-                                    <option selected value="{{ $designation->type }}">{{ $designation->type==1?'শিক্ষক ও কর্মচারী':'কমিটি' }}</option>
-                                    <option value="1">শিক্ষক ও কর্মচারী </option>
-                                    <option value="2">কমিটি</option>
+                                    <option selected value="{{ $designation->type }}">{{ $designation->type==1?'Employee':'Committee' }}</option>
+                                    <option value="1">Employee </option>
+                                    <option value="2">Committee</option>
                                 </select>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-info">হালনাগাদ</button>
+                            <button type="submit" class="btn btn-info">Update</button>
                         </div>
                     </div>
                 </div>

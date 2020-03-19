@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'উপস্থিতি বার্তা')
+@section('mainTitle', 'Attendance SMS Text')
 @section('active_attendance_text', 'active')
 
 @section('content')
@@ -13,7 +13,7 @@
 
     <div class="panel col-md-12">
         <div class="page-header">
-            <h1 class="text-center text-temp">উপস্থিত বার্তার তালিকা</h1>
+            <h1 class="text-center text-temp">Attendance SMS Text List</h1>
         </div>
 
         <div class="panel-body">
@@ -21,11 +21,11 @@
                 <table id="attend_tbl" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th class="text-center">ক্রমিক</th>
-                            <th class="text-center">প্রতিষ্ঠান</th>
-                            <th class="text-center">বার্তা</th>
-                            <th class="text-center">বার্তার ধরন</th>
-                            <th class="text-center">অ্যাকশন</th>
+                            <th class="text-center">Serial</th>
+                            <th class="text-center">Institute</th>
+                            <th class="text-center">Message</th>
+                            <th class="text-center">Type</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     @php
@@ -38,9 +38,9 @@
                                 <td>{{ $attendance->school->user->name }}</td>
                                 <td>{{ $attendance->content }}</td>
                                 <td class="text-center">
-                                    @if ($attendance->type==1) উপস্থিত বার্তা
-                                    @elseif ($attendance->type==2) অনুপস্থিত বার্তা
-                                    @elseif ($attendance->type==3) প্রতিষ্ঠান ত্যাগের বার্তা
+                                    @if ($attendance->type==1) Present
+                                    @elseif ($attendance->type==2) Absent
+                                    @elseif ($attendance->type==3) Institute Leave
                                     @endif
                                 </td>
                                 <td class="text-center">
@@ -48,7 +48,7 @@
                                        <button type="button" class="btn btn-primary btn-sm"> <i class="fa fa-edit"></i> </button>
                                    </a>
                                    <a href="{{ route('attendanceText.delete', $attendance->id) }}">
-                                       <button type="button" class="btn btn-danger btn-sm" onclick="return confirm('আপনি কি বার্তাটি মুছে ফেলতে চান ?')"> <i class="fa fa-trash-o"></i> </button>
+                                       <button type="button" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete ?')"> <i class="fa fa-trash-o"></i> </button>
                                    </a>
                                 </td>
                             </tr>

@@ -10,7 +10,7 @@
 @section('content')
     <div class="panel panel-info col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">সম্পূর্ণ বাণী</h1>
+            <h1 class="text-center text-temp">Full Speech</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -30,11 +30,11 @@
         <div class="panel-body">
             {!!$general_text->speech!!}
 
-           @if(!empty($general_text->file))<a style="margin-bottom: 10px;" target="_blank" href="{{url(Storage::url($general_text->file))}}" class="btn btn-success">ফাইল</a>@endif
+           @if(!empty($general_text->file))<a style="margin-bottom: 10px;" target="_blank" href="{{url(Storage::url($general_text->file))}}" class="btn btn-success">File</a>@endif
         </div>
     </div>
-    
-    
+
+
 @endsection
 
 @section('script')
