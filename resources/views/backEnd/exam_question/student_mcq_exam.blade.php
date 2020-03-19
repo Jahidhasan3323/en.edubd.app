@@ -56,10 +56,10 @@
 </style>
 <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
     <div class="page-header">
-        <h1 class="text-center text-temp">{{$tittle}} পরীক্ষার তালিকা</h1>
+        <h1 class="text-center text-temp">{{$tittle}} Exam List</h1>
     </div>
     <div class="row">
-      
+
 
       @if(Session::has('errmgs'))
           @include('backEnd.includes.errors')
@@ -73,13 +73,13 @@
        <table id="exam_tbl" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th>ক্রমিক নং</th>
-                    <th>নাম</th>
-                    <th>পূর্ণমান</th>
-                    <th>সময়</th>
-                    <th>বিষয়</th>
-                    <th>পরীক্ষার লিমিট</th>
-                    <th>অ্যাকশন</th>
+                    <th>Serial</th>
+                    <th>Name</th>
+                    <th>Full Marks</th>
+                    <th>Time</th>
+                    <th>Subject</th>
+                    <th>Exam Limit</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -93,7 +93,7 @@
                             <td>{{$exam->full_mark}}</td>
                             <td>{{$exam->time}}</td>
                             <td>{{$exam->subject->subject_name}}</td>
-                            <td>{{$exam->exam_option==1 ? 'একবার' : 'একাধিকবার'}}</td>
+                            <td>{{$exam->exam_option==1 ? 'One Time' : 'More than one'}}</td>
                             <td>
                               @if($exam->type==1)
                                 <a style="margin-bottom: 10px;" href="{{url('/exam/mcq/question/'.$exam->id)}}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span></a>
@@ -102,12 +102,12 @@
                               @endif
                             </td>
                         </tr>
-                       
+
                         @php($x++)
                     @endforeach
                 @endif
             </tbody>
-            
+
         </table>
     </div>
 </div>
@@ -120,5 +120,5 @@
         $('#exam_tbl').DataTable();
          });
     </script>
-    
+
 @endsection

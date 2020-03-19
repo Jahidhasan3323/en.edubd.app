@@ -56,10 +56,10 @@
 </style>
 <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
     <div class="page-header">
-        <h1 class="text-center text-temp">{{$tittle}} পরীক্ষার তালিকা</h1>
+        <h1 class="text-center text-temp">{{$tittle}}Exam List</h1>
     </div>
     <div class="row">
-      
+
 
       @if(Session::has('errmgs'))
           @include('backEnd.includes.errors')
@@ -73,11 +73,11 @@
        <table id="exam_tbl" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th>ক্রমিক নং</th>
-                    <th>নাম</th>
-                    <th>শ্রেণী</th>
-                    <th>বিষয়</th>
-                    <th>অ্যাকশন</th>
+                    <th>Serial</th>
+                    <th>Name</th>
+                    <th>Class</th>
+                    <th>Subject</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -98,7 +98,7 @@
                     @endforeach
                 @endif
             </tbody>
-            
+
         </table>
     </div>
 </div>

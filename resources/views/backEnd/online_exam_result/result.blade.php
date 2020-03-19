@@ -56,10 +56,10 @@
 </style>
 <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
     <div class="page-header">
-        <h1 class="text-center text-temp">পরীক্ষার তালিকা</h1>
+        <h1 class="text-center text-temp">Exam List</h1>
     </div>
     <div class="row">
-      
+
 
       @if(Session::has('errmgs'))
           @include('backEnd.includes.errors')
@@ -73,7 +73,7 @@
        <table id="exam_tbl" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th>ক্রমিক নং</th>
+                    <th>Serial</th>
                     <th>নাম </th>
                     <th>পরীক্ষা </th>
                     <th>বিষয় </th>
@@ -105,15 +105,15 @@
                             <td>{{$result->grade}}</td>
                             <td>{{$result->grade_point}}</td>
                             <td> <label class="label label-success">{{$result->status==1 ? 'গ্রহণ হয়েছে' : 'প্রক্রিয়াধীন'}}</label><br>{{date('d-m-Y',strtotime($result->created_at))}}</td>
-                              
-                            
+
+
                         </tr>
-                       
+
                         @php($x++)
                     @endforeach
                 @endif
             </tbody>
-            
+
         </table>
     </div>
 </div>

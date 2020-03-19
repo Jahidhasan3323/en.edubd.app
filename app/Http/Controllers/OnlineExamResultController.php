@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Question;
 use App\Exam;
 use Auth;
+use Session;
 
 class OnlineExamResultController extends Controller
 {
@@ -20,6 +21,7 @@ class OnlineExamResultController extends Controller
     public function index()
     {
         $results=OnlineExamResult::with('exam','subject')->where(['user_id'=>Auth::id(),'school_id'=>Auth::getSchool()])->get();
+
         return view('backEnd.online_exam_result.result',compact('results'));
     }
 
@@ -70,6 +72,7 @@ class OnlineExamResultController extends Controller
 
         $exam=Exam::where('id',$request->exam_id)->withTrashed()->first();
         $data=$request->except('_token','exam_id');
+        $time_stay=(time()*1000)-Session::get('start_time');
         $mark=0;
         foreach ($data as $name=>$data) {
             $question_id=explode('_',$name);
@@ -108,14 +111,15 @@ class OnlineExamResultController extends Controller
         }
         $credent['exam_id']=$exam->id;
         $credent['mark']=$mark;
-        $credent['time_stay']=0;
+         $credent['time_stay']=floor(($time_stay % (1000 * 60 * 60)) / (1000 * 60)).'.'.floor(($time_stay % (1000 * 60)) / 1000);
         $credent['result_type']=$exam->result_type;
         $credent['subject_id']=$exam->subject_id;
         $credent['creator_id']=$exam->user_id;
         $credent['status']=1;
-
         OnlineExamResult::create($credent);
-        return $this->returnWithSuccessRedirect('You have successfully done. You got '.$mark.' marks.','online-exam/result'); 
+        Session::forget('end_time');
+        Session::forget('start_time');
+        return $this->returnWithSuccessRedirect('You have done the exam ! You got the mark '.$mark,'online-exam/result'); 
     }
 
 
