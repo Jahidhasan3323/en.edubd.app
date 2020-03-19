@@ -1,7 +1,7 @@
 @extends('backEnd.master')
 
 @section('mainTitle', 'Chat')
-@section('question', 'active')
+@section('chat', 'active')
 @section('style')
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
 <link rel="stylesheet" href="{{asset('backEnd')}}/chatapp/themify-icons.css">
@@ -46,9 +46,7 @@
 
 	<!-- main wrapper -->
 	<div class="main-wrapper" id="app">
-
-		<example-component></example-component>
-
+		<chat-app :user="{{auth()->user()}}"></chat-app>
 	</div>
 	<!-- main wrapper -->
 

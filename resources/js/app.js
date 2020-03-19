@@ -7,7 +7,11 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import VueRouter from 'vue-router';
+import VueSimpleAlert from "vue-simple-alert";
 
+Vue.use(VueRouter);
+Vue.use(VueSimpleAlert);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -20,6 +24,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('chat-app', require('./components/ChatApp.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
