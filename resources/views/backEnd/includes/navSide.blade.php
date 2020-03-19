@@ -807,7 +807,40 @@
 
                 </li>
             @endif
+            @if(Auth::is('root') || Auth::is('teacher') || Auth::is('staff') || Auth::is('student'))
+            <li>
+                <a href="{{url('chat')}}" ><i class="fa fa-comment fa-2x"></i>ইহসান চ্যাটিং অ্যাপ্লিকেশন</a>
 
+            </li>
+            @endif
+            <li class="@yield('post')">
+                    <a href="#">
+                        <i class="fa fa-sitemap fa-2x"></i>ইহ্‌সান এডুকেশন সোশাল সাইট  <span
+                                class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{url('/post/')}}">টাইম লাইন</a>
+                        </li>
+                        <li>
+                            <a href="{{url('/post/profile',1)}}">প্রফাইল</a>
+                        </li>
+                        @if(Auth::is('root') || Auth::is('admin'))
+                        <li>
+                            <a href="{{url('/post/pending_list')}}">পেন্ডিং তালিকা</a>
+                        </li>
+                        <li>
+                            <a href="{{url('/post/accept_list')}}">একসেপ্ট তালিকা</a>
+                        </li>
+                        <li>
+                            <a href="{{url('/post/cancel_list')}}">বাতিল তালিকা</a>
+                        </li>
+                        <li>
+                            <a href="{{url('/post/delete_list')}}">ডিলেটেড তালিকা</a>
+                        </li>
+                        @endif
+                         
+                    </ul>
+                </li>
             <!-- @if(Auth::is('admin'))
              <li>
                  <a href="{{url('qbank')}}"><i class="fa fa-sitemap fa-2x"></i>প্রশ্নপত্র সংরক্ষণ</a>
