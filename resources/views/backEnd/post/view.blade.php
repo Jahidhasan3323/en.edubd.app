@@ -9,7 +9,7 @@
 
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">পোস্ট</h1>
+            <h1 class="text-center text-temp">Post</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -27,84 +27,84 @@
                         @if($post->db==1)
                             <li class="list-group-item"><b>নাম: </b> {{$post->user->name}}</li>
                             @if(($post->user->group_id==4))
-                                <li class="list-group-item"><b>আইডি: </b> {{$post->user->Student->student_id}}</li>
-                                <li class="list-group-item"><b>রোল: </b> {{$post->user->Student->roll}}</li>
-                                <li class="list-group-item"><b>শিফট: </b> {{$post->user->Student->shift}}</li>
-                                <li class="list-group-item"><b>গ্রুপ: </b> {{$post->user->Student->group}}</li>
-                                <li class="list-group-item"><b>শ্রেণী: </b> {{$post->user->Student->masterClass->name}}</li>
-                                <li class="list-group-item"><b>শাখা: </b> {{$post->user->Student->section}}</li>
-                                
+                                <li class="list-group-item"><b>ID No.: </b> {{$post->user->Student->student_id}}</li>
+                                <li class="list-group-item"><b>Roll: </b> {{$post->user->Student->roll}}</li>
+                                <li class="list-group-item"><b>Shift: </b> {{$post->user->Student->shift}}</li>
+                                <li class="list-group-item"><b>Group: </b> {{$post->user->Student->group}}</li>
+                                <li class="list-group-item"><b>Class: </b> {{$post->user->Student->masterClass->name}}</li>
+                                <li class="list-group-item"><b>Section: </b> {{$post->user->Student->section}}</li>
+
                             @endif
                             @if(($post->user->group_id==3 || $post->user->group_id==5))
-                                <li class="list-group-item"><b>আইডি: </b> {{$post->user->staff->staff_id}}</li>
-                                <li class="list-group-item"><b>লিঙ্গ: </b> {{$post->user->staff->gender}}</li>
-                               
+                                <li class="list-group-item"><b>ID No.: </b> {{$post->user->staff->staff_id}}</li>
+                                <li class="list-group-item"><b>Gender: </b> {{$post->user->staff->gender}}</li>
+
                             @endif
                             @if(($post->user->group_id==6))
-                                <li class="list-group-item"><b>লিঙ্গ: </b> {{$post->user->staff->gender}}</li>
-                               
+                                <li class="list-group-item"><b>Gender: </b> {{$post->user->staff->gender}}</li>
+
                             @endif
                         @endif
                         @if($post->db==2)
                             <li class="list-group-item"><b>নাম: </b> {{$post->user2->name}}</li>
                             @if(($post->user2->group_id==4))
-                                <li class="list-group-item"><b>আইডি: </b> {{$post->user2->Student->student_id}}</li>
-                                <li class="list-group-item"><b>রোল: </b> {{$post->user2->Student->roll}}</li>
-                                <li class="list-group-item"><b>শিফট: </b> {{$post->user2->Student->shift}}</li>
-                                <li class="list-group-item"><b>গ্রুপ: </b> {{$post->user2->Student->group}}</li>
-                                <li class="list-group-item"><b>শ্রেণী: </b> {{$post->user2->Student->masterClass->name}}</li>
-                                <li class="list-group-item"><b>শাখা: </b> {{$post->user2->Student->section}}</li>
-                                
+                                <li class="list-group-item"><b>ID No.: </b> {{$post->user2->Student->student_id}}</li>
+                                <li class="list-group-item"><b>Roll: </b> {{$post->user2->Student->roll}}</li>
+                                <li class="list-group-item"><b>Shift: </b> {{$post->user2->Student->shift}}</li>
+                                <li class="list-group-item"><b>Group: </b> {{$post->user2->Student->group}}</li>
+                                <li class="list-group-item"><b>Class: </b> {{$post->user2->Student->masterClass->name}}</li>
+                                <li class="list-group-item"><b>Section: </b> {{$post->user2->Student->section}}</li>
+
                             @endif
                             @if(($post->user2->group_id==3 || $post->user2->group_id==5))
-                                <li class="list-group-item"><b>আইডি: </b> {{$post->user2->staff->staff_id}}</li>
-                                <li class="list-group-item"><b>লিঙ্গ: </b> {{$post->user2->staff->gender}}</li>
-                               
+                                <li class="list-group-item"><b>ID No.: </b> {{$post->user2->staff->staff_id}}</li>
+                                <li class="list-group-item"><b>Gender: </b> {{$post->user2->staff->gender}}</li>
+
                             @endif
                             @if(($post->user2->group_id==6))
-                                <li class="list-group-item"><b>লিঙ্গ: </b> {{$post->user2->staff->gender}}</li>
-                               
+                                <li class="list-group-item"><b>Gender: </b> {{$post->user2->staff->gender}}</li>
+
                             @endif
                         @endif
                         @if($post->db==3)
                             <li class="list-group-item"><b>নাম: </b> {{$post->user3->name}}</li>
                             @if(($post->user3->group_id==4))
-                                <li class="list-group-item"><b>আইডি: </b> {{$post->user3->Student->student_id}}</li>
-                                <li class="list-group-item"><b>রোল: </b> {{$post->user3->Student->roll}}</li>
-                                <li class="list-group-item"><b>শিফট: </b> {{$post->user3->Student->shift}}</li>
-                                <li class="list-group-item"><b>গ্রুপ: </b> {{$post->user3->Student->group}}</li>
-                                <li class="list-group-item"><b>শ্রেণী: </b> {{$post->user3->Student->masterClass->name}}</li>
-                                <li class="list-group-item"><b>শাখা: </b> {{$post->user3->Student->section}}</li>
+                                <li class="list-group-item"><b>ID No.: </b> {{$post->user3->Student->student_id}}</li>
+                                <li class="list-group-item"><b>Roll: </b> {{$post->user3->Student->roll}}</li>
+                                <li class="list-group-item"><b>Shift: </b> {{$post->user3->Student->shift}}</li>
+                                <li class="list-group-item"><b>Group: </b> {{$post->user3->Student->group}}</li>
+                                <li class="list-group-item"><b>Class: </b> {{$post->user3->Student->masterClass->name}}</li>
+                                <li class="list-group-item"><b>Section: </b> {{$post->user3->Student->section}}</li>
                             @endif
                             @if(($post->user3->group_id==3 || $post->user3->group_id==5))
-                                <li class="list-group-item"><b>আইডি: </b> {{$post->user3->staff->staff_id}}</li>
-                                <li class="list-group-item"><b>লিঙ্গ: </b> {{$post->user3->staff->gender}}</li>
-                               
+                                <li class="list-group-item"><b>ID No.: </b> {{$post->user3->staff->staff_id}}</li>
+                                <li class="list-group-item"><b>Gender: </b> {{$post->user3->staff->gender}}</li>
+
                             @endif
                             @if(($post->user3->group_id==6))
-                                <li class="list-group-item"><b>লিঙ্গ: </b> {{$post->user3->staff->gender}}</li>
-                               
+                                <li class="list-group-item"><b>Gender: </b> {{$post->user3->staff->gender}}</li>
+
                             @endif
                         @endif
                         @if($post->db==4)
                             <li class="list-group-item"><b>নাম: </b> {{$post->user4->name}}</li>
                             @if(($post->user4->group_id==4))
-                                <li class="list-group-item"><b>আইডি: </b> {{$post->user4->Student->student_id}}</li>
-                                <li class="list-group-item"><b>রোল: </b> {{$post->user4->Student->roll}}</li>
-                                <li class="list-group-item"><b>শিফট: </b> {{$post->user4->Student->shift}}</li>
-                                <li class="list-group-item"><b>গ্রুপ: </b> {{$post->user4->Student->group}}</li>
-                                <li class="list-group-item"><b>শ্রেণী: </b> {{$post->user4->Student->masterClass->name}}</li>
-                                <li class="list-group-item"><b>শাখা: </b> {{$post->user4->Student->section}}</li>
-                                
+                                <li class="list-group-item"><b>ID No.: </b> {{$post->user4->Student->student_id}}</li>
+                                <li class="list-group-item"><b>Roll: </b> {{$post->user4->Student->roll}}</li>
+                                <li class="list-group-item"><b>Shift: </b> {{$post->user4->Student->shift}}</li>
+                                <li class="list-group-item"><b>Group: </b> {{$post->user4->Student->group}}</li>
+                                <li class="list-group-item"><b>Class: </b> {{$post->user4->Student->masterClass->name}}</li>
+                                <li class="list-group-item"><b>Section: </b> {{$post->user4->Student->section}}</li>
+
                             @endif
                             @if(($post->user4->group_id==3 || $post->user4->group_id==5))
-                                <li class="list-group-item"><b>আইডি: </b> {{$post->user4->staff->staff_id}}</li>
-                                <li class="list-group-item"><b>লিঙ্গ: </b> {{$post->user4->staff->gender}}</li>
-                               
+                                <li class="list-group-item"><b>ID No.: </b> {{$post->user4->staff->staff_id}}</li>
+                                <li class="list-group-item"><b>Gender: </b> {{$post->user4->staff->gender}}</li>
+
                             @endif
                             @if(($post->user4->group_id==6))
-                                <li class="list-group-item"><b>লিঙ্গ: </b> {{$post->user4->staff->gender}}</li>
-                               
+                                <li class="list-group-item"><b>Gender: </b> {{$post->user4->staff->gender}}</li>
+
                             @endif
                         @endif
                     </ul>
@@ -113,59 +113,59 @@
                     <ul class="list-group">
                         @if($post->db==1)
                             @if(($post->user->group_id==4))
-                                
-                                <li class="list-group-item"><b>লিঙ্গ: </b> {{$post->user->student->gender}}</li>
-                                <li class="list-group-item"><b>শিক্ষার্থীর ধরণ: </b> {{$post->user->regularity}}</li>
+
+                                <li class="list-group-item"><b>Gender: </b> {{$post->user->student->gender}}</li>
+                                <li class="list-group-item"><b>Student Type: </b> {{$post->user->regularity}}</li>
                             @endif
 
-                            <li class="list-group-item"><b>পদবি: </b> {{$post->user->group->name}}</li>
+                            <li class="list-group-item"><b>Designation: </b> {{$post->user->group->name}}</li>
                             <li class="list-group-item">
                                 @if(($post->user->group_id==1))
                                     <img src="{{Storage::url('img/ehsan-logo.png')}}" height="160px" width="200px" style="width: 200px !important; ">
                                 @elseif(($post->user->group_id==2))
-                                    <img src="{{Storage::url($post->school->logo)}}" height="160px" width="200px" style="width: 200px !important; "> 
+                                    <img src="{{Storage::url($post->school->logo)}}" height="160px" width="200px" style="width: 200px !important; ">
                                 @elseif(($post->user->group_id==3 || $post->user->group_id==5))
                                     <img src="{{Storage::url($post->user->staff->photo)}}" height="160px" width="200px" style="width: 200px !important; ">
                                 @elseif(($post->user->group_id==4))
                                     <img src="{{Storage::url($post->user->student->photo)}}" height="160px" width="200px" style="width: 200px !important; ">
                                 @elseif(($post->user->group_id==6))
                                     <img src="{{Storage::url($post->user->committee->image)}}" height="160px" width="200px" style="width: 200px !important; ">
-                                @endif 
+                                @endif
                         @endif
                         @if($post->db==2)
                             @if(($post->user2->group_id==4))
-                                
-                                <li class="list-group-item"><b>লিঙ্গ: </b> {{$post->user2->student->gender}}</li>
-                                <li class="list-group-item"><b>শিক্ষার্থীর ধরণ: </b> {{$post->user2->regularity}}</li>
+
+                                <li class="list-group-item"><b>Gender: </b> {{$post->user2->student->gender}}</li>
+                                <li class="list-group-item"><b>Student Type: </b> {{$post->user2->regularity}}</li>
                             @endif
 
-                            <li class="list-group-item"><b>পদবি: </b> {{$post->user2->group->name}}</li>
+                            <li class="list-group-item"><b>Designation: </b> {{$post->user2->group->name}}</li>
                             <li class="list-group-item">
                                 @if(($post->user2->group_id==1))
                                         <img src="{{Helpers::db2_url()}}{{Storage::url('img/ehsan-logo.png')}}" height="160px" width="200px" style="width: 200px !important; ">
                                     @elseif(($post->user2->group_id==2))
-                                        <img src="{{Helpers::db2_url()}}{{Storage::url($post->school2->logo)}}" height="160px" width="200px" style="width: 200px !important; "> 
+                                        <img src="{{Helpers::db2_url()}}{{Storage::url($post->school2->logo)}}" height="160px" width="200px" style="width: 200px !important; ">
                                     @elseif(($post->user2->group_id==3 || $post->user->group_id==5))
                                         <img src="{{Helpers::db2_url()}}{{Storage::url($post->user2->staff->photo)}}" height="160px" width="200px" style="width: 200px !important; ">
                                     @elseif(($post->user2->group_id==4))
                                         <img src="{{Helpers::db2_url()}}{{Storage::url($post->user2->student->photo)}}" height="160px" width="200px" style="width: 200px !important; ">
                                     @elseif(($post->user2->group_id==6))
                                         <img src="{{Helpers::db2_url()}} {{Storage::url($post->user2->committee->image)}}" height="160px" width="200px" style="width: 200px !important; ">
-                                    @endif 
+                                    @endif
                         @endif
                         @if($post->db==3)
                             @if(($post->user3->group_id==4))
-                                
-                                <li class="list-group-item"><b>লিঙ্গ: </b> {{$post->user3->student->gender}}</li>
-                                <li class="list-group-item"><b>শিক্ষার্থীর ধরণ: </b> {{$post->user3->regularity}}</li>
+
+                                <li class="list-group-item"><b>Gender: </b> {{$post->user3->student->gender}}</li>
+                                <li class="list-group-item"><b>Student Type: </b> {{$post->user3->regularity}}</li>
                             @endif
 
-                            <li class="list-group-item"><b>পদবি: </b> {{$post->user3->group->name}}</li>
+                            <li class="list-group-item"><b>Designation: </b> {{$post->user3->group->name}}</li>
                             <li class="list-group-item">
                                @if(($post->user3->group_id==1))
                                         <img src="{{Helpers::db3_url()}}{{Storage::url('img/ehsan-logo.png')}}" height="160px" width="200px" style="width: 200px !important; ">
                                     @elseif(($post->user3->group_id==2))
-                                        <img src="{{Helpers::db3_url()}}{{Storage::url($post->school3->logo)}}" height="160px" width="200px" style="width: 200px !important; "> 
+                                        <img src="{{Helpers::db3_url()}}{{Storage::url($post->school3->logo)}}" height="160px" width="200px" style="width: 200px !important; ">
                                     @elseif(($post->user3->group_id==3 || $post->user->group_id==5))
                                         <img src="{{Helpers::db3_url()}}{{Storage::url($post->user3->staff->photo)}}" height="160px" width="200px" style="width: 200px !important; ">
                                     @elseif(($post->user3->group_id==4))
@@ -176,32 +176,32 @@
                         @endif
                         @if($post->db==4)
                             @if(($post->user4->group_id==4))
-                                
-                                <li class="list-group-item"><b>লিঙ্গ: </b> {{$post->user4->student->gender}}</li>
-                                <li class="list-group-item"><b>শিক্ষার্থীর ধরণ: </b> {{$post->user4->regularity}}</li>
+
+                                <li class="list-group-item"><b>Gender: </b> {{$post->user4->student->gender}}</li>
+                                <li class="list-group-item"><b>Student Type: </b> {{$post->user4->regularity}}</li>
                             @endif
 
-                            <li class="list-group-item"><b>পদবি: </b> {{$post->user4->group->name}}</li>
+                            <li class="list-group-item"><b>Designation: </b> {{$post->user4->group->name}}</li>
                             <li class="list-group-item">
                                  @if(($post->user4->group_id==1))
                                         <img src="{{Helpers::db4_url()}}{{Storage::url('img/ehsan-logo.png')}}" height="160px" width="200px" style="width: 200px !important; ">
                                     @elseif(($post->user4->group_id==2))
-                                        <img src="{{Helpers::db4_url()}}{{Storage::url($post->school4->logo)}}" height="160px" width="200px" style="width: 200px !important; "> 
+                                        <img src="{{Helpers::db4_url()}}{{Storage::url($post->school4->logo)}}" height="160px" width="200px" style="width: 200px !important; ">
                                     @elseif(($post->user4->group_id==3 || $post->user->group_id==5))
                                         <img src="{{Helpers::db4_url()}}{{Storage::url($post->user4->staff->photo)}}" height="160px" width="200px" style="width: 200px !important; ">
                                     @elseif(($post->user4->group_id==4))
                                         <img src="{{Helpers::db4_url()}}{{Storage::url($post->user4->student->photo)}}" height="160px" width="200px" style="width: 200px !important; ">
                                     @elseif(($post->user4->group_id==6))
                                         <img src="{{Helpers::db4_url()}} {{Storage::url($post->user4->committee->image)}}" height="160px" width="200px" style="width: 200px !important; ">
-                                @endif 
+                                @endif
                         @endif
                         </li>
-                        
+
                     </ul>
                 </div>
                 <div class="col-md-12">
                     {!!$post->message!!}
-                    @php $images=explode('@', $post->file); @endphp 
+                    @php $images=explode('@', $post->file); @endphp
                          <div class="post-image">
                            @foreach($images as $image)
                                 <div class="col-md-3">
@@ -211,7 +211,7 @@
                         </div>
                 </div>
             </div>
-                
+
             </div>
         </div>
     </div>

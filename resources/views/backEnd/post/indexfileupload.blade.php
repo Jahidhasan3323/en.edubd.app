@@ -7,7 +7,7 @@
  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.4-rc1/css/foundation.css'>
  <link href="{{asset('/css/components.min.css')}}" rel="stylesheet" type="text/css">
  <!-- Core JS files -->
-	
+
 @endsection
 
 @section('content')
@@ -23,11 +23,11 @@
 
         <div class="page-header">
 
-            <h1 class="text-center text-temp">টাইম লাইন</h1>
-            
+            <h1 class="text-center text-temp">Timeline</h1>
+
         </div>
 
-        
+
         <div class="panel-body">
         	<div class="row" style="background: #eee; padding: 3px 13px; margin-bottom: 24px;">
         		<form class="" action="{{url('post/create')}}" method="post" enctype="multipart/form-data">
@@ -54,7 +54,7 @@
 
 <h1 class="abc">Clone all p elements, and append them to the body element</h1>
                        <script type="text/javascript">
-                       	
+
                               var openFile = function(event) {
                               var input = event.target;
                               var reader = new FileReader();
@@ -83,9 +83,9 @@
 				  		<span class="form-text text-muted">This scenario uses asynchronous/parallel uploads. Uploading itself is turned off in live preview.</span>
 				  	</div>
 				  </div> --}}
-        		  
+
         		  <div>
-        		  	
+
         		  	<button type="submit" class="btn btn-primary pull-right">POST</button>
         		  </div>
         		</form>
@@ -137,7 +137,7 @@
 				        					<img  width="100%" src="{{Storage::url('social/s1.jpg')}}">
 				        				</div>
 				        			</div>
-			        			</div> --}} 
+			        			</div> --}}
 			        			<div class="post-image" style="padding-top: 20px">
 			        				<div class="row">
 				        				<div class="col-md-6">
@@ -180,7 +180,7 @@
 @section('script')
 
 	<script src="{{asset('js/lightbox-plus-jquery.js')}}"></script>
-    
+
 	<script type="text/javascript">var scrolltotop={setting:{startline:100,scrollto:0,scrollduration:1e3,fadeduration:[500,100]},controlHTML:'<img src="https://i1155.photobucket.com/albums/p559/scrolltotop/arrow23.png" />',controlattrs:{offsetx:5,offsety:5},anchorkeyword:"#top",state:{isvisible:!1,shouldvisible:!1},scrollup:function(){this.cssfixedsupport||this.$control.css({opacity:0});var t=isNaN(this.setting.scrollto)?this.setting.scrollto:parseInt(this.setting.scrollto);t="string"==typeof t&&1==jQuery("#"+t).length?jQuery("#"+t).offset().top:0,this.$body.animate({scrollTop:t},this.setting.scrollduration)},keepfixed:function(){var t=jQuery(window),o=t.scrollLeft()+t.width()-this.$control.width()-this.controlattrs.offsetx,s=t.scrollTop()+t.height()-this.$control.height()-this.controlattrs.offsety;this.$control.css({left:o+"px",top:s+"px"})},togglecontrol:function(){var t=jQuery(window).scrollTop();this.cssfixedsupport||this.keepfixed(),this.state.shouldvisible=t>=this.setting.startline?!0:!1,this.state.shouldvisible&&!this.state.isvisible?(this.$control.stop().animate({opacity:1},this.setting.fadeduration[0]),this.state.isvisible=!0):0==this.state.shouldvisible&&this.state.isvisible&&(this.$control.stop().animate({opacity:0},this.setting.fadeduration[1]),this.state.isvisible=!1)},init:function(){jQuery(document).ready(function(t){var o=scrolltotop,s=document.all;o.cssfixedsupport=!s||s&&"CSS1Compat"==document.compatMode&&window.XMLHttpRequest,o.$body=t(window.opera?"CSS1Compat"==document.compatMode?"html":"body":"html,body"),o.$control=t('<div id="topcontrol">'+o.controlHTML+"</div>").css({position:o.cssfixedsupport?"fixed":"absolute",bottom:o.controlattrs.offsety,right:o.controlattrs.offsetx,opacity:0,cursor:"pointer"}).attr({title:"Scroll to Top"}).click(function(){return o.scrollup(),!1}).appendTo("body"),document.all&&!window.XMLHttpRequest&&""!=o.$control.text()&&o.$control.css({width:o.$control.width()}),o.togglecontrol(),t('a[href="'+o.anchorkeyword+'"]').click(function(){return o.scrollup(),!1}),t(window).bind("scroll resize",function(t){o.togglecontrol()})})}};scrolltotop.init();</script>
 
 

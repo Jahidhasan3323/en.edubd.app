@@ -808,39 +808,39 @@
                 </li>
             @endif
             @if(Auth::is('root') || Auth::is('teacher') || Auth::is('staff') || Auth::is('student'))
-            <li>
-                <a href="{{url('chat')}}" ><i class="fa fa-comment fa-2x"></i>ইহসান চ্যাটিং অ্যাপ্লিকেশন</a>
+            {{-- <li>
+                <a href="{{url('chat')}}" ><i class="fa fa-comment fa-2x"></i>Ehsan Chatting Application</a>
 
-            </li>
+            </li> --}}
             @endif
-            <li class="@yield('post')">
+            {{-- <li class="@yield('post')">
                     <a href="#">
-                        <i class="fa fa-sitemap fa-2x"></i>ইহ্‌সান এডুকেশন সোশাল সাইট  <span
+                        <i class="fa fa-sitemap fa-2x"></i>Ehsan Education Social Site  <span
                                 class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="{{url('/post/')}}">টাইম লাইন</a>
+                            <a href="{{url('/post/')}}">Timeline</a>
                         </li>
                         <li>
-                            <a href="{{url('/post/profile',1)}}">প্রফাইল</a>
+                            <a href="{{url('/post/profile',1)}}">Profile</a>
                         </li>
                         @if(Auth::is('root') || Auth::is('admin'))
                         <li>
-                            <a href="{{url('/post/pending_list')}}">পেন্ডিং তালিকা</a>
+                            <a href="{{url('/post/pending_list')}}">Pending list</a>
                         </li>
                         <li>
-                            <a href="{{url('/post/accept_list')}}">একসেপ্ট তালিকা</a>
+                            <a href="{{url('/post/accept_list')}}">Accepted list</a>
                         </li>
                         <li>
-                            <a href="{{url('/post/cancel_list')}}">বাতিল তালিকা</a>
+                            <a href="{{url('/post/cancel_list')}}">Cencel list</a>
                         </li>
                         <li>
-                            <a href="{{url('/post/delete_list')}}">ডিলেটেড তালিকা</a>
+                            <a href="{{url('/post/delete_list')}}">Trash</a>
                         </li>
                         @endif
-                         
+
                     </ul>
-                </li>
+                </li> --}}
             <!-- @if(Auth::is('admin'))
              <li>
                  <a href="{{url('qbank')}}"><i class="fa fa-sitemap fa-2x"></i>প্রশ্নপত্র সংরক্ষণ</a>
