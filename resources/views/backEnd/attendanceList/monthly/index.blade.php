@@ -54,8 +54,8 @@
                           <tr>
                               <td>{{$x}}</td>
                               <td style="width:50px !important; padding:0;"><img src="{{Storage::url($student->photo)}}" width="50px" height="50px"></td>
-                              <td style="width:200px !important;"> {{$student->user->name}}</td>
-                              <td> {{$student->roll}}</td>
+                              <td style="width:200px !important;"> {{isset($student->user->name)?$student->user->name:''}}</td>
+                              <td> {{isset($student->roll)?$student->roll:''}}</td>
                               @foreach($days as $date)
                                <td></td>
                               @endforeach
@@ -98,7 +98,7 @@
                           <tr>
                               <td>{{$x}}</td>
                               <td style="width:50px !important; padding:0;"><img src="{{Storage::url($employee->photo)}}" width="50px" height="50px"></td>
-                              <td >{{$employee->user->name}}</td>
+                              <td >{{isset($employee->user->name)?$employee->user->name:''}}</td>
                               @foreach($days as $date)
                                <td></td>
                               @endforeach
