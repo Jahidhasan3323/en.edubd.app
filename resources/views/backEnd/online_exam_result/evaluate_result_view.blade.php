@@ -56,10 +56,10 @@
 </style>
 <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
     <div class="page-header">
-        <h1 class="text-center text-temp">পেন্ডিং ফলাফল</h1>
+        <h1 class="text-center text-temp">Pending Result</h1>
     </div>
     <div class="row">
-      
+
 
       @if(Session::has('errmgs'))
           @include('backEnd.includes.errors')
@@ -69,19 +69,19 @@
       @endif
     </div>
     @if($results)
-      
+
         @php $i=1; @endphp
         @foreach($results as $result)
-          <p><b>প্রশ্নঃ </b>{{ $i }}.{!! $result->question->question !!}</p>
-          <p><b>উত্তরঃ </b>{!! $result->answer !!}</p>
+          <p><b>Question : </b>{{ $i }}.{!! $result->question->question !!}</p>
+          <p><b>Answer : </b>{!! $result->answer !!}</p>
           <p>
-            <b>পূর্ণমানঃ </b>{{ $result->full_mark }} 
-            <label style="padding-left:20px"><b>প্রাপ্ত মার্কঃ</b> {{ $result->mark }}</label> 
-            
+            <b>Full Marks </b>{{ $result->full_mark }}
+            <label style="padding-left:20px"><b>Marks :</b> {{ $result->mark }}</label> 
+
           </p>
           <?php $i++ ?>
         @endforeach
-        
+
     @endif
 </div>
 @endsection
