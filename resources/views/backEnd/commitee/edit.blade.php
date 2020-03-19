@@ -167,7 +167,7 @@
                         <div class="form-group {{$errors->has('mobile') ? 'has-error' : ''}}">
                             <label class="" for="mobile">Mobile Number <span class="star">*</span></label>
                             <div class="">
-                                <input value="{{$commiteeData->user->mobile}}" class="form-control" type="text" name="mobile" id="mobile" placeholder="Teacher Contact">
+                                <input value="{{$commiteeData->user->mobile}}" class="form-control" type="number" name="mobile" id="mobile" placeholder="Teacher Contact">
                             </div>
                             <div id="mobileError" class="has-error" style="display: none">
                                 <span class="help-block">
@@ -277,7 +277,7 @@
                         <div class="form-group {{$errors->has('holding_name') ? 'has-error' : ''}}">
                             <label for="">House/Holding No.</label>
                             <div class="">
-                                <input type="text" value="{{$commiteeData->holding_name}}" name="holding_name" class="form-control" placeholder="Home name..." id="holding_name">
+                                <input type="text" value="{{$commiteeData->holding_name}}" name="holding_name" class="form-control" placeholder="House/Holding No..." id="holding_name">
                             </div>
                             @if($errors->has('holding_name'))
                                 <span class="help-block">
@@ -291,7 +291,7 @@
                         <div class="form-group {{$errors->has('road_name') ? 'has-error' : ''}}">
                             <label for="">Road No.</label>
                             <div class="">
-                                <input type="text" value="{{$commiteeData->road_name}}" name="road_name" class="form-control" placeholder="Home name..." id="road_name">
+                                <input type="text" value="{{$commiteeData->road_name}}" name="road_name" class="form-control" placeholder="Road No...." id="road_name">
                             </div>
                             @if($errors->has('road_name'))
                                 <span class="help-block">
@@ -352,7 +352,7 @@
                         <div class="form-group {{$errors->has('thana') ? 'has-error' : ''}}">
                             <label for="">Upzilla <font color="red" size="4">*</font></label>
                             <div class="">
-                                <input type="text" value="{{$commiteeData->thana}}" name="thana" class="form-control" placeholder="Thana name..." id="thana">
+                                <input type="text" value="{{$commiteeData->thana}}" name="thana" class="form-control" placeholder="Upzilla name..." id="thana">
                             </div>
                             @if($errors->has('thana'))
                                 <span class="help-block">
@@ -366,7 +366,7 @@
                         <div class="form-group {{$errors->has('district') ? 'has-error' : ''}}">
                             <label for="">Zilla  <font color="red" size="4">*</font></label>
                             <div class="">
-                                <input type="text" value="{{$commiteeData->district}}" name="district" class="form-control" placeholder="Postoffice name..." id="district">
+                                <input type="text" value="{{$commiteeData->district}}" name="district" class="form-control" placeholder="Zilla name..." id="district">
                             </div>
                             @if($errors->has('district'))
                                 <span class="help-block">
@@ -380,7 +380,7 @@
                         <div class="form-group {{$errors->has('post_code') ? 'has-error' : ''}}">
                             <label for="">Postal Code<font color="red" size="4">*</font></label>
                             <div class="">
-                                <input type="text" value="{{$commiteeData->post_code}}" name="post_code" class="form-control" placeholder="Unione name..." id="post_code">
+                                <input type="number" value="{{$commiteeData->post_code}}" name="post_code" class="form-control" placeholder="Postal Code..." id="post_code">
                             </div>
                             @if($errors->has('post_code'))
                                 <span class="help-block">

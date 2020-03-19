@@ -96,24 +96,25 @@
                     <div style="padding: 10px"><hr></div>
                     <div class="content-testimonial">
                         <p>
-                            আমি এই মর্মে প্রশংসা পত্র প্রদান করিতেছি যে, <span class="dowon-mark">{{$student->name}}</span> পিতা <span class="dowon-mark">{{$student->father_name}}</span> মাতা <span class="dowon-mark">{{$student->mother_name}}</span> গ্রাম  <span class="dowon-mark">{{$student->village}}</span> ডাকঘর <span class="dowon-mark">{{$student->post_office}}</span> থানা <span class="dowon-mark">{{$student->upazila}}</span> জেলা <span class="dowon-mark">{{$student->district}}</span> অত্র বিদ্যালয় হইতে <span class="dowon-mark">{{$student->exam_session}}</span> ইং সালে <span class="dowon-mark">{{$student->board}}</span> শিক্ষা বোর্ডের অধীনে অনুষ্টিত <span class="dowon-mark">{{$student->exam}}</span>  পরীক্ষায় অংশ গ্রহণ করিয়া জিপিএ  <span class="dowon-mark">{{$student->gpa}}</span> পাইয়া উর্ত্তীন হইয়াছে।  সে <span class="dowon-mark">{{$student->group}}</span> বিভাগের <span class="dowon-mark">{{$student->section}}</span> শাখার  ছাত্র/ছাত্রী ছিল। তাহার উক্ত পরীক্ষার রোল নম্বর <span class="dowon-mark">{{$student->roll}}</span> রেজিস্ট্রেশন নম্বর <span class="dowon-mark">{{$student->reg_no}}</span> শিক্ষাবর্ষ  <span class="dowon-mark">{{$student->session}}</span>। বিদ্যালয়ের  ভর্তিবহি অনুযায়ী তাহার জন্ম তারিখ <span class="dowon-mark">{{str_replace($s,$r,date('d-m-Y',strtotime($student->birth_day)))}}</span> ইং।
+                            This is to certify that, <span class="dowon-mark">{{$student->name}}</span> father <span class="dowon-mark">{{$student->father_name}}</span> mother <span class="dowon-mark">{{$student->mother_name}}</span> village  <span class="dowon-mark">{{$student->village}}</span> post office <span class="dowon-mark">{{$student->post_office}}</span> upazila <span class="dowon-mark">{{$student->upazila}}</span> district <span class="dowon-mark">{{$student->district}}</span> got GPA <span class="dowon-mark">{{$student->gpa}}</span> from this institute after taking the <span class="dowon-mark">{{$student->exam}}</span> examination under <span class="dowon-mark">{{$student->board}}</span> Education Board in <span class="dowon-mark">{{$student->exam_session}}</span>. He/She was a student of <span class="dowon-mark">{{$student->section}}</span> section of the <span class="dowon-mark">{{$student->group}}</span>  department. His/Her Exam roll number is <span class="dowon-mark">{{$student->roll}}</span> for registration number <span class="dowon-mark">{{$student->reg_no}}</span> for academic year <span class="dowon-mark">{{$student->session}}</span>. According to the admission of the school, his/her date of birth is <span class="dowon-mark">{{date('d-m-Y',strtotime($student->birth_day))}}</span>.
                         </p>
+                       
 
                         <p>
-                            আমার জানা মতে তাহার স্বভাব ও চরিত্র উত্তম। এখানে অধ্যায়নরত অবস্থায় সে কখনো বিদ্যালয়ের আইন শৃঙ্খলা অথবা রাষ্ট্র বিরোধী কার্যকলাপে অংশ গ্রহণ করে নাই।
+                            I know his nature and character are good. While studying here, he/she never participated in any school anti-state activities.
                         </p>
 
-                        <p>আমি তাহার জীবনের সর্বাঙ্গীন উন্নতি কামনা করি। </p>
+                        <p>I Wish him a challeing future and brilliant Life.  </p>
                     </div>
                     <div style="height: 150px"></div>
                      <div class="row1">
                         <div class="column-60 modarator">
-                               <p>যাচাইকারী :</p>
-                               <p >তারিখ :- <span style="font-size: 14px;">{{date('d-m-Y')}}</span></p>
+                               <p>Verified by :</p>
+                               <p >Date :- <span style="font-size: 14px;">{{date('d-m-Y')}}</span></p>
                         </div>
                         <div class="column-40">
                           <br><br>
-                          <p style="width:230px;padding: 0;border-top: 1px solid black;font-size: 14px;">{{'অধ্যক্ষ / প্রধান শিক্ষকের'}} স্বাক্ষর ও সীল :</p>
+                          <p style="width:280px;padding: 0;border-top: 1px solid black;font-size: 14px;">{{"Headmaster/ Principal's"}} signature and Seal :</p>
                         </div>
                     </div>
                 </div>

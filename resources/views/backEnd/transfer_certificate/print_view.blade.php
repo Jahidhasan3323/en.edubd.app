@@ -7,7 +7,7 @@
 
     <div class="panel col-md-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">ছারপত্র তৈরি করুন</h1>
+            <h1 class="text-center text-temp">Transfer Certificate </h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -91,32 +91,31 @@
                         <h3 style="margin-bottom: 0"><img src="{{Storage::url(Auth::user()->school->logo)}}" alt=""> {{Auth::user()->name}} </h3>
 
                         <p>{{Auth::user()->school->address}}</p>
-                        <h3><span style="border: 2px solid #000; padding: 4px 10px; border-radius: 7px;">ছাড়পত্র </span></h3>
-                        <span  style="size:16px !important; float:left"><b>নিবন্ধন নং : </b> <span class="dowon-mark">{{$student->tc_reg_no}}</span></span>
-                        <span  style="size:16px !important; float:right"><b>তারিখ : </b> <span class="dowon-mark">{{str_replace($s,$r,date('d-m-Y',strtotime($student->date)))}}</span></span>
+                        <h3><span style="border: 2px solid #000; padding: 4px 10px; border-radius: 7px;">Transfer Certificate </span></h3>
+                        <span  style="size:16px !important; float:left"><b>Registration No : </b> <span class="dowon-mark">{{$student->tc_reg_no}}</span></span>
+                        <span  style="size:16px !important; float:right"><b>Date : </b> <span class="dowon-mark">{{date('d-m-Y',strtotime($student->date))}}</span></span>
                     </div>
                     <div style="padding: 10px"><hr></div>
                     <div class="content-testimonial">
-                        <p>
-                            আমি এই মর্মে ছাড়পত্র প্রদান করিতেছি যে, <span class="dowon-mark">{{$student->name}}</span> পিতা <span class="dowon-mark">{{$student->father_name}}</span> মাতা <span class="dowon-mark">{{$student->mother_name}}</span> গ্রাম  <span class="dowon-mark">{{$student->village}}</span> ডাকঘর <span class="dowon-mark">{{$student->post_office}}</span> থানা <span class="dowon-mark">{{$student->upazila}}</span> জেলা <span class="dowon-mark">{{$student->district}}</span>শ্রেণী <span class="dowon-mark">{{$student->masterClass->name}}</span>  বিভাগ<span class="dowon-mark">{{$student->group}}</span> শাখা <span class="dowon-mark">{{$student->section}}</span>  এর ছাত্র/ছাত্রী ছিল। সে <span class="dowon-mark">{{str_replace($s,$r,date('d-m-Y',strtotime($student->leave_date)))}}</span> তারিখে উক্ত বিদ্যালয় ত্যাগ করিয়াছে । বিদ্যালয়ের  ভর্তিবহি অনুযায়ী তাহার জন্ম তারিখ <span class="dowon-mark">{{str_replace($s,$r,date('d-m-Y',strtotime($student->birth_day)))}}</span> ইং। সে <span class="dowon-mark">{{$student->previous_class}}</span> শ্রেণীতে অধ্যয়ন করিত এবং বিগত বার্ষিক পরিক্ষায় <span class="dowon-mark">{{$student->masterClass->name}}</span> শ্রেণীতে উত্তীর্ণ <span class="dowon-mark">{{$student->is_pass}}</span> । সে বিদ্যালয়ের বেতন ও অন্যান্য প্রাপ্য টাকা <span class="dowon-mark">{{$student->from_pay_session}}</span> হতে <span class="dowon-mark">{{$student->to_pay_session}}</span> পর্যন্ত সম্পূর্ণ পরিষদ করিয়াছে । </p>
+                        <p>I am contending that, <span class="dowon-mark">{{$student->name}}</span> father <span class="dowon-mark">{{$student->father_name}}</span> mother <span class="dowon-mark">{{$student->mother_name}}</span> village  <span class="dowon-mark">{{$student->village}}</span> post office <span class="dowon-mark">{{$student->post_office}}</span> upozila <span class="dowon-mark">{{$student->upazila}}</span> zila <span class="dowon-mark">{{$student->district}}</span> class <span class="dowon-mark">{{$student->masterClass->name}}</span> was a student  of department <span class="dowon-mark">{{$student->group}}</span> Section <span class="dowon-mark">{{$student->section}}</span>  . He/She left the school on <span class="dowon-mark">{{date('d-m-Y',strtotime($student->leave_date))}}</span> .  According to the admission of the school, the date of his/her birth is <span class="dowon-mark">{{date('d-m-Y',strtotime($student->birth_day))}}</span> .  He/She studied in the <span class="dowon-mark">{{$student->previous_class}}</span> class and <span class="dowon-mark">{{$student->is_pass}}</span> the <span class="dowon-mark">{{$student->masterClass->name}}</span> class in the past annual examination.   He/She has made the entire council from <span class="dowon-mark">{{$student->from_pay_session}}</span> to <span class="dowon-mark">{{$student->to_pay_session}}</span> for school tution fee and other dues. </p>
 
-                        <p> 
-                            আমার জানা মতে তাহার স্বভাব ও চরিত্র উত্তম। এখানে অধ্যায়নরত অবস্থায় সে কখনো বিদ্যালয়ের আইন শৃঙ্খলা অথবা রাষ্ট্র বিরোধী কার্যকলাপে অংশ গ্রহণ করে নাই। 
+                        <p>
+                            I know his nature and character are good. While studying here, he/she never participated in any school anti-state activities.
                         </p>
 
-                        <p>আমি তাহার জীবনের সর্বাঙ্গীন উন্নতি কামনা করি। </p>
+                        <p>I Wish him a challeing future and brilliant Life.  </p>
 
-                        <p>রাজিস্ত্রেশন নং <span class="dowon-mark">{{$student->reg_no}}</span> সন <span class="dowon-mark">{{$student->from_session}}</span> হইতে <span class="dowon-mark">{{$student->to_session}}</span></p>
+                        <p>Registration No: <span class="dowon-mark">{{$student->reg_no}}</span> Session <span class="dowon-mark">{{$student->from_session}}</span> To <span class="dowon-mark">{{$student->to_session}}</span></p>
                     </div>
                     <div style="height: 150px"></div>
                      <div class="row1">
                         <div class="column-60 modarator">
-                               <p>বিদ্যালয় পরিত্যাগের কারণ :</p>
+                               <p>Cause of Leave:</p>
                                <p >{{$student->tc_cause}}</p>
                         </div>
                         <div class="column-40">
                           <br><br>
-                          <p style="width:230px;padding: 0;border-top: 1px solid black;font-size: 14px;">{{'অধ্যক্ষ / প্রধান শিক্ষকের'}} স্বাক্ষর ও সীল :</p>
+                          <p style="width:280px;padding: 0;border-top: 1px solid black;font-size: 14px;">{{"Headmaster/ Principal's"}} signature and Seal :</p>
                         </div>
                     </div>
                 </div>

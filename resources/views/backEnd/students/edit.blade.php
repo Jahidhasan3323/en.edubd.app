@@ -148,7 +148,7 @@
                            <div class="form-group {{$errors->has('roll') ? 'has-error' : ''}}">
                                <label for="roll">Class Roll No. <span class="star">*</span></label>
                                <div>
-                                   <input value="{{$studentData->roll}}" type="text" class="form-control" name="roll" id="roll" placeholder="Student Class Roll">
+                                   <input value="{{$studentData->roll}}" type="number" class="form-control" name="roll" id="roll" placeholder="Student Class Roll">
                                </div>
                                @if ($errors->has('roll'))
                                    <span class="help-block">
@@ -309,7 +309,7 @@
                            <div class="form-group {{$errors->has('mobile') ? 'has-error' : ''}}">
                                <label class="" for="mobile">Mobile No. </label>
                                <div class="">
-                                   <input value="{{$studentData->user->mobile}}" class="form-control" type="text" name="mobile" id="mobile" placeholder="Student Contact">
+                                   <input value="{{$studentData->user->mobile}}" class="form-control" type="number" name="mobile" id="mobile" placeholder="Student Contact">
                                </div>
                                <div id="mobileError" class="has-error" style="display: none">
                                    <span class="help-block">
@@ -477,7 +477,7 @@
                            <div class="form-group {{$errors->has('pre_postc') ? 'has-error' : ''}}">
                                <label for="pre_postc">Post Code No. </label>
                                <div>
-                                   <input value="{{$studentData->pre_postc}}" type="text" class="form-control" name="pre_postc" id="pre_postc" placeholder="Student Post Code">
+                                   <input value="{{$studentData->pre_postc}}" type="number" class="form-control" name="pre_postc" id="pre_postc" placeholder="Student Post Code">
                                </div>
                                @if ($errors->has('pre_postc'))
                                    <span class="help-block">
@@ -612,7 +612,7 @@
                            <div class="form-group {{$errors->has('per_postc') ? 'has-error' : ''}}">
                                <label for="per_postc">Post Code No. </label>
                                <div>
-                                   <input value="{{$studentData->per_postc}}" type="text" class="form-control" name="per_postc" id="per_postc" placeholder="Student Post Code">
+                                   <input value="{{$studentData->per_postc}}" type="number" class="form-control" name="per_postc" id="per_postc" placeholder="Student Post Code">
                                </div>
                                @if ($errors->has('per_postc'))
                                    <span class="help-block">
@@ -666,7 +666,7 @@
                             <div class="form-group {{$errors->has('f_m_income') ? 'has-error' : ''}}">
                                 <label class="" for="f_m_income">Monthly Income</label>
                                 <div class="">
-                                    <input value="{{$studentData->f_m_income}}" class="form-control" type="text" name="f_m_income" id="f_m_income" placeholder="Father Monthly Income">
+                                    <input value="{{$studentData->f_m_income}}" class="form-control" type="number" name="f_m_income" id="f_m_income" placeholder="Father Monthly Income">
                                 </div>
                                 @if ($errors->has('f_m_income'))
                                    <span class="help-block">
@@ -694,7 +694,7 @@
                             <div class="form-group">
                                 <label class="" for="f_mobile_no">Mobile No.</label>
                                 <div class="">
-                                    <input value="{{$studentData->f_mobile_no}}" class="form-control" type="text" name="f_mobile_no" id="f_mobile_no" placeholder=" Father Mobile">
+                                    <input value="{{$studentData->f_mobile_no}}" class="form-control" type="number" name="f_mobile_no" id="f_mobile_no" placeholder=" Father Mobile">
                                 </div>
                             </div>
                             <div id="f_mobile_Error" class="has-error" style="display: none">
@@ -779,7 +779,7 @@
                            <div class="form-group {{$errors->has('f_nid') ? 'has-error' : ''}}">
                                <label class="" for="m_m_income">Monthly Income</label>
                                <div class="">
-                                   <input value="{{$studentData->m_m_income}}" class="form-control" type="text" name="m_m_income" id="m_m_income" placeholder="Mother Monthly Income">
+                                   <input value="{{$studentData->m_m_income}}" class="form-control" type="number" name="m_m_income" id="m_m_income" placeholder="Mother Monthly Income">
                                </div>
                                @if ($errors->has('m_m_income'))
                                     <span class="help-block">
@@ -807,7 +807,7 @@
                            <div class="form-group">
                                <label class="" for="m_mobile_no">Mobile No. </label>
                                <div class="">
-                                   <input value="{{$studentData->m_mobile_no}}" class="form-control" type="text" name="m_mobile_no" id="m_mobile_no" placeholder=" Father Mobile">
+                                   <input value="{{$studentData->m_mobile_no}}" class="form-control" type="number" name="m_mobile_no" id="m_mobile_no" placeholder=" Father Mobile">
                                </div>
                            </div>
                            <div id="m_mobile_Error" class="has-error" style="display: none">
@@ -920,7 +920,7 @@
                           <div class="form-group {{$errors->has('f_nid') ? 'has-error' : ''}}">
                               <label class="" for="guardian_mobile">Mobile No. </label>
                               <div class="">
-                                  <input value="{{$studentData->guardian_mobile}}" class="form-control" type="text" name="guardian_mobile" id="guardian_mobile" placeholder="Guardian Mobile">
+                                  <input value="{{$studentData->guardian_mobile}}" class="form-control" type="number" name="guardian_mobile" id="guardian_mobile" placeholder="Guardian Mobile">
                               </div>
                               <div id="Grdn_mobileError" class="has-error" style="display: none">
                                   <span class="alert-danger">
