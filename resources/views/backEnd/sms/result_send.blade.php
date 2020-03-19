@@ -154,7 +154,7 @@
                                     $student_results=\App\Result::where(['school_id'=>Auth::getSchool(),'student_id'=>$res->student_id])->get();
 
                                     $copulsary_results = collect($student_results)->groupBy(function($element){
-                                     return str_replace(['১ম পত্র','২য় পত্র','প্রথম পত্র','দ্বিতীয় পত্র','১ম','২য়','প্রথম','দ্বিতীয়'], '', $element['subject_name']);
+                                     return str_replace(['1st letter', '2nd letter', '1st paper', '2nd paper', 'first paper', 'second paper', '1st', '2nd', 'first', 'second','1st Letter', '2nd Letter', '1st Paper', '2nd Paper', 'first Paper', 'second Paper', '1st', '2nd', 'First', 'Second'], '', $element['subject_name']);
                                     });
                                      $i=1;
                                      foreach ($copulsary_results as $key=>$results) {
@@ -162,7 +162,7 @@
                                      }
                                      foreach ($subjects as $key => $subject){
                                          if(count($subject)>1){
-                                         $name=str_replace(['১ম পত্র','২য় পত্র','প্রথম পত্র','দ্বিতীয় পত্র','১ম','২য়','প্রথম','দ্বিতীয়'], '', $subject[0]->subject_name);
+                                         $name=str_replace(['1st letter', '2nd letter', '1st paper', '2nd paper', 'first paper', 'second paper', '1st', '2nd', 'first', 'second','1st Letter', '2nd Letter', '1st Paper', '2nd Paper', 'first Paper', 'second Paper', '1st', '2nd', 'First', 'Second'], '', $subject[0]->subject_name);
                                          $ca_mark[$name]=($subject[0]->ca_mark=='--'?0:$subject[0]->ca_mark)+
                                                  ($subject[1]->ca_mark=='--'?0:$subject[1]->ca_mark);
                                          $cr_mark[$name]=($subject[0]->cr_mark=='--'?0:$subject[0]->cr_mark)+
@@ -171,7 +171,6 @@
                                                  ($subject[1]->mcq_mark=='--'?0:$subject[1]->mcq_mark);
                                          $pr_mark[$name]=($subject[0]->pr_mark=='--'?0:$subject[0]->pr_mark)+
                                                  ($subject[1]->pr_mark=='--'?0:$subject[1]->pr_mark);
-
                                          $ca_pass_mark[$name]=($subject[0]->ca_pass_mark=='--'?0:$subject[0]->ca_pass_mark)+
                                                  ($subject[1]->ca_pass_mark=='--'?0:$subject[1]->ca_pass_mark);
                                          $cr_pass_mark[$name]=($subject[0]->cr_pass_mark=='--'?0:$subject[0]->cr_pass_mark)+
@@ -181,7 +180,7 @@
                                          $pr_pass_mark[$name]=($subject[0]->pr_pass_mark=='--'?0:$subject[0]->pr_pass_mark)+
                                                  ($subject[1]->pr_pass_mark=='--'?0:$subject[1]->pr_pass_mark);
                                          }else{
-                                          $name=str_replace(['১ম পত্র','২য় পত্র','প্রথম পত্র','দ্বিতীয় পত্র','১ম','২য়','প্রথম','দ্বিতীয়'], '', $subject[0]->subject_name);
+                                          $name=str_replace(['1st letter', '2nd letter', '1st paper', '2nd paper', 'first paper', 'second paper', '1st', '2nd', 'first', 'second','1st Letter', '2nd Letter', '1st Paper', '2nd Paper', 'first Paper', 'second Paper', '1st', '2nd', 'First', 'Second'], '', $subject[0]->subject_name);
                                           $ca_mark[$name]=($subject[0]->ca_mark=='--'?0:$subject[0]->ca_mark);
                                           $cr_mark[$name]=($subject[0]->cr_mark=='--'?0:$subject[0]->cr_mark);
                                           $mcq_mark[$name]=($subject[0]->mcq_mark=='--'?0:$subject[0]->mcq_mark);
@@ -206,13 +205,13 @@
                                       if($ca_mark[$subject]>=$ca_pass_mark[$subject]&&$cr_mark[$subject]>=$cr_pass_mark[$subject]&&$mcq_mark[$subject]>=$mcq_pass_mark[$subject]&&$pr_mark>$pr_pass_mark[$subject]){
                                         $sub_total=$sub_totals[$subject];
                                         $total_mark=$total_marks[$subject];
-                                        if($result[0]['subject_status']=='আবশ্যিক'){
+                                        if($result[0]['subject_status']=='Compulsory'){
                                          $total_gpa_compulsary[$subject]= Auth::calculateResult($sub_total,$total_mark)['gpa'];
                                         }else{
                                          $total_gpa_otional[$subject]= Auth::calculateResult($sub_total,$total_mark)['gpa'];
                                         }
                                       }else{
-                                        if($result[0]['subject_status']=='আবশ্যিক'){
+                                        if($result[0]['subject_status']=='Compulsory'){
                                          $total_gpa_compulsary[$subject]=0;
                                         }else{
                                          $total_gpa_otional[$subject]=0;
