@@ -119,6 +119,7 @@ Route::get('/students/roll/check', 'StudentController@rollCheck');
 Route::get('/students_list', 'StudentController@index');
 Route::get('/students_control/{school_id}', 'StudentController@student_controll_by_root');
 Route::get('/old_students_list', 'StudentController@old_students_list');
+Route::get('/student_user', 'StudentController@student_user');
 Route::get('/students/{master_class_id}/{group}/{section}/{shift}/{session}/{student_type}', 'StudentController@ClassStudentsList');
 Route::get('/student_list_controll/{master_class_id}/{group}/{section}/{shift}/{session}/{school_id}', 'StudentController@student_list_controll');
 Route::post('/student_list_controll/active/{master_class_id}/{group}/{section}/{shift}/{session}/{school_id}', 'StudentController@student_id_card_active');
@@ -1044,7 +1045,7 @@ Route::group(['middleware' => 'auth','prefix' => 'online-exam', 'as'=>'online-ex
 });
 
 
-//chat app 
+//chat app
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/chat', function () {
         return view('backEnd/chatApp/index');
@@ -1057,7 +1058,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('all/convertation/','ChattingController@allConvertation');
 });
 
-//social app 
+//social app
 Route::group(['middleware' => 'auth','prefix' => 'post', 'as'=>'post'], function(){
     Route::get('/','PostController@index');
     Route::get('/profile/{db}','PostController@profile')->name('.profile');
