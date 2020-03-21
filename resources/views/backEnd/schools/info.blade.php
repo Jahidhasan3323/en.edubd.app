@@ -6,7 +6,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">প্রতিষ্ঠানের তালিকা</h1>
+            <h1 class="text-center text-temp">Institute List</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -21,13 +21,13 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>নাম</th>
-                        <th width="13%">ফোন</th>
-                        <th>অবসান</th>
-                        <th>অবস্থা</th>
-                        <th>সেবার ধরণ</th>
-                        <th>শিক্ষার্থী</th>
-                        <th>অ্যাকশন</th>
+                        <th>Name</th>
+                        <th width="13%">Phone</th>
+                        <th>Expire</th>
+                        <th>Status</th>
+                        <th>Service Type</th>
+                        <th>Students</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,7 +38,7 @@
                         <td>{{$school->name}}</td>
                         <td>{{$school->mobile}}</td>
                         <td>{{$school->expiry_date}}</td>
-                        <td>{{($school->status === 1) ? 'সক্রিয়' : 'নিষ্ক্রিয়'}}</td>
+                        <td>{{($school->status === 1) ? 'Enable' : 'Disable'}}</td>
                         <td>
                             {{$school->service_type}}
                         </td>
@@ -56,13 +56,13 @@
                 <tfoot>
                     <tr>
                         <th>#</th>
-                        <th>নাম</th>
-                        <th width="13%">ফোন</th>
-                        <th>অবসান</th>
-                        <th>অবস্থা</th>
-                        <th>সেবার ধরণ</th>
-                        <th>শিক্ষার্থী</th>
-                        <th>অ্যাকশন</th>
+                        <th>Name</th>
+                        <th width="13%">Phone</th>
+                        <th>Expire</th>
+                        <th>Status</th>
+                        <th>Service Type</th>
+                        <th>Students</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
             </table>

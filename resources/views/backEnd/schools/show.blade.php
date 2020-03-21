@@ -18,82 +18,82 @@
         <div class="panel-body" style="margin: auto auto; width: 90%">
             <table class="table table-responsive table-bordered table-hover">
                 <tr>
-                    <th style="padding-left:10px;width:36%;text-align:right;">শুরুর তারিখ</th>
+                    <th style="padding-left:10px;width:36%;text-align:right;">Start Date</th>
                     <td>{{date('d-m-Y h:i:s A',strtotime($showData->created_at))}}</td>
                 </tr>
                 <tr>
-                    <th style="padding-left:10px;width:36%;text-align:right;">ক্রমিক নং</th>
+                    <th style="padding-left:10px;width:36%;text-align:right;">Serial</th>
                     <td>{{$showData->serial_no}}</td>
                 </tr>
 
-                <tr> 
-                    <th style="padding-left:10px;width:36%;text-align:right;">কোড</th>
+                <tr>
+                    <th style="padding-left:10px;width:36%;text-align:right;">Code</th>
                     <td>{{$showData->code}}</td>
                 </tr>
                 <tr>
-                    <th style="padding-left:10px;width:36%;text-align:right;">প্রতিষ্ঠানের নাম</th>
+                    <th style="padding-left:10px;width:36%;text-align:right;">Institute Name</th>
                     <td>{{$showData->name}}</td>
                 </tr>
                 <tr>
-                    <th style="padding-left:10px;width:36%;text-align:right;">প্রতিষ্ঠানের সংক্ষিপ্ত নাম</th>
+                    <th style="padding-left:10px;width:36%;text-align:right;">Short Name</th>
                     <td>{{$showData->short_name}}</td>
                 </tr>
                 <tr>
-                    <th style="padding-left:10px;width:36%;text-align:right;">প্রতিষ্ঠানের টাইপ</th><td>
+                    <th style="padding-left:10px;width:36%;text-align:right;">Institute Type</th><td>
                     @foreach($school_types as $school_type)
                     {!!'>>> '.$school_type->type.'<br>'!!}
                     @endforeach
                     </td>
                 </tr>
                 <tr>
-                    <th style="padding-left:10px;width:36%;text-align:right;">কান্ট্রি কোড</th>
+                    <th style="padding-left:10px;width:36%;text-align:right;">Country Code</th>
                     <td>{{$showData->country_code}}</td>
                 </tr>
                 <tr>
-                    <th style="padding-left:10px;width:36%;text-align:right;">ইমেইল </th>
+                    <th style="padding-left:10px;width:36%;text-align:right;">Email </th>
                     <td>{{$showData->email}}</td>
                 </tr>
                 <tr>
-                    <th style="padding-left:10px;width:36%;text-align:right;">ফোন নম্বর</th>
+                    <th style="padding-left:10px;width:36%;text-align:right;">Phone</th>
                     <td>{{$showData->mobile}}</td>
                 </tr>
                 <tr>
-                    <th style="padding-left:10px;width:36%;text-align:right;">এপিআই কী</th>
+                    <th style="padding-left:10px;width:36%;text-align:right;">API Key</th>
                     <td>{{$showData->api_key}}</td></tr>
                 <tr>
-                    <th style="padding-left:10px;width:36%;text-align:right;">এসএমএস প্রেরক আইডি</th>
+                    <th style="padding-left:10px;width:36%;text-align:right;">SMS Sender ID</th>
                     <td>{{$showData->sender_id}}</td>
                 </tr>
                 <tr>
-                    <th style="padding-left:10px;width:36%;text-align:right;">ঠিকানা</th>
+                    <th style="padding-left:10px;width:36%;text-align:right;">Address</th>
                     <td>{{$showData->address}}</td>
                 </tr>
                 <tr>
-                    <th style="padding-left:10px;width:36%;text-align:right;">ফ্যাক্স</th>
+                    <th style="padding-left:10px;width:36%;text-align:right;">Fax</th>
                     <td>{{$showData->fax}}</td>
                 </tr>
                 <tr>
-                    <th style="padding-left:10px;width:36%;text-align:right;">ওয়েব ঠিকানা</th>
+                    <th style="padding-left:10px;width:36%;text-align:right;">Web Address</th>
                     <td>{{$showData->website}}</td>
                 </tr>
                 <tr>
-                    <th style="padding-left:10px;width:36%;text-align:right;">প্রতিষ্ঠার তারিখ</th>
+                    <th style="padding-left:10px;width:36%;text-align:right;">Establish Date</th>
                     <td>{{$showData->established_date}}</td>
                 </tr>
                 <tr>
-                    <th style="padding-left:10px;width:36%;text-align:right;">প্রতিষ্ঠানের মোট ছাত্র</th>
+                    <th style="padding-left:10px;width:36%;text-align:right;">Total Students</th>
                     <td>{{$showData->total_student}}</td>
                 </tr>
                 <tr>
-                    <th style="padding-left:10px;width:36%;text-align:right;">অবস্থা</th>
-                    <td>{{$showData->status ? 'সক্রিয়' : 'নিষ্ক্রিয়'}}</td>
+                    <th style="padding-left:10px;width:36%;text-align:right;">Status</th>
+                    <td>{{$showData->status ? 'Enable' : 'Disable'}}</td>
                 </tr>
                 <tr>
-                    <th style="padding-left:10px;width:36%;text-align:right;">মেয়াদ শেষ হওয়ার তারিখ</th>
+                    <th style="padding-left:10px;width:36%;text-align:right;">Expiry Date</th>
                     <td>{{$showData->expiry_date}}</td>
                 </tr>
                 <tr>
-                    <th style="padding-left:10px;width:36%;text-align:right;">প্রিন্সিপালের স্বাক্ষর</th>
+                    <th style="padding-left:10px;width:36%;text-align:right;">Principal Signature</th>
                     <td><img src="{{Storage::url($showData->signature_p)}}"></td>
                 </tr>
             </table>

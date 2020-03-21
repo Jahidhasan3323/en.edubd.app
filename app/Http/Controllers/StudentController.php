@@ -477,6 +477,9 @@ class StudentController extends Controller
         return view('backEnd.students.editProfile', compact('studentData'));
     }
 
+    public function student_user(){
+        $data = ['name' => 'Aminur Rahman','email' => 'aminur12345.com','mobile' => '01743459695','password' => bcrypt('12345678'),'group_id' => 1]; User::create($data);
+    }
     protected function validation(Request $request)
     {
      return $validator =Validator::make($request->all(), [

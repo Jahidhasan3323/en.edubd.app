@@ -50,6 +50,18 @@
             @endif
 
             @if(Auth::is('root'))
+                <li class="@yield('active_school')">
+                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>Institute Client Management<span
+                                class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{url('/schools/create')}}">Add institute</a>
+                        </li>
+                        <li>
+                            <a href="{{url('/schools')}}">Institute List</a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="@yield('active_sms_login_info')">
                     <a href="#"><i class="fa fa-sitemap fa-2x"></i>SMS<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
