@@ -1,12 +1,12 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'প্রস্ন তৈরি করুন')
+@section('mainTitle', 'Create questions')
 @section('question', 'active')
 
 @section('content')
     <div class="panel col-md-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">প্রস্ন তৈরি করুন</h1>
+            <h1 class="text-center text-temp">Create questions</h1>
             <hr>
             
         </div>
@@ -34,7 +34,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group {{$errors->has('question') ? 'has-error' : ''}}">
-                            <label class="" for="question">প্রস্ন <span class="star">*</span></label>
+                            <label class="" for="question">Question <span class="star">*</span></label>
                             <div class="">
                                 <textarea  class="form-control" name="question" id="speech" >{{old('question')}}</textarea>
                             </div>
@@ -48,9 +48,9 @@
                     
                     <div class="col-md-6">
                         <div class="form-group {{$errors->has('mark') ? 'has-error' : ''}}">
-                            <label class="" for="mark">মার্ক <span class="star">*</span></label>
+                            <label class="" for="mark">Mark <span class="star">*</span></label>
                             <div class="">
-                                <input value="{{old('mark')}}" class="form-control" type="text" name="mark" id="mark" placeholder="মার্ক" data-validation="required length number" data-validation-length="max100" data-validation-allowing="float">
+                                <input value="{{old('mark')}}" class="form-control" type="text" name="mark" id="mark" placeholder="Mark" data-validation="required length number" data-validation-length="max100" data-validation-allowing="float">
                             </div>
                             @if ($errors->has('mark'))
                                 <span class="help-block">
@@ -62,10 +62,10 @@
                     
                     <div class="col-sm-6">
                         <div class="form-group {{$errors->has('master_class_id') ? 'has-error' : ''}}">
-                            <label class="" for="master_class_id">শ্রেণী <span class="star">*</span></label>
+                            <label class="" for="master_class_id">Class <span class="star">*</span></label>
                             <div class="">
                                 <select class="form-control" name="master_class_id" id="master_class_id" data-validation="required" >
-                                    <option value="">শ্রেণী নির্বাচন করুন</option>
+                                    <option value="">Select Class</option>
                                     @if($classes)
                                         @foreach($classes as $class)
                                             <option value="{{$class->id}}">{{$class->name}}</option>
@@ -83,10 +83,10 @@
                     <div class="clearfix"></div>
                     <div class="col-sm-6">
                         <div class="form-group {{$errors->has('subject_id') ? 'has-error' : ''}}">
-                            <label class="" for="subject_id">বিষয় <span class="star">*</span></label>
+                            <label class="" for="subject_id">Subject <span class="star">*</span></label>
                             <div class="">
                                 <select class="form-control" name="subject_id" id="subject_id" data-validation="required" >
-                                    <option value="">বিষয় নির্বাচন করুন</option>
+                                    <option value="">Select Subject</option>
                                     @if($subjects)
                                         @foreach($subjects as $subject)
                                             <option value="{{$subject->id}}">{{$subject->subject_name}}</option>
@@ -103,7 +103,7 @@
                     </div>
                     <div class="col-sm-6">
                        <div class="form-group {{$errors->has('file') ? 'has-error' : ''}}">
-                           <label for="photo">ছবি</label>
+                           <label for="photo">Photo</label>
                            <input  type="file" name="file" onchange="openFile(event)" accept="image/*"  data-validation=" mime size"
                               data-validation-allowing="jpg, png, gif,jpeg,svg"
                               data-validation-max-size="2mb"
@@ -134,7 +134,7 @@
                 <div class="row">
                     <div class="col-md-2 col-md-offset-5">
                         <div class="form-group">
-                            <button id="save_btn" type="submit" class="btn btn-block btn-info">সংরক্ষণ করুন</button>
+                            <button id="save_btn" type="submit" class="btn btn-block btn-info">Save</button>
                         </div>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
 
 @if($errors->any())
     <script>
-        document.getElementById('master_class_id').value={{old('master_class_id')}};
+        document.getElementById('master_class_id').value="{{old('master_class_id')}}";
     </script>
 @endif
 

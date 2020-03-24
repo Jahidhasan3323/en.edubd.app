@@ -31,6 +31,7 @@ class SmsController extends Controller
     public function index(Request $request)
     {
        $students=[];
+       $school=[];
        $classes = $this->getClasses();
        $class_groups=$this->groupClasses();
        $units=$this->getUnits();
@@ -47,8 +48,8 @@ class SmsController extends Controller
             }
           }
           $students = $this->get_apsent_students($ids);
+          $school=$this->school();
        }
-       $school=$this->school();
 
         return view('backEnd.sms.index',compact('students','classes','class_groups','units','request','school'));
     }
@@ -426,6 +427,7 @@ class SmsController extends Controller
 
     public function result(Request $request){
       $results=[];
+      $school=[];
       $exam_years = $this->exam_year();
       $classes = $this->getClasses();
       $class_groups=$this->groupClasses();
@@ -434,8 +436,8 @@ class SmsController extends Controller
       if($request->all()){
         $this->result_request_validation($request);
         $results=$this->get_students_result($request);
+        $school=$this->school();
       }
-      $school=$this->school();
 
       return view('backEnd.sms.result_send',compact('results','exam_years','classes','class_groups','units','request','exam_types','school'));
     }
