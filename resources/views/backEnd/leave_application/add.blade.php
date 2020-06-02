@@ -8,7 +8,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">ছুটির আবেদন যোগ করুন</h1>
+            <h1 class="text-center text-temp">Add Leave Application</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -28,8 +28,8 @@
                 <div class="row">
                   <div class="col-sm-4">
                       <div class="form-group {{$errors->has('toward') ? 'has-error' : ''}}">
-                           <label for="photo">বরাবর <span class="star">*</span></label>
-                           <input type="text" name="toward" class="form-control " placeholder="বরাবর"  value="{{old('toward')}}" data-validation="required ">
+                           <label for="photo">To <span class="star">*</span></label>
+                           <input type="text" name="toward" class="form-control " placeholder="To"  value="{{old('toward')}}" data-validation="required ">
                            @if ($errors->has('toward'))
                                <span class="help-block">
                                    <strong>{{$errors->first('toward')}}</strong>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-sm-4">
                       <div class="form-group {{$errors->has('form_date') ? 'has-error' : ''}}">
-                           <label for="photo">শুরুর তারিখ <span class="star">*</span></label>
+                           <label for="photo">Start Date <span class="star">*</span></label>
                            <input type="text" name="form_date" class="form-control date" placeholder="শুরুর তারিখ"  value="{{old('form_date')}}" data-validation="required ">
                            @if ($errors->has('form_date'))
                                <span class="help-block">
@@ -50,8 +50,8 @@
                     </div>
                     <div class="col-sm-4">
                       <div class="form-group {{$errors->has('to_date') ? 'has-error' : ''}}">
-                           <label for="photo">শেষের তারিখ <span class="star">*</span></label>
-                           <input type="text" name="to_date" class="form-control date" placeholder="শেষের তারিখ"  value="{{old('to_date')}}" data-validation="required">
+                           <label for="photo">End Date <span class="star">*</span></label>
+                           <input type="text" name="to_date" class="form-control date" placeholder="End date"  value="{{old('to_date')}}" data-validation="required">
                            @if ($errors->has('to_date'))
                                <span class="help-block">
                                    <strong>{{$errors->first('to_date')}}</strong>
@@ -61,8 +61,8 @@
                     </div>
                     <div class="col-sm-4">
                       <div class="form-group {{$errors->has('total_day') ? 'has-error' : ''}}">
-                           <label for="photo">মোট দিন <span class="star">*</span></label>
-                           <input type="number" name="total_day" class="form-control " placeholder="মোট দিন"  value="{{old('total_day')}}" data-validation="required number" data-validation-length="max10">
+                           <label for="photo">Total Day <span class="star">*</span></label>
+                           <input type="number" name="total_day" class="form-control " placeholder="Total days"  value="{{old('total_day')}}" data-validation="required number" data-validation-length="max10">
                            @if ($errors->has('total_day'))
                                <span class="help-block">
                                    <strong>{{$errors->first('total_day')}}</strong>
@@ -73,8 +73,8 @@
                     @if( Auth::is('teacher') || Auth::is('staff') )
                     <div class="col-sm-4">
                       <div class="form-group {{$errors->has('due_leave') ? 'has-error' : ''}}">
-                           <label for="photo">বাৎসরিক বাকি ছুটি <span class="star">*</span></label>
-                           <input type="number" name="due_leave" class="form-control " placeholder="বাৎসরিক বাকি ছুটি"  value="{{old('due_leave')}}" data-validation="required number" data-validation-length="max10">
+                           <label for="photo">Yearly Due leave <span class="star">*</span></label>
+                           <input type="number" name="due_leave" class="form-control " placeholder="Yearly due holidays"  value="{{old('due_leave')}}" data-validation="required number" data-validation-length="max10">
                            @if ($errors->has('due_leave'))
                                <span class="help-block">
                                    <strong>{{$errors->first('due_leave')}}</strong>
@@ -86,8 +86,8 @@
                    
                    <div class="col-sm-4">
                        <div class="form-group {{$errors->has('purpose') ? 'has-error' : ''}}">
-                           <label for="photo">ছুটির কারণ <span class="star">*</span></label>
-                           <input type="text" name="purpose" class="form-control" placeholder="টাইটেল" data-validation="required length " data-validation-length="max100" value="{{old('purpose')}}">
+                           <label for="photo">The reason for leaving <span class="star">*</span></label>
+                           <input type="text" name="purpose" class="form-control" placeholder="title" data-validation="required length " data-validation-length="max100" value="{{old('purpose')}}">
                            @if ($errors->has('purpose'))
                                <span class="help-block">
                                    <strong>{{$errors->first('purpose')}}</strong>
@@ -98,12 +98,12 @@
                    <div class="col-sm-4">
                        <div class="col-sm-12 {{$errors->has('leave_type') ? 'has-error' : ''}}">
                         <div class="form-group">
-                            <label class="" for="leave_type">ছুটির ধরণ <span class="star">*</span></label>
+                            <label class="" for="leave_type">Leave Type <span class="star">*</span></label>
                             <div class="">
                                 <select class="form-control" name="leave_type" id="leave_type" data-validation="required " required>
-                                    <option value="">ধরণ নির্বাচন</option>
-                                    <option value="1">অগ্রিম</option>
-                                    <option value="2">অনুপস্থিত</option>
+                                    <option value="">Select Type</option>
+                                    <option value="1">Advance</option>
+                                    <option value="2">Absent</option>
                                     
                                 </select>
                             </div>
@@ -125,7 +125,7 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">সংরক্ষণ করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Save</button>
                             </div>
                         </div>
                     </div>

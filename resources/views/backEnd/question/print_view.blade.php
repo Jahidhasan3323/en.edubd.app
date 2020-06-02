@@ -1,13 +1,13 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'প্রশংসাপত্র তৈরি করুন')
+@section('mainTitle', 'Create testimonial')
 @section('question', 'active')
 
 @section('content')
 
     <div class="panel col-md-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">প্রশংসাপত্র তৈরি করুন</h1>
+            <h1 class="text-center text-temp">Create testimonial</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -90,30 +90,30 @@
                         <h3 style="margin-bottom: 0"><img src="{{Storage::url(Auth::user()->school->logo)}}" alt=""> {{Auth::user()->name}} </h3>
 
                         <p>{{Auth::user()->school->address}}</p>
-                        <h3>প্রশংসা পত্র</h3>
-                        <span class="pull-right" style="size:16px !important"><b>নিবন্ধন নং : </b> <span class="dowon-mark">{{$student->testimonial_reg_no}}</span></span>
+                        <h3>Testimonial</h3>
+                        <span class="pull-right" style="size:16px !important"><b>Registration No. : </b> <span class="dowon-mark">{{$student->testimonial_reg_no}}</span></span>
                     </div>
                     <div style="padding: 10px"><hr></div>
                     <div class="content-testimonial">
                         <p>
-                            আমি এই মর্মে প্রশংসা পত্র প্রদান করিতেছি যে, <span class="dowon-mark">{{$student->name}}</span> পিতা <span class="dowon-mark">{{$student->father_name}}</span> মাতা <span class="dowon-mark">{{$student->mother_name}}</span> গ্রাম  <span class="dowon-mark">{{$student->village}}</span> ডাকঘর <span class="dowon-mark">{{$student->post_office}}</span> থানা <span class="dowon-mark">{{$student->upazila}}</span> জেলা <span class="dowon-mark">{{$student->district}}</span> অত্র বিদ্যালয় হইতে <span class="dowon-mark">{{$student->exam_session}}</span> ইং সালে <span class="dowon-mark">{{$student->board}}</span> শিক্ষা বোর্ডের অধীনে অনুষ্টিত <span class="dowon-mark">{{$student->exam}}</span>  পরীক্ষায় অংশ গ্রহণ করিয়া জিপিএ  <span class="dowon-mark">{{$student->gpa}}</span> পাইয়া উর্ত্তীন হইয়াছে।  সে <span class="dowon-mark">{{$student->group}}</span> বিভাগের <span class="dowon-mark">{{$student->section}}</span> শাখার  ছাত্র/ছাত্রী ছিল। তাহার উক্ত পরীক্ষার রোল নম্বর <span class="dowon-mark">{{$student->roll}}</span> রেজিস্ট্রেশন নম্বর <span class="dowon-mark">{{$student->reg_no}}</span> শিক্ষাবর্ষ  <span class="dowon-mark">{{$student->session}}</span>। বিদ্যালয়ের  ভর্তিবহি অনুযায়ী তাহার জন্ম তারিখ <span class="dowon-mark">{{str_replace($s,$r,date('d-m-Y',strtotime($student->birth_day)))}}</span> ইং। 
+                            In this regard, I offer a testimonial, <span class="dowon-mark">{{$student->name}}</span> Father <span class="dowon-mark">{{$student->father_name}}</span> Mother <span class="dowon-mark">{{$student->mother_name}}</span> Village  <span class="dowon-mark">{{$student->village}}</span> Post Office <span class="dowon-mark">{{$student->post_office}}</span> Thana <span class="dowon-mark">{{$student->upazila}}</span> District <span class="dowon-mark">{{$student->district}}</span> From this school <span class="dowon-mark">{{$student->exam_session}}</span>, <span class="dowon-mark">{{$student->board}}</span> Held under the Board of Education, <span class="dowon-mark"> Achived GPA  <span class="dowon-mark">{{$student->gpa}}. {{$student->exam}}</span>  By taking part in the exam. </span>.  He was a student of <span class="dowon-mark">{{$student->group}}</span> Group <span class="dowon-mark">{{$student->section}}</span> section. His test roll number <span class="dowon-mark">{{$student->roll}}</span> Registration No. <span class="dowon-mark">{{$student->reg_no}}</span> Session  <span class="dowon-mark">{{$student->session}}</span>. The date of his birth is according to the admission schedule <span class="dowon-mark">{{date('d-m-Y',strtotime($student->birth_day))}}</span>. 
                         </p>
 
                         <p> 
-                            আমার জানা মতে তাহার স্বভাব ও চরিত্র উত্তম। এখানে অধ্যায়নরত অবস্থায় সে কখনো বিদ্যালয়ের আইন শৃঙ্খলা অথবা রাষ্ট্র বিরোধী কার্যকলাপে অংশ গ্রহণ করে নাই। 
+                            I know his nature and character are good. While studying here, he never participated in any school law or anti-state activities. 
                         </p>
 
-                        <p>আমি তাহার জীবনের সর্বাঙ্গীন উন্নতি কামনা করি। </p>
+                        <p>I wish him all the best in his/her life. </p>
                     </div>
                     <div style="height: 150px"></div>
                      <div class="row1">
                         <div class="column-60 modarator">
-                               <p>যাচাইকারী :</p>
-                               <p >তারিখ :- <span style="font-size: 14px;">{{date('d-m-Y')}}</span></p>
+                               <p>Verifier :</p>
+                               <p>Date :- <span style="font-size: 14px;">{{date('d-m-Y')}}</span></p>
                         </div>
                         <div class="column-40">
                           <br><br>
-                          <p style="width:230px;padding: 0;border-top: 1px solid black;font-size: 14px;">{{'অধ্যক্ষ / প্রধান শিক্ষকের'}} স্বাক্ষর ও সীল :</p>
+                          <p style="width:230px;padding: 0;border-top: 1px solid black;font-size: 14px;">{{'Principal / Head Teacher'}} Signature and seal :</p>
                         </div>
                     </div>
                 </div>

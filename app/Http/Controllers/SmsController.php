@@ -31,6 +31,7 @@ class SmsController extends Controller
     public function index(Request $request)
     {
        $students=[];
+       $school=[];
        $classes = $this->getClasses();
        $class_groups=$this->groupClasses();
        $units=$this->getUnits();
@@ -426,6 +427,7 @@ class SmsController extends Controller
 
     public function result(Request $request){
       $results=[];
+      $school=[];
       $exam_years = $this->exam_year();
       $classes = $this->getClasses();
       $class_groups=$this->groupClasses();
