@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2020 at 09:23 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.26
+-- Generation Time: Mar 22, 2020 at 05:12 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `worldehs_general_en`
+-- Database: `worldehs_genaral_en`
 --
 
 -- --------------------------------------------------------
@@ -58,6 +58,13 @@ CREATE TABLE `account_settings` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `account_settings`
+--
+
+INSERT INTO `account_settings` (`id`, `school_id`, `voucher_title`, `provident_fund_rate`, `subcategory_view`, `fee_coolection_sms`, `income_sms`, `expense_sms`, `fine_collection_sms`, `absence_fine`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Memo', 0, 0, 0, 0, 0, 0, 0, '2020-03-12 04:34:04', '2020-03-12 04:39:59');
+
 -- --------------------------------------------------------
 
 --
@@ -77,6 +84,13 @@ CREATE TABLE `advanced_paids` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `advanced_paids`
+--
+
+INSERT INTO `advanced_paids` (`id`, `school_id`, `employee_id`, `amount`, `description`, `month`, `year`, `payment_date`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 2000.00, 'Testing', '01', '2020', '2020-03-12', 1, '2020-03-12 11:38:07', '2020-03-12 11:38:07');
 
 -- --------------------------------------------------------
 
@@ -128,6 +142,13 @@ CREATE TABLE `assets` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `assets`
+--
+
+INSERT INTO `assets` (`id`, `serial`, `school_id`, `asset_name`, `qty`, `unit_price`, `total_price`, `desription`, `start_date`, `end_date`, `asset_valuation_increase`, `asset_valuation_decrease`, `status`, `created_at`, `updated_at`) VALUES
+(1, 202010000, 1, 'Trees', 10, 10000, 100000.00, NULL, '2020-03-14', '2021-03-14', 5, NULL, 1, '2020-03-14 03:38:31', '2020-03-14 03:41:47');
+
 -- --------------------------------------------------------
 
 --
@@ -143,6 +164,13 @@ CREATE TABLE `attendance_texts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `attendance_texts`
+--
+
+INSERT INTO `attendance_texts` (`id`, `school_id`, `type`, `content`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'Your son present Update', NULL, '2020-03-17 08:51:12', '2020-03-17 09:01:58');
 
 -- --------------------------------------------------------
 
@@ -220,6 +248,13 @@ CREATE TABLE `banks` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `banks`
+--
+
+INSERT INTO `banks` (`id`, `school_id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Dutch Bangla Bank', 1, '2020-03-14 03:45:18', '2020-03-14 03:45:18');
+
 -- --------------------------------------------------------
 
 --
@@ -244,6 +279,13 @@ CREATE TABLE `banks_withdraws` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `banks_withdraws`
+--
+
+INSERT INTO `banks_withdraws` (`id`, `serial`, `school_id`, `bank_id`, `account_type_id`, `account_number`, `check_number`, `amount`, `withdraw_by`, `purpose`, `description`, `withdra_date`, `status`, `created_at`, `updated_at`) VALUES
+(1, 202010000, 1, 1, 0, '12123655236', '5464654', 1000.00, 'Name here', NULL, NULL, '0000-00-00', 1, '2020-03-14 05:00:05', '2020-03-14 05:05:57');
+
 -- --------------------------------------------------------
 
 --
@@ -258,6 +300,13 @@ CREATE TABLE `bank_account_types` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `bank_account_types`
+--
+
+INSERT INTO `bank_account_types` (`id`, `school_id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Company', 1, '2020-03-14 03:58:54', '2020-03-14 03:58:54');
 
 -- --------------------------------------------------------
 
@@ -283,6 +332,13 @@ CREATE TABLE `bank_deposits` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `bank_deposits`
+--
+
+INSERT INTO `bank_deposits` (`id`, `serial`, `school_id`, `bank_id`, `account_type_id`, `account_number`, `deposit_number`, `amount`, `deposit_by`, `purpose`, `description`, `deposit_date`, `status`, `created_at`, `updated_at`) VALUES
+(1, 202010000, 1, 1, 1, '12123655236', '4564654', 20000.00, 'Testing', NULL, NULL, '2020-03-14', 1, '2020-03-14 04:04:58', '2020-03-14 04:04:58');
+
 -- --------------------------------------------------------
 
 --
@@ -298,6 +354,13 @@ CREATE TABLE `birthday_texts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `birthday_texts`
+--
+
+INSERT INTO `birthday_texts` (`id`, `school_id`, `type`, `content`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'Happy Birthday to you.', NULL, '2020-03-17 08:31:12', '2020-03-17 08:31:12');
 
 -- --------------------------------------------------------
 
@@ -333,6 +396,14 @@ CREATE TABLE `cares` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cares`
+--
+
+INSERT INTO `cares` (`id`, `school_id`, `token`, `subject`, `description`, `image`, `type`, `status`, `from`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 1, 1001, 'Tsting Subject', 'Testing purpose', NULL, 2, 0, 1, NULL, '2020-03-15 04:07:45', '2020-03-15 04:30:15'),
+(2, 1, 1002, 'Test Update', 'Desfription', NULL, 1, 0, 1, NULL, '2020-03-15 04:33:22', '2020-03-15 04:40:42');
 
 -- --------------------------------------------------------
 
@@ -379,6 +450,34 @@ CREATE TABLE `ca_subjects` (
   `group_class_id` int(10) UNSIGNED NOT NULL,
   `school_id` int(10) UNSIGNED NOT NULL,
   `year` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ca_subjects`
+--
+
+INSERT INTO `ca_subjects` (`id`, `subject_name`, `subject_code`, `total_mark`, `pass_mark`, `master_class_id`, `group_class_id`, `school_id`, `year`, `created_at`, `updated_at`) VALUES
+(1, 'Bangla', '101', '100', '33', 13, 2, 1, '2020', '2020-03-15 10:54:31', '2020-03-15 11:03:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chattings`
+--
+
+CREATE TABLE `chattings` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `messasge` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `read` tinyint(1) NOT NULL DEFAULT 0,
+  `file` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `from` int(10) UNSIGNED NOT NULL,
+  `to` int(10) UNSIGNED NOT NULL,
+  `from_db` int(11) NOT NULL,
+  `to_db` int(11) NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -464,6 +563,14 @@ CREATE TABLE `date_languages` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `date_languages`
+--
+
+INSERT INTO `date_languages` (`id`, `tittle`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Bangla', '2020-03-17 04:15:17', '2020-03-17 04:15:17', NULL),
+(2, 'English', '2020-03-17 04:15:29', '2020-03-17 04:15:29', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -473,6 +580,7 @@ CREATE TABLE `date_languages` (
 CREATE TABLE `designations` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` tinyint(4) NOT NULL DEFAULT 1 COMMENT '1=Staff,2=Committee',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -482,30 +590,31 @@ CREATE TABLE `designations` (
 -- Dumping data for table `designations`
 --
 
-INSERT INTO `designations` (`id`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Principal', NULL, NULL, NULL),
-(2, 'Vice-principal', NULL, NULL, NULL),
-(3, 'Head Teacher', NULL, NULL, NULL),
-(4, 'Assistant Head Teacher', NULL, NULL, NULL),
-(5, 'Assistant Teacher', NULL, NULL, NULL),
-(6, 'Peon', NULL, NULL, NULL),
-(7, 'Nurse', NULL, NULL, NULL),
-(8, 'Trade Instructor', NULL, NULL, NULL),
-(9, 'Office Assistant', NULL, NULL, NULL),
-(10, 'Cook', NULL, NULL, NULL),
-(11, 'Night Guard', NULL, NULL, NULL),
-(12, 'Driver', NULL, NULL, NULL),
-(13, 'Night Watchman', NULL, NULL, NULL),
-(14, 'Watchman', NULL, NULL, NULL),
-(15, 'Other', NULL, NULL, NULL),
-(16, 'Lecturer', '2019-09-25 16:48:23', '2019-09-25 16:48:23', NULL),
-(17, 'Assistant Professor', '2019-09-25 16:48:42', '2019-09-25 16:48:42', NULL),
-(18, 'Library Science', '2019-10-10 15:28:22', '2019-10-10 15:28:22', NULL),
-(19, 'Physical Health', '2019-10-10 15:28:38', '2019-10-10 15:28:38', NULL),
-(20, 'ICT (Demo)', '2019-10-10 15:32:29', '2019-10-10 15:32:29', NULL),
-(21, 'Asstt. Office Assistant', '2019-12-30 01:42:32', '2019-12-30 03:52:28', NULL),
-(22, 'Office Assistant Cum Computer Operator-1', '2019-12-30 07:56:01', '2019-12-30 07:56:01', NULL),
-(23, 'Office Assistant Cum Computer Operator-2', '2019-12-30 07:56:09', '2019-12-30 07:56:09', NULL);
+INSERT INTO `designations` (`id`, `name`, `type`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Principal', 1, NULL, NULL, NULL),
+(2, 'Vice-principal', 1, NULL, NULL, NULL),
+(3, 'Head Teacher', 1, NULL, NULL, NULL),
+(4, 'Assistant Head Teacher', 1, NULL, NULL, NULL),
+(5, 'Assistant Teacher', 1, NULL, NULL, NULL),
+(6, 'Peon', 1, NULL, NULL, NULL),
+(7, 'Nurse', 1, NULL, NULL, NULL),
+(8, 'Trade Instructor', 1, NULL, NULL, NULL),
+(9, 'Office Assistant', 1, NULL, NULL, NULL),
+(10, 'Cook', 1, NULL, NULL, NULL),
+(11, 'Night Guard', 1, NULL, NULL, NULL),
+(12, 'Driver', 1, NULL, NULL, NULL),
+(13, 'Night Watchman', 1, NULL, NULL, NULL),
+(14, 'Watchman', 1, NULL, NULL, NULL),
+(15, 'Other', 1, NULL, NULL, NULL),
+(16, 'Lecturer', 1, '2019-09-25 16:48:23', '2019-09-25 16:48:23', NULL),
+(17, 'Assistant Professor', 1, '2019-09-25 16:48:42', '2019-09-25 16:48:42', NULL),
+(18, 'Library Science', 1, '2019-10-10 15:28:22', '2019-10-10 15:28:22', NULL),
+(19, 'Physical Health', 1, '2019-10-10 15:28:38', '2019-10-10 15:28:38', NULL),
+(20, 'ICT (Demo)', 1, '2019-10-10 15:32:29', '2019-10-10 15:32:29', NULL),
+(21, 'Asstt. Office Assistant', 1, '2019-12-30 01:42:32', '2019-12-30 03:52:28', NULL),
+(22, 'Office Assistant Cum Computer Operator-1', 1, '2019-12-30 07:56:01', '2019-12-30 07:56:01', NULL),
+(23, 'Office Assistant Cum Computer Operator-2', 1, '2019-12-30 07:56:09', '2019-12-30 07:56:09', NULL),
+(24, 'President', 2, '2019-12-30 07:56:09', '2019-12-30 07:56:09', NULL);
 
 -- --------------------------------------------------------
 
@@ -641,6 +750,14 @@ CREATE TABLE `expenses` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `expenses`
+--
+
+INSERT INTO `expenses` (`id`, `school_id`, `serial`, `payment_date`, `payment_method`, `received_by`, `mobile`, `amount`, `fund_id`, `reference`, `description`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 202010000, '2020-03-12', 'Cash', 'Al Arfin', NULL, 50000.00, 3, NULL, 'Testing', 1, '2020-03-12 08:37:40', '2020-03-12 08:37:40'),
+(2, 1, 202010001, '2020-03-12', 'Cash', 'Al Arfin', NULL, 50000.00, 3, NULL, 'Testing', 1, '2020-03-12 08:39:28', '2020-03-12 08:39:28');
+
 -- --------------------------------------------------------
 
 --
@@ -654,6 +771,16 @@ CREATE TABLE `fee_categories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `fee_categories`
+--
+
+INSERT INTO `fee_categories` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'January Month', '1', '2020-03-12 03:22:24', '2020-03-12 03:22:24'),
+(2, 'February Month', '1', '2020-03-12 03:22:31', '2020-03-12 03:22:31'),
+(3, 'March Month', '1', '2020-03-12 03:22:40', '2020-03-12 03:22:40'),
+(4, 'Admission', '1', '2020-03-12 03:22:49', '2020-03-12 03:22:49');
 
 -- --------------------------------------------------------
 
@@ -684,6 +811,13 @@ CREATE TABLE `fee_collections` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `fee_collections`
+--
+
+INSERT INTO `fee_collections` (`id`, `school_id`, `student_id`, `fee_category`, `fund_id`, `serial`, `payment_date`, `payment_method`, `payment_by`, `mobile`, `amount`, `waiver`, `paid`, `due`, `due_paid`, `reference`, `description`, `status`, `created_at`, `updated_at`) VALUES
+(2, 1, 2, '[\"1\"]', 1, 202010000, '2020-03-12', 'Cash', 'Samia Akter', NULL, 300.00, 0.00, 250.00, 50.00, 0.00, NULL, 'Testing', 1, '2020-03-12 04:37:52', '2020-03-12 04:37:52');
+
 -- --------------------------------------------------------
 
 --
@@ -702,6 +836,13 @@ CREATE TABLE `fee_setups` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `fee_setups`
+--
+
+INSERT INTO `fee_setups` (`id`, `school_id`, `master_class_id`, `group_class_id`, `shift`, `fee_category_id`, `amount`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 13, 2, 'Day', 1, 300.00, 1, '2020-03-12 04:00:53', '2020-03-12 04:00:53');
 
 -- --------------------------------------------------------
 
@@ -722,6 +863,13 @@ CREATE TABLE `fee_sub_categories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `fee_sub_categories`
+--
+
+INSERT INTO `fee_sub_categories` (`id`, `school_id`, `master_class_id`, `group_class_id`, `fee_category_id`, `shift`, `name`, `amount`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 13, 2, 4, 'Day', 'Milad Mahfil', 150.00, 1, '2020-03-12 03:50:49', '2020-03-12 03:50:49');
 
 -- --------------------------------------------------------
 
@@ -750,6 +898,13 @@ CREATE TABLE `fine_collections` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `fine_collections`
+--
+
+INSERT INTO `fine_collections` (`id`, `school_id`, `student_id`, `fund_id`, `serial`, `payment_date`, `payment_method`, `payment_by`, `mobile`, `amount`, `paid`, `waiver`, `due`, `reference`, `description`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, 3, 202010000, '2020-03-12', 'Cash', 'Tanjila Irin', NULL, 290.00, 250.00, 0.00, 40.00, NULL, 'Testing', 1, '2020-03-12 10:18:07', '2020-03-12 10:18:07');
+
 -- --------------------------------------------------------
 
 --
@@ -768,6 +923,13 @@ CREATE TABLE `fine_setups` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `fine_setups`
+--
+
+INSERT INTO `fine_setups` (`id`, `school_id`, `master_class_id`, `group_class_id`, `shift`, `amount`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 13, 2, 'Day', 10.00, 1, '2020-03-12 09:53:12', '2020-03-12 09:53:12');
+
 -- --------------------------------------------------------
 
 --
@@ -781,6 +943,15 @@ CREATE TABLE `funds` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `funds`
+--
+
+INSERT INTO `funds` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Fee Collection', 1, '2020-03-12 03:23:12', '2020-03-12 03:23:12'),
+(2, 'Donation', 1, '2020-03-12 03:23:19', '2020-03-12 03:23:19'),
+(3, 'Others', 1, '2020-03-12 03:23:27', '2020-03-12 03:23:27');
 
 -- --------------------------------------------------------
 
@@ -845,6 +1016,13 @@ CREATE TABLE `holidays` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `holidays`
+--
+
+INSERT INTO `holidays` (`id`, `date`, `school_id`, `created_at`, `updated_at`) VALUES
+(2, '2020-03-06', 1, '2020-03-15 05:22:12', '2020-03-15 05:22:12');
+
 -- --------------------------------------------------------
 
 --
@@ -884,7 +1062,13 @@ INSERT INTO `id_generators` (`id`, `created_id`, `id_type`, `school_id`, `create
 (369, '880015191001454', 'student_id', 3, '2020-02-17 06:16:43', '2020-02-17 06:16:43'),
 (370, '880015191001455', 'student_id', 3, '2020-02-17 06:17:36', '2020-02-17 06:17:36'),
 (371, '880015191001456', 'student_id', 3, '2020-02-17 06:18:12', '2020-02-17 06:18:12'),
-(372, '880015191001457', 'student_id', 3, '2020-02-17 06:25:54', '2020-02-17 06:25:54');
+(372, '880015191001457', 'student_id', 3, '2020-02-17 06:25:54', '2020-02-17 06:25:54'),
+(373, '880031191001519', 'student_id', 1, '2020-03-14 11:56:25', '2020-03-14 11:56:25'),
+(374, '880031191001520', 'student_id', 1, '2020-03-14 12:02:02', '2020-03-14 12:02:02'),
+(375, '880031191001521', 'student_id', 1, '2020-03-16 05:24:17', '2020-03-16 05:24:17'),
+(376, '880031191001522', 'student_id', 1, '2020-03-17 03:57:02', '2020-03-17 03:57:02'),
+(377, '880031191001523', 'student_id', 1, '2020-03-18 03:16:35', '2020-03-18 03:16:35'),
+(378, '880031191001524', 'student_id', 1, '2020-03-19 03:52:10', '2020-03-19 03:52:10');
 
 -- --------------------------------------------------------
 
@@ -949,6 +1133,14 @@ CREATE TABLE `incomes` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `incomes`
+--
+
+INSERT INTO `incomes` (`id`, `school_id`, `serial`, `payment_date`, `payment_method`, `payment_by`, `mobile`, `amount`, `fund_id`, `reference`, `description`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 202010000, '2020-03-12', 'Cash', 'Al Arfin', NULL, 20000.00, 2, NULL, 'Testing', 1, '2020-03-12 07:23:48', '2020-03-12 07:23:48'),
+(2, 1, 202010001, '2020-03-12', 'Cash', 'Al Arfin', NULL, 20000.00, 2, NULL, 'Testing', 1, '2020-03-12 07:26:36', '2020-03-12 07:26:36');
 
 -- --------------------------------------------------------
 
@@ -1027,6 +1219,13 @@ CREATE TABLE `message_lengths` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `message_lengths`
+--
+
+INSERT INTO `message_lengths` (`id`, `school_id`, `notification`, `birthday_sms`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 1, 230, 1, NULL, '2020-03-17 09:09:51', '2020-03-17 09:09:51');
 
 -- --------------------------------------------------------
 
@@ -1131,7 +1330,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (99, '2019_02_25_161711_create_atten_students_table', 10),
 (100, '2019_02_25_161840_create_atten_employees_table', 10),
 (101, '2019_03_13_123749_create_holidays_table', 10),
-(102, '2019_03_13_133000_create_cancel_holidays_table', 10);
+(102, '2019_03_13_133000_create_cancel_holidays_table', 10),
+(103, '2020_03_01_162552_create_chattings_table', 11),
+(104, '2020_03_07_111416_create_posts_table', 11),
+(105, '2020_03_10_095617_create_post_reacts_table', 11),
+(106, '2020_03_11_180629_create_post_comments_table', 11);
 
 -- --------------------------------------------------------
 
@@ -1143,12 +1346,21 @@ CREATE TABLE `notices` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `path` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_admission_notice` tinyint(4) DEFAULT NULL,
   `school_id` int(10) UNSIGNED NOT NULL,
   `status` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `notices`
+--
+
+INSERT INTO `notices` (`id`, `name`, `path`, `description`, `is_admission_notice`, `school_id`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Testing', '', '<p>sgfavdsgd Update</p>', 0, 1, 0, '2020-03-15 09:58:05', '2020-03-15 10:03:58', NULL);
 
 -- --------------------------------------------------------
 
@@ -1212,6 +1424,66 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 0,
+  `user_id` int(11) NOT NULL,
+  `school_id` int(11) NOT NULL,
+  `db` int(11) NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post_comments`
+--
+
+CREATE TABLE `post_comments` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parent` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `user_id` int(11) NOT NULL,
+  `school_id` int(11) NOT NULL,
+  `db` int(11) NOT NULL,
+  `post_id` int(10) UNSIGNED NOT NULL,
+  `post_creator` int(11) NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post_reacts`
+--
+
+CREATE TABLE `post_reacts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `react` int(11) NOT NULL COMMENT '1 for like. 2 for love',
+  `status` int(11) NOT NULL DEFAULT 1,
+  `user_id` int(11) NOT NULL,
+  `school_id` int(11) NOT NULL,
+  `db` int(11) NOT NULL,
+  `post_id` int(10) UNSIGNED NOT NULL,
+  `post_creator` int(11) NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `provident_funds`
 --
 
@@ -1226,6 +1498,13 @@ CREATE TABLE `provident_funds` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `provident_funds`
+--
+
+INSERT INTO `provident_funds` (`id`, `school_id`, `employee_id`, `amount`, `month`, `year`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 0.00, '01', '2020', 1, '2020-03-12 11:04:52', '2020-03-12 11:04:52');
 
 -- --------------------------------------------------------
 
@@ -1695,7 +1974,7 @@ INSERT INTO `results` (`id`, `exam_type_id`, `exam_year`, `student_id`, `roll`, 
 (391, 3, '2019', '880031191001389', '625', 13, 3, 'Day', 'A', 14, 'Civics 1st & 2nd', '--', '25', '14', '--', '39', '0', '23', '10', '0', '33', '100', 'Elective', 'Compulsory', 1, '2', 1, '216', '2019-12-06 15:09:55', '2020-02-17 04:28:09', NULL),
 (392, 3, '2019', '880031191001390', '626', 13, 3, 'Day', 'A', 14, 'Civics 1st & 2nd', '--', '24', '15', '--', '39', '0', '23', '10', '0', '33', '100', 'Elective', 'Compulsory', 1, '2', 1, '276', '2019-12-06 15:09:55', '2020-02-17 04:28:09', NULL),
 (393, 3, '2019', '880031191001391', '627', 13, 3, 'Day', 'A', 14, 'Civics 1st & 2nd', '--', '30', '17', '--', '47', '0', '23', '10', '0', '33', '100', 'Elective', 'Compulsory', 1, '2', 1, '323', '2019-12-06 15:09:55', '2020-02-17 04:28:09', NULL),
-(394, 3, '2019', '880031191001392', '628', 13, 3, 'Day', 'A', 14, 'f 1st & 2nd', '--', '--', '--', '--', '0', '0', '23', '10', '0', '33', '100', 'Elective', 'Compulsory', 1, '2', 1, '66', '2019-12-06 15:09:55', '2020-02-17 04:28:09', NULL),
+(394, 3, '2019', '880031191001392', '628', 13, 3, 'Day', 'A', 14, 'Civics 1st & 2nd', '--', '--', '--', '--', '0', '0', '23', '10', '0', '33', '100', 'Elective', 'Compulsory', 1, '2', 1, '66', '2019-12-06 15:09:55', '2020-02-17 04:28:09', NULL),
 (395, 3, '2019', '880031191001393', '629', 13, 3, 'Day', 'A', 14, 'Civics 1st & 2nd', '--', '7', '22', '--', '29', '0', '23', '10', '0', '33', '100', 'Elective', 'Compulsory', 1, '2', 1, '273', '2019-12-06 15:09:55', '2020-02-17 04:28:09', NULL),
 (396, 3, '2019', '880031191001394', '630', 13, 3, 'Day', 'A', 14, 'Civics 1st & 2nd', '--', '44', '11', '--', '55', '0', '23', '10', '0', '33', '100', 'Elective', 'Compulsory', 1, '2', 1, '318', '2019-12-06 15:09:55', '2020-02-17 04:28:09', NULL),
 (397, 3, '2019', '880031191001395', '631', 13, 3, 'Day', 'A', 14, 'Civics 1st & 2nd', '--', '12', '21', '--', '33', '0', '23', '10', '0', '33', '100', 'Elective', 'Compulsory', 1, '2', 1, '277', '2019-12-06 15:09:55', '2020-02-17 04:28:09', NULL),
@@ -5274,6 +5553,14 @@ CREATE TABLE `salary_funds` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `salary_funds`
+--
+
+INSERT INTO `salary_funds` (`id`, `school_id`, `name`, `amount`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Medical Fund', 15.00, 'Addition', '2020-03-12 10:57:15', '2020-03-12 10:57:15'),
+(2, 1, 'House Rent', 20.00, 'Addition', '2020-03-12 10:57:34', '2020-03-12 10:57:34');
+
 -- --------------------------------------------------------
 
 --
@@ -5289,6 +5576,13 @@ CREATE TABLE `salary_setups` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `salary_setups`
+--
+
+INSERT INTO `salary_setups` (`id`, `school_id`, `employee_id`, `amount`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 20000.00, 1, '2020-03-12 10:43:59', '2020-03-12 10:43:59');
 
 -- --------------------------------------------------------
 
@@ -5314,6 +5608,13 @@ CREATE TABLE `salary_sheets` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `salary_sheets`
+--
+
+INSERT INTO `salary_sheets` (`id`, `school_id`, `employee_id`, `basic`, `basic_increase`, `basic_decrease`, `provident_fund`, `absent_fine`, `advanced_paid`, `net_salary`, `month`, `year`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 20000.00, 7000.00, 0.00, 0.00, 26100.00, 0.00, 900.00, '02', '2020', 1, '2020-03-12 12:26:41', '2020-03-12 12:26:41');
+
 -- --------------------------------------------------------
 
 --
@@ -5337,9 +5638,13 @@ CREATE TABLE `schools` (
   `serial_no` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `logo` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `signature_p` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sms_service` int(11) NOT NULL DEFAULT 0 COMMENT '1 for Auto, 0 for Manually',
+  `attendance_sms` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0=No sms, 1=Employee sms,2=Student sms,3=Employee & Student',
   `status` tinyint(1) NOT NULL,
   `total_student` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `service_type_id` int(11) NOT NULL DEFAULT 1,
+  `attendance_option` tinyint(4) NOT NULL DEFAULT 1 COMMENT '1=In Time sms, 2= In Time and Out Time sms',
+  `attend_percentage_limit` tinyint(4) NOT NULL DEFAULT 10 COMMENT 'Attend Percentage limit check when send attendance sms',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -5349,10 +5654,10 @@ CREATE TABLE `schools` (
 -- Dumping data for table `schools`
 --
 
-INSERT INTO `schools` (`id`, `short_name`, `user_id`, `address`, `api_key`, `sender_id`, `school_type_id`, `website`, `fax`, `code`, `established_date`, `expiry_date`, `country_code`, `serial_no`, `logo`, `signature_p`, `status`, `total_student`, `service_type_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, NULL, 2, 'Lemua, Patharghata, Barguna. Mobile: 01309100344', NULL, NULL, '3', 'https://sfhdc.edubd.app/', NULL, '100344', '01-01-1989', '01-04-2020', '88', '0031', 'uploadedImages/schoolLogo/-SnnxeQBR2zQ4IHJGzAhUtv1YkiJ2IV.jpg', 'uploadedImages/schoolLogo/-l5nsKdCQBQxCGxq4lvNu7wqkvKUKmf.png', 1, '500', 1, '2019-07-29 12:19:06', '2020-02-29 07:24:07', NULL),
-(3, NULL, 472, 'Mushuddi, Post: Mushuddi Bazar, Upazila: Dhanbari, District: Tangail', NULL, NULL, '3', 'http://mrc.edubd.app/', NULL, '138014', '01-01-2015', '03-04-2020', '88', '0015', 'public/uploadedImages/schoolLogo/-xHhU3QTsV05bAaLig1KdhVUMibDWWk.JPG', 'public/uploadedImages/schoolLogo/-XUYN7g1o8zK1HUvmbdaHayN3qaeeUO.jpg', 1, '450', 1, '2019-12-04 08:31:15', '2020-03-05 07:41:40', NULL),
-(4, NULL, 678, 'South Dhurung, Postoffice- Dhurung Bazar, Upazila- Kutubdia, District- Cox\'sbazar', NULL, NULL, '2|3', 'https://diphsc.edubd.app/', NULL, '106319', '01-01-1948', '31-12-2020', '88', '0040', 'public/uploadedImages/schoolLogo/-YNPqsoy0jaxkf6qIe3C5gyVMSFo2PT.JPG', NULL, 1, '2000', 1, '2019-12-30 14:30:10', '2019-12-31 15:52:16', NULL);
+INSERT INTO `schools` (`id`, `short_name`, `user_id`, `address`, `api_key`, `sender_id`, `school_type_id`, `website`, `fax`, `code`, `established_date`, `expiry_date`, `country_code`, `serial_no`, `logo`, `signature_p`, `sms_service`, `attendance_sms`, `status`, `total_student`, `service_type_id`, `attendance_option`, `attend_percentage_limit`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, NULL, 2, 'Lemua, Patharghata, Barguna. Mobile: 01309100344', NULL, NULL, '3', 'https://sfhdc.edubd.app/', NULL, '100344', '01-01-1989', '01-04-2020', '88', '0031', 'uploadedImages/schoolLogo/-SnnxeQBR2zQ4IHJGzAhUtv1YkiJ2IV.jpg', 'uploadedImages/schoolLogo/-l5nsKdCQBQxCGxq4lvNu7wqkvKUKmf.png', 0, 0, 1, '500', 1, 1, 10, '2019-07-29 12:19:06', '2020-02-29 07:24:07', NULL),
+(3, NULL, 472, 'Mushuddi, Post: Mushuddi Bazar, Upazila: Dhanbari, District: Tangail', NULL, NULL, '3', 'http://mrc.edubd.app/', NULL, '138014', '01-01-2015', '03-04-2020', '88', '0015', 'public/uploadedImages/schoolLogo/-xHhU3QTsV05bAaLig1KdhVUMibDWWk.JPG', 'public/uploadedImages/schoolLogo/-XUYN7g1o8zK1HUvmbdaHayN3qaeeUO.jpg', 0, 0, 1, '450', 1, 1, 10, '2019-12-04 08:31:15', '2020-03-05 07:41:40', NULL),
+(4, NULL, 678, 'South Dhurung, Postoffice- Dhurung Bazar, Upazila- Kutubdia, District- Cox\'sbazar', NULL, NULL, '2|3', 'https://diphsc.edubd.app/', NULL, '106319', '01-01-1948', '31-12-2020', '88', '0040', 'public/uploadedImages/schoolLogo/-YNPqsoy0jaxkf6qIe3C5gyVMSFo2PT.JPG', NULL, 0, 0, 1, '2000', 1, 1, 10, '2019-12-30 14:30:10', '2019-12-31 15:52:16', NULL);
 
 -- --------------------------------------------------------
 
@@ -5504,6 +5809,7 @@ CREATE TABLE `staff` (
   `h_w_edu_qulif` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `h_w_email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `h_w_mobile_no` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `h_w_nid_no` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `kids` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `photo` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -5515,88 +5821,88 @@ CREATE TABLE `staff` (
 -- Dumping data for table `staff`
 --
 
-INSERT INTO `staff` (`id`, `user_id`, `gender`, `designation_id`, `type`, `salary`, `subject`, `edu_qulif`, `training`, `joining_date`, `retirement_date`, `index_no`, `date_of_mpo`, `staff_id`, `school_id`, `birthday`, `blood_group`, `religion`, `nid_card_no`, `last_org_name`, `reason_to_leave`, `last_org_address`, `pre_address`, `Pre_h_no`, `pre_ro_no`, `pre_vpm`, `pre_poff`, `pre_unim`, `pre_subd`, `pre_district`, `pre_postc`, `per_address`, `per_h_no`, `per_ro_no`, `per_vpm`, `per_poff`, `per_unim`, `per_subd`, `per_district`, `per_postc`, `father_name`, `f_career`, `f_m_income`, `f_edu_c`, `f_mobile_no`, `f_email`, `f_nid`, `mother_name`, `m_career`, `m_m_income`, `m_edu_c`, `m_mobile_no`, `m_email`, `m_nid`, `h_w_name`, `profession`, `wedding_date`, `h_w_edu_qulif`, `h_w_email`, `h_w_mobile_no`, `kids`, `photo`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 401, 'Male', 17, 'Full Time', '35000', 'English', 'M.A', 'P.T.I B.ED MED', '01-02-1988', '04-02-2020', '353636', '01-02-1988', '880031191011', 1, '04-02-1960', NULL, 'Islam', '456789123', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Parens', NULL, NULL, '293/1 North East', 'Mathbaria', 'Mathbaria', 'Mathbaria', 'Perojpur', NULL, 'Do', NULL, NULL, 'Do', 'Do', 'Do', 'Do', 'Do', NULL, 'Late Md.Keramat Ali Gamadder', 'Job', NULL, NULL, NULL, NULL, NULL, 'Late Bibigan Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mahmuda Ahamed', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-1ewobJphpoGfCz7lILdN7J8bAMvIbP.jpg', '2019-09-29 14:45:54', '2019-10-07 14:01:22', NULL),
-(2, 402, 'Male', 17, 'Full Time', '35000', '06-09-1989', 'MSS', 'B.ED, M.ED, CPD & CEDP', '06-09-1989', '04-08-2021', '403316', '01-07-1993', '880031191012', 1, '05-08-1961', 'B+', 'Islam', '4603677362', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Professores House', NULL, 'Md.Mazid Sarak', 'South Monosatali', 'East Dupati', 'Gourichanna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Fazlul karim', 'Job', NULL, NULL, NULL, NULL, NULL, 'Gol Chahara', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Lily Khanam', 'Service', '08-03-1984', 'B.A', NULL, '01914407353', 'One Daughter Student\r\nOne Son Student', 'public/uploadedImages/teacherPhoto/-muOZmPBYgN7A2OxSwdhigs5EJIDcJ4.jpg', '2019-09-29 15:02:32', '2019-10-07 08:19:00', NULL),
-(3, 403, 'Male', 17, 'Full Time', '35000', '06-09-1989', 'B.A (HON) M.A (BANGLA)', 'Short Course', '19-09-1989', '31-01-2020', '403317', '01-06-1993', '880031191013', 1, '01-02-1960', 'O+', 'Islam', '4150996673', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Alhaz Vaban', '50', NULL, 'Baganbari', 'Barguna', 'Barguna', 'Barguna', 'Barguna', NULL, 'Poncait Bari', NULL, NULL, 'Gilatali', 'Gourichanna', '3 no Fuljuri', 'Barguna', 'Barguna', NULL, 'Nesar Uddin', 'Job', NULL, NULL, NULL, NULL, NULL, 'Khabiron Nessa', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Helina Begum', 'House Wife', '01-07-1988', 'S.S.C', NULL, NULL, 'Only One Son', 'public/uploadedImages/teacherPhoto/-v9iZ52vtrMgs0m5K8GZ5ngcTy3e9QW.jpg', '2019-09-29 15:28:37', '2019-10-07 08:20:05', NULL),
-(4, 404, 'Male', 17, 'Full Time', '35000', 'ISLAMIC HISTORY AND CULTURE', 'M.A', 'CPD', '13-02-1990', '02-07-1923', '403318', '01-07-1993', '880031191014', 1, '03-05-1963', 'A+', 'Islam', '8687584600', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Hawlader Bari', '784', NULL, 'Lebubunia', 'Lebubunia', 'Khthalia', 'Khthalia', 'Jhalokati', '8430', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Farman Ali Hawlader', 'Job', NULL, NULL, NULL, NULL, NULL, 'Lal Bhanu', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Piara Begum', 'House Wife', '03-02-1984', 'H.S.C', NULL, '01756672465', NULL, 'public/uploadedImages/teacherPhoto/-sgQ6x3yVba2dsrzfdnlSImIrkSDH3L.jpg', '2019-09-29 16:06:10', '2019-10-07 08:21:38', NULL),
-(5, 405, 'Male', 17, 'Full Time', '35000', 'POLITICAL SCIENCE', 'B.S.S (Hon,s)M.S.S', 'CPD', '30-12-1993', NULL, '404178', '01-01-1994', '880031191015', 1, '05-03-1969', 'B+', 'Islam', '9567126686', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, '260/2 College', NULL, NULL, 'School Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', 'Sikder Bari', NULL, NULL, 'kakchira', 'kakchira', 'kakchira', 'Patharghata', 'Barguna', '8721', 'Moulabi Jalal Uddin', 'Job', NULL, NULL, NULL, NULL, NULL, 'Samsun Nahar Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Jamil Ara Begum', 'Assistant Professor', '14-06-1992', 'M.A', NULL, NULL, 'Two son 1st son Doctor and 2nd son Student', 'public/uploadedImages/teacherPhoto/-BfwRumbup3M6kh0hji9HVHiTZO9iqi.JPG', '2019-09-29 16:19:57', '2019-10-10 15:56:50', NULL),
-(6, 406, 'Male', 17, 'Full Time', '35000', 'ECONOMICS', 'BSS (HON,S) MSS (ECONOMICS', NULL, '30-12-1993', '02-10-1923', '404180', '01-01-1994', '880031191016', 1, '03-10-1963', 'B+', 'Islam', '0418583619355', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, 'Lemua', NULL, 'Lemua', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', NULL, NULL, NULL, NULL, 'Tarikata', 'Tarikata', 'Arpangashia', 'Amtali', 'Barguna', NULL, 'Md.Monsur Ali Howlader', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Sona Baru Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Rina Parvin', NULL, '10-03-1988', 'S.S.C', NULL, '01745319429', 'One Son and One Doughter (Student)', 'public/uploadedImages/teacherPhoto/-uKPLvm4nmRZnlB40dLpVgl0J37P9qs.jpg', '2019-09-29 16:31:28', '2019-10-07 08:23:57', NULL),
-(7, 409, 'Female', 17, 'Full Time', '35000', 'BANGLA', 'B.A (HON) M.A (BANGLA)', NULL, '01-12-1992', NULL, '402028', '01-12-1992', '880031191017', 1, '12-10-1965', 'O+', 'Islam', '9550441621', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, '260/2', NULL, 'College Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Nurul Islam Khan', 'Job', NULL, NULL, NULL, NULL, NULL, 'Sadrunnesa', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Abu Muyeen Muhammad Nesar Uddin', 'Assistant Professor', '14-06-1992', 'Bss(Hon,s) M.ss', NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-WXNHZtuV8zJBX8cM3prRNuosPBpVy6.jpg', '2019-09-30 14:04:03', '2019-10-07 08:24:48', NULL),
-(8, 410, 'Female', 17, 'Full Time', '35000', 'LOGIC', 'M.A (PHILOSOPHY', 'HSTTI', '30-12-1993', NULL, '404181', '01-01-1994', '880031191018', 1, '03-07-1968', 'O+', 'Hinduism', '4150884973', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Muslim Para', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', 'Howlader', '216', '9 no Golbunia Road', 'Golbunia', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', 'Let.Jatindra Nath Karmakar', 'Job', NULL, NULL, NULL, NULL, NULL, 'Let.Pushpa Rani Karmakar', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Rabindra Nath Howlader', 'Assistant Professor', '24-11-1998', 'M.A', NULL, '01726049662', 'One son', 'public/uploadedImages/teacherPhoto/-E7WleiOeR3eyhwcxvWBnhnnNcw96AN.jpg', '2019-09-30 14:13:45', '2019-10-07 08:25:26', NULL),
-(9, 411, 'Male', 17, 'Full Time', '35000', 'ISLAMIC STUDIES', 'M.A', NULL, '21-05-1995', '31-08-2026', '411875', '01-06-1995', '880031191019', 1, '01-09-1966', 'O+', 'Islam', '5534408991', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Rayhanpur', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', NULL, NULL, NULL, NULL, 'Khontakata', 'Amtali', 'Amtali', 'Amtali', 'Barguna', '8710', 'Late Moulana Altaf Hossen', 'Job', NULL, NULL, NULL, NULL, NULL, 'Late Mrs. Halima Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Zahura Begum', NULL, NULL, 'S.S.C', NULL, '01740207260', NULL, 'public/uploadedImages/teacherPhoto/-kglyKQKasrsgoL0HxMRsw6X8LFv45y.jpg', '2019-09-30 14:23:33', '2019-10-07 08:26:17', NULL),
-(10, 412, 'Male', 17, 'Full Time', '35000', 'AGRICULTURE', 'M.SC', 'HSTTI', '22-05-1995', '28-02-2029', '412698', '01-03-1996', '880031191020', 1, '01-03-1969', 'O+', 'Islam', '9100932285', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'High School Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Moslem Ali', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mhamuda Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Farhana', 'Teacher', NULL, 'B.A', NULL, '01721448846', NULL, 'public/uploadedImages/teacherPhoto/-vSDAZuVIEe5ImjN8A31CE5DWC9pJ5N.jpg', '2019-09-30 14:30:42', '2019-10-07 08:27:10', NULL),
-(11, 413, 'Male', 17, 'Full Time', '35000', 'SECRETERIAL SCIENCE', 'M.COM (MANAGEMENT)', 'HSTTI & NAME COMPUTER', '18-12-1996', '09-07-2026', '417875', '01-03-1997', '880031191021', 1, '10-07-1966', 'A+', 'Islam', '0428507378139', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Mim House', '495', NULL, 'Kharakanda Road', 'Patharghata', 'Patharghata', 'Patharghata', 'Barguna', '8720', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Amzad Hossain', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Jayeda Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Munira Yeasmin', NULL, '26-10-19990', NULL, NULL, '01715647812', 'Two', 'public/uploadedImages/teacherPhoto/-1Te7efUhhPP2tnVEtZ0iuKJdyT85Ye.jpg', '2019-09-30 14:40:47', '2019-10-07 08:28:43', NULL),
-(12, 414, 'Female', 17, 'Full Time', '35000', 'ISLAMIC HISTORY AND CULTURE', 'M.A (ISLAMIC HISTORY)', 'CPD', '01-12-1998', '04-12-1933', '430763', '01-12-1998', '880031191022', 1, '05-12-1973', 'A+', 'Islam', '7925809233224', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Thana Para', 'Mathbaria', 'Mathbaria', 'Mathbaria', 'Perojpur', '8560', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Amir Hossain', 'Job', NULL, NULL, NULL, NULL, NULL, 'Khaleda Khanam', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Golam Mostofa', 'Service', '25-12-1998', 'Mss', NULL, '01748713040', 'Two', 'public/uploadedImages/teacherPhoto/-5NiwpM47XScpX4YIzHHYq7CLZ9PJiz.jpg', '2019-09-30 14:51:46', '2019-10-08 04:35:06', NULL),
-(13, 415, 'Male', 17, 'Full Time', '35000', 'ISLAMIC STUDIES', 'B.A (HON) M.A', 'HSTTI', '23-08-2000', '05-03-2029', '616260', '01-09-2000', '880031191023', 1, '06-03-1969', 'O+', 'Islam', '5984243120', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Professores Vila', '512', NULL, 'JALIAGHATA', 'Rupdhon', 'Kakchira', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.A.Wazed Khan', 'LET', NULL, NULL, NULL, NULL, NULL, 'Mst.Saleha Begum', 'LET', NULL, NULL, NULL, NULL, NULL, 'Mst.Mahmuda Begum', NULL, '12-05-1993', 'B.A', NULL, '01731067800', 'Two Son', 'public/uploadedImages/teacherPhoto/-zWipwhdp2eXU8FfSdMW86YEIXI3on3.jpg', '2019-09-30 14:59:58', '2019-10-07 08:30:05', NULL),
-(14, 416, 'Male', 17, 'Full Time', '35000', 'SOCIAL WORK', 'MSS (SOCIAL WORK)', 'CPD', '24-08-2000', '28-02-2031', '617673', '01-01-2001', '880031191024', 1, '01-03-1971', 'B+', 'Islam', '8650991782', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Amtala Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Abdul kader', 'Job', NULL, NULL, NULL, NULL, NULL, 'Momtaz Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Fazilatunnasa', 'Teacher', '13-09-2002', 'H.S.C', NULL, '01728632700', 'Two Son', 'public/uploadedImages/teacherPhoto/-dgwPsDqrmw2ZgTXjb7W3zm6ZjoADft.jpg', '2019-09-30 15:06:39', '2019-10-07 08:31:07', NULL),
-(15, 417, 'Male', 17, 'Full Time', '29000', 'BIOLOGY', 'M.SC', NULL, '24-08-2000', NULL, '833802', '01-03-2002', '880031191025', 1, '05-07-1972', 'B+', 'Hinduism', '7750845963', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Biplob Bhaban', NULL, NULL, 'Karoitala', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Anil Chandra Sil', 'Job', NULL, NULL, NULL, NULL, NULL, 'Bina Rani Sil', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Shilpi Rani', 'House Wife', '11-12-2000', NULL, NULL, '01728544642', 'Two', 'public/uploadedImages/teacherPhoto/-dQI1gbGSaSPCxoWcpNW9PxPkCMn1a7.jpg', '2019-09-30 15:18:07', '2019-10-08 05:52:57', NULL),
-(16, 418, 'Male', 17, 'Full Time', '2900', 'ENGLISH', 'M.A IN ENGLISH', 'CPD', '23-08-2000', NULL, '617234', '01-01-2001', '880031191026', 1, '15-11-1973', 'O+', 'Islam', '5053499637', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Fair Nexus', '0049-02', NULL, 'Dk.P Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, 'Gazimahmood', 'Nishanbaria', 'Naltona', 'Barguna', 'Barguna', '8720', 'Md.Ataher Ali Howlader', 'Job', NULL, NULL, NULL, NULL, NULL, 'Fulnessa Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Sabina Yesmin', 'Service', '12-10-2003', 'M.A in Sociology', NULL, '01732132412', 'Two Daughter', 'public/uploadedImages/teacherPhoto/-mrLa9UeWPUVqZvW2S044DWc8KCt3bd.jpg', '2019-09-30 15:27:09', '2019-10-07 08:31:58', NULL),
-(17, 419, 'Male', 17, 'Full Time', '29000', 'COMPUTER STUDIES', 'BSC (HON,S) M.SC (PHYSICS)', 'HSTTI', '28-07-2002', '20-09-2029', '839678', '28-07-2002', '880031191027', 1, '21-09-1969', 'O+', 'Islam', '7925802224260', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Hawlader Bari', NULL, NULL, 'W.Sener Tikikata', 'Tikikata Madrasa', 'Tikikata', 'Mathbaria', 'Perojpur', '811', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late A.Latif Mia', 'Job', NULL, NULL, NULL, NULL, NULL, 'Late Jahanara', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mrs.Farjana Begum', 'House Wife', '28-06-2002', 'S.S.C', NULL, '01731442442', NULL, 'public/uploadedImages/teacherPhoto/-mcDh3XSBw1PkswitavdOznAQ65mAHq.jpg', '2019-09-30 15:36:02', '2019-10-07 14:05:42', NULL),
-(18, 420, 'Male', 17, 'Full Time', '29000', 'ENGLISH', 'B.A (HON) M.A', NULL, '24-09-2002', '01-05-2037', '842555', '24-09-2002', '880031191028', 1, '01-05-1977', 'O+', 'Hinduism', '0412828426776', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'College Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Rajeshwar Howlader', 'Job', NULL, NULL, NULL, NULL, NULL, 'Bhagabati', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mitali Rani Halder', 'Service', '13-03-2008', 'M.A', NULL, '01720623022', NULL, 'public/uploadedImages/teacherPhoto/-vjtyeGmtFMjS5BelJjt29L63B7NTMG.jpg', '2019-09-30 16:04:37', '2019-10-07 14:07:47', NULL),
-(19, 421, 'Female', 17, 'Full Time', '2900', 'SOCIOLOGY', 'M.A IN SOCIOLOGY', 'CPD', '01-11-1978', NULL, '844753', '24-09-2002', '880031191029', 1, '01-11-1978', 'A+', 'Islam', '3703496830', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Fair Nexus', '0049-02', NULL, 'Dk.P Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, 'Gazimahmood', 'Nishanbaria', 'Naltona', 'Barguna', 'Barguna', '8700', 'Md.Deloar Hossain', 'Job', NULL, NULL, NULL, NULL, NULL, 'Hasina Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Md.Sagir Mia', 'Service', '12-10-2003', 'M.A in English', NULL, '01716616515', 'Two Daughter', 'public/uploadedImages/teacherPhoto/-3t3XhahA28WOIVH4TxmNp7k6x36Krh.jpg', '2019-09-30 16:13:14', '2019-10-07 08:35:41', NULL),
-(20, 422, 'Male', 17, 'Full Time', '29000', 'ECO.AND. COMMERCE.GEOP', 'M.COM (MANAGEMENT)', NULL, '22-12-2002', NULL, '3010587', '01-03-2004', '880031191030', 1, '22-08-1974', 'B+', 'Islam', '1974412838374321', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Mir Bari', NULL, NULL, 'Baralaban Gola', 'Barguna', 'Burirchar', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Adom Ali', 'Job', '20000', NULL, NULL, NULL, NULL, 'Halima Khanam', 'House Wife', NULL, NULL, '01758472934', NULL, '0412838374383', 'Asma', 'House Wife', '29-03-2001', 'H.S.C', NULL, '01732286238', 'Two Son', 'public/uploadedImages/teacherPhoto/-k4szSAQBnaqckzLS2sCyHXEshPbIwb.jpg', '2019-09-30 16:23:32', '2019-10-07 14:10:41', NULL),
-(21, 423, 'Male', 17, 'Full Time', '29000', 'CHEMISTRY', 'M.SC', NULL, '21-08-2004', '31-12-2037', '3011272', NULL, '880031191031', 1, '01-01-1978', 'B+', 'Islam', '6435840597', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Bondhon', NULL, NULL, 'College Branch', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', 'Borhan Uddin How', NULL, NULL, 'Nachnapara', 'Borhan Mahal', 'Nachnapara', 'Patharghata', 'Barguna', '8700', 'Late. Abdul Quddus Howlader', 'Job', NULL, NULL, NULL, NULL, NULL, 'Late Rajia Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Farjana Rahman', 'House Wife', '17-01-2000', 'S.S.C', NULL, '01914720208', NULL, 'public/uploadedImages/teacherPhoto/-Um5yxI2LPnYCZo6mAnk4Ygi0gQRVbc.jpg', '2019-09-30 16:33:00', '2019-10-07 14:11:25', NULL),
-(22, 424, 'Female', 17, 'Full Time', '3500', 'SOCIAL WORK', 'M.S.S', NULL, '22-08-2004', '14-01-2038', '3073695', '01-09-2005', '880031191032', 1, '15-01-1978', 'AB+', 'Islam', '6850990851', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Godhuli', '101/1', NULL, 'D.k.P Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md. Abdul Hashem', 'Job', NULL, NULL, NULL, NULL, NULL, 'Late Jaygun Nessa', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Md.Istak Ahamed', NULL, '14-03-1999', 'M.s.s', NULL, '01715714602', 'Two Daughter Students', 'public/uploadedImages/teacherPhoto/-QBV8BIdxnshtmHisuZAXWfQ9xxJx4q.jpg', '2019-10-02 15:09:01', '2019-10-07 08:36:27', NULL),
-(23, 425, 'Male', 17, 'Full Time', '3500', 'ACCOUNTING', 'M.COM IN ACCOUNTING', 'CRETIBE', '22-12-2002', '29-08-2036', '3073697', '01-09-2005', '880031191033', 1, '30-08-1976', 'B+', 'Islam', '0412819137228', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Farazi Bari', NULL, NULL, 'Kumra Khali', 'Bawalcor', 'Badar Khali', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Let Md. Zafor Ali Farazi', 'Job', NULL, NULL, NULL, NULL, NULL, 'Kohenur Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Nazmunnhar', 'Teacher', '01-03-2008', 'B.A', NULL, '01715635144', NULL, 'public/uploadedImages/teacherPhoto/-115ntUQbWpScXVXEkJKdxIIpA8cYLF.jpg', '2019-10-02 15:18:49', '2019-10-07 08:37:18', NULL),
-(24, 426, 'Male', 16, 'Full Time', '23000', 'MATHEMATICS', 'M.SC (MATHEMATICS)', NULL, '15-02-2012', NULL, '3086290', '01-11-2012', '880031191034', 1, '10-02-1984', 'B+', 'Islam', '0418559636617', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Gayenpara', 'Borhanmohol', 'Nachnapara', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Badsha Mia', 'Job', NULL, NULL, NULL, NULL, NULL, 'Taslima Nasrin', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Chadni Akther Alin', 'House Wife', '12-03-2017', 'M.s.s', NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-WLXPue5vcgf3wZoW8TJLoJtqyShtjg.jpg', '2019-10-02 15:28:01', '2019-10-07 08:38:03', NULL),
-(25, 427, 'Male', 16, 'Full Time', '23000', 'MANAGEMENT', 'M.B.S', NULL, '19-05-2014', '14-08-2043', '3090671', '01-01-2015', '880031191035', 1, '15-08-1983', 'A+', 'Islam', '7925803222022', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Gain Bhabon', '189', NULL, 'Mathbaria', 'Mathbaria', 'Mathbaria', 'Mathbaria', 'Mathbaria', '8560', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Jagadish Chandra Gain', 'Teacher', NULL, 'B.sc', NULL, NULL, '7925803222019', 'Tillottama Rani Gain', 'House Wife', NULL, NULL, NULL, NULL, '7925803222021', 'Eshita Halder', 'Lecturer', '01-02-2017', 'M.B.S', NULL, '01754133232', NULL, 'public/uploadedImages/teacherPhoto/-GdgMms9kTBK9TMxG3OEiGeIBg99xs4.jpg', '2019-10-02 16:02:34', '2019-10-07 08:38:52', NULL),
-(27, 429, 'Female', 16, 'Full Time', '23000', 'MARKETING', 'M.B.S', NULL, '08-06-2015', '19-11-2047', '3092051', '01-01-2016', '880031191037', 1, '20-11-1987', 'AB+', 'Hinduism', '19877915851000030', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Gain Bhabon', '189', 'Road no-03', 'Mathbaria', 'Mathbaria', 'Mathbaria', 'Mathbaria', 'Mathbaria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Saileswar Halder', 'Teacher', NULL, 'M.A', '01725438934', NULL, '7915851359303', 'Nomita Halder', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Palash Chandra Gain', 'Lecturer', '01-02-2017', 'M.B.S', NULL, '01735853278', NULL, 'public/uploadedImages/teacherPhoto/-iwWKSeIMudUpZw0lFB97Sq6Pl5jAC7.jpg', '2019-10-02 16:12:49', '2019-10-08 04:35:34', NULL),
-(28, 430, 'Female', 16, 'Full Time', '23000', 'SOCIOLOGY', 'BSS (HON,S) MSS', NULL, '22-12-2002', NULL, '3098198', '01-11-2018', '880031191038', 1, '03-04-1975', 'A+', 'Islam', '8650924023', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Ovic Vila', NULL, NULL, 'D.k.P Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Anowar Hossain', 'Job', NULL, NULL, NULL, NULL, NULL, 'Late Afroza Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Md.Faruk Hossain', 'Principal', '06-05-2003', 'M.com', NULL, '01712979402', 'One Son and One Daughter Both are Student', 'public/uploadedImages/teacherPhoto/-rYKDyA4a91kfgr2PfItqsyj70R3CxT.jpg', '2019-10-02 16:23:29', '2019-10-08 04:36:15', NULL),
-(29, 431, 'Male', 16, 'Full Time', '23000', 'PRODUCTION MANAGEMENT AND MARKETING', 'M.COM (MANAGEMENT)', NULL, '08-06-2015', NULL, '3096555', '01-05-2018', '880031191039', 1, '20-07-1982', 'A+', 'Islam', '6855453319', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Jaliaghata', 'Kamarhat', 'Kakchira', 'Patharghata', 'Barguna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Let Md.Sohraf Hossen', 'Job', NULL, NULL, NULL, NULL, NULL, 'MST.NORONNAHAR BEGUM', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'MST.SURYA PARVIN', 'House Wife', NULL, 'S.S.C', NULL, '01775595727', NULL, 'public/uploadedImages/teacherPhoto/-4Gb9I0p3qsAi1TJgmiDMwi9Sl0bWIy.jpg', '2019-10-02 16:30:06', '2019-10-08 04:35:57', NULL),
-(30, 432, 'Male', 16, 'Full Time', '23000', 'ACCOUNTING', 'M.COM', NULL, '19-05-2014', '09-08-2046', NULL, NULL, '880031191040', 1, '10-08-2086', 'A+', 'Islam', '0418523265876', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Akon', NULL, NULL, 'West.Bainchatkey', 'Kakchira', 'Kakchira', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Abdul Khalek', 'Job', NULL, NULL, '01718928319', NULL, NULL, 'Rokeya Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Bethi Akter', 'House Wife', NULL, 'H.S.C', NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-rdw0iITqhC0ZpTlVe4mw4v4aeq0OwZ.jpg', '2019-10-02 16:38:17', '2019-10-07 08:43:42', NULL),
-(31, 433, 'Male', 16, 'Full Time', '23000', 'ACCOUNTING', 'M.COM', 'HSTTI & NAME COMPUTER', '19-05-2014', NULL, NULL, NULL, '880031191041', 1, '17-01-1984', 'O+', 'Islam', '5050983195', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Amtali', 'Kakchira', 'Kakchira', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Sohrab', 'Job', NULL, NULL, '01828842005', NULL, NULL, 'Setara Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Afroja Akter', 'House Wife', '03-01-2014', 'B.A', NULL, NULL, 'One Daughter', 'public/uploadedImages/teacherPhoto/-A9OHmxKJBsoKpZSfbtmw6V9y1Gs5om.jpg', '2019-10-02 16:45:57', '2019-10-07 14:12:17', NULL),
-(32, 434, 'Male', 16, 'Full Time', '29000', 'BOTANY', 'M.SC (HON,S)', NULL, '08-06-2015', NULL, '582142', '01-09-2002', '880031191042', 1, '05-01-19777', 'B+', 'Islam', '9107790173', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Jamal Miar Basha', NULL, NULL, 'Rayhanpur', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', NULL, 'Ismail Nibas', '922', '05', 'Teen Kaamba', 'Bhola', 'Bhola', 'Bhola', 'Bhola', '8300', 'Late Ismail Polowan', 'Job', NULL, NULL, NULL, NULL, NULL, 'Noor Jahan Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Salma Parvin', 'Lecturer', '02-11-2001', 'M.sc', NULL, '01735477811', 'Two sons', 'public/uploadedImages/teacherPhoto/-j5Zx1a3Uhcqaiwrg0yvJMumdyTqerQ.jpg', '2019-10-05 14:02:50', '2019-10-08 04:36:45', NULL),
-(33, 435, 'Female', 16, 'Full Time', '23000', 'BIOLOGY', 'M.SC (ZOOLOGY)', NULL, '08-06-2019', '01-08-1942', NULL, '01-03-2018', '880031191043', 1, '02-08-1982', 'B+', 'Islam', '2696827795481', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Howlader Bari', NULL, NULL, 'Madartoli', 'Madartoli', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Nasirul Haque', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Khodeza Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Md.Shamem Ahsan', 'Business', '27-08-2004', 'M.s.s', NULL, '01918109335', 'One Daughter', 'public/uploadedImages/teacherPhoto/-ANOPxBW4uJ50nd58NOS0QE87jNDDI3.jpg', '2019-10-05 14:11:19', '2019-10-08 04:37:12', NULL),
-(34, 436, 'Male', 16, 'Full Time', '23000', 'MATHEMATICS', 'M.SC (MATHEMATICS)', NULL, '08-06-2015', NULL, '3095104', '01-03-2018', '880031191044', 1, '15-12-1983', 'A+', 'Islam', '8202345784', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Sarder Bari', '925', NULL, 'West Burirchar', 'Burirchar', '6 no Burirchar', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Habibur Rahman Sarder', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Kohinur Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Nipa Akter', 'Service', '26-10-2012', 'M.A', NULL, '01728622020', NULL, 'public/uploadedImages/teacherPhoto/-7TAnsid6z4lC40dysAtGOw9MUj8yqn.jpg', '2019-10-05 14:19:17', '2019-10-08 04:37:34', NULL),
-(35, 437, 'Male', 16, 'Full Time', '23000', 'PHYSICS', 'M.SC', 'CPD', '08-06-2015', '02-01-2046', '3095102', '01-03-2018', '880031191045', 1, '02-01-1986', 'B+', 'Islam', '4601727383', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Haolader Bari', NULL, NULL, 'Road Para', 'Road Para', '03 no Fuljury', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Abul Kalam', 'Job', NULL, NULL, '01750603558', NULL, NULL, 'Jahanara Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Monira Akter', 'Teacher', '31-03-2009', 'B.A', NULL, '01731442042', 'Two Son', 'public/uploadedImages/teacherPhoto/-elVMq6rMQQNDAUuBUo3dyvZLn7FnFZ.jpg', '2019-10-05 14:28:57', '2019-10-08 04:37:52', NULL),
-(36, 438, 'Female', 16, 'Full Time', '23000', 'CHEMISTRY', 'M.SC', 'ICT', '08-06-2015', '19-09-1947', '3095103', '01-03-2018', '880031191046', 1, '19-09-1987', 'B+', 'Islam', '19877829501100488', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Lamua', NULL, NULL, 'Rayhanpur', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8700', 'Khan Bari', NULL, NULL, 'Uttar Jarakhali', 'Karbari', NULL, 'Taltali', 'Barguna', '8710', 'Md.Abdul Haque', 'Job', NULL, NULL, NULL, NULL, NULL, 'Rani Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Md.Saydur Rahman', 'Lecturer', '16-05-2011', 'M.sc', NULL, '01719936986', 'One Son', 'public/uploadedImages/teacherPhoto/-hV6v2b5mWTu0520FNej7ytDq5a3Feh.jpg', '2019-10-05 14:37:58', '2019-10-08 04:38:31', NULL),
-(37, 439, 'Male', 19, 'Full Time', '29000', 'B.P.ED', 'B.A (B.P.ED)', 'B.P.ED', '30-12-1992', '13-05-2026', '411876', '21-05-1995', '880031191047', 1, '14-05-1966', 'O-', 'Islam', '6434003452', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Siddiq House', NULL, '04', 'Patharghata', 'Patharghata', 'Patharghata', 'Patharghata', 'Barguna', '8220', 'Syed House', NULL, NULL, 'Rayhanpur', 'Rayhanpur', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', 'Syed Mobarok Ali', 'Job', NULL, NULL, NULL, NULL, NULL, 'Regea Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Jesmin Sultana', 'Service', '30-04-19990', 'B.A (B.P.ED)', NULL, '01725497789', 'Two Son', 'public/uploadedImages/teacherPhoto/-btlApeKWIST72VCy9q4CxRIkhc6CYL.jpg', '2019-10-05 14:49:07', '2019-10-10 15:30:36', NULL),
-(38, 440, 'Male', 18, 'Full Time', '29000', 'LIBRARY SCIENCE', 'B.A', NULL, '21-05-1995', NULL, '411874', '21-05-1995', '880031191048', 1, '01-06-1963', 'B+', 'Islam', '2834893279', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Jomaddar House', NULL, NULL, 'North Kathaltali', 'Nachnapara', 'Nacnapara', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Soyjoddin Jamaddar', 'Job', NULL, NULL, NULL, NULL, NULL, 'Luthfunnesa Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mahmuda Akter Minu', 'Service', '04-10-1996', 'B.A', NULL, '01734040823', 'One  Son One Daughter', 'public/uploadedImages/teacherPhoto/-G7nH5GBk86FfdcUoSdKAeVaxnp5NjZ.jpg', '2019-10-05 14:58:47', '2019-10-10 15:30:03', NULL),
-(39, 441, 'Female', 20, 'Full Time', '29000', 'ICT (DEMO)', 'B.A (C.C.A)', 'ICT', '27-07-2002', NULL, '3076400', '01-04-2006', '880031191049', 1, '10-10-1977', NULL, 'Islam', '4184334649', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Rayhanpur', 'Rayhanpur', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Abdus Salam Miah', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Kahinur Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Syed Asaduzzaman', 'Business', '16-05-1992', 'B.A', NULL, '01720524591', 'One Son,s', 'public/uploadedImages/teacherPhoto/-CNUyitZWKeidF4mQltc9mTTIb3fM7L.jpg', '2019-10-05 15:07:26', '2019-10-10 15:51:56', NULL),
-(40, 442, 'Male', 16, 'Full Time', '23000', 'ISLAMIC STUDIES', 'M.A', 'HSTTI', '22-12-2002', NULL, '3098197', '01-11-2018', '880031191050', 1, '31-12-1970', 'B+', 'Islam', '8234425968', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Batmor', 'Batmor', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Aliakbar', 'Job', NULL, NULL, NULL, NULL, NULL, 'Nurzahan', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Masuma', 'House Wife', '08-05-1995', NULL, NULL, '01727247744', 'Two Daughter and Two Son', 'public/uploadedImages/teacherPhoto/-zqfZZxWjdwGZe9r93JL6VdegPBYY6s.jpg', '2019-10-05 15:14:36', '2019-10-08 04:39:13', NULL),
-(41, 443, 'Female', 16, 'Full Time', '23000', 'ZOOLOGY', 'M.SC', NULL, '12-02-2019', NULL, '3099065', '01-05-2019', '880031191051', 1, '12-02-1992', 'A+', 'Islam', '12345678969', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Munsi Bari', '109', NULL, 'Boroitala', 'Patharghata', 'Patharghata', 'Patharghata', 'Barguna', '8720', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Zahirul Haque', 'Teacher', NULL, NULL, '01728147368', NULL, '5503354812', 'Mst.Salma Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Hasan Al Bakar', 'LLB', '17-05-2008', 'LLB', NULL, '01722122200', 'One Daughter', 'public/uploadedImages/teacherPhoto/-9MyfiyrndmlaMh1uiBbPQ7movdxzF7.jpg', '2019-10-05 15:22:42', '2019-10-08 04:39:29', NULL),
-(42, 444, 'Male', 16, 'Full Time', '23000', 'BANGLA', 'B.A (HON) M.A (BANGLA)', NULL, '19-05-2014', NULL, NULL, NULL, '880031191052', 1, '01-12-1985', 'A+', 'Islam', '4634082822', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Jomaddar Bari', '24', NULL, 'kakchira', 'Kakchira', 'Kakchira', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Shah Alam Zomaddar', 'Job', NULL, NULL, NULL, NULL, NULL, 'Amena Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Asma Akter', 'House Wife', '12-12-2012', 'B.A', NULL, '01707896604', 'One Son', 'public/uploadedImages/teacherPhoto/-3To0j8rn9g7pIqYbpXQmFvmnkZPWZU.jpg', '2019-10-05 15:28:10', '2019-10-08 04:39:49', NULL),
-(43, 445, 'Male', 9, 'Full Time', '10000', 'ACCOUNTANT', 'B.CO', '20-08-2028', '12-01-1993', '20-08-2028', '603927', '01-07-1993', '880031191053', 1, '01-07-1993', 'AB+', 'Islam', '7335792870', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Howladar Bari', '148', NULL, 'Nachnapara', 'Nachnapara', 'Nachnapara', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Naniruzzaman', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mrs.Shahara Zaman', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mrs.Shilpi Akter', 'House Wife', '01-07-1994', 'S.S.C', NULL, '01793731889', 'One Son and One Daughter', 'public/uploadedImages/teacherPhoto/-5vqcIuz40junoSmbuuRbeMJicWOe8C.jpg', '2019-10-05 16:04:43', '2019-10-08 04:40:10', NULL),
-(44, 446, 'Male', 9, 'Full Time', '10000', 'OFFICE ASSISTANT', 'H.S.C', NULL, '12-01-1992', '06-06-2022', '603928', '01-07-1993', '880031191054', 1, '07-06-1962', 'A+', 'Islam', '2385783978', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Sikder Bari', NULL, NULL, 'Ganpara', 'Ganpara', 'Nachnapara', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Hazi Bahar Ali Sikder', 'Job', NULL, NULL, NULL, NULL, NULL, 'Late Shaleha Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Taslima Akter', 'House Wife', '11-07-1995', 'B.A', NULL, '01754407017', NULL, 'public/uploadedImages/teacherPhoto/-ArU420WirCdbXFjbXOOKdCntoS9uqG.jpg', '2019-10-05 16:18:49', '2019-10-07 08:50:45', NULL),
-(45, 447, 'Male', 9, 'Full Time', '8000', 'OFFICE ASSISTANT', 'EIGHT', NULL, '12-12-12', NULL, '603929', '01-01-18', '880031191055', 1, '15-07-1967', NULL, 'Islam', '19670418583620666', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Rayhanpur', 'Rayhanpur', 'Rayhanpur', 'Patharghata', 'Barguna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Fakrul Islam Jomaddar', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Rokeya', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-UWekhOk70soUN445INRVrUrwf6ZhuV.jpg', '2019-10-05 16:48:02', '2019-10-07 08:51:56', NULL),
-(46, 448, 'Male', 9, 'Full Time', '10000', 'MLLS', 'EIGHT', NULL, '01-01-1992', NULL, '603933', NULL, '880031191056', 1, '08-04-1962', NULL, 'Islam', '19710418583620465', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Betmor', NULL, NULL, 'Betmor', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Mojibor Kahman', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Rupban Bibi', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-bMzbQvz1xuFK3rfG5OGSQGzqMYe07R.jpg', '2019-10-06 14:59:27', '2019-10-08 04:49:47', NULL),
-(47, 449, 'Male', 9, 'Full Time', '10000', 'OFFICE ASSISTANT', 'B.B.S', NULL, '17-01-2013', '17-01-2046', '3087117', '01-02-2013', '880031191057', 1, '08-07-1985', 'B+', 'Islam', '7334472201', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Betmor', NULL, NULL, 'Betmor', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Abed Munshi', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Monika Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Taiaba', 'Student', '24-04-2018', 'B.A', NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-LCSIdPTF3s4oF6txt73r3vzQoFtjxM.jpg', '2019-10-06 15:07:43', '2019-10-07 08:54:05', NULL),
-(48, 450, 'Male', 11, 'Full Time', '10000', 'NIGHT WATCHMAN', 'EIGHT', NULL, '01-01-1992', NULL, '3087118', NULL, '880031191058', 1, '30-05-1977', NULL, 'Islam', '1017216514', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Lamua', NULL, NULL, 'Lemua', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Nurul Islam Talukder', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Rokeya Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-AJkGHb77jRZqoRhMx4oTNx0bQPi97h.jpg', '2019-10-06 15:13:24', '2019-10-07 08:55:58', NULL),
-(49, 452, 'Female', 9, 'Full Time', '10000', 'MLLS', 'EIGHT', NULL, '12-01-1992', NULL, '603936', '01-07-1992', '880031191059', 1, '08-03-1961', NULL, 'Islam', '8684460127', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Betmor', NULL, NULL, 'Betmor', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Kokil Panchaet', 'Job', NULL, NULL, NULL, NULL, NULL, 'Late Habitunnesa', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Late Sajahan Howlader', NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-VaxmebtpLsWoxP6yRlf5e2K3ptxade.jpg', '2019-10-06 15:29:12', '2019-10-07 08:57:41', NULL),
-(50, 453, 'Male', 9, 'Full Time', '10000', 'MLLS', 'EIGHT', NULL, '01-01-1992', NULL, '603935', '01-02-1993', '880031191060', 1, '23-10-1970', NULL, 'Islam', '7784332061', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Betmor', NULL, NULL, 'Betmor', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md. Abdul Gaffar Howlader', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Khayrun Nesa', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Sabina', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-IXIVrxEkWLz9juhpqYIQApp6JHwccE.jpg', '2019-10-06 15:34:40', '2019-10-08 04:48:17', NULL),
-(51, 454, 'Female', 9, 'Full Time', '10000', 'MLLS', 'EIGHT', NULL, '01-01-1996', NULL, '616262', '01-02-1996', '880031191061', 1, '15-10-1979', 'AB+', 'Islam', '0418583385535', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Betmor', NULL, NULL, 'Betmor', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Md.Rofi Chowduri', 'Job', NULL, NULL, NULL, NULL, NULL, 'Late Mst.Anjumara Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Md.Habibur Rahman', 'Service', '01-12-1998', 'M.A', NULL, '01710305567', NULL, 'public/uploadedImages/teacherPhoto/-atSOFQHsYF1R463G7u46V06Lzg1neT.jpg', '2019-10-06 15:42:27', '2019-10-07 09:01:22', NULL),
-(52, 455, 'Male', 9, 'Full Time', '10000', 'MLLS', 'EIGHT', NULL, '01-01-1992', NULL, '3092052', '01-07-1993', '880031191062', 1, '08-07-1987', 'O+', 'Hinduism', '5534284228', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Golbonia', NULL, NULL, 'Golbonia', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Sona Hori Shil', 'Job', NULL, NULL, NULL, NULL, NULL, 'Monzu Rani Shil', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Juthi Ray', 'House Wife', NULL, 'H.S.C', NULL, '01712508660', NULL, 'public/uploadedImages/teacherPhoto/-6NBGYBVWGFKqfVN8mB5BXEihOpcyt9.jpg', '2019-10-06 15:47:49', '2019-10-08 04:50:45', NULL),
-(53, 456, 'Male', 6, 'Full Time', '10000', 'MLLS', 'EIGHT', NULL, '01-01-1992', NULL, '603934', '01-07-1993', '880031191063', 1, '10-09-1976', NULL, 'Islam', '3734328705', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Lamua', NULL, NULL, 'Lemua', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Md.Amir Hossain', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Bakul Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Nupur Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-7S5ZJHPZnG624A5gju8LGO9jJlhxaK.jpg', '2019-10-06 15:51:49', '2019-10-07 14:13:59', NULL),
-(54, 457, 'Female', 9, 'Part Time', '5000', 'MLLS', 'EIGHT', NULL, '01-01-2018', NULL, '125487', '01-07-1993', '880031191064', 1, '01-01-1992', NULL, 'Islam', '8689954272', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Rayhanpur', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Selim Jomadder', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Piara Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-7ZrEseLugxfegWJm6S9QPNLfd6y0h8.jpg', '2019-10-06 15:56:58', '2019-10-08 04:51:30', NULL),
-(55, 458, 'Male', 17, 'Full Time', '35000', 'SOCIOLOGY', 'MSS (SOCIOLOGY)', NULL, '19-12-1996', '04-08-2025', NULL, '01-03-1997', '880031191065', 1, '05-08-1965', 'B+', 'Islam', '2564789546231', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Amtali', 'Amtali', 'Amtali', 'Amtali', 'Barguna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Azahar Uddin Ahamed', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Alaya Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Shahanaz Parvin', 'Service', '30-05-2008', 'B.A', NULL, '01720035198', NULL, 'public/uploadedImages/teacherPhoto/-Sh8rYsj8XoYfEfJ0WeBxtWGKFGTIk4.jpg', '2019-10-06 16:58:21', '2019-10-07 14:18:01', NULL),
-(56, 459, 'Male', 17, 'Full Time', '35000', 'POLITICAL SCIENCE', 'B.A (HON) M.A (POLITICAL SCIENCE)', NULL, '22-12-2002', NULL, '3073696', '22-12-2002', '880031191066', 1, '06-08-1975', NULL, 'Islam', '1234567895645', NULL, NULL, NULL, NULL, NULL, NULL, 'Bashbunia', 'Barguna', 'Barguna', 'Barguna', 'Barguna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Rezaul Karim', 'Job', NULL, NULL, NULL, NULL, NULL, 'Most.Kamrunnahar', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-uVbtw96pY75KvbiaLE0Iv55vyz0g6h.jpg', '2019-10-10 13:48:17', '2019-10-10 13:53:14', NULL),
-(58, 462, 'Male', 9, 'Full Time', '10000', 'OFFICE ASSISTANT', 'B.A', NULL, '17-01-2013', NULL, '3087116', '01-02-2013', '880031191068', 1, '07-06-1979', NULL, 'Islam', '123456789', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Rayhanpur', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Jalal Ahamed Sikder', 'Job', NULL, NULL, NULL, NULL, NULL, 'Shahera Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-5zS72N87JEvnDuC47Lr0LDGlcCIQgP.jpg', '2019-10-10 14:40:46', '2019-10-10 14:40:46', NULL),
-(59, 463, 'Male', 17, 'Full Time', '35000', 'ECONOMICS', 'MSS', 'HSTTI', '28-02-1968', '27-12-1928', '417873', '01-03-1997', '880031191069', 1, '28-02-1968', 'O+', 'Islam', '12345698745', NULL, NULL, NULL, NULL, NULL, NULL, 'Lemua', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Ashraf Ali', 'Job', NULL, NULL, NULL, NULL, NULL, 'Amiron Nesa', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Rebeka Sultana', NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-mwpcytPnX53P5r50J6FAn4xMhm638x.jpg', '2019-10-13 03:39:05', '2019-10-13 03:51:26', NULL),
-(60, 464, 'Male', 1, 'Full Time', '55000', 'PRINCIPAL', 'M.A', NULL, '09-09-2012', NULL, '1417876', '28-12-2019', '880031191070', 1, '01-10-1972', 'B+', 'Islam', '12345678945698', NULL, NULL, NULL, 'Karim kutir', NULL, NULL, 'Amtala Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Fazlul Karim', 'job', NULL, NULL, NULL, NULL, NULL, 'Safia Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-Q8efzrTRXkL8HgdpPPj7JUOoMpKhwE.jpg', '2019-10-14 07:44:25', '2019-10-14 07:44:25', NULL),
-(61, 465, 'Male', 2, 'Full Time', '50000', 'VICE-PRINCIPAL', 'B.A (HON\'S)M.A', 'HSTTI', '27-05-2002', NULL, '839674', '01-07-2002', '880031191071', 1, '01-01-1970', 'O+', 'Islam', '0418583620850', NULL, NULL, NULL, NULL, NULL, NULL, 'Rayhanpur', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Wazed Ali', 'job', NULL, NULL, NULL, NULL, NULL, 'Late Momina Khatun', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-CpXzcUpBwqaI4AvxJnVvcvvZ38ZtnK.jpg', '2019-10-14 07:51:47', '2019-10-14 07:51:47', NULL),
-(62, 466, 'Female', 16, 'Full Time', '23000', 'ISLAMIC HISTORY AND CULTURE', 'B.A (HON) M.A', 'HSTTI', '22-12-2002', NULL, '3098196', '11-01-2018', '880031191072', 1, '01-06-1977', 'B+', 'Islam', '7928007119880', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Kalmaga', 'Kalmaga', 'Kalmega', 'Patharghata', 'Barguna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Sakander Alom', 'Job', NULL, NULL, NULL, NULL, NULL, 'Nurzahan Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Md.Ali Azgor Talukder', NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-ieUUaIrgS2MznzifAjHFKv5Vx3gVch.jpg', '2019-10-14 15:49:30', '2019-10-15 03:28:17', NULL),
-(64, 474, 'Male', 1, 'Part Time', '30000', 'Specialist for Principal job', 'M.A', 'Many Side', '01-01-2015', NULL, NULL, NULL, '880015191011', 3, '01-10-1953', NULL, 'Hinduism', '9312585459907', NULL, NULL, NULL, NULL, NULL, NULL, 'Harinatoli', 'Dhanbari', 'Dhanbari', 'Dhanbari', 'Tangail', NULL, NULL, NULL, NULL, 'Harinatoli', 'Dhanbari', 'Dhanbari', 'Dhanbari', 'Tangail', NULL, 'Jaldhor Das', 'Farmer', NULL, NULL, NULL, NULL, NULL, 'abcd', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-OhmI3L2xzZ3kyzPDX4yxKMJuVXkyt0.jpg', '2019-12-08 16:44:15', '2019-12-08 16:44:15', NULL),
-(65, 475, 'Male', 16, 'Full Time', '12000', 'CSE', 'B.Sc(hon) in Computer Science', 'HIT-ICT', '01-03-2016', NULL, NULL, NULL, '880015191012', 3, '01-09-1978', 'A+', 'Islam', '19789322505039162', 'Agni Systems Ltd', NULL, 'Gulshan-1,Navana Tower', NULL, NULL, NULL, 'Kalipur', 'Dhanbari', 'Dhanbari', 'Dhanbari', 'Tangail', '1997', NULL, NULL, NULL, 'Kalipur', 'Dhanbari', 'Dhanbari', 'Dhanbari', 'Tangail', '1997', 'Mohammad Aminul Islam(Freedom Fighter)', 'Farmer', NULL, 'B A Pass', NULL, NULL, NULL, 'Honofa Begum', 'Retired Gov. Service.', NULL, 'S.S.C', NULL, NULL, NULL, 'Shamsunnahar Popi', 'Lecturer', NULL, 'M.A in English', NULL, NULL, '1 boy and study', 'public/uploadedImages//teacherPhoto/-z2fBSo4ScjSP6J4cD1F3nFT3hhngoc.jpg', '2019-12-08 16:58:47', '2020-01-28 15:49:44', NULL),
-(66, 479, 'Male', 16, 'Full Time', '12000', 'Specialist for this subject (Civi', 'M.A Political Science', NULL, '01-03-2016', NULL, NULL, NULL, '880015191013', 3, '25-12-1983', NULL, 'Islam', '9312580479498', NULL, NULL, NULL, NULL, NULL, NULL, 'Jupna purbo para', 'Mushuddi Bazar', 'Dhanbari', 'Dhanbari', 'Tangail', NULL, NULL, NULL, NULL, 'Jupna purbo para', 'Mushuddi Bazar', 'Dhanbari', 'Dhanbari', 'Tangail', NULL, 'MD.Shajahan Ali', 'Farmer', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-MtaIIG87aZbFKRM4c8BwM7OTKVPQPZ.jpg', '2019-12-14 14:11:30', '2019-12-14 14:11:30', NULL),
-(67, 480, 'Female', 16, 'Full Time', '12000', 'Specialist for this subject Geo.', 'M.Sc in Geography', NULL, '01-03-2016', NULL, NULL, NULL, '880015191014', 3, '05-06-1984', NULL, 'Islam', '9322504407216', NULL, NULL, NULL, NULL, NULL, NULL, 'Dhanbari bazar', 'Dhanbari', 'Dhanbari', 'Dhanbari', 'Tangail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ab.Salam', 'Business', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-eWzK6ZmnpdiWKhAz7QUjsTxQQkuZeX.jpg', '2019-12-14 15:45:25', '2019-12-14 15:45:25', NULL),
-(68, 481, 'Male', 16, 'Full Time', '12000', 'Specialist for Math Subject', 'M.Sc in Math', NULL, '01-03-2016', NULL, NULL, NULL, '880015191015', 3, '01-07-1984', NULL, 'Islam', '9325702090385', NULL, NULL, NULL, NULL, NULL, NULL, 'West Jotabari', 'Jotabari', 'Madhupur', 'Madhupur', 'Tangail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Samsul Haque', 'Farmer', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-7uO9YVGQyDtznQjR9xUlgVRz4ffMa2.jpg', '2019-12-14 16:00:50', '2019-12-14 16:00:50', NULL),
-(69, 482, 'Male', 16, 'Full Time', '12000', 'Specialist for Chemistry Subject', 'M.Sc in Chemistry', NULL, '01-03-2016', NULL, NULL, NULL, '880015191016', 3, '27-11-1984', NULL, 'Islam', '3811363336502', NULL, NULL, NULL, NULL, NULL, NULL, 'Shantimohal', 'Ghatial', 'Ghatial', 'Ghatail', 'Tangail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md. Fazlur Rahaman', 'Farmer', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-oU2if8yP1oAH9esHkF5YzzoZhzMSuE.jpg', '2019-12-14 16:13:15', '2019-12-14 16:13:15', NULL),
-(70, 483, 'Male', 16, 'Full Time', '12000', 'Specialist for Social welfare Subject', 'M.A Social welfare', NULL, '01-03-2016', NULL, NULL, NULL, '880015191017', 3, '01-01-1986', NULL, 'Islam', '19869312580072057', NULL, NULL, NULL, NULL, NULL, NULL, 'South Mushuddi', 'Mushuddi Bazar', 'Mushuddi Bazar', 'Dhanbari', 'Tangail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Abul Hossain', 'Gov.Service', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-Dm3bMKj6C2cI6z47McIkLeZViWcw2k.jpg', '2019-12-14 16:24:38', '2019-12-14 16:24:38', NULL),
-(71, 484, 'Male', 16, 'Full Time', '12000', 'Specialist for Management Subject', 'M.com. Management', NULL, '01-03-2016', NULL, NULL, NULL, '880015191018', 3, '25-07-1986', NULL, 'Islam', '19869322508076017', NULL, NULL, NULL, NULL, NULL, NULL, 'Middle Calash', 'Dhanbari', 'Dhanbari', 'Dhanbari', 'Tangail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md. Nurul Islam', 'Business', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-YpSmbAb982X3GIOEMw7KDBUXD676QP.jpg', '2019-12-14 16:36:25', '2019-12-14 16:36:25', NULL),
-(72, 485, 'Female', 16, 'Full Time', '12000', 'Specialist for biology Subject', 'M.Sc in Biology', NULL, '01-03-2016', NULL, NULL, NULL, '880015191019', 3, '31-12-1986', NULL, 'Islam', '3916157672974', NULL, NULL, NULL, NULL, NULL, NULL, 'West Shek sadi para', 'Sheksadi', 'Malandho', 'Malandho', 'Jamal pur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md. Nazim Uddin', 'Farmer', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-0pxMdHts94r8pwDrXrPRwXsQrBUVa8.jpg', '2019-12-14 16:50:38', '2019-12-14 16:50:38', NULL);
-INSERT INTO `staff` (`id`, `user_id`, `gender`, `designation_id`, `type`, `salary`, `subject`, `edu_qulif`, `training`, `joining_date`, `retirement_date`, `index_no`, `date_of_mpo`, `staff_id`, `school_id`, `birthday`, `blood_group`, `religion`, `nid_card_no`, `last_org_name`, `reason_to_leave`, `last_org_address`, `pre_address`, `Pre_h_no`, `pre_ro_no`, `pre_vpm`, `pre_poff`, `pre_unim`, `pre_subd`, `pre_district`, `pre_postc`, `per_address`, `per_h_no`, `per_ro_no`, `per_vpm`, `per_poff`, `per_unim`, `per_subd`, `per_district`, `per_postc`, `father_name`, `f_career`, `f_m_income`, `f_edu_c`, `f_mobile_no`, `f_email`, `f_nid`, `mother_name`, `m_career`, `m_m_income`, `m_edu_c`, `m_mobile_no`, `m_email`, `m_nid`, `h_w_name`, `profession`, `wedding_date`, `h_w_edu_qulif`, `h_w_email`, `h_w_mobile_no`, `kids`, `photo`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(73, 486, 'Male', 16, 'Full Time', '12000', 'Specialist for Accounting Subject', 'M.com Accounting', NULL, '01-03-2016', NULL, NULL, NULL, '880015191020', 3, '01-04-1987', NULL, 'Islam', '2692848056933', NULL, NULL, NULL, NULL, NULL, NULL, 'home 3/26,3rd floor', 'Raiarbazar', 'Dhanmondi', 'Dhanmondi', 'Dhaka', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Kamal Uddin', 'Farmer', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-gNP9uDu9gegi5FIHKuC4mr29AhB5zf.jpg', '2019-12-14 17:07:19', '2019-12-14 17:07:19', NULL),
-(74, 488, 'Female', 16, 'Full Time', '12000', 'Specialist for physics Subject', 'M.Sc in physics', NULL, '01-03-2016', NULL, NULL, NULL, '880015191021', 3, '02-07-1988', NULL, 'Islam', '6125221270078', NULL, NULL, NULL, NULL, NULL, NULL, 'Fulbari', 'Vhatkura', 'Dhanbari', 'Dhanbari', 'Tangail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md. mazad ali', 'Gov.Service', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-4QNpSgI83lOKKOImbPbUjdMlQ1HKOR.jpg', '2019-12-15 17:10:37', '2019-12-15 17:10:37', NULL),
-(75, 489, 'Male', 16, 'Full Time', '12000', 'Specialist for English Subject', 'M.A English', NULL, '01-03-2016', NULL, NULL, NULL, '880015191022', 3, '30-08-1989', NULL, 'Islam', '19893913665382694', NULL, NULL, NULL, NULL, NULL, NULL, 'Roshidpur vatipara', 'Roshidpur', 'Roshidpur', 'jamalpur', 'Jamal pur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Mohammad Zakria', 'Service', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-mGkFRUoyW3zopuVWWNjYzYra34Uu3V.jpg', '2019-12-15 17:20:38', '2019-12-15 17:20:38', NULL),
-(76, 490, 'Male', 16, 'Full Time', '12000', 'Specialist for Marketing Subject', 'M.com. Marketing', NULL, '01-03-2016', NULL, NULL, NULL, '880015191023', 3, '01-01-1990', NULL, 'Islam', '1990931257075999', NULL, NULL, NULL, NULL, NULL, NULL, 'Ramkisnopur', 'ukharibari', 'Dhanbari', 'Dhanbari', 'Tangail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md. chan mia', 'Farmer', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-6cfJnIptp4XZEDL4rMRQ6MwNn9tS33.jpg', '2019-12-15 17:30:18', '2019-12-15 17:30:18', NULL),
-(77, 491, 'Female', 16, 'Full Time', '12000', 'Specialist for Agriculture Subject', 'M.Sc in Agriculture', NULL, '01-03-2016', NULL, NULL, NULL, '880015191024', 3, '01-01-1990', NULL, 'Islam', '3923603116223', NULL, NULL, NULL, NULL, NULL, NULL, 'Nargis nird', 'bottola bazar', 'Jamalpur', 'jamalpur', 'Jamal pur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md. Shahadot Hossin', 'Gov.Service', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-YvpuNETUHOqNpNRmjgvziziIfZhEaL.jpg', '2019-12-15 17:45:29', '2019-12-15 17:45:29', NULL),
-(78, 492, 'Female', 16, 'Full Time', '12000', 'Specialist for Bang la Subject', 'M.Sc in Bangla', NULL, '01-03-2016', NULL, NULL, NULL, '880015191025', 3, '08-09-1990', NULL, 'Islam', '19909312557000099', NULL, NULL, NULL, NULL, NULL, NULL, 'Doyaram bari', 'Vaighat', 'Dhanbari', 'Dhanbari', 'Tangail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Husband: Saifuddin', 'Service', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-mIlCkkTBHyPZLoajx3cWWMQUce8EaT.jpg', '2019-12-15 17:56:13', '2019-12-15 17:56:13', NULL),
-(79, 493, 'Male', 16, 'Full Time', '12000', 'Specialist for Islam subject', 'M.A Islamic hi stray and culture', NULL, '01-03-2016', NULL, NULL, NULL, '880015191026', 3, '10-12-1989', NULL, 'Islam', '19899313821674222', NULL, NULL, NULL, NULL, NULL, NULL, 'poncas', 'shajonpur', 'Madhupur', 'Madhupur', 'Tangail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md. Mofizur Rahaman', 'Farmer', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-pBsEHqxD5GOARRYzK4vooXfM8PsbvG.jpg', '2019-12-15 18:05:11', '2019-12-15 18:05:11', NULL),
-(80, 683, 'Male', 16, 'Full Time', '22000', 'Social Science', 'MSS', NULL, '01-11-2017', NULL, NULL, NULL, '880031191073', 1, '01-03-2-1990', 'A+', 'Islam', '6875049121', NULL, NULL, NULL, 'Akon Home', NULL, NULL, 'Jamirtala', 'Mathertaly', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Harunur Rashid', 'Job', '30000', NULL, '01718723989', NULL, NULL, 'Helena', 'House Wife', NULL, NULL, '01734638393', NULL, NULL, 'Rumana Akter', NULL, NULL, NULL, NULL, '01312654554', NULL, 'public/uploadedImages//teacherPhoto/-zeWKOE4VUJqWDt1PiWeuWygyCCZVUk.jpg', '2020-01-26 04:59:27', '2020-01-28 07:17:23', NULL),
-(81, 685, 'Male', 16, 'Full Time', '22000', 'POLITICAL SCIENCE', 'MSS', 'HSTTI', '04-06-2014', NULL, NULL, NULL, '880031191074', 1, '01-06-1980', 'AB+', 'Islam', '1000459618', NULL, NULL, NULL, NULL, NULL, NULL, 'Medal Jaliaghata', 'Rupdhon', 'Kakchira', 'Patharghata', 'Barguna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Let Kazi Abdul Latif', 'Farmar', NULL, NULL, NULL, NULL, NULL, 'Mrs Shalia Begum', 'House Wife', NULL, NULL, '01715156596', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages//teacherPhoto/-EsXq5q0XUQRMF3TQ7j4wSXaM7GufEm.jpg', '2020-01-28 06:31:12', '2020-01-28 06:31:12', NULL),
-(82, 686, 'Male', 16, 'Full Time', '22000', 'Bangla', 'M.a', 'HSTTI', '12-06-2018', NULL, NULL, NULL, '880031191075', 1, '15-04-1983', 'B+', 'Islam', '3283362691', NULL, NULL, NULL, NULL, NULL, NULL, 'Kalipur', 'Kamarhat', 'Kathaltali', 'Patharghata', 'Barguna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Rustum Jomaddar', 'Teacher', NULL, NULL, NULL, NULL, NULL, 'Nurvanu Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages//teacherPhoto/-Qa34lCBUzRCStj6yMbzZvfmLHtd7X8.jpg', '2020-01-28 06:38:43', '2020-01-28 07:17:02', NULL),
-(83, 692, 'Male', 16, 'Full Time', '220000', 'HISTORY', 'M.A', NULL, '31-12-2016', NULL, NULL, NULL, '880031191076', 1, '06-04-1982', NULL, 'Islam', '2396383529', NULL, NULL, NULL, NULL, NULL, NULL, 'North Subidkhali', 'Subidkhali', 'Amragacia', 'Mirzagong', 'Patuakhali', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Delwar Hussain Sikder', 'Job', NULL, NULL, '01734911149', NULL, NULL, 'Mosa Safali Begum', 'Job', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages//teacherPhoto/-f4RAYGBmpp5ZuzH4jqAleJ5zj3QHQz.jpg', '2020-02-02 14:16:08', '2020-02-04 04:06:45', NULL);
+INSERT INTO `staff` (`id`, `user_id`, `gender`, `designation_id`, `type`, `salary`, `subject`, `edu_qulif`, `training`, `joining_date`, `retirement_date`, `index_no`, `date_of_mpo`, `staff_id`, `school_id`, `birthday`, `blood_group`, `religion`, `nid_card_no`, `last_org_name`, `reason_to_leave`, `last_org_address`, `pre_address`, `Pre_h_no`, `pre_ro_no`, `pre_vpm`, `pre_poff`, `pre_unim`, `pre_subd`, `pre_district`, `pre_postc`, `per_address`, `per_h_no`, `per_ro_no`, `per_vpm`, `per_poff`, `per_unim`, `per_subd`, `per_district`, `per_postc`, `father_name`, `f_career`, `f_m_income`, `f_edu_c`, `f_mobile_no`, `f_email`, `f_nid`, `mother_name`, `m_career`, `m_m_income`, `m_edu_c`, `m_mobile_no`, `m_email`, `m_nid`, `h_w_name`, `profession`, `wedding_date`, `h_w_edu_qulif`, `h_w_email`, `h_w_mobile_no`, `h_w_nid_no`, `kids`, `photo`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 401, 'Male', 17, 'Full Time', '35000', 'English', 'M.A', 'P.T.I B.ED MED', '01-02-1988', '04-02-2020', '353636', '01-02-1988', '880031191011', 1, '04-02-1960', NULL, 'Islam', '456789123', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Parens', NULL, NULL, '293/1 North East', 'Mathbaria', 'Mathbaria', 'Mathbaria', 'Perojpur', NULL, 'Do', NULL, NULL, 'Do', 'Do', 'Do', 'Do', 'Do', NULL, 'Late Md.Keramat Ali Gamadder', 'Job', NULL, NULL, NULL, NULL, NULL, 'Late Bibigan Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mahmuda Ahamed', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-1ewobJphpoGfCz7lILdN7J8bAMvIbP.jpg', '2019-09-29 14:45:54', '2019-10-07 14:01:22', NULL),
+(2, 402, 'Male', 17, 'Full Time', '35000', '06-09-1989', 'MSS', 'B.ED, M.ED, CPD & CEDP', '06-09-1989', '04-08-2021', '403316', '01-07-1993', '880031191012', 1, '05-08-1961', 'B+', 'Islam', '4603677362', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Professores House', NULL, 'Md.Mazid Sarak', 'South Monosatali', 'East Dupati', 'Gourichanna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Fazlul karim', 'Job', NULL, NULL, NULL, NULL, NULL, 'Gol Chahara', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Lily Khanam', 'Service', '08-03-1984', 'B.A', NULL, '01914407353', NULL, 'One Daughter Student\r\nOne Son Student', 'public/uploadedImages/teacherPhoto/-muOZmPBYgN7A2OxSwdhigs5EJIDcJ4.jpg', '2019-09-29 15:02:32', '2019-10-07 08:19:00', NULL),
+(3, 403, 'Male', 17, 'Full Time', '35000', '06-09-1989', 'B.A (HON) M.A (BANGLA)', 'Short Course', '19-09-1989', '31-01-2020', '403317', '01-06-1993', '880031191013', 1, '01-02-1960', 'O+', 'Islam', '4150996673', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Alhaz Vaban', '50', NULL, 'Baganbari', 'Barguna', 'Barguna', 'Barguna', 'Barguna', NULL, 'Poncait Bari', NULL, NULL, 'Gilatali', 'Gourichanna', '3 no Fuljuri', 'Barguna', 'Barguna', NULL, 'Nesar Uddin', 'Job', NULL, NULL, NULL, NULL, NULL, 'Khabiron Nessa', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Helina Begum', 'House Wife', '01-07-1988', 'S.S.C', NULL, NULL, NULL, 'Only One Son', 'public/uploadedImages/teacherPhoto/-v9iZ52vtrMgs0m5K8GZ5ngcTy3e9QW.jpg', '2019-09-29 15:28:37', '2019-10-07 08:20:05', NULL),
+(4, 404, 'Male', 17, 'Full Time', '35000', 'ISLAMIC HISTORY AND CULTURE', 'M.A', 'CPD', '13-02-1990', '02-07-1923', '403318', '01-07-1993', '880031191014', 1, '03-05-1963', 'A+', 'Islam', '8687584600', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Hawlader Bari', '784', NULL, 'Lebubunia', 'Lebubunia', 'Khthalia', 'Khthalia', 'Jhalokati', '8430', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Farman Ali Hawlader', 'Job', NULL, NULL, NULL, NULL, NULL, 'Lal Bhanu', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Piara Begum', 'House Wife', '03-02-1984', 'H.S.C', NULL, '01756672465', NULL, NULL, 'public/uploadedImages/teacherPhoto/-sgQ6x3yVba2dsrzfdnlSImIrkSDH3L.jpg', '2019-09-29 16:06:10', '2019-10-07 08:21:38', NULL),
+(5, 405, 'Male', 17, 'Full Time', '35000', 'POLITICAL SCIENCE', 'B.S.S (Hon,s)M.S.S', 'CPD', '30-12-1993', NULL, '404178', '01-01-1994', '880031191015', 1, '05-03-1969', 'B+', 'Islam', '9567126686', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, '260/2 College', NULL, NULL, 'School Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', 'Sikder Bari', NULL, NULL, 'kakchira', 'kakchira', 'kakchira', 'Patharghata', 'Barguna', '8721', 'Moulabi Jalal Uddin', 'Job', NULL, NULL, NULL, NULL, NULL, 'Samsun Nahar Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Jamil Ara Begum', 'Assistant Professor', '14-06-1992', 'M.A', NULL, NULL, NULL, 'Two son 1st son Doctor and 2nd son Student', 'public/uploadedImages/teacherPhoto/-BfwRumbup3M6kh0hji9HVHiTZO9iqi.JPG', '2019-09-29 16:19:57', '2019-10-10 15:56:50', NULL),
+(6, 406, 'Male', 17, 'Full Time', '35000', 'ECONOMICS', 'BSS (HON,S) MSS (ECONOMICS', NULL, '30-12-1993', '02-10-1923', '404180', '01-01-1994', '880031191016', 1, '03-10-1963', 'B+', 'Islam', '0418583619355', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, 'Lemua', NULL, 'Lemua', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', NULL, NULL, NULL, NULL, 'Tarikata', 'Tarikata', 'Arpangashia', 'Amtali', 'Barguna', NULL, 'Md.Monsur Ali Howlader', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Sona Baru Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Rina Parvin', NULL, '10-03-1988', 'S.S.C', NULL, '01745319429', NULL, 'One Son and One Doughter (Student)', 'public/uploadedImages/teacherPhoto/-uKPLvm4nmRZnlB40dLpVgl0J37P9qs.jpg', '2019-09-29 16:31:28', '2019-10-07 08:23:57', NULL),
+(7, 409, 'Female', 17, 'Full Time', '35000', 'BANGLA', 'B.A (HON) M.A (BANGLA)', NULL, '01-12-1992', NULL, '402028', '01-12-1992', '880031191017', 1, '12-10-1965', 'O+', 'Islam', '9550441621', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, '260/2', NULL, 'College Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Nurul Islam Khan', 'Job', NULL, NULL, NULL, NULL, NULL, 'Sadrunnesa', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Abu Muyeen Muhammad Nesar Uddin', 'Assistant Professor', '14-06-1992', 'Bss(Hon,s) M.ss', NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-WXNHZtuV8zJBX8cM3prRNuosPBpVy6.jpg', '2019-09-30 14:04:03', '2019-10-07 08:24:48', NULL),
+(8, 410, 'Female', 17, 'Full Time', '35000', 'LOGIC', 'M.A (PHILOSOPHY', 'HSTTI', '30-12-1993', NULL, '404181', '01-01-1994', '880031191018', 1, '03-07-1968', 'O+', 'Hinduism', '4150884973', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Muslim Para', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', 'Howlader', '216', '9 no Golbunia Road', 'Golbunia', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', 'Let.Jatindra Nath Karmakar', 'Job', NULL, NULL, NULL, NULL, NULL, 'Let.Pushpa Rani Karmakar', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Rabindra Nath Howlader', 'Assistant Professor', '24-11-1998', 'M.A', NULL, '01726049662', NULL, 'One son', 'public/uploadedImages/teacherPhoto/-E7WleiOeR3eyhwcxvWBnhnnNcw96AN.jpg', '2019-09-30 14:13:45', '2019-10-07 08:25:26', NULL),
+(9, 411, 'Male', 17, 'Full Time', '35000', 'ISLAMIC STUDIES', 'M.A', NULL, '21-05-1995', '31-08-2026', '411875', '01-06-1995', '880031191019', 1, '01-09-1966', 'O+', 'Islam', '5534408991', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Rayhanpur', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', NULL, NULL, NULL, NULL, 'Khontakata', 'Amtali', 'Amtali', 'Amtali', 'Barguna', '8710', 'Late Moulana Altaf Hossen', 'Job', NULL, NULL, NULL, NULL, NULL, 'Late Mrs. Halima Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Zahura Begum', NULL, NULL, 'S.S.C', NULL, '01740207260', NULL, NULL, 'public/uploadedImages/teacherPhoto/-kglyKQKasrsgoL0HxMRsw6X8LFv45y.jpg', '2019-09-30 14:23:33', '2019-10-07 08:26:17', NULL),
+(10, 412, 'Male', 17, 'Full Time', '35000', 'AGRICULTURE', 'M.SC', 'HSTTI', '22-05-1995', '28-02-2029', '412698', '01-03-1996', '880031191020', 1, '01-03-1969', 'O+', 'Islam', '9100932285', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'High School Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Moslem Ali', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mhamuda Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Farhana', 'Teacher', NULL, 'B.A', NULL, '01721448846', NULL, NULL, 'public/uploadedImages/teacherPhoto/-vSDAZuVIEe5ImjN8A31CE5DWC9pJ5N.jpg', '2019-09-30 14:30:42', '2019-10-07 08:27:10', NULL),
+(11, 413, 'Male', 17, 'Full Time', '35000', 'SECRETERIAL SCIENCE', 'M.COM (MANAGEMENT)', 'HSTTI & NAME COMPUTER', '18-12-1996', '09-07-2026', '417875', '01-03-1997', '880031191021', 1, '10-07-1966', 'A+', 'Islam', '0428507378139', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Mim House', '495', NULL, 'Kharakanda Road', 'Patharghata', 'Patharghata', 'Patharghata', 'Barguna', '8720', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Amzad Hossain', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Jayeda Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Munira Yeasmin', NULL, '26-10-19990', NULL, NULL, '01715647812', NULL, 'Two', 'public/uploadedImages/teacherPhoto/-1Te7efUhhPP2tnVEtZ0iuKJdyT85Ye.jpg', '2019-09-30 14:40:47', '2019-10-07 08:28:43', NULL),
+(12, 414, 'Female', 17, 'Full Time', '35000', 'ISLAMIC HISTORY AND CULTURE', 'M.A (ISLAMIC HISTORY)', 'CPD', '01-12-1998', '04-12-1933', '430763', '01-12-1998', '880031191022', 1, '05-12-1973', 'A+', 'Islam', '7925809233224', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Thana Para', 'Mathbaria', 'Mathbaria', 'Mathbaria', 'Perojpur', '8560', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Amir Hossain', 'Job', NULL, NULL, NULL, NULL, NULL, 'Khaleda Khanam', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Golam Mostofa', 'Service', '25-12-1998', 'Mss', NULL, '01748713040', NULL, 'Two', 'public/uploadedImages/teacherPhoto/-5NiwpM47XScpX4YIzHHYq7CLZ9PJiz.jpg', '2019-09-30 14:51:46', '2019-10-08 04:35:06', NULL),
+(13, 415, 'Male', 17, 'Full Time', '35000', 'ISLAMIC STUDIES', 'B.A (HON) M.A', 'HSTTI', '23-08-2000', '05-03-2029', '616260', '01-09-2000', '880031191023', 1, '06-03-1969', 'O+', 'Islam', '5984243120', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Professores Vila', '512', NULL, 'JALIAGHATA', 'Rupdhon', 'Kakchira', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.A.Wazed Khan', 'LET', NULL, NULL, NULL, NULL, NULL, 'Mst.Saleha Begum', 'LET', NULL, NULL, NULL, NULL, NULL, 'Mst.Mahmuda Begum', NULL, '12-05-1993', 'B.A', NULL, '01731067800', NULL, 'Two Son', 'public/uploadedImages/teacherPhoto/-zWipwhdp2eXU8FfSdMW86YEIXI3on3.jpg', '2019-09-30 14:59:58', '2019-10-07 08:30:05', NULL),
+(14, 416, 'Male', 17, 'Full Time', '35000', 'SOCIAL WORK', 'MSS (SOCIAL WORK)', 'CPD', '24-08-2000', '28-02-2031', '617673', '01-01-2001', '880031191024', 1, '01-03-1971', 'B+', 'Islam', '8650991782', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Amtala Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Abdul kader', 'Job', NULL, NULL, NULL, NULL, NULL, 'Momtaz Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Fazilatunnasa', 'Teacher', '13-09-2002', 'H.S.C', NULL, '01728632700', NULL, 'Two Son', 'public/uploadedImages/teacherPhoto/-dgwPsDqrmw2ZgTXjb7W3zm6ZjoADft.jpg', '2019-09-30 15:06:39', '2019-10-07 08:31:07', NULL),
+(15, 417, 'Male', 17, 'Full Time', '29000', 'BIOLOGY', 'M.SC', NULL, '24-08-2000', NULL, '833802', '01-03-2002', '880031191025', 1, '05-07-1972', 'B+', 'Hinduism', '7750845963', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Biplob Bhaban', NULL, NULL, 'Karoitala', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Anil Chandra Sil', 'Job', NULL, NULL, NULL, NULL, NULL, 'Bina Rani Sil', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Shilpi Rani', 'House Wife', '11-12-2000', NULL, NULL, '01728544642', NULL, 'Two', 'public/uploadedImages/teacherPhoto/-dQI1gbGSaSPCxoWcpNW9PxPkCMn1a7.jpg', '2019-09-30 15:18:07', '2019-10-08 05:52:57', NULL),
+(16, 418, 'Male', 17, 'Full Time', '2900', 'ENGLISH', 'M.A IN ENGLISH', 'CPD', '23-08-2000', NULL, '617234', '01-01-2001', '880031191026', 1, '15-11-1973', 'O+', 'Islam', '5053499637', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Fair Nexus', '0049-02', NULL, 'Dk.P Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, 'Gazimahmood', 'Nishanbaria', 'Naltona', 'Barguna', 'Barguna', '8720', 'Md.Ataher Ali Howlader', 'Job', NULL, NULL, NULL, NULL, NULL, 'Fulnessa Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Sabina Yesmin', 'Service', '12-10-2003', 'M.A in Sociology', NULL, '01732132412', NULL, 'Two Daughter', 'public/uploadedImages/teacherPhoto/-mrLa9UeWPUVqZvW2S044DWc8KCt3bd.jpg', '2019-09-30 15:27:09', '2019-10-07 08:31:58', NULL),
+(17, 419, 'Male', 17, 'Full Time', '29000', 'COMPUTER STUDIES', 'BSC (HON,S) M.SC (PHYSICS)', 'HSTTI', '28-07-2002', '20-09-2029', '839678', '28-07-2002', '880031191027', 1, '21-09-1969', 'O+', 'Islam', '7925802224260', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Hawlader Bari', NULL, NULL, 'W.Sener Tikikata', 'Tikikata Madrasa', 'Tikikata', 'Mathbaria', 'Perojpur', '811', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late A.Latif Mia', 'Job', NULL, NULL, NULL, NULL, NULL, 'Late Jahanara', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mrs.Farjana Begum', 'House Wife', '28-06-2002', 'S.S.C', NULL, '01731442442', NULL, NULL, 'public/uploadedImages/teacherPhoto/-mcDh3XSBw1PkswitavdOznAQ65mAHq.jpg', '2019-09-30 15:36:02', '2019-10-07 14:05:42', NULL),
+(18, 420, 'Male', 17, 'Full Time', '29000', 'ENGLISH', 'B.A (HON) M.A', NULL, '24-09-2002', '01-05-2037', '842555', '24-09-2002', '880031191028', 1, '01-05-1977', 'O+', 'Hinduism', '0412828426776', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'College Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Rajeshwar Howlader', 'Job', NULL, NULL, NULL, NULL, NULL, 'Bhagabati', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mitali Rani Halder', 'Service', '13-03-2008', 'M.A', NULL, '01720623022', NULL, NULL, 'public/uploadedImages/teacherPhoto/-vjtyeGmtFMjS5BelJjt29L63B7NTMG.jpg', '2019-09-30 16:04:37', '2019-10-07 14:07:47', NULL),
+(19, 421, 'Female', 17, 'Full Time', '2900', 'SOCIOLOGY', 'M.A IN SOCIOLOGY', 'CPD', '01-11-1978', NULL, '844753', '24-09-2002', '880031191029', 1, '01-11-1978', 'A+', 'Islam', '3703496830', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Fair Nexus', '0049-02', NULL, 'Dk.P Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, 'Gazimahmood', 'Nishanbaria', 'Naltona', 'Barguna', 'Barguna', '8700', 'Md.Deloar Hossain', 'Job', NULL, NULL, NULL, NULL, NULL, 'Hasina Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Md.Sagir Mia', 'Service', '12-10-2003', 'M.A in English', NULL, '01716616515', NULL, 'Two Daughter', 'public/uploadedImages/teacherPhoto/-3t3XhahA28WOIVH4TxmNp7k6x36Krh.jpg', '2019-09-30 16:13:14', '2019-10-07 08:35:41', NULL),
+(20, 422, 'Male', 17, 'Full Time', '29000', 'ECO.AND. COMMERCE.GEOP', 'M.COM (MANAGEMENT)', NULL, '22-12-2002', NULL, '3010587', '01-03-2004', '880031191030', 1, '22-08-1974', 'B+', 'Islam', '1974412838374321', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Mir Bari', NULL, NULL, 'Baralaban Gola', 'Barguna', 'Burirchar', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Adom Ali', 'Job', '20000', NULL, NULL, NULL, NULL, 'Halima Khanam', 'House Wife', NULL, NULL, '01758472934', NULL, '0412838374383', 'Asma', 'House Wife', '29-03-2001', 'H.S.C', NULL, '01732286238', NULL, 'Two Son', 'public/uploadedImages/teacherPhoto/-k4szSAQBnaqckzLS2sCyHXEshPbIwb.jpg', '2019-09-30 16:23:32', '2019-10-07 14:10:41', NULL),
+(21, 423, 'Male', 17, 'Full Time', '29000', 'CHEMISTRY', 'M.SC', NULL, '21-08-2004', '31-12-2037', '3011272', NULL, '880031191031', 1, '01-01-1978', 'B+', 'Islam', '6435840597', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Bondhon', NULL, NULL, 'College Branch', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', 'Borhan Uddin How', NULL, NULL, 'Nachnapara', 'Borhan Mahal', 'Nachnapara', 'Patharghata', 'Barguna', '8700', 'Late. Abdul Quddus Howlader', 'Job', NULL, NULL, NULL, NULL, NULL, 'Late Rajia Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Farjana Rahman', 'House Wife', '17-01-2000', 'S.S.C', NULL, '01914720208', NULL, NULL, 'public/uploadedImages/teacherPhoto/-Um5yxI2LPnYCZo6mAnk4Ygi0gQRVbc.jpg', '2019-09-30 16:33:00', '2019-10-07 14:11:25', NULL),
+(22, 424, 'Female', 17, 'Full Time', '3500', 'SOCIAL WORK', 'M.S.S', NULL, '22-08-2004', '14-01-2038', '3073695', '01-09-2005', '880031191032', 1, '15-01-1978', 'AB+', 'Islam', '6850990851', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Godhuli', '101/1', NULL, 'D.k.P Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md. Abdul Hashem', 'Job', NULL, NULL, NULL, NULL, NULL, 'Late Jaygun Nessa', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Md.Istak Ahamed', NULL, '14-03-1999', 'M.s.s', NULL, '01715714602', NULL, 'Two Daughter Students', 'public/uploadedImages/teacherPhoto/-QBV8BIdxnshtmHisuZAXWfQ9xxJx4q.jpg', '2019-10-02 15:09:01', '2019-10-07 08:36:27', NULL),
+(23, 425, 'Male', 17, 'Full Time', '3500', 'ACCOUNTING', 'M.COM IN ACCOUNTING', 'CRETIBE', '22-12-2002', '29-08-2036', '3073697', '01-09-2005', '880031191033', 1, '30-08-1976', 'B+', 'Islam', '0412819137228', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Farazi Bari', NULL, NULL, 'Kumra Khali', 'Bawalcor', 'Badar Khali', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Let Md. Zafor Ali Farazi', 'Job', NULL, NULL, NULL, NULL, NULL, 'Kohenur Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Nazmunnhar', 'Teacher', '01-03-2008', 'B.A', NULL, '01715635144', NULL, NULL, 'public/uploadedImages/teacherPhoto/-115ntUQbWpScXVXEkJKdxIIpA8cYLF.jpg', '2019-10-02 15:18:49', '2019-10-07 08:37:18', NULL),
+(24, 426, 'Male', 16, 'Full Time', '23000', 'MATHEMATICS', 'M.SC (MATHEMATICS)', NULL, '15-02-2012', NULL, '3086290', '01-11-2012', '880031191034', 1, '10-02-1984', 'B+', 'Islam', '0418559636617', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Gayenpara', 'Borhanmohol', 'Nachnapara', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Badsha Mia', 'Job', NULL, NULL, NULL, NULL, NULL, 'Taslima Nasrin', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Chadni Akther Alin', 'House Wife', '12-03-2017', 'M.s.s', NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-WLXPue5vcgf3wZoW8TJLoJtqyShtjg.jpg', '2019-10-02 15:28:01', '2019-10-07 08:38:03', NULL),
+(25, 427, 'Male', 16, 'Full Time', '23000', 'MANAGEMENT', 'M.B.S', NULL, '19-05-2014', '14-08-2043', '3090671', '01-01-2015', '880031191035', 1, '15-08-1983', 'A+', 'Islam', '7925803222022', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Gain Bhabon', '189', NULL, 'Mathbaria', 'Mathbaria', 'Mathbaria', 'Mathbaria', 'Mathbaria', '8560', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Jagadish Chandra Gain', 'Teacher', NULL, 'B.sc', NULL, NULL, '7925803222019', 'Tillottama Rani Gain', 'House Wife', NULL, NULL, NULL, NULL, '7925803222021', 'Eshita Halder', 'Lecturer', '01-02-2017', 'M.B.S', NULL, '01754133232', NULL, NULL, 'public/uploadedImages/teacherPhoto/-GdgMms9kTBK9TMxG3OEiGeIBg99xs4.jpg', '2019-10-02 16:02:34', '2019-10-07 08:38:52', NULL),
+(27, 429, 'Female', 16, 'Full Time', '23000', 'MARKETING', 'M.B.S', NULL, '08-06-2015', '19-11-2047', '3092051', '01-01-2016', '880031191037', 1, '20-11-1987', 'AB+', 'Hinduism', '19877915851000030', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Gain Bhabon', '189', 'Road no-03', 'Mathbaria', 'Mathbaria', 'Mathbaria', 'Mathbaria', 'Mathbaria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Saileswar Halder', 'Teacher', NULL, 'M.A', '01725438934', NULL, '7915851359303', 'Nomita Halder', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Palash Chandra Gain', 'Lecturer', '01-02-2017', 'M.B.S', NULL, '01735853278', NULL, NULL, 'public/uploadedImages/teacherPhoto/-iwWKSeIMudUpZw0lFB97Sq6Pl5jAC7.jpg', '2019-10-02 16:12:49', '2019-10-08 04:35:34', NULL),
+(28, 430, 'Female', 16, 'Full Time', '23000', 'SOCIOLOGY', 'BSS (HON,S) MSS', NULL, '22-12-2002', NULL, '3098198', '01-11-2018', '880031191038', 1, '03-04-1975', 'A+', 'Islam', '8650924023', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Ovic Vila', NULL, NULL, 'D.k.P Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Anowar Hossain', 'Job', NULL, NULL, NULL, NULL, NULL, 'Late Afroza Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Md.Faruk Hossain', 'Principal', '06-05-2003', 'M.com', NULL, '01712979402', NULL, 'One Son and One Daughter Both are Student', 'public/uploadedImages/teacherPhoto/-rYKDyA4a91kfgr2PfItqsyj70R3CxT.jpg', '2019-10-02 16:23:29', '2019-10-08 04:36:15', NULL),
+(29, 431, 'Male', 16, 'Full Time', '23000', 'PRODUCTION MANAGEMENT AND MARKETING', 'M.COM (MANAGEMENT)', NULL, '08-06-2015', NULL, '3096555', '01-05-2018', '880031191039', 1, '20-07-1982', 'A+', 'Islam', '6855453319', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Jaliaghata', 'Kamarhat', 'Kakchira', 'Patharghata', 'Barguna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Let Md.Sohraf Hossen', 'Job', NULL, NULL, NULL, NULL, NULL, 'MST.NORONNAHAR BEGUM', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'MST.SURYA PARVIN', 'House Wife', NULL, 'S.S.C', NULL, '01775595727', NULL, NULL, 'public/uploadedImages/teacherPhoto/-4Gb9I0p3qsAi1TJgmiDMwi9Sl0bWIy.jpg', '2019-10-02 16:30:06', '2019-10-08 04:35:57', NULL),
+(30, 432, 'Male', 16, 'Full Time', '23000', 'ACCOUNTING', 'M.COM', NULL, '19-05-2014', '09-08-2046', NULL, NULL, '880031191040', 1, '10-08-2086', 'A+', 'Islam', '0418523265876', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Akon', NULL, NULL, 'West.Bainchatkey', 'Kakchira', 'Kakchira', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Abdul Khalek', 'Job', NULL, NULL, '01718928319', NULL, NULL, 'Rokeya Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Bethi Akter', 'House Wife', NULL, 'H.S.C', NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-rdw0iITqhC0ZpTlVe4mw4v4aeq0OwZ.jpg', '2019-10-02 16:38:17', '2019-10-07 08:43:42', NULL),
+(31, 433, 'Male', 16, 'Full Time', '23000', 'ACCOUNTING', 'M.COM', 'HSTTI & NAME COMPUTER', '19-05-2014', NULL, NULL, NULL, '880031191041', 1, '17-01-1984', 'O+', 'Islam', '5050983195', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Amtali', 'Kakchira', 'Kakchira', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Sohrab', 'Job', NULL, NULL, '01828842005', NULL, NULL, 'Setara Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Afroja Akter', 'House Wife', '03-01-2014', 'B.A', NULL, NULL, NULL, 'One Daughter', 'public/uploadedImages/teacherPhoto/-A9OHmxKJBsoKpZSfbtmw6V9y1Gs5om.jpg', '2019-10-02 16:45:57', '2019-10-07 14:12:17', NULL),
+(32, 434, 'Male', 16, 'Full Time', '29000', 'BOTANY', 'M.SC (HON,S)', NULL, '08-06-2015', NULL, '582142', '01-09-2002', '880031191042', 1, '05-01-19777', 'B+', 'Islam', '9107790173', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Jamal Miar Basha', NULL, NULL, 'Rayhanpur', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', NULL, 'Ismail Nibas', '922', '05', 'Teen Kaamba', 'Bhola', 'Bhola', 'Bhola', 'Bhola', '8300', 'Late Ismail Polowan', 'Job', NULL, NULL, NULL, NULL, NULL, 'Noor Jahan Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Salma Parvin', 'Lecturer', '02-11-2001', 'M.sc', NULL, '01735477811', NULL, 'Two sons', 'public/uploadedImages/teacherPhoto/-j5Zx1a3Uhcqaiwrg0yvJMumdyTqerQ.jpg', '2019-10-05 14:02:50', '2019-10-08 04:36:45', NULL),
+(33, 435, 'Female', 16, 'Full Time', '23000', 'BIOLOGY', 'M.SC (ZOOLOGY)', NULL, '08-06-2019', '01-08-1942', NULL, '01-03-2018', '880031191043', 1, '02-08-1982', 'B+', 'Islam', '2696827795481', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Howlader Bari', NULL, NULL, 'Madartoli', 'Madartoli', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Nasirul Haque', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Khodeza Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Md.Shamem Ahsan', 'Business', '27-08-2004', 'M.s.s', NULL, '01918109335', NULL, 'One Daughter', 'public/uploadedImages/teacherPhoto/-ANOPxBW4uJ50nd58NOS0QE87jNDDI3.jpg', '2019-10-05 14:11:19', '2019-10-08 04:37:12', NULL),
+(34, 436, 'Male', 16, 'Full Time', '23000', 'MATHEMATICS', 'M.SC (MATHEMATICS)', NULL, '08-06-2015', NULL, '3095104', '01-03-2018', '880031191044', 1, '15-12-1983', 'A+', 'Islam', '8202345784', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Sarder Bari', '925', NULL, 'West Burirchar', 'Burirchar', '6 no Burirchar', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Habibur Rahman Sarder', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Kohinur Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Nipa Akter', 'Service', '26-10-2012', 'M.A', NULL, '01728622020', NULL, NULL, 'public/uploadedImages/teacherPhoto/-7TAnsid6z4lC40dysAtGOw9MUj8yqn.jpg', '2019-10-05 14:19:17', '2019-10-08 04:37:34', NULL),
+(35, 437, 'Male', 16, 'Full Time', '23000', 'PHYSICS', 'M.SC', 'CPD', '08-06-2015', '02-01-2046', '3095102', '01-03-2018', '880031191045', 1, '02-01-1986', 'B+', 'Islam', '4601727383', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Haolader Bari', NULL, NULL, 'Road Para', 'Road Para', '03 no Fuljury', 'Barguna', 'Barguna', '8700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Abul Kalam', 'Job', NULL, NULL, '01750603558', NULL, NULL, 'Jahanara Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Monira Akter', 'Teacher', '31-03-2009', 'B.A', NULL, '01731442042', NULL, 'Two Son', 'public/uploadedImages/teacherPhoto/-elVMq6rMQQNDAUuBUo3dyvZLn7FnFZ.jpg', '2019-10-05 14:28:57', '2019-10-08 04:37:52', NULL),
+(36, 438, 'Female', 16, 'Full Time', '23000', 'CHEMISTRY', 'M.SC', 'ICT', '08-06-2015', '19-09-1947', '3095103', '01-03-2018', '880031191046', 1, '19-09-1987', 'B+', 'Islam', '19877829501100488', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Lamua', NULL, NULL, 'Rayhanpur', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8700', 'Khan Bari', NULL, NULL, 'Uttar Jarakhali', 'Karbari', NULL, 'Taltali', 'Barguna', '8710', 'Md.Abdul Haque', 'Job', NULL, NULL, NULL, NULL, NULL, 'Rani Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Md.Saydur Rahman', 'Lecturer', '16-05-2011', 'M.sc', NULL, '01719936986', NULL, 'One Son', 'public/uploadedImages/teacherPhoto/-hV6v2b5mWTu0520FNej7ytDq5a3Feh.jpg', '2019-10-05 14:37:58', '2019-10-08 04:38:31', NULL),
+(37, 439, 'Male', 19, 'Full Time', '29000', 'B.P.ED', 'B.A (B.P.ED)', 'B.P.ED', '30-12-1992', '13-05-2026', '411876', '21-05-1995', '880031191047', 1, '14-05-1966', 'O-', 'Islam', '6434003452', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Siddiq House', NULL, '04', 'Patharghata', 'Patharghata', 'Patharghata', 'Patharghata', 'Barguna', '8220', 'Syed House', NULL, NULL, 'Rayhanpur', 'Rayhanpur', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', 'Syed Mobarok Ali', 'Job', NULL, NULL, NULL, NULL, NULL, 'Regea Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Jesmin Sultana', 'Service', '30-04-19990', 'B.A (B.P.ED)', NULL, '01725497789', NULL, 'Two Son', 'public/uploadedImages/teacherPhoto/-btlApeKWIST72VCy9q4CxRIkhc6CYL.jpg', '2019-10-05 14:49:07', '2019-10-10 15:30:36', NULL),
+(38, 440, 'Male', 18, 'Full Time', '29000', 'LIBRARY SCIENCE', 'B.A', NULL, '21-05-1995', NULL, '411874', '21-05-1995', '880031191048', 1, '01-06-1963', 'B+', 'Islam', '2834893279', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Jomaddar House', NULL, NULL, 'North Kathaltali', 'Nachnapara', 'Nacnapara', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Soyjoddin Jamaddar', 'Job', NULL, NULL, NULL, NULL, NULL, 'Luthfunnesa Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mahmuda Akter Minu', 'Service', '04-10-1996', 'B.A', NULL, '01734040823', NULL, 'One  Son One Daughter', 'public/uploadedImages/teacherPhoto/-G7nH5GBk86FfdcUoSdKAeVaxnp5NjZ.jpg', '2019-10-05 14:58:47', '2019-10-10 15:30:03', NULL),
+(39, 441, 'Female', 20, 'Full Time', '29000', 'ICT (DEMO)', 'B.A (C.C.A)', 'ICT', '27-07-2002', NULL, '3076400', '01-04-2006', '880031191049', 1, '10-10-1977', NULL, 'Islam', '4184334649', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Rayhanpur', 'Rayhanpur', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Abdus Salam Miah', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Kahinur Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Syed Asaduzzaman', 'Business', '16-05-1992', 'B.A', NULL, '01720524591', NULL, 'One Son,s', 'public/uploadedImages/teacherPhoto/-CNUyitZWKeidF4mQltc9mTTIb3fM7L.jpg', '2019-10-05 15:07:26', '2019-10-10 15:51:56', NULL),
+(40, 442, 'Male', 16, 'Full Time', '23000', 'ISLAMIC STUDIES', 'M.A', 'HSTTI', '22-12-2002', NULL, '3098197', '01-11-2018', '880031191050', 1, '31-12-1970', 'B+', 'Islam', '8234425968', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Batmor', 'Batmor', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Aliakbar', 'Job', NULL, NULL, NULL, NULL, NULL, 'Nurzahan', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Masuma', 'House Wife', '08-05-1995', NULL, NULL, '01727247744', NULL, 'Two Daughter and Two Son', 'public/uploadedImages/teacherPhoto/-zqfZZxWjdwGZe9r93JL6VdegPBYY6s.jpg', '2019-10-05 15:14:36', '2019-10-08 04:39:13', NULL),
+(41, 443, 'Female', 16, 'Full Time', '23000', 'ZOOLOGY', 'M.SC', NULL, '12-02-2019', NULL, '3099065', '01-05-2019', '880031191051', 1, '12-02-1992', 'A+', 'Islam', '12345678969', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Munsi Bari', '109', NULL, 'Boroitala', 'Patharghata', 'Patharghata', 'Patharghata', 'Barguna', '8720', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Zahirul Haque', 'Teacher', NULL, NULL, '01728147368', NULL, '5503354812', 'Mst.Salma Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Hasan Al Bakar', 'LLB', '17-05-2008', 'LLB', NULL, '01722122200', NULL, 'One Daughter', 'public/uploadedImages/teacherPhoto/-9MyfiyrndmlaMh1uiBbPQ7movdxzF7.jpg', '2019-10-05 15:22:42', '2019-10-08 04:39:29', NULL),
+(42, 444, 'Male', 16, 'Full Time', '23000', 'BANGLA', 'B.A (HON) M.A (BANGLA)', NULL, '19-05-2014', NULL, NULL, NULL, '880031191052', 1, '01-12-1985', 'A+', 'Islam', '4634082822', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Jomaddar Bari', '24', NULL, 'kakchira', 'Kakchira', 'Kakchira', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Shah Alam Zomaddar', 'Job', NULL, NULL, NULL, NULL, NULL, 'Amena Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Asma Akter', 'House Wife', '12-12-2012', 'B.A', NULL, '01707896604', NULL, 'One Son', 'public/uploadedImages/teacherPhoto/-3To0j8rn9g7pIqYbpXQmFvmnkZPWZU.jpg', '2019-10-05 15:28:10', '2019-10-08 04:39:49', NULL),
+(43, 445, 'Male', 9, 'Full Time', '10000', 'ACCOUNTANT', 'B.CO', '20-08-2028', '12-01-1993', '20-08-2028', '603927', '01-07-1993', '880031191053', 1, '01-07-1993', 'AB+', 'Islam', '7335792870', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Howladar Bari', '148', NULL, 'Nachnapara', 'Nachnapara', 'Nachnapara', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Naniruzzaman', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mrs.Shahara Zaman', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mrs.Shilpi Akter', 'House Wife', '01-07-1994', 'S.S.C', NULL, '01793731889', NULL, 'One Son and One Daughter', 'public/uploadedImages/teacherPhoto/-5vqcIuz40junoSmbuuRbeMJicWOe8C.jpg', '2019-10-05 16:04:43', '2019-10-08 04:40:10', NULL),
+(44, 446, 'Male', 9, 'Full Time', '10000', 'OFFICE ASSISTANT', 'H.S.C', NULL, '12-01-1992', '06-06-2022', '603928', '01-07-1993', '880031191054', 1, '07-06-1962', 'A+', 'Islam', '2385783978', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Sikder Bari', NULL, NULL, 'Ganpara', 'Ganpara', 'Nachnapara', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Hazi Bahar Ali Sikder', 'Job', NULL, NULL, NULL, NULL, NULL, 'Late Shaleha Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Taslima Akter', 'House Wife', '11-07-1995', 'B.A', NULL, '01754407017', NULL, NULL, 'public/uploadedImages/teacherPhoto/-ArU420WirCdbXFjbXOOKdCntoS9uqG.jpg', '2019-10-05 16:18:49', '2019-10-07 08:50:45', NULL),
+(45, 447, 'Male', 9, 'Full Time', '8000', 'OFFICE ASSISTANT', 'EIGHT', NULL, '12-12-12', NULL, '603929', '01-01-18', '880031191055', 1, '15-07-1967', NULL, 'Islam', '19670418583620666', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Rayhanpur', 'Rayhanpur', 'Rayhanpur', 'Patharghata', 'Barguna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Fakrul Islam Jomaddar', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Rokeya', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-UWekhOk70soUN445INRVrUrwf6ZhuV.jpg', '2019-10-05 16:48:02', '2019-10-07 08:51:56', NULL),
+(46, 448, 'Male', 9, 'Full Time', '10000', 'MLLS', 'EIGHT', NULL, '01-01-1992', NULL, '603933', NULL, '880031191056', 1, '08-04-1962', NULL, 'Islam', '19710418583620465', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Betmor', NULL, NULL, 'Betmor', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Mojibor Kahman', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Rupban Bibi', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-bMzbQvz1xuFK3rfG5OGSQGzqMYe07R.jpg', '2019-10-06 14:59:27', '2019-10-08 04:49:47', NULL),
+(47, 449, 'Male', 9, 'Full Time', '10000', 'OFFICE ASSISTANT', 'B.B.S', NULL, '17-01-2013', '17-01-2046', '3087117', '01-02-2013', '880031191057', 1, '08-07-1985', 'B+', 'Islam', '7334472201', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Betmor', NULL, NULL, 'Betmor', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Abed Munshi', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Monika Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Taiaba', 'Student', '24-04-2018', 'B.A', NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-LCSIdPTF3s4oF6txt73r3vzQoFtjxM.jpg', '2019-10-06 15:07:43', '2019-10-07 08:54:05', NULL),
+(48, 450, 'Male', 11, 'Full Time', '10000', 'NIGHT WATCHMAN', 'EIGHT', NULL, '01-01-1992', NULL, '3087118', NULL, '880031191058', 1, '30-05-1977', NULL, 'Islam', '1017216514', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Lamua', NULL, NULL, 'Lemua', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Nurul Islam Talukder', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Rokeya Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-AJkGHb77jRZqoRhMx4oTNx0bQPi97h.jpg', '2019-10-06 15:13:24', '2019-10-07 08:55:58', NULL),
+(49, 452, 'Female', 9, 'Full Time', '10000', 'MLLS', 'EIGHT', NULL, '12-01-1992', NULL, '603936', '01-07-1992', '880031191059', 1, '08-03-1961', NULL, 'Islam', '8684460127', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Betmor', NULL, NULL, 'Betmor', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Kokil Panchaet', 'Job', NULL, NULL, NULL, NULL, NULL, 'Late Habitunnesa', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Late Sajahan Howlader', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-VaxmebtpLsWoxP6yRlf5e2K3ptxade.jpg', '2019-10-06 15:29:12', '2019-10-07 08:57:41', NULL),
+(50, 453, 'Male', 9, 'Full Time', '10000', 'MLLS', 'EIGHT', NULL, '01-01-1992', NULL, '603935', '01-02-1993', '880031191060', 1, '23-10-1970', NULL, 'Islam', '7784332061', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Betmor', NULL, NULL, 'Betmor', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md. Abdul Gaffar Howlader', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Khayrun Nesa', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Sabina', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-IXIVrxEkWLz9juhpqYIQApp6JHwccE.jpg', '2019-10-06 15:34:40', '2019-10-08 04:48:17', NULL),
+(51, 454, 'Female', 9, 'Full Time', '10000', 'MLLS', 'EIGHT', NULL, '01-01-1996', NULL, '616262', '01-02-1996', '880031191061', 1, '15-10-1979', 'AB+', 'Islam', '0418583385535', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Betmor', NULL, NULL, 'Betmor', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Md.Rofi Chowduri', 'Job', NULL, NULL, NULL, NULL, NULL, 'Late Mst.Anjumara Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Md.Habibur Rahman', 'Service', '01-12-1998', 'M.A', NULL, '01710305567', NULL, NULL, 'public/uploadedImages/teacherPhoto/-atSOFQHsYF1R463G7u46V06Lzg1neT.jpg', '2019-10-06 15:42:27', '2019-10-07 09:01:22', NULL),
+(52, 455, 'Male', 9, 'Full Time', '10000', 'MLLS', 'EIGHT', NULL, '01-01-1992', NULL, '3092052', '01-07-1993', '880031191062', 1, '08-07-1987', 'O+', 'Hinduism', '5534284228', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Golbonia', NULL, NULL, 'Golbonia', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Sona Hori Shil', 'Job', NULL, NULL, NULL, NULL, NULL, 'Monzu Rani Shil', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Juthi Ray', 'House Wife', NULL, 'H.S.C', NULL, '01712508660', NULL, NULL, 'public/uploadedImages/teacherPhoto/-6NBGYBVWGFKqfVN8mB5BXEihOpcyt9.jpg', '2019-10-06 15:47:49', '2019-10-08 04:50:45', NULL),
+(53, 456, 'Male', 6, 'Full Time', '10000', 'MLLS', 'EIGHT', NULL, '01-01-1992', NULL, '603934', '01-07-1993', '880031191063', 1, '10-09-1976', NULL, 'Islam', '3734328705', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, 'Lamua', NULL, NULL, 'Lemua', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Md.Amir Hossain', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Bakul Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Mst.Nupur Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-7S5ZJHPZnG624A5gju8LGO9jJlhxaK.jpg', '2019-10-06 15:51:49', '2019-10-07 14:13:59', NULL),
+(54, 457, 'Female', 9, 'Part Time', '5000', 'MLLS', 'EIGHT', NULL, '01-01-2018', NULL, '125487', '01-07-1993', '880031191064', 1, '01-01-1992', NULL, 'Islam', '8689954272', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Rayhanpur', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Selim Jomadder', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Piara Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-7ZrEseLugxfegWJm6S9QPNLfd6y0h8.jpg', '2019-10-06 15:56:58', '2019-10-08 04:51:30', NULL),
+(55, 458, 'Male', 17, 'Full Time', '35000', 'SOCIOLOGY', 'MSS (SOCIOLOGY)', NULL, '19-12-1996', '04-08-2025', NULL, '01-03-1997', '880031191065', 1, '05-08-1965', 'B+', 'Islam', '2564789546231', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Amtali', 'Amtali', 'Amtali', 'Amtali', 'Barguna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Azahar Uddin Ahamed', 'Job', NULL, NULL, NULL, NULL, NULL, 'Mst.Alaya Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Shahanaz Parvin', 'Service', '30-05-2008', 'B.A', NULL, '01720035198', NULL, NULL, 'public/uploadedImages/teacherPhoto/-Sh8rYsj8XoYfEfJ0WeBxtWGKFGTIk4.jpg', '2019-10-06 16:58:21', '2019-10-07 14:18:01', NULL),
+(56, 459, 'Male', 17, 'Full Time', '35000', 'POLITICAL SCIENCE', 'B.A (HON) M.A (POLITICAL SCIENCE)', NULL, '22-12-2002', NULL, '3073696', '22-12-2002', '880031191066', 1, '06-08-1975', NULL, 'Islam', '1234567895645', NULL, NULL, NULL, NULL, NULL, NULL, 'Bashbunia', 'Barguna', 'Barguna', 'Barguna', 'Barguna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Rezaul Karim', 'Job', NULL, NULL, NULL, NULL, NULL, 'Most.Kamrunnahar', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-uVbtw96pY75KvbiaLE0Iv55vyz0g6h.jpg', '2019-10-10 13:48:17', '2019-10-10 13:53:14', NULL),
+(58, 462, 'Male', 9, 'Full Time', '10000', 'OFFICE ASSISTANT', 'B.A', NULL, '17-01-2013', NULL, '3087116', '01-02-2013', '880031191068', 1, '07-06-1979', NULL, 'Islam', '123456789', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Rayhanpur', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Jalal Ahamed Sikder', 'Job', NULL, NULL, NULL, NULL, NULL, 'Shahera Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-5zS72N87JEvnDuC47Lr0LDGlcCIQgP.jpg', '2019-10-10 14:40:46', '2019-10-10 14:40:46', NULL),
+(59, 463, 'Male', 17, 'Full Time', '35000', 'ECONOMICS', 'MSS', 'HSTTI', '28-02-1968', '27-12-1928', '417873', '01-03-1997', '880031191069', 1, '28-02-1968', 'O+', 'Islam', '12345698745', NULL, NULL, NULL, NULL, NULL, NULL, 'Lemua', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Ashraf Ali', 'Job', NULL, NULL, NULL, NULL, NULL, 'Amiron Nesa', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Rebeka Sultana', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-mwpcytPnX53P5r50J6FAn4xMhm638x.jpg', '2019-10-13 03:39:05', '2019-10-13 03:51:26', NULL),
+(60, 464, 'Male', 1, 'Full Time', '55000', 'PRINCIPAL', 'M.A', NULL, '09-09-2012', NULL, '1417876', '28-12-2019', '880031191070', 1, '01-10-1972', 'B+', 'Islam', '12345678945698', NULL, NULL, NULL, 'Karim kutir', NULL, NULL, 'Amtala Road', 'Barguna', 'Barguna', 'Barguna', 'Barguna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Fazlul Karim', 'job', NULL, NULL, NULL, NULL, NULL, 'Safia Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-Q8efzrTRXkL8HgdpPPj7JUOoMpKhwE.jpg', '2019-10-14 07:44:25', '2019-10-14 07:44:25', NULL),
+(61, 465, 'Male', 2, 'Full Time', '50000', 'VICE-PRINCIPAL', 'B.A (HON\'S)M.A', 'HSTTI', '27-05-2002', NULL, '839674', '01-07-2002', '880031191071', 1, '01-01-1970', 'O+', 'Islam', '0418583620850', NULL, NULL, NULL, NULL, NULL, NULL, 'Rayhanpur', 'Lemua', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Late Wazed Ali', 'job', NULL, NULL, NULL, NULL, NULL, 'Late Momina Khatun', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-CpXzcUpBwqaI4AvxJnVvcvvZ38ZtnK.jpg', '2019-10-14 07:51:47', '2019-10-14 07:51:47', NULL),
+(62, 466, 'Female', 16, 'Full Time', '23000', 'ISLAMIC HISTORY AND CULTURE', 'B.A (HON) M.A', 'HSTTI', '22-12-2002', NULL, '3098196', '11-01-2018', '880031191072', 1, '01-06-1977', 'B+', 'Islam', '7928007119880', 'SYED FAZLUL HAQ COLLEGE', NULL, NULL, NULL, NULL, NULL, 'Kalmaga', 'Kalmaga', 'Kalmega', 'Patharghata', 'Barguna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Sakander Alom', 'Job', NULL, NULL, NULL, NULL, NULL, 'Nurzahan Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, 'Md.Ali Azgor Talukder', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-ieUUaIrgS2MznzifAjHFKv5Vx3gVch.jpg', '2019-10-14 15:49:30', '2019-10-15 03:28:17', NULL),
+(64, 474, 'Male', 1, 'Part Time', '30000', 'Specialist for Principal job', 'M.A', 'Many Side', '01-01-2015', NULL, NULL, NULL, '880015191011', 3, '01-10-1953', NULL, 'Hinduism', '9312585459907', NULL, NULL, NULL, NULL, NULL, NULL, 'Harinatoli', 'Dhanbari', 'Dhanbari', 'Dhanbari', 'Tangail', NULL, NULL, NULL, NULL, 'Harinatoli', 'Dhanbari', 'Dhanbari', 'Dhanbari', 'Tangail', NULL, 'Jaldhor Das', 'Farmer', NULL, NULL, NULL, NULL, NULL, 'abcd', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-OhmI3L2xzZ3kyzPDX4yxKMJuVXkyt0.jpg', '2019-12-08 16:44:15', '2019-12-08 16:44:15', NULL),
+(65, 475, 'Male', 16, 'Full Time', '12000', 'CSE', 'B.Sc(hon) in Computer Science', 'HIT-ICT', '01-03-2016', NULL, NULL, NULL, '880015191012', 3, '01-09-1978', 'A+', 'Islam', '19789322505039162', 'Agni Systems Ltd', NULL, 'Gulshan-1,Navana Tower', NULL, NULL, NULL, 'Kalipur', 'Dhanbari', 'Dhanbari', 'Dhanbari', 'Tangail', '1997', NULL, NULL, NULL, 'Kalipur', 'Dhanbari', 'Dhanbari', 'Dhanbari', 'Tangail', '1997', 'Mohammad Aminul Islam(Freedom Fighter)', 'Farmer', NULL, 'B A Pass', NULL, NULL, NULL, 'Honofa Begum', 'Retired Gov. Service.', NULL, 'S.S.C', NULL, NULL, NULL, 'Shamsunnahar Popi', 'Lecturer', NULL, 'M.A in English', NULL, NULL, NULL, '1 boy and study', 'public/uploadedImages//teacherPhoto/-z2fBSo4ScjSP6J4cD1F3nFT3hhngoc.jpg', '2019-12-08 16:58:47', '2020-01-28 15:49:44', NULL),
+(66, 479, 'Male', 16, 'Full Time', '12000', 'Specialist for this subject (Civi', 'M.A Political Science', NULL, '01-03-2016', NULL, NULL, NULL, '880015191013', 3, '25-12-1983', NULL, 'Islam', '9312580479498', NULL, NULL, NULL, NULL, NULL, NULL, 'Jupna purbo para', 'Mushuddi Bazar', 'Dhanbari', 'Dhanbari', 'Tangail', NULL, NULL, NULL, NULL, 'Jupna purbo para', 'Mushuddi Bazar', 'Dhanbari', 'Dhanbari', 'Tangail', NULL, 'MD.Shajahan Ali', 'Farmer', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-MtaIIG87aZbFKRM4c8BwM7OTKVPQPZ.jpg', '2019-12-14 14:11:30', '2019-12-14 14:11:30', NULL),
+(67, 480, 'Female', 16, 'Full Time', '12000', 'Specialist for this subject Geo.', 'M.Sc in Geography', NULL, '01-03-2016', NULL, NULL, NULL, '880015191014', 3, '05-06-1984', NULL, 'Islam', '9322504407216', NULL, NULL, NULL, NULL, NULL, NULL, 'Dhanbari bazar', 'Dhanbari', 'Dhanbari', 'Dhanbari', 'Tangail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ab.Salam', 'Business', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-eWzK6ZmnpdiWKhAz7QUjsTxQQkuZeX.jpg', '2019-12-14 15:45:25', '2019-12-14 15:45:25', NULL),
+(68, 481, 'Male', 16, 'Full Time', '12000', 'Specialist for Math Subject', 'M.Sc in Math', NULL, '01-03-2016', NULL, NULL, NULL, '880015191015', 3, '01-07-1984', NULL, 'Islam', '9325702090385', NULL, NULL, NULL, NULL, NULL, NULL, 'West Jotabari', 'Jotabari', 'Madhupur', 'Madhupur', 'Tangail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Samsul Haque', 'Farmer', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-7uO9YVGQyDtznQjR9xUlgVRz4ffMa2.jpg', '2019-12-14 16:00:50', '2019-12-14 16:00:50', NULL),
+(69, 482, 'Male', 16, 'Full Time', '12000', 'Specialist for Chemistry Subject', 'M.Sc in Chemistry', NULL, '01-03-2016', NULL, NULL, NULL, '880015191016', 3, '27-11-1984', NULL, 'Islam', '3811363336502', NULL, NULL, NULL, NULL, NULL, NULL, 'Shantimohal', 'Ghatial', 'Ghatial', 'Ghatail', 'Tangail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md. Fazlur Rahaman', 'Farmer', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-oU2if8yP1oAH9esHkF5YzzoZhzMSuE.jpg', '2019-12-14 16:13:15', '2019-12-14 16:13:15', NULL),
+(70, 483, 'Male', 16, 'Full Time', '12000', 'Specialist for Social welfare Subject', 'M.A Social welfare', NULL, '01-03-2016', NULL, NULL, NULL, '880015191017', 3, '01-01-1986', NULL, 'Islam', '19869312580072057', NULL, NULL, NULL, NULL, NULL, NULL, 'South Mushuddi', 'Mushuddi Bazar', 'Mushuddi Bazar', 'Dhanbari', 'Tangail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Abul Hossain', 'Gov.Service', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-Dm3bMKj6C2cI6z47McIkLeZViWcw2k.jpg', '2019-12-14 16:24:38', '2019-12-14 16:24:38', NULL),
+(71, 484, 'Male', 16, 'Full Time', '12000', 'Specialist for Management Subject', 'M.com. Management', NULL, '01-03-2016', NULL, NULL, NULL, '880015191018', 3, '25-07-1986', NULL, 'Islam', '19869322508076017', NULL, NULL, NULL, NULL, NULL, NULL, 'Middle Calash', 'Dhanbari', 'Dhanbari', 'Dhanbari', 'Tangail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md. Nurul Islam', 'Business', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-YpSmbAb982X3GIOEMw7KDBUXD676QP.jpg', '2019-12-14 16:36:25', '2019-12-14 16:36:25', NULL);
+INSERT INTO `staff` (`id`, `user_id`, `gender`, `designation_id`, `type`, `salary`, `subject`, `edu_qulif`, `training`, `joining_date`, `retirement_date`, `index_no`, `date_of_mpo`, `staff_id`, `school_id`, `birthday`, `blood_group`, `religion`, `nid_card_no`, `last_org_name`, `reason_to_leave`, `last_org_address`, `pre_address`, `Pre_h_no`, `pre_ro_no`, `pre_vpm`, `pre_poff`, `pre_unim`, `pre_subd`, `pre_district`, `pre_postc`, `per_address`, `per_h_no`, `per_ro_no`, `per_vpm`, `per_poff`, `per_unim`, `per_subd`, `per_district`, `per_postc`, `father_name`, `f_career`, `f_m_income`, `f_edu_c`, `f_mobile_no`, `f_email`, `f_nid`, `mother_name`, `m_career`, `m_m_income`, `m_edu_c`, `m_mobile_no`, `m_email`, `m_nid`, `h_w_name`, `profession`, `wedding_date`, `h_w_edu_qulif`, `h_w_email`, `h_w_mobile_no`, `h_w_nid_no`, `kids`, `photo`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(72, 485, 'Female', 16, 'Full Time', '12000', 'Specialist for biology Subject', 'M.Sc in Biology', NULL, '01-03-2016', NULL, NULL, NULL, '880015191019', 3, '31-12-1986', NULL, 'Islam', '3916157672974', NULL, NULL, NULL, NULL, NULL, NULL, 'West Shek sadi para', 'Sheksadi', 'Malandho', 'Malandho', 'Jamal pur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md. Nazim Uddin', 'Farmer', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-0pxMdHts94r8pwDrXrPRwXsQrBUVa8.jpg', '2019-12-14 16:50:38', '2019-12-14 16:50:38', NULL),
+(73, 486, 'Male', 16, 'Full Time', '12000', 'Specialist for Accounting Subject', 'M.com Accounting', NULL, '01-03-2016', NULL, NULL, NULL, '880015191020', 3, '01-04-1987', NULL, 'Islam', '2692848056933', NULL, NULL, NULL, NULL, NULL, NULL, 'home 3/26,3rd floor', 'Raiarbazar', 'Dhanmondi', 'Dhanmondi', 'Dhaka', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Kamal Uddin', 'Farmer', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-gNP9uDu9gegi5FIHKuC4mr29AhB5zf.jpg', '2019-12-14 17:07:19', '2019-12-14 17:07:19', NULL),
+(74, 488, 'Female', 16, 'Full Time', '12000', 'Specialist for physics Subject', 'M.Sc in physics', NULL, '01-03-2016', NULL, NULL, NULL, '880015191021', 3, '02-07-1988', NULL, 'Islam', '6125221270078', NULL, NULL, NULL, NULL, NULL, NULL, 'Fulbari', 'Vhatkura', 'Dhanbari', 'Dhanbari', 'Tangail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md. mazad ali', 'Gov.Service', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-4QNpSgI83lOKKOImbPbUjdMlQ1HKOR.jpg', '2019-12-15 17:10:37', '2019-12-15 17:10:37', NULL),
+(75, 489, 'Male', 16, 'Full Time', '12000', 'Specialist for English Subject', 'M.A English', NULL, '01-03-2016', NULL, NULL, NULL, '880015191022', 3, '30-08-1989', NULL, 'Islam', '19893913665382694', NULL, NULL, NULL, NULL, NULL, NULL, 'Roshidpur vatipara', 'Roshidpur', 'Roshidpur', 'jamalpur', 'Jamal pur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Mohammad Zakria', 'Service', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-mGkFRUoyW3zopuVWWNjYzYra34Uu3V.jpg', '2019-12-15 17:20:38', '2019-12-15 17:20:38', NULL),
+(76, 490, 'Male', 16, 'Full Time', '12000', 'Specialist for Marketing Subject', 'M.com. Marketing', NULL, '01-03-2016', NULL, NULL, NULL, '880015191023', 3, '01-01-1990', NULL, 'Islam', '1990931257075999', NULL, NULL, NULL, NULL, NULL, NULL, 'Ramkisnopur', 'ukharibari', 'Dhanbari', 'Dhanbari', 'Tangail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md. chan mia', 'Farmer', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-6cfJnIptp4XZEDL4rMRQ6MwNn9tS33.jpg', '2019-12-15 17:30:18', '2019-12-15 17:30:18', NULL),
+(77, 491, 'Female', 16, 'Full Time', '12000', 'Specialist for Agriculture Subject', 'M.Sc in Agriculture', NULL, '01-03-2016', NULL, NULL, NULL, '880015191024', 3, '01-01-1990', NULL, 'Islam', '3923603116223', NULL, NULL, NULL, NULL, NULL, NULL, 'Nargis nird', 'bottola bazar', 'Jamalpur', 'jamalpur', 'Jamal pur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md. Shahadot Hossin', 'Gov.Service', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-YvpuNETUHOqNpNRmjgvziziIfZhEaL.jpg', '2019-12-15 17:45:29', '2019-12-15 17:45:29', NULL),
+(78, 492, 'Female', 16, 'Full Time', '12000', 'Specialist for Bang la Subject', 'M.Sc in Bangla', NULL, '01-03-2016', NULL, NULL, NULL, '880015191025', 3, '08-09-1990', NULL, 'Islam', '19909312557000099', NULL, NULL, NULL, NULL, NULL, NULL, 'Doyaram bari', 'Vaighat', 'Dhanbari', 'Dhanbari', 'Tangail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Husband: Saifuddin', 'Service', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-mIlCkkTBHyPZLoajx3cWWMQUce8EaT.jpg', '2019-12-15 17:56:13', '2019-12-15 17:56:13', NULL),
+(79, 493, 'Male', 16, 'Full Time', '12000', 'Specialist for Islam subject', 'M.A Islamic hi stray and culture', NULL, '01-03-2016', NULL, NULL, NULL, '880015191026', 3, '10-12-1989', NULL, 'Islam', '19899313821674222', NULL, NULL, NULL, NULL, NULL, NULL, 'poncas', 'shajonpur', 'Madhupur', 'Madhupur', 'Tangail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md. Mofizur Rahaman', 'Farmer', NULL, NULL, NULL, NULL, NULL, 'Ojana', 'House wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages/teacherPhoto/-pBsEHqxD5GOARRYzK4vooXfM8PsbvG.jpg', '2019-12-15 18:05:11', '2019-12-15 18:05:11', NULL),
+(80, 683, 'Male', 16, 'Full Time', '22000', 'Social Science', 'MSS', NULL, '01-11-2017', NULL, NULL, NULL, '880031191073', 1, '01-03-2-1990', 'A+', 'Islam', '6875049121', NULL, NULL, NULL, 'Akon Home', NULL, NULL, 'Jamirtala', 'Mathertaly', 'Rayhanpur', 'Patharghata', 'Barguna', '8721', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Harunur Rashid', 'Job', '30000', NULL, '01718723989', NULL, NULL, 'Helena', 'House Wife', NULL, NULL, '01734638393', NULL, NULL, 'Rumana Akter', NULL, NULL, NULL, NULL, '01312654554', NULL, NULL, 'public/uploadedImages//teacherPhoto/-zeWKOE4VUJqWDt1PiWeuWygyCCZVUk.jpg', '2020-01-26 04:59:27', '2020-01-28 07:17:23', NULL),
+(81, 685, 'Male', 16, 'Full Time', '22000', 'POLITICAL SCIENCE', 'MSS', 'HSTTI', '04-06-2014', NULL, NULL, NULL, '880031191074', 1, '01-06-1980', 'AB+', 'Islam', '1000459618', NULL, NULL, NULL, NULL, NULL, NULL, 'Medal Jaliaghata', 'Rupdhon', 'Kakchira', 'Patharghata', 'Barguna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Let Kazi Abdul Latif', 'Farmar', NULL, NULL, NULL, NULL, NULL, 'Mrs Shalia Begum', 'House Wife', NULL, NULL, '01715156596', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages//teacherPhoto/-EsXq5q0XUQRMF3TQ7j4wSXaM7GufEm.jpg', '2020-01-28 06:31:12', '2020-01-28 06:31:12', NULL),
+(82, 686, 'Male', 16, 'Full Time', '22000', 'Bangla', 'M.a', 'HSTTI', '12-06-2018', NULL, NULL, NULL, '880031191075', 1, '15-04-1983', 'B+', 'Islam', '3283362691', NULL, NULL, NULL, NULL, NULL, NULL, 'Kalipur', 'Kamarhat', 'Kathaltali', 'Patharghata', 'Barguna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Rustum Jomaddar', 'Teacher', NULL, NULL, NULL, NULL, NULL, 'Nurvanu Begum', 'House Wife', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages//teacherPhoto/-Qa34lCBUzRCStj6yMbzZvfmLHtd7X8.jpg', '2020-01-28 06:38:43', '2020-01-28 07:17:02', NULL),
+(83, 692, 'Male', 16, 'Full Time', '220000', 'HISTORY', 'M.A', NULL, '31-12-2016', NULL, NULL, NULL, '880031191076', 1, '06-04-1982', NULL, 'Islam', '2396383529', NULL, NULL, NULL, NULL, NULL, NULL, 'North Subidkhali', 'Subidkhali', 'Amragacia', 'Mirzagong', 'Patuakhali', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Md.Delwar Hussain Sikder', 'Job', NULL, NULL, '01734911149', NULL, NULL, 'Mosa Safali Begum', 'Job', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/uploadedImages//teacherPhoto/-f4RAYGBmpp5ZuzH4jqAleJ5zj3QHQz.jpg', '2020-02-02 14:16:08', '2020-02-04 04:06:45', NULL);
 
 -- --------------------------------------------------------
 
@@ -6412,6 +6718,13 @@ CREATE TABLE `subjects_teachers` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `subjects_teachers`
+--
+
+INSERT INTO `subjects_teachers` (`id`, `staff_id`, `master_class_id`, `shift`, `section`, `group_class_id`, `subject_id`, `school_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 13, 'Day', 'A', 2, 3, '1', '2020-03-16 04:26:38', '2020-03-16 04:26:38', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -6445,6 +6758,13 @@ CREATE TABLE `testimonials` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `testimonials`
+--
+
+INSERT INTO `testimonials` (`id`, `name`, `father_name`, `mother_name`, `village`, `post_office`, `upazila`, `district`, `exam_session`, `gpa`, `roll`, `reg_no`, `board`, `session`, `exam`, `birth_day`, `shift`, `section`, `group`, `testimonial_reg_no`, `master_class_id`, `school_id`, `student_id`, `created_at`, `updated_at`) VALUES
+(1, 'Sarmin Akter', 'Sha-Alom Khan', 'Runu Begum', 'gdag', 'adgfd', 'gfdg', 'dfahaf', '2010', '4.18', '456456', '456456', 'Dhaka', '2010', 'SSC', '2002-05-05', 'Day', 'A', 'Science', '1', 13, 1, '880031191001263', '2020-03-15 08:41:21', '2020-03-15 08:41:21');
 
 -- --------------------------------------------------------
 
@@ -6535,8 +6855,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `mobile`, `password`, `remember_token`, `group_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'System Root Admin', 'root@user.com', '01767248797', '$2y$10$LstnAHSlmP0b8Im6E8gMWuRcKPHVUOtfGjcYNIaMhokqx.zK9bdZy', 'UlclmT15RYyaBEumrzKyfrMJUrdcBhLPLOg9AG7uBG2VGhCG3eYLcNFmFxqC', 1, NULL, NULL, NULL),
-(2, 'Syed Fazlul Haque Degree College', 'sfdcollege@yahoo.com', '01712965526', '$2y$10$LstnAHSlmP0b8Im6E8gMWuRcKPHVUOtfGjcYNIaMhokqx.zK9bdZy', 'G0pxpg8Rmjmt1MWjRi2TKspPnv4ewZ66cEV7ZCpHZ6TVhBG8F9LaGAwWQwvu', 2, '2019-07-29 12:19:06', '2019-07-30 03:21:00', NULL),
+(1, 'System Root Admin', 'root@user.com', '01767248797', '$2y$10$LstnAHSlmP0b8Im6E8gMWuRcKPHVUOtfGjcYNIaMhokqx.zK9bdZy', 'dDPUUTu9tylo0dm76mS1TcBtQlebbGT9igXv0n7wfgzJBMYG3M3RxswVDqzF', 1, NULL, NULL, NULL),
+(2, 'Syed Fazlul Haque Degree College', 'sfdcollege@yahoo.com', '01712965526', '$2y$12$qO0C5qfw72QQyoZSn29Bm.G5zeqHgx.YuZ3sOUaAzh6LFL/jIGyxq', 'ohfPmnf0K4tT79eIipI6YvdWYuBp9ZIGGsrsUh9qnoHnNG2fMTW0XZF6Kah6', 2, '2019-07-29 12:19:06', '2019-07-30 03:21:00', NULL),
 (3, 'Sumiya Shammi', 'sumiya123@gmail.com', '01746199648', '$2y$10$X5aI9PDhzvf3cNT9LhoA8uzbFjsVBneZlZNNshYYBQBztQpA/RD8W', NULL, 4, '2019-08-03 16:33:37', '2019-08-03 16:33:37', NULL),
 (4, 'Samia Akter Sumaiya', 'samia456@gmail.com', '01883501343', '$2y$10$MBDrcoXSZ2d6EoqhijpiK.503Kyhn/EiYQIySm8vtE7sA6ibwc0Hq', NULL, 4, '2019-08-03 17:09:38', '2019-08-03 17:14:09', NULL),
 (5, 'Tanjila Irin', 'tanjila789@gmail.com', '01306855454', '$2y$10$rSZvp4l3w5kzkkCmt8PApeXZi.fH8btRd.sejBvYgwjrPjKdKaUL6', NULL, 4, '2019-08-04 07:00:43', '2019-08-04 07:00:43', NULL),
@@ -7249,6 +7569,13 @@ CREATE TABLE `visitors` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `visitors`
+--
+
+INSERT INTO `visitors` (`id`, `school_id`, `visitor_type_id`, `name`, `mobile`, `designation`, `date`, `in_time`, `out_time`, `purpose`, `note`, `image`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'Al Arfin Rokon', NULL, 'Web Developer', '2020-03-14 18:00:00', '09:41:00', '09:46:00', 'Testing', NULL, NULL, 1, NULL, '2020-03-15 03:41:18', '2020-03-15 03:53:15');
+
 -- --------------------------------------------------------
 
 --
@@ -7264,6 +7591,13 @@ CREATE TABLE `visitor_types` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `visitor_types`
+--
+
+INSERT INTO `visitor_types` (`id`, `school_id`, `name`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Guardian', NULL, '2020-03-15 03:32:49', '2020-03-15 03:32:49');
+
 -- --------------------------------------------------------
 
 --
@@ -7278,6 +7612,13 @@ CREATE TABLE `wm_date_languages` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `wm_date_languages`
+--
+
+INSERT INTO `wm_date_languages` (`id`, `date_language_id`, `school_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 2, 1, '2020-03-17 04:17:53', '2020-03-17 04:21:05', NULL);
 
 -- --------------------------------------------------------
 
@@ -7314,6 +7655,13 @@ CREATE TABLE `wm_gallery_categories` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `wm_gallery_categories`
+--
+
+INSERT INTO `wm_gallery_categories` (`id`, `tittle`, `type`, `school_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'English', 1, 1, '2020-03-17 05:06:08', '2020-03-17 05:06:08', NULL);
 
 -- --------------------------------------------------------
 
@@ -7364,6 +7712,15 @@ CREATE TABLE `wm_important_links` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `wm_important_links`
+--
+
+INSERT INTO `wm_important_links` (`id`, `tittle`, `link`, `school_id`, `wm_important_links_category_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Ehsan News', 'http://ehsannews.com/', 1, 1, NULL, NULL, NULL),
+(2, 'Ehsan News', 'http://ehsannews.com/', 3, 1, NULL, NULL, NULL),
+(3, 'News Portal', 'http://ehsannews.com/', 1, 3, '2020-03-17 05:49:10', '2020-03-17 05:49:10', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -7378,6 +7735,15 @@ CREATE TABLE `wm_important_links_categories` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `wm_important_links_categories`
+--
+
+INSERT INTO `wm_important_links_categories` (`id`, `tittle`, `school_id`, `created_at`, `updated_at`) VALUES
+(1, 'Ehsan Software', 1, NULL, NULL),
+(2, 'Ehsan Software', 3, NULL, NULL),
+(3, 'Company', 1, '2020-03-17 05:45:22', '2020-03-17 05:45:22');
+
 -- --------------------------------------------------------
 
 --
@@ -7391,6 +7757,13 @@ CREATE TABLE `wm_important_links_category_roots` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `wm_important_links_category_roots`
+--
+
+INSERT INTO `wm_important_links_category_roots` (`id`, `tittle`, `school_type_id`, `created_at`, `updated_at`) VALUES
+(1, 'Ehsan Software', '3', '2020-03-17 04:16:22', '2020-03-17 04:16:22');
 
 -- --------------------------------------------------------
 
@@ -7409,6 +7782,13 @@ CREATE TABLE `wm_important_links_roots` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `wm_important_links_roots`
+--
+
+INSERT INTO `wm_important_links_roots` (`id`, `tittle`, `link`, `header_status`, `school_type_id`, `wm_important_links_category_root_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Ehsan News', 'http://ehsannews.com/', 1, '3', 1, '2020-03-17 04:17:17', '2020-03-17 04:17:17', NULL);
 
 -- --------------------------------------------------------
 
@@ -7450,6 +7830,13 @@ CREATE TABLE `wm_sliders` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `wm_sliders`
+--
+
+INSERT INTO `wm_sliders` (`id`, `image`, `tittle`, `position`, `school_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'public/uploadedImages//webmanagement/slider//-FEaihjry7egU6PvbE8SPVtgPH9x8rD.jpg', '<p>Testing</p>', 1, 1, '2020-03-17 04:25:27', '2020-03-17 04:25:27', NULL);
 
 -- --------------------------------------------------------
 
@@ -7620,6 +8007,14 @@ ALTER TABLE `ca_subjects`
   ADD KEY `ca_subjects_master_class_id_foreign` (`master_class_id`),
   ADD KEY `ca_subjects_group_class_id_foreign` (`group_class_id`),
   ADD KEY `ca_subjects_school_id_foreign` (`school_id`);
+
+--
+-- Indexes for table `chattings`
+--
+ALTER TABLE `chattings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `chattings_from_foreign` (`from`),
+  ADD KEY `chattings_to_foreign` (`to`);
 
 --
 -- Indexes for table `class_routines`
@@ -7876,6 +8271,26 @@ ALTER TABLE `online_written_exam_answers`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `post_comments`
+--
+ALTER TABLE `post_comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `post_comments_post_id_foreign` (`post_id`);
+
+--
+-- Indexes for table `post_reacts`
+--
+ALTER TABLE `post_reacts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `post_reacts_post_id_foreign` (`post_id`);
 
 --
 -- Indexes for table `provident_funds`
@@ -8166,13 +8581,13 @@ ALTER TABLE `absent_contents`
 -- AUTO_INCREMENT for table `account_settings`
 --
 ALTER TABLE `account_settings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `advanced_paids`
 --
 ALTER TABLE `advanced_paids`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `advertisements`
@@ -8184,13 +8599,13 @@ ALTER TABLE `advertisements`
 -- AUTO_INCREMENT for table `assets`
 --
 ALTER TABLE `assets`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `attendance_texts`
 --
 ALTER TABLE `attendance_texts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `attendance_times`
@@ -8214,31 +8629,31 @@ ALTER TABLE `atten_students`
 -- AUTO_INCREMENT for table `banks`
 --
 ALTER TABLE `banks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `banks_withdraws`
 --
 ALTER TABLE `banks_withdraws`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bank_account_types`
 --
 ALTER TABLE `bank_account_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bank_deposits`
 --
 ALTER TABLE `bank_deposits`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `birthday_texts`
 --
 ALTER TABLE `birthday_texts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cancel_holidays`
@@ -8250,7 +8665,7 @@ ALTER TABLE `cancel_holidays`
 -- AUTO_INCREMENT for table `cares`
 --
 ALTER TABLE `cares`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `ca_results`
@@ -8262,6 +8677,12 @@ ALTER TABLE `ca_results`
 -- AUTO_INCREMENT for table `ca_subjects`
 --
 ALTER TABLE `ca_subjects`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `chattings`
+--
+ALTER TABLE `chattings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -8286,13 +8707,13 @@ ALTER TABLE `complaints`
 -- AUTO_INCREMENT for table `date_languages`
 --
 ALTER TABLE `date_languages`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `designations`
 --
 ALTER TABLE `designations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `elective_settings`
@@ -8328,49 +8749,49 @@ ALTER TABLE `exam_types`
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `fee_categories`
 --
 ALTER TABLE `fee_categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `fee_collections`
 --
 ALTER TABLE `fee_collections`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `fee_setups`
 --
 ALTER TABLE `fee_setups`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `fee_sub_categories`
 --
 ALTER TABLE `fee_sub_categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `fine_collections`
 --
 ALTER TABLE `fine_collections`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `fine_setups`
 --
 ALTER TABLE `fine_setups`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `funds`
 --
 ALTER TABLE `funds`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `groups`
@@ -8388,13 +8809,13 @@ ALTER TABLE `group_classes`
 -- AUTO_INCREMENT for table `holidays`
 --
 ALTER TABLE `holidays`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `id_generators`
 --
 ALTER TABLE `id_generators`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=373;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=379;
 
 --
 -- AUTO_INCREMENT for table `important_files`
@@ -8412,7 +8833,7 @@ ALTER TABLE `important_settings`
 -- AUTO_INCREMENT for table `incomes`
 --
 ALTER TABLE `incomes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `leave_applications`
@@ -8430,19 +8851,19 @@ ALTER TABLE `master_classes`
 -- AUTO_INCREMENT for table `message_lengths`
 --
 ALTER TABLE `message_lengths`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT for table `notices`
 --
 ALTER TABLE `notices`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `online_exam_results`
@@ -8457,10 +8878,28 @@ ALTER TABLE `online_written_exam_answers`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `post_comments`
+--
+ALTER TABLE `post_comments`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `post_reacts`
+--
+ALTER TABLE `post_reacts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `provident_funds`
 --
 ALTER TABLE `provident_funds`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `questions`
@@ -8484,19 +8923,19 @@ ALTER TABLE `results`
 -- AUTO_INCREMENT for table `salary_funds`
 --
 ALTER TABLE `salary_funds`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `salary_setups`
 --
 ALTER TABLE `salary_setups`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `salary_sheets`
 --
 ALTER TABLE `salary_sheets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `schools`
@@ -8550,13 +8989,13 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `subjects_teachers`
 --
 ALTER TABLE `subjects_teachers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `testimonials`
 --
 ALTER TABLE `testimonials`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tests`
@@ -8580,25 +9019,25 @@ ALTER TABLE `units`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=696;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=697;
 
 --
 -- AUTO_INCREMENT for table `visitors`
 --
 ALTER TABLE `visitors`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `visitor_types`
 --
 ALTER TABLE `visitor_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `wm_date_languages`
 --
 ALTER TABLE `wm_date_languages`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `wm_galleries`
@@ -8610,7 +9049,7 @@ ALTER TABLE `wm_galleries`
 -- AUTO_INCREMENT for table `wm_gallery_categories`
 --
 ALTER TABLE `wm_gallery_categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `wm_general_texts`
@@ -8628,25 +9067,25 @@ ALTER TABLE `wm_general_text_types`
 -- AUTO_INCREMENT for table `wm_important_links`
 --
 ALTER TABLE `wm_important_links`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `wm_important_links_categories`
 --
 ALTER TABLE `wm_important_links_categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `wm_important_links_category_roots`
 --
 ALTER TABLE `wm_important_links_category_roots`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `wm_important_links_roots`
 --
 ALTER TABLE `wm_important_links_roots`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `wm_schools`
@@ -8658,7 +9097,7 @@ ALTER TABLE `wm_schools`
 -- AUTO_INCREMENT for table `wm_sliders`
 --
 ALTER TABLE `wm_sliders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `wm_speeches`
@@ -8780,6 +9219,13 @@ ALTER TABLE `ca_subjects`
   ADD CONSTRAINT `ca_subjects_group_class_id_foreign` FOREIGN KEY (`group_class_id`) REFERENCES `group_classes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ca_subjects_master_class_id_foreign` FOREIGN KEY (`master_class_id`) REFERENCES `master_classes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ca_subjects_school_id_foreign` FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `chattings`
+--
+ALTER TABLE `chattings`
+  ADD CONSTRAINT `chattings_from_foreign` FOREIGN KEY (`from`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `chattings_to_foreign` FOREIGN KEY (`to`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `class_routines`
@@ -8953,6 +9399,18 @@ ALTER TABLE `online_written_exam_answers`
   ADD CONSTRAINT `online_written_exam_answers_school_id_foreign` FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `online_written_exam_answers_subject_id_foreign` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `online_written_exam_answers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `post_comments`
+--
+ALTER TABLE `post_comments`
+  ADD CONSTRAINT `post_comments_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `post_reacts`
+--
+ALTER TABLE `post_reacts`
+  ADD CONSTRAINT `post_reacts_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `provident_funds`
