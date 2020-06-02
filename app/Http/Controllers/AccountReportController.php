@@ -13,9 +13,13 @@ use App\BanksWithdraw;
 use App\FineCollection;
 use App\Asset;
 use Auth;
-
+use Illuminate\Support\Facades\File;
 class AccountReportController extends Controller
 {
+     public function test(){
+        File::link(
+            storage_path('app/public'),public_path('storage'));
+    }
     public function account_dashboard(){
       $fee_collection = FeeCollection::where('school_id', Auth::getSchool())->sum('paid');
       $total_due = FeeCollection::where('school_id', Auth::getSchool())->sum('due');

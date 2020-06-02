@@ -40,7 +40,7 @@
                                         <textarea onkeyup="msgCount()" class="form-control" name="student_absent_content" id="student_absent_content" rows="10">{{isset($content->student_absent_content)?$content->student_absent_content:''}}</textarea>
                                         <p>Character : <span id="char_show"></span>, Message: <span id="msg_count_show"></span></p>
                                     </div>
-                                      <label class="control-label">Your text message, Regular <mark> Text=146 </mark> character per SMS and <mark> Unicode=56 </mark> character per SMS.</label><br>
+                                      {{-- <label class="control-label">আপনার টেক্সট বার্তা, রেগুলার <mark> টেক্সট=146 </mark> ক্যারেক্টার প্রতি এসএমএস এবং <mark> ইউনিকোড=56 </mark> ক্যারেক্টার প্রতি এসএমএস ।</label><br> --}}
                                 </div>
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
@@ -58,7 +58,7 @@
                                         <textarea class="form-control" onkeyup="pMsgCount()" name="student_present_content" id="student_present_content" rows="10">{{isset($content->student_present_content)?$content->student_present_content:''}}</textarea>
                                         <p>Character : <span id="p_char_show"></span>, Message: <span id="p_msg_count_show"></span></p>
                                     </div>
-                                    <label class="control-label">Your text message, Regular <mark> Text=146 </mark> character per SMS and <mark> Unicode=56 </mark> character per SMS.</label><br>
+                                    {{-- <label class="control-label">আপনার টেক্সট বার্তা, রেগুলার <mark> টেক্সট=146 </mark> ক্যারেক্টার প্রতি এসএমএস এবং <mark> ইউনিকোড=56 </mark> ক্যারেক্টার প্রতি এসএমএস ।</label><br> --}}
                                 </div>
                             </div>
                             <div class="row">

@@ -27,25 +27,25 @@
                       <span class="website">{{$student->school->website}}</span>
                   </h3>
               </div>
-              <h3 style="background:#423636;color:#fff;font-weight: bold;">শিক্ষার্থীর পরিচয়পত্র</h3>
+              <h3 style="background:#423636;color:#fff;font-weight: bold;">Student Card</h3>
               <div class="photo">
                 <img src="{{Storage::url($student->photo)}}">
               </div>
               <h3>{{$student->user->name}}</h3>
               <hr>
-              <h3>আইডি : {{$student->student_id}}</h3>
+              <h3>ID : {{$student->student_id}}</h3>
               <hr>
-              <h3>শ্রেণী : {{$student->masterClass->name}}, Sec. : {{$student->section}}</h3>
+              <h3>Class : {{$student->masterClass->name}}, Sec. : {{$student->section}}</h3>
               <hr>
-              <h3>রোল : {{$student->roll}},  সেশন : {{$student->session}}</h3>
+              <h3>Roll : {{$student->roll}},  Section : {{$student->session}}</h3>
               <hr>
-              <h3>বিভাগ : {{$student->group}}, রক্ত : {{$student->blood_group}}</h3>
+              <h3>Group : {{$student->group}}, Blood : {{$student->blood_group}}</h3>
               <hr>
               <p><img src="{{Storage::url($student->school->signature_p)}}" width="98px" height="20px"></p>
               @if(in_array("3", $school_type_ids))
-              <p>অধ্যক্ষের স্বাক্ষর:</p>
+               <p>Signature of Principal:</p>
               @else
-              <p>প্রধান শিক্ষকের স্বাক্ষর:</p>
+               <p>Signature of Headmaster:</p>
               @endif
             </div>
           </div>
@@ -54,7 +54,7 @@
           <div class="id-card-holder">
             <div class="id-card">
               <hr>
-              <p>এই কার্ডটি এই প্রতিষ্ঠানের সম্পত্তি। তাই, দয়া করে প্রদত্ত ঠিকানায় কার্ডটি পাঠান, যদি অন্যথায় এটি পাওয়া যায়।</p>
+              <p>This card is the property of this organization. Please send the card to the address provided, if this card available anywhere without it's user.</p>
               <hr>
               <p>{{$student->school->address}} <p>
               <hr>
@@ -62,7 +62,7 @@
               <hr>
                  <p><img src="{{Storage::url('images')}}/figure.jpg" width="100px" height="40px"></p>
               <hr>
-              <p>প্রদানের তারিখ : {{isset($request->issue_date) ? $request->issue_date : date('d-m-Y')}}, মেয়াদ শেষ : {{isset($request->end_date) ? $request->end_date : '31-12-'.(date('Y')+1)}}<p>
+              <p>Issue Date : {{isset($request->issue_date) ? $request->issue_date : date('d-m-Y')}}, Expiry Date : {{isset($request->end_date) ? $request->end_date : '31-12-'.(date('Y')+1)}}<p>
               <hr>
               <p>Powered By @Ehsan Software</p>
               <p>www.worldehsan.org | infoehsansoftware@gmail.com</p>
@@ -89,25 +89,25 @@
                   <span class="website">{{$student->school->website}}</span>
               </h3>
           </div>
-          <h3 style="background:#423636;color:#fff;font-weight: bold;">শিক্ষার্থীর পরিচয়পত্র</h3>
+          <h3 style="background:#423636;color:#fff;font-weight: bold;">Student Card</h3>
           <div class="photo">
             <img src="{{Storage::url($student->photo)}}">
           </div>
           <h3>{{$student->user->name}}</h3>
           <hr>
-          <h3>আইডি : {{$student->student_id}}</h3>
+          <h3>ID : {{$student->student_id}}</h3>
           <hr>
-          <h3>শ্রেণী : {{$student->masterClass->name}}, Sec. : {{$student->section}}</h3>
+          <h3>Class : {{$student->masterClass->name}}, Sec. : {{$student->section}}</h3>
           <hr>
-          <h3>রোল : {{$student->roll}},  সেশন : {{$student->session}}</h3>
+          <h3>Roll : {{$student->roll}},  Section : {{$student->session}}</h3>
           <hr>
-          <h3>বিভাগ : {{$student->group}}, রক্ত : {{$student->blood_group}}</h3>
+          <h3>Group : {{$student->group}}, Blood : {{$student->blood_group}}</h3>
           <hr>
           <p><img src="{{Storage::url($student->school->signature_p)}}" width="98px" height="20px"></p>
           @if(in_array("3", $school_type_ids))
-          <p>অধ্যক্ষের স্বাক্ষর:</p>
+           <p>Signature of Principal:</p>
           @else
-          <p>প্রধান শিক্ষকের স্বাক্ষর:</p>
+           <p>Signature of Headmaster:</p>
           @endif
         </div>
       </div>
@@ -116,7 +116,7 @@
       <div class="id-card-holder">
         <div class="id-card">
           <hr>
-          <p>এই কার্ডটি এই প্রতিষ্ঠানের সম্পত্তি। তাই, দয়া করে প্রদত্ত ঠিকানায় কার্ডটি পাঠান, যদি অন্যথায় এটি পাওয়া যায়।</p>
+          <p>This card is the property of this organization. Please send the card to the address provided, if this card available anywhere without it's user.</p>
           <hr>
           <p>{{$student->school->address}} <p>
           <hr>
@@ -124,7 +124,7 @@
           <hr>
              <p><img src="{{Storage::url('images')}}/figure.jpg" width="100px" height="40px"></p>
           <hr>
-          <p>প্রদানের তারিখ : {{isset($request->issue_date) ? $request->issue_date : date('d-m-Y')}}, মেয়াদ শেষ : {{isset($request->end_date) ? $request->end_date : '31-12-'.(date('Y')+1)}}<p>
+          <p>Issue Date : {{isset($request->issue_date) ? $request->issue_date : date('d-m-Y')}}, Expiry Date : {{isset($request->end_date) ? $request->end_date : '31-12-'.(date('Y')+1)}}<p>
           <hr>
           <p>Powered By @Ehsan Software</p>
           <p>www.worldehsan.org | infoehsansoftware@gmail.com</p>

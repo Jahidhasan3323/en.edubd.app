@@ -123,8 +123,8 @@ class SchoolController extends Controller
                         ->select('users.name','users.email','users.mobile','staff.id','designations.name as designation','staff.staff_id','staff.joining_date','staff.edu_qulif')
                         ->whereNull('staff.deleted_at')
                         ->count('staff.id');
-        $data['male']=Student::where(['school_id'=>$school->id,'gender'=>'ছেলে'])->current()->count();
-        $data['female']=Student::where(['school_id'=>$school->id,'gender'=>'মেয়ে'])->current()->count();
+        $data['male']=Student::where(['school_id'=>$school->id,'gender'=>'male'])->current()->count();
+        $data['female']=Student::where(['school_id'=>$school->id,'gender'=>'female'])->current()->count();
        return $this->sendResponse($data, 'Number of student retrieved successfully.');  
     }
 
