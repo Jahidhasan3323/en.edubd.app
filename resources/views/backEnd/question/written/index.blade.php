@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'প্রশ্নের তালিকা')
+@section('mainTitle', 'Lists of Questions')
 @section('question', 'active')
 @section('head_section')
 
@@ -56,7 +56,7 @@
 </style>
 <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
     <div class="page-header">
-        <h1 class="text-center text-temp">{{$tittle}} প্রশ্নের বিষয়ের তালিকা</h1>
+        <h1 class="text-center text-temp">{{$tittle}} List of topics in the question</h1>
     </div>
     <div class="row">
       
@@ -73,10 +73,10 @@
        <table id="question_tbl" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th>ক্রমিক নং</th>
-                    <th>শ্রেণী</th>
-                    <th>বিষয়</th>
-                    <th>অ্যাকশন</th>
+                    <th>#</th>
+                    <th>Class</th>
+                    <th>Subject</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>

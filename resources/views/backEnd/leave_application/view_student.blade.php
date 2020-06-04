@@ -7,7 +7,7 @@
 
     <div class="panel panel-info col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">ছুটির আবেদন</h1>
+            <h1 class="text-center text-temp">Leave Application</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -26,36 +26,37 @@
 
               
             <p>
-                  বরাবর,<br>
+                  To,<br>
                   {{$leave_application->toward}}  <br>
-                  {{str_replace($s,$r, $leave_application->school->user->name)}}  <br>      
-                  {{str_replace($s,$r, $leave_application->school->address)}}। <br><br>
+                  {{$leave_application->school->user->name}}  <br>      
+                  {{$leave_application->school->address}}। <br><br>
                
-              মাধ্যমঃ মাধ্যম যথাযথ শ্রেণী শিক্ষক <br><br>
+              Medium : The medium is the proper authority. <br><br>
                
-              বিষয়ঃ {{str_replace($s,$r, $leave_application->form_date->format('d-m-Y'))}} তারিখ হতে {{str_replace($s,$r, $leave_application->to_date->format('d-m-Y'))}}  তারিখ পর্যন্ত {{str_replace($s,$r,$leave_application->total_day)}} দিনের নৈমিত্তিক ছুটির প্রয়োজন। <br><br>
+              Subject : Form {{$leave_application->form_date->format('d-m-Y')}} to {{ $leave_application->to_date->format('d-m-Y')}}, Need casual holidays of the {{$leave_application->total_day}} days. <br><br>
                
-              জনাব,<br><br>
-                       যথাবিহীত সম্মান প্রদর্শন পূর্বক বিনীত নিবেদন এই যে, আমি আপনার বিদ্যালয়ের একজন নিয়মিত শিক্ষার্থী। আমার {{$leave_application->purpose}}  জন্য আগামী {{str_replace($s,$r, $leave_application->form_date->format('d-m-Y'))}} তারিখ হতে {{str_replace($s,$r, $leave_application->to_date->format('d-m-Y'))}} তারিখ পর্যন্ত আমার নৈমিত্তিক ছুটির প্রয়োজন। <br><br>
+              Sir,<br><br>
+                       Sincerely regards, I am a regular student of your school. From {{ $leave_application->form_date->format('d-m-Y')}} to {{ $leave_application->to_date->format('d-m-Y')}} for my {{$leave_application->purpose}}. So, I need a casual vacation. <br><br>
                
-                      অতএব জনাবের নিকট আবেদন আমাকে উল্লেখিত {{str_replace($s,$r,$leave_application->total_day)}} দিনের নৈমিত্তিক ছুটি মঞ্জুরসহ কর্মস্থল ত্যাগের অনুমতিদানে সদয় মর্জি হয়। <br><br>
+                      Therefore, I request you to please understand my situation and grant my leave for {{$leave_application->total_day}} <br><br>
                
                       
                
-              নিবেদক, <br>
+              Thank You, <br>
+              Yours sincerely, <br>
                
-              নামঃ  {{$leave_application->student->user->name}}<br>
-              শ্রেণিঃ  {{$leave_application->student->masterClass->name}}<br>
-              শাখাঃ  {{$leave_application->student->section}}<br>
-              গ্রুপঃ  {{$leave_application->student->group}}<br>
-              রোল:  {{str_replace($s,$r,$leave_application->student->roll)}}<br>
-              আইডিঃ  {{$leave_application->student->student_id}}<br>
-              মোবাইলঃ  {{str_replace($s,$r,$leave_application->student->f_mobile_no)}}<br>
-              তারিখঃ  {{str_replace($s,$r,$leave_application->created_at->format('d-m-Y'))}}   
+              Name :  {{$leave_application->student->user->name}}<br>
+              Class :  {{$leave_application->student->masterClass->name}}<br>
+              Section :  {{$leave_application->student->section}}<br>
+              Trade :  {{$leave_application->student->group}}<br>
+              Roll :  {{$leave_application->student->roll}}<br>
+              ID :  {{$leave_application->student->student_id}}<br>
+              Mobile :  {{$leave_application->student->f_mobile_no}}<br>
+              Date :  {{$leave_application->created_at->format('d-m-Y')}}   
             </p>
         </div>
         <div align="center" style="width: 100%; margin-bottom: 25px;">
-          <button class="btn btn-success" id="PrintVoucher">প্রিন্ট করুন</button>
+          <button class="btn btn-success" id="PrintVoucher">Print</button>
         </div>
     </div>
     
