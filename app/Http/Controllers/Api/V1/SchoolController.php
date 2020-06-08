@@ -24,8 +24,12 @@ use App\WmGalleryCategory;
 use App\Holiday;
 use App\ImportantFile;
 use App\Care;
+use App\OnlineAdmissionApplication;
+use App\OnlineAdmissionAccademicInfo;
+use App\OnlineAdmissionApplicationSubject;
+use App\OnlineAdmission;
 use Validator;
-
+use DB;
 class SchoolController extends Controller
 {
 
@@ -80,7 +84,7 @@ class SchoolController extends Controller
         $notice=Notice::where(['school_id'=>$school->id,'status'=>1])->orderby('id','DESC')->limit(20)->get();
        return $this->sendResponse($notice, 'Notice retrieved successfully.');  
     }
-
+    
     public function image_home(Request $request)
     {
         $school=School::where('serial_no',$request->serial_no)->first();
@@ -252,10 +256,11 @@ class SchoolController extends Controller
     public function accademic_vacation(Request $request)
     {
         $school=School::where('serial_no',$request->serial_no)->first();
-        $data['holidays'] = Holiday::where(['year'=>date('Y'),'school_id'=>$school->id])
-                           ->groupBy('month')
-                           ->selectRaw('*,count(month) as total_hd')
-                           ->get();
+        $data['holidays'] = Holiday::whereYear('date', '=', date('Y'))
+                   ->whereIn('school_id',[$school->id,0])
+                   ->groupBy(DB::raw('MONTH(date)'))
+                   ->select('*', DB::raw('count(*) as total'))
+                   ->get();
         $data['months'] = Array ('January','February','March','April','May','June','July','August','September','October','November','December');
        return $this->sendResponse($data, 'holidays retrieved successfully.');  
     }
@@ -263,7 +268,7 @@ class SchoolController extends Controller
     public function accademic_vacation_list(Request $request)
     {
         $school=School::where('serial_no',$request->serial_no)->first();
-       $data['holidays'] = Holiday::where(['year'=>$request->year,'month'=>$request->month,'school_id'=>$school->id])->select('date','month','year')->get();
+       $data['holidays'] = Holiday::whereYear('date',$request->year)->whereMonth('date',$request->month)->whereIn('school_id',[$school->id,0])->select('date')->get();
         $data['months'] = Array ('January','February','March','April','May','June','July','August','September','October','November','December');
         $data['month'] =$request->month;
         $data['year'] =$request->year;
@@ -449,5 +454,114 @@ class SchoolController extends Controller
           Care::create($data);
           return "message";
    }
+public function admission_notice(Request $request)
+    {
+        $school=School::where('serial_no',$request->serial_no)->first();
+        $notice=Notice::where(['school_id'=>$school->id,'status'=>1,'is_admission_notice'=>1])->orderby('id','DESC')->get();
+       return $this->sendResponse($notice, 'Notice retrieved successfully.');  
+    }
+   public function online_admission_application(Request $request){
+      $data1=$request->all();
+        $data=$data1[0];
+      $validator = Validator::make($data, [
+            'name_bn' => 'required',
+            'name_en' => 'required',
+            'father_name_bn' => 'required',
+            'father_name_en' => 'required',
+            'mother_name_bn' => 'required',
+            'mother_name_en' => 'required',
+            'birth_certificate_no' => 'required',
+            'dob' => 'required',
+            'parents_income' => 'required',
+            'parents_phone' => 'required',
+            'phone' => 'required',
+            'religion' => 'required',
+            'nationality' => 'required',
+            'parmanent_vill' => 'required',
+            'parmanent_post' => 'required',
+            'parmanent_upozila' => 'required',
+            'parmanent_zila' => 'required',
+            'present_vill' => 'required',
+            'present_post' => 'required',
+            'present_upozila' => 'required',
+            'present_zila' => 'required',
+            'picture' => 'required',
+            'signature' => 'required',
+            'exam_name' => 'required',
+            'roll_no' => 'required',
+            'registration_no' => 'required',
+            'board' => 'required',
+            'institute' => 'required',
+            'passing_year' => 'required',
+            'gpa' => 'required',
+            'subject' => 'required',
+            'subject_optional' => 'required',
+       ]);
+
+
+        if ($validator->fails()) {
+           $status=0;
+          return $this->sendResponse($status, 'something is wrong.');  
+            //return back()->with("danger", "Something is wrong ");
+        }
+        
+        $data1=$request->all();
+        $data=$data1[0];
+        $school=School::where('serial_no',$data['school_id'])->first();
+        $data['reg_no']=rand('10000','99999999');
+        $data['password']=bcrypt(rand('10000','99999999'));
+        $data['type']=1;
+        $data['picture']=$data['picture'];
+        $data['signature']=$data['signature'];
+        $data['school_id']=$school->id;
+         $admission=OnlineAdmission::where(['school_id'=>$data['school_id'],'status'=>1])->first();
+        $data['online_admission_id']=$admission->id;
+         $check_phone=OnlineAdmissionApplication::where(['phone'=>$data['phone'],'status'=>1,'school_id'=>$data['school_id']])->first();
+         if ($check_phone) {
+             OnlineAdmissionApplication::where(['phone'=>$data['phone'],'status'=>1])->update(['status'=>0]);
+         }
+         $application = OnlineAdmissionApplication::create($data);
+         $data['o_a_application_id']=$application->id;
+         $a=0;
+         foreach ($data['roll_no'] as $row) {
+           $info = OnlineAdmissionAccademicInfo::create(['exam_name'=>$data['exam_name'][$a],'roll_no'=>$data['roll_no'][$a],'registration_no'=>$data['registration_no'][$a],'board'=>$data['board'][$a],'institute'=>$data['institute'][$a],'passing_year'=>$data['passing_year'][$a],'gpa'=>$data['gpa'][$a],'school_id'=>$data['school_id'],'o_a_application_id'=>$application->id]);
+           $a++;
+         }
+         foreach ($data['subject'] as $subject) {
+            $subject = OnlineAdmissionApplicationSubject::create(['name'=>$subject,'type'=>2,'o_a_application_id'=>$application->id,'school_id'=>$data['school_id']]);
+         }
+            $subject = OnlineAdmissionApplicationSubject::create(['name'=>$data['subject_optional'],'type'=>3,'o_a_application_id'=>$application->id,'school_id'=>$data['school_id']]);
+
+            $subject = OnlineAdmissionApplicationSubject::create(['name'=>'বাংলা','type'=>1,'o_a_application_id'=>$application->id,'school_id'=>$data['school_id']]);
+            $subject = OnlineAdmissionApplicationSubject::create(['name'=>'তথ্য ও যোগাযোগ প্রযুক্তি','type'=>1,'o_a_application_id'=>$application->id,'school_id'=>$data['school_id']]);
+           $subject = OnlineAdmissionApplicationSubject::create(['name'=>'ইংরেজি','type'=>1,'school_id'=>$data['school_id'],'o_a_application_id'=>$application->id]);
+           $status=1;
+      return $this->sendResponse($status, 'admission data retrieved successfully.');  
+    }
+    
+   public function online_admission_application_form(Request $request)
+    {
+        
+        $school=School::where('serial_no',$request->serial_no)->first();
+        $admission=OnlineAdmission::where(['school_id'=>$school->id,'status'=>1])->first();
+         
+        return $this->sendResponse($admission, 'online admission data retrieved successfully.'); 
+    }
+    public function merit_list(Request $request)
+    {
+        
+        $school=School::where('serial_no',$request->serial_no)->first();
+        $admission=OnlineAdmission::where(['school_id'=>$school->id,'status'=>1])->first();
+         $merit_list=OnlineAdmissionApplication::where(['online_admission_id'=>$admission->id,'school_id'=>$school->id,'status'=>2])->get();
+        return $this->sendResponse($merit_list, 'merit list data retrieved successfully.'); 
+    }
+    public function waiting_list(Request $request)
+    {
+        
+        $school=School::where('serial_no',$request->serial_no)->first();
+        $admission=OnlineAdmission::where(['school_id'=>$school->id,'status'=>1])->first();
+         $merit_list=OnlineAdmissionApplication::where(['online_admission_id'=>$admission->id,'school_id'=>$school->id,'status'=>3])->get();
+        return $this->sendResponse($merit_list, 'merit list data retrieved successfully.'); 
+    }
 
 }

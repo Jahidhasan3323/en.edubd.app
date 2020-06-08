@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+ 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -26,6 +26,7 @@ Route::group(['namespace'=>'Api'], function(){
     Route::get('absent','AbsentNotifyController@send');
     Route::get('absent/staff','AbsentNotifyController@send_for_staff');
 });
+    
 
 Route::group(['namespace'=>'Api','prefix'=>'notice'], function(){
     Route::get('','NoticeController@index');
@@ -71,7 +72,14 @@ Route::group(['namespace'=>'Api\V1','prefix'=>'v1/school'], function(){
     Route::get('student','SchoolController@student');
     Route::get('birthday','SchoolController@birthday');
     Route::post('suggetion','SchoolController@suggetion');
+    Route::post('online_admission_application','SchoolController@online_admission_application');
+    Route::get('online_admission_application_form','SchoolController@online_admission_application_form');
+    Route::get('merit_list','SchoolController@merit_list');
+    Route::get('waiting_list','SchoolController@waiting_list');
+    Route::get('admission_notice','SchoolController@admission_notice');
 });
+
+
 
 
 Route::group(['namespace'=>'Api','prefix'=>'notice'], function(){

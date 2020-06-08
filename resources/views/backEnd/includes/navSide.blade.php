@@ -318,7 +318,18 @@
                     </ul>
                 </li>
             @endif
-
+            @if(Auth::is('admin'))
+                <li class="@yield('online_admission')">
+                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>Online Admission<span
+                                class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{url('/online_admission/create')}}">Create Online Admission</a>
+                            <a href="{{url('/online_admission')}}">Online Admission List</a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
             @if(Auth::is('root')||Auth::is('admin'))
                 <li class="@yield('active_exam')">
                     <a href="#"><i class="fa fa-sitemap fa-2x"></i>Examination Management<span

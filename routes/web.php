@@ -1081,3 +1081,35 @@ Route::group(['middleware' => 'auth','prefix' => 'post', 'as'=>'post'], function
     Route::get('/post/love','PostReactController@loveStore')->name('post.like');
 
     Route::post('/add/comment','PostCommentController@store')->name('add.comment')->middleware('auth');
+
+
+
+    //online admission
+Route::group(['middleware' => 'auth','prefix' => 'online_admission', 'as'=>'online_admission'], function(){
+    Route::get('/','OnlineAdmissionController@index')->name('');
+    Route::get('/create','OnlineAdmissionController@create')->name('.create');
+    Route::post('/create','OnlineAdmissionController@store')->name('.create');
+    Route::get('/edit/{id}','OnlineAdmissionController@edit')->name('.edit');
+    Route::post('/edit/{id}','OnlineAdmissionController@update')->name('.edit');
+    Route::get('/delete/{id}','OnlineAdmissionController@destroy')->name('.delete');
+    Route::get('/application/{id}','OnlineAdmissionController@application')->name('.application');
+    Route::get('/view/{id}','OnlineAdmissionController@view')->name('.view');
+    Route::get('/add_merit/{id}','OnlineAdmissionController@add_merit')->name('.add_merit');
+    Route::get('/add_waiting/{id}','OnlineAdmissionController@add_waiting')->name('.add_waiting');
+    Route::get('/add_reject/{id}','OnlineAdmissionController@add_reject')->name('.add_reject');
+    Route::get('/application/delete/{id}','OnlineAdmissionController@application_delete')->name('delete.application');
+
+    Route::get('/merit_list/{id}/{status}','OnlineAdmissionController@application_activity_list')->name('.merit_list');
+    Route::get('/waiting_list/{id}/{status}','OnlineAdmissionController@application_activity_list')->name('.waiting_list');
+    Route::get('/reject_list/{id}/{status}','OnlineAdmissionController@application_activity_list')->name('.reject_list');
+});
+
+//online admission
+Route::group(['prefix' => 'online_admission_application', 'as'=>'online_admission_application'], function(){
+    Route::get('/','OnlineAdmissionApplicationController@index')->name('');
+    Route::get('/create','OnlineAdmissionApplicationController@create')->name('.create');
+    Route::post('/create','OnlineAdmissionApplicationController@store')->name('.create');
+    Route::get('/edit/{id}','OnlineAdmissionApplicationController@edit')->name('.edit');
+    Route::post('/edit/{id}','OnlineAdmissionApplicationController@update')->name('.edit');
+    Route::get('/delete/{id}','OnlineAdmissionApplicationController@destroy')->name('.delete');
+});
