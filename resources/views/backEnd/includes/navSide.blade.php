@@ -66,6 +66,9 @@
                     <a href="#"><i class="fa fa-sitemap fa-2x"></i>SMS<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
+                            <a href="{{ route('rootSms.daily_sms_report')}}">Institute Based Daily SMS Report</a>
+                        </li>
+                        <li>
                             <a href="{{ route('smsLimit.sms_setup')}}">Select Automatic SMS</a>
                         </li>
                         <li>
