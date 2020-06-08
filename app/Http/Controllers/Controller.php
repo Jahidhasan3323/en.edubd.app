@@ -17,8 +17,6 @@ use App\Student;
 use App\Result;
 use App\GroupClass;
 use App\ExamType;
-use App\AutoSmsSetup;
-use App\AutoSms;
 
 class Controller extends BaseController
 {
@@ -30,8 +28,8 @@ class Controller extends BaseController
     }
 
     protected function returnWithError($message){
-    	  Session::flash('errmgs', $message);
-    	  return redirect()->back();
+        Session::flash('errmgs', $message);
+        return redirect()->back();
     }
     protected function returnWithSuccessRedirect($message,$page){
          Session::flash('sccmgs', $message);
@@ -49,11 +47,11 @@ class Controller extends BaseController
         $school_type_ids=explode('|', $id);
         $classes = MasterClass::whereIn('school_type_id', $school_type_ids)->get();
         return $classes;
-    }
+    } 
     protected function groupClasses()
     {
         return GroupClass::all();
-    }
+    }  
     protected function getUnits()
     {
         $units=Unit::where('school_id',Auth::getSchool())->get();
@@ -64,7 +62,7 @@ class Controller extends BaseController
       return Student::where('school_id',Auth::getSchool())->groupBy('session')->select('session')->get();
     }
 
-    public function school(){
+    protected function school(){
       return School::with('user')->where('id', Auth::getSchool())->first();
     }
 
@@ -93,30 +91,20 @@ class Controller extends BaseController
 
     protected function get_balance($api_key, $sender_id){
          $url = "http://sms.worldehsan.org/api/sms_balance?api_key=".$api_key."&sender_id=".$sender_id;
-         $ch_banpage = curl_init($url);
+         return file_get_contents($url);
+         
+         /*$ch_banpage = curl_init($url);
          curl_setopt($ch_banpage, CURLOPT_URL, $url);
          curl_setopt($ch_banpage, CURLOPT_HEADER, 0);
          curl_setopt($ch_banpage, CURLOPT_RETURNTRANSFER, true);
          $curl_scraped_page = curl_exec($ch_banpage);
-         curl_close($ch_banpage);
-         return $curl_scraped_page;
+         curl_close($ch_banpage);*/ 
     }
 
     protected function sms_send_by_api($school,$mobile_number,$message){
-            $url_AllNumber = "http://sms.worldehsan.org/api/send_sms?api_key=".$school->api_key."&sender_id=".$school->sender_id."&number=".$mobile_number."&message=".$message;
-            return $this->send_sms_by_curl($url_AllNumber);
+           $url_AllNumber = "http://sms.worldehsan.org/api/send_sms?api_key=".$school->api_key."&sender_id=".$school->sender_id."&number=".$mobile_number."&message=".$message;
+           return file_get_contents($url_AllNumber);
     }
-
-    protected function send_sms_by_curl($url_AllNumber){
-           $ch_banpage = curl_init($url_AllNumber);
-           curl_setopt($ch_banpage, CURLOPT_URL, $url_AllNumber);
-           curl_setopt($ch_banpage, CURLOPT_HEADER, 0);
-           curl_setopt($ch_banpage, CURLOPT_RETURNTRANSFER, true);
-           $curl_scraped_page = curl_exec($ch_banpage);
-           curl_close($ch_banpage);
-           return $curl_scraped_page;
-    }
-
     /**
         * success response method.
         *
