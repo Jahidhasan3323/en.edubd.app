@@ -552,7 +552,10 @@ public function admission_notice(Request $request)
         
         $school=School::where('serial_no',$request->serial_no)->first();
         $admission=OnlineAdmission::where(['school_id'=>$school->id,'status'=>1])->first();
+        $merit_list=[];
+        if($admission){
          $merit_list=OnlineAdmissionApplication::where(['online_admission_id'=>$admission->id,'school_id'=>$school->id,'status'=>2])->get();
+        }
         return $this->sendResponse($merit_list, 'merit list data retrieved successfully.'); 
     }
     public function waiting_list(Request $request)
@@ -560,7 +563,10 @@ public function admission_notice(Request $request)
         
         $school=School::where('serial_no',$request->serial_no)->first();
         $admission=OnlineAdmission::where(['school_id'=>$school->id,'status'=>1])->first();
+        $merit_list=[];
+        if($admission){
          $merit_list=OnlineAdmissionApplication::where(['online_admission_id'=>$admission->id,'school_id'=>$school->id,'status'=>3])->get();
+        }
         return $this->sendResponse($merit_list, 'merit list data retrieved successfully.'); 
     }
 
