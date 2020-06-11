@@ -529,7 +529,7 @@ public function admission_notice(Request $request)
            $info = OnlineAdmissionAccademicInfo::create(['exam_name'=>$data['exam_name'][$a],'roll_no'=>$data['roll_no'][$a],'registration_no'=>$data['registration_no'][$a],'board'=>$data['board'][$a],'institute'=>$data['institute'][$a],'passing_year'=>$data['passing_year'][$a],'gpa'=>$data['gpa'][$a],'school_id'=>$data['school_id'],'o_a_application_id'=>$application->id]);
            $a++;
          }
-         if ($data['subject']) {
+         if (isset($data['subject'])) {
           
          foreach ($data['subject'] as $subject) {
             $subject = OnlineAdmissionApplicationSubject::create(['name'=>$subject,'type'=>2,'o_a_application_id'=>$application->id,'school_id'=>$data['school_id']]);
