@@ -22,14 +22,14 @@
                 <table id="commitee_tbl" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>ক্রমিক নং</th>
-                            <th>টাইটেল</th>
-                            <th>সেশন</th>
-                            <th>শুরুর তারিখ</th>
-                            <th>শেষের তারিখ</th>
-                            <th>টাইপ </th>
-                            <th>স্ট্যাটাস </th>
-                            <th>অ্যাকশন</th>
+                            <th>SI</th>
+                            <th>Title</th>
+                            <th>Session</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Type </th>
+                            <th>Status </th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

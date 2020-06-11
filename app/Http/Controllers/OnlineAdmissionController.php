@@ -21,7 +21,7 @@ class OnlineAdmissionController extends Controller
         if(!Auth::is('admin')){
             return redirect('/home');
         }
-        $title="অনলাইন ভর্তি";
+        $title="Online Admission";
 
         $online_admission=OnlineAdmission::where(['creator_id'=>Auth::id(),'school_id'=>Auth::getSchool()])->get();
         return view('backEnd.online_admission.index',compact('online_admission','title'));
@@ -59,7 +59,7 @@ class OnlineAdmissionController extends Controller
         OnlineAdmission::where('status',1)->update(['status'=>0]);
         OnlineAdmission::create($data);
 
-        return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','online_admission');
+        return $this->returnWithSuccessRedirect('Your Information Added Successfully.','online_admission');
     }
 
     /**
@@ -73,7 +73,7 @@ class OnlineAdmissionController extends Controller
         if(!Auth::is('admin')){
             return redirect('/home');
         }
-        $title="অনলাইন ভর্তি আবেদন লিস্ট";
+        $title="Online Admission Application List";
 
          $online_admission=OnlineAdmissionApplication::where(['online_admission_id'=>$id,'school_id'=>Auth::getSchool(),'status'=>1])->get();
          $status=1;
@@ -92,7 +92,7 @@ class OnlineAdmissionController extends Controller
         if(!Auth::is('admin')){
             return redirect('/home');
         }
-        $title="অনলাইন ভর্তি";
+        $title="Online Admission";
 
         $online_admission=OnlineAdmission::where(['creator_id'=>Auth::id(),'school_id'=>Auth::getSchool(),'id'=>$id])->first();
         return view('backEnd.online_admission.edit',compact('online_admission','title'));
@@ -120,7 +120,7 @@ class OnlineAdmissionController extends Controller
         }else{
             OnlineAdmission::where('id',$id)->update($data);
         }
-        return $this->returnWithSuccessRedirect('আপনার তথ্য সংরক্ষণ হয়েছে !','online_admission');
+        return $this->returnWithSuccessRedirect('Your Information Added Successfully.','online_admission');
     } 
 
 
@@ -138,7 +138,7 @@ class OnlineAdmissionController extends Controller
         }
         $question=OnlineAdmission::where(['id'=>$id,'school_id'=> Auth::getSchool()])->delete();
         
-        return $this->returnWithSuccess('আপনার তথ্য মুছে ফেলা হয়েছে !');
+        return $this->returnWithSuccess('Your Information Deleted Successfully.');
     }
 
     public function view($id)
@@ -147,7 +147,7 @@ class OnlineAdmissionController extends Controller
             return redirect('/home');
         }
 
-         $student=OnlineAdmissionApplication::where(['id'=>$id,'school_id'=>Auth::getSchool()])->first();
+         $student=OnlineAdmissionApplication::with('masterClass')->where(['id'=>$id,'school_id'=>Auth::getSchool()])->first();
          $subject=OnlineAdmissionApplicationSubject::where(['o_a_application_id'=>$id,'school_id'=>Auth::getSchool(),'status'=>1])->get();
         $accademic_info=OnlineAdmissionAccademicInfo::where(['o_a_application_id'=>$id,'school_id'=>Auth::getSchool(),'status'=>1])->get();
         return view('backEnd.online_admission.view',compact('student','subject','accademic_info'));
@@ -156,17 +156,17 @@ class OnlineAdmissionController extends Controller
     public function add_merit($id)
     {
         OnlineAdmissionApplication::where(['id'=>$id,'school_id'=> Auth::getSchool()])->update(['status'=>2]);
-        return $this->returnWithSuccess('আপনার তথ্য সংরক্ষণ হয়েছে !');
+        return $this->returnWithSuccess('Your Information Added Successfully.');
     }
     public function add_waiting($id)
     {
         OnlineAdmissionApplication::where(['id'=>$id,'school_id'=> Auth::getSchool()])->update(['status'=>3]);
-        return $this->returnWithSuccess('আপনার তথ্য সংরক্ষণ হয়েছে !');
+        return $this->returnWithSuccess('Your Information Added Successfully.');
     }
     public function add_reject($id)
     {
         OnlineAdmissionApplication::where(['id'=>$id,'school_id'=> Auth::getSchool()])->update(['status'=>0]);
-        return $this->returnWithSuccess('আপনার তথ্য সংরক্ষণ হয়েছে !');
+        return $this->returnWithSuccess('Your Information Added Successfully.');
     }
 
     public function application_delete($id)
@@ -176,7 +176,7 @@ class OnlineAdmissionController extends Controller
         }
         $question=OnlineAdmissionApplication::where(['id'=>$id,'school_id'=> Auth::getSchool()])->delete();
         
-        return $this->returnWithSuccess('আপনার তথ্য মুছে ফেলা হয়েছে !');
+        return $this->returnWithSuccess('Your Information Deleted Successfully.');
     }
 
     public function application_activity_list($id,$status)
@@ -184,7 +184,7 @@ class OnlineAdmissionController extends Controller
         if(!Auth::is('admin')){
             return redirect('/home');
         }
-        $title="অনলাইন ভর্তি আবেদন লিস্ট";
+        $title="Online Admission Application List";
          $online_admission=OnlineAdmissionApplication::where(['online_admission_id'=>$id,'school_id'=>Auth::getSchool(),'status'=>$status])->get();
         return view('backEnd.online_admission.application',compact('online_admission','title','status','id'));
     }

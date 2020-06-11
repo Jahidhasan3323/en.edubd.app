@@ -17,10 +17,10 @@
         @endif
         <div class="panel col-sm-12" >
             <div class="page-header" style="margin: 0 0 7px 0; padding-bottom: 25px">
-                <a href="{{url('/online_admission/application/'.$id)}}" class="btn btn-{{$status==1 ? 'success' : 'info'}}"> প্রক্রিয়াধীন তালিকা</a>
-                <a href="{{url('/online_admission/merit_list/'.$id.'/2')}}" class="btn btn-{{$status==2 ? 'success' : 'info'}}"> মেধাতালিকা</a>
-                <a href="{{url('/online_admission/waiting_list/'.$id.'/3')}}" class="btn btn-{{$status==3 ? 'success' : 'info'}}"> অপেক্ষাধীন তালিকা</a>
-                <a href="{{url('/online_admission/reject_list/'.$id.'/0')}}" class="btn btn-{{$status==0 ? 'success' : 'info'}}"> বাতিল তালিকা</a>
+                <a href="{{url('/online_admission/application/'.$id)}}" class="btn btn-{{$status==1 ? 'success' : 'info'}}"> Pending List</a>
+                <a href="{{url('/online_admission/merit_list/'.$id.'/2')}}" class="btn btn-{{$status==2 ? 'success' : 'info'}}"> Merit List</a>
+                <a href="{{url('/online_admission/waiting_list/'.$id.'/3')}}" class="btn btn-{{$status==3 ? 'success' : 'info'}}"> Waiting List</a>
+                <a href="{{url('/online_admission/reject_list/'.$id.'/0')}}" class="btn btn-{{$status==0 ? 'success' : 'info'}}"> Rejected List</a>
             </div>
         </div>
         <div class="panel-body" style="margin-top: 10px; padding-bottom: 50px">
@@ -29,13 +29,13 @@
                 <table id="commitee_tbl" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>ক্রমিক নং</th>
-                            <th>ছবি </th>
-                            <th>রেজিস্ট্রেশন নং </th>
-                            <th>নাম</th>
-                            <th>মোবাইল নং </th>
-                            <th>স্ট্যাটাস </th>
-                            <th>অ্যাকশন</th>
+                            <th>SI</th>
+                            <th>Picture </th>
+                            <th>Reg No </th>
+                            <th>Name</th>
+                            <th>Mobile No </th>
+                            <th>Status </th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,7 +48,7 @@
                             <td>{{$row->reg_no}}</td>                            
                             <td>{{$row->name_bn}}</td>                            
                             <td>{{$row->phone}}</td>                            
-                            <td>{{$row->status==1 ? "প্রক্রিয়াধীন" :($row->status==2 ? "মেধাতালিকা" :($row->status==3 ? "অপেক্ষাধীন" :($row->status==4 ? "বাতিল" : '')))}}</td>
+                            <td>{{$row->status==1 ? "Pending" :($row->status==2 ? "Merit list" :($row->status==3 ? "Waiting List" :($row->status==4 ? "Reject" : '')))}}</td>
                             <td>
                                 
                                 <a title="View"  class="btn btn-primary"  href="{{url('/online_admission/view/'.$row->id)}}"><span class="fa fa-eye"></span>

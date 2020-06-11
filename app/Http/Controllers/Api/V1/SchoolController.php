@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\SmsSendController;
 use Illuminate\Http\Request;
 use App\School;
 use App\Student;
@@ -28,6 +29,7 @@ use App\OnlineAdmissionApplication;
 use App\OnlineAdmissionAccademicInfo;
 use App\OnlineAdmissionApplicationSubject;
 use App\OnlineAdmission;
+use App\MasterClass;
 use Validator;
 use DB;
 class SchoolController extends Controller
@@ -460,8 +462,8 @@ public function admission_notice(Request $request)
         $notice=Notice::where(['school_id'=>$school->id,'status'=>1,'is_admission_notice'=>1])->orderby('id','DESC')->get();
        return $this->sendResponse($notice, 'Notice retrieved successfully.');  
     }
-   public function online_admission_application(Request $request){
-      $data1=$request->all();
+   public function online_admission_application(Request $request, SmsSendController $sms_send){
+       $data1=$request->all();
         $data=$data1[0];
       $validator = Validator::make($data, [
             'name_bn' => 'required',
@@ -494,8 +496,8 @@ public function admission_notice(Request $request)
             'institute' => 'required',
             'passing_year' => 'required',
             'gpa' => 'required',
-            'subject' => 'required',
-            'subject_optional' => 'required',
+            /*'subject' => 'required',
+            'subject_optional' => 'required',*/
        ]);
 
 
@@ -509,7 +511,7 @@ public function admission_notice(Request $request)
         $data=$data1[0];
         $school=School::where('serial_no',$data['school_id'])->first();
         $data['reg_no']=rand('10000','99999999');
-        $data['password']=bcrypt(rand('10000','99999999'));
+        $data['password']=rand('10000','99999999');
         $data['type']=1;
         $data['picture']=$data['picture'];
         $data['signature']=$data['signature'];
@@ -527,14 +529,24 @@ public function admission_notice(Request $request)
            $info = OnlineAdmissionAccademicInfo::create(['exam_name'=>$data['exam_name'][$a],'roll_no'=>$data['roll_no'][$a],'registration_no'=>$data['registration_no'][$a],'board'=>$data['board'][$a],'institute'=>$data['institute'][$a],'passing_year'=>$data['passing_year'][$a],'gpa'=>$data['gpa'][$a],'school_id'=>$data['school_id'],'o_a_application_id'=>$application->id]);
            $a++;
          }
+         if ($request->subject) {
+          
          foreach ($data['subject'] as $subject) {
             $subject = OnlineAdmissionApplicationSubject::create(['name'=>$subject,'type'=>2,'o_a_application_id'=>$application->id,'school_id'=>$data['school_id']]);
          }
             $subject = OnlineAdmissionApplicationSubject::create(['name'=>$data['subject_optional'],'type'=>3,'o_a_application_id'=>$application->id,'school_id'=>$data['school_id']]);
 
-            $subject = OnlineAdmissionApplicationSubject::create(['name'=>'বাংলা','type'=>1,'o_a_application_id'=>$application->id,'school_id'=>$data['school_id']]);
-            $subject = OnlineAdmissionApplicationSubject::create(['name'=>'তথ্য ও যোগাযোগ প্রযুক্তি','type'=>1,'o_a_application_id'=>$application->id,'school_id'=>$data['school_id']]);
-           $subject = OnlineAdmissionApplicationSubject::create(['name'=>'ইংরেজি','type'=>1,'school_id'=>$data['school_id'],'o_a_application_id'=>$application->id]);
+            $subject = OnlineAdmissionApplicationSubject::create(['name'=>'Bangla','type'=>1,'o_a_application_id'=>$application->id,'school_id'=>$data['school_id']]);
+            $subject = OnlineAdmissionApplicationSubject::create(['name'=>'ICT','type'=>1,'o_a_application_id'=>$application->id,'school_id'=>$data['school_id']]);
+           $subject = OnlineAdmissionApplicationSubject::create(['name'=>'English','type'=>1,'school_id'=>$data['school_id'],'o_a_application_id'=>$application->id]);
+         }
+         if ($application->id) {
+           $content='Dear '.$data['name_bn'].' Your admit card download information ! Web address : '.$school->website.'/admit_card_check , Reg No : '.$data['reg_no'].', Password : '.$data['password'].' ';
+           $message= urlencode($content);
+           $mobile_number=$sms_send->validateNumber([0=>$data['phone']]);
+           $mobile_number = implode(',',$mobile_number);
+           $a = $this->sms_send_by_api($school,$mobile_number,$message);
+         }
            $status=1;
       return $this->sendResponse($status, 'admission data retrieved successfully.');  
     }
@@ -543,9 +555,10 @@ public function admission_notice(Request $request)
     {
         
         $school=School::where('serial_no',$request->serial_no)->first();
-        $admission=OnlineAdmission::where(['school_id'=>$school->id,'status'=>1])->first();
+        $data['admission']=OnlineAdmission::where(['school_id'=>$school->id,'status'=>1])->first();
+        $data['class']=MasterClass::get();
          
-        return $this->sendResponse($admission, 'online admission data retrieved successfully.'); 
+        return $this->sendResponse($data, 'online admission data retrieved successfully.'); 
     }
     public function merit_list(Request $request)
     {
@@ -568,6 +581,21 @@ public function admission_notice(Request $request)
          $merit_list=OnlineAdmissionApplication::where(['online_admission_id'=>$admission->id,'school_id'=>$school->id,'status'=>3])->get();
         }
         return $this->sendResponse($merit_list, 'merit list data retrieved successfully.'); 
+    }
+    
+    public function admit_card(Request $request)
+    {
+        $data1=$request->all();
+        $data=$data1[0];
+        //$password=bcrypt($data['password']);
+        $password=$data['password'];
+        $school=School::where('serial_no',$data['school_id'])->first();
+        $admission=OnlineAdmission::where(['school_id'=>$school->id,'status'=>1])->whereDate('end_date','>=',date('Y-m-d'))->first();
+        $admit=[];
+        if($admission){
+         $admit=OnlineAdmissionApplication::with('online_admission','masterClass')->where(['online_admission_id'=>$admission->id,'school_id'=>$school->id,'status'=>2,'reg_no'=>$data['reg_no'],'password'=>$password])->first();
+        }
+        return $this->sendResponse($admit, 'admit data retrieved successfully.'); 
     }
 
 }

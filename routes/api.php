@@ -77,6 +77,7 @@ Route::group(['namespace'=>'Api\V1','prefix'=>'v1/school'], function(){
     Route::get('merit_list','SchoolController@merit_list');
     Route::get('waiting_list','SchoolController@waiting_list');
     Route::get('admission_notice','SchoolController@admission_notice');
+    Route::post('admit_card','SchoolController@admit_card');
 });
 
 

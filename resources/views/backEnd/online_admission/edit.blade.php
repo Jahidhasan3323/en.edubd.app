@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'অনলাইন ভর্তি')
+@section('mainTitle', 'Online Admission')
 @section('online_admission', 'active')
 @section('head_section')
     <style>
@@ -11,7 +11,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">অনলাইন ভর্তি</h1>
+            <h1 class="text-center text-temp">Online Admission</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -31,9 +31,9 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group {{$errors->has('title') ? 'has-error' : ''}}">
-                            <label class="" for="title">টাইটেল <span class="star">*</span></label>
+                            <label class="" for="title">Title <span class="star">*</span></label>
                             <div class="">
-                                <input value="{{$online_admission->title}}" type="text" name="title" class="form-control" placeholder="টাইটেল">
+                                <input value="{{$online_admission->title}}" type="text" name="title" class="form-control" placeholder="Title">
                             </div>
                             @if ($errors->has('title'))
                                 <span class="help-block">
@@ -45,8 +45,8 @@
                 
                     <div class="col-sm-6">
                         <div class="form-group {{$errors->has('session') ? 'has-error' : ''}}">
-                            <label for="session">সেশন  </label>
-                            <input value="{{$online_admission->session}}" type="text" name="session" class="form-control" placeholder="সেশন">
+                            <label for="session">Session  </label>
+                            <input value="{{$online_admission->session}}" type="text" name="session" class="form-control" placeholder="Session">
                             @if ($errors->has('session'))
                                 <span class="help-block">
                                     <strong>{{$errors->first('session')}}</strong>
@@ -58,9 +58,9 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group {{$errors->has('start_date') ? 'has-error' : ''}}">
-                            <label for="start_date">শুরুর তারিখ  </label>
+                            <label for="start_date">Start date  </label>
                             
-                            <input value="{{$online_admission->start_date}}" class="form-control date" type="text" name="start_date" id="start_date" placeholder="শুরুর তারিখ " autocomplete="off">
+                            <input value="{{$online_admission->start_date}}" class="form-control date" type="text" name="start_date" id="start_date" placeholder="Start date " autocomplete="off">
                             @if ($errors->has('start_date'))
                                 <span class="help-block">
                                     <strong>{{$errors->first('start_date')}}</strong>
@@ -71,9 +71,9 @@
                 
                     <div class="col-sm-6">
                         <div class="form-group {{$errors->has('end_date') ? 'has-error' : ''}}">
-                            <label for="end_date">শেষের তারিখ  </label>
+                            <label for="end_date">End Date  </label>
                             
-                            <input value="{{$online_admission->end_date}}" class="form-control date1" type="text" name="end_date" id="end_date" placeholder="শেষের তারিখ "  autocomplete="off">
+                            <input value="{{$online_admission->end_date}}" class="form-control date1" type="text" name="end_date" id="end_date" placeholder="End Date "  autocomplete="off">
                             @if ($errors->has('end_date'))
                                 <span class="help-block">
                                     <strong>{{$errors->first('end_date')}}</strong>
@@ -85,12 +85,12 @@
                 <div class="row">
                     <div class="col-sm-6 {{$errors->has('status') ? 'has-error' : ''}}">
                         <div class="form-group">
-                            <label class="" for="status">স্ট্যাটাস </label>
+                            <label class="" for="status">Status </label>
                             <div class="">
                                 <select class="form-control" name="status" id="status" >
-                                    <option value=""> নির্বাচন করুন</option>
-                                    <option value="1">সক্রিয়</option>
-                                    <option value="0">নিষ্ক্রিয়</option>
+                                    <option value=""> Select</option>
+                                    <option value="1">School</option>
+                                    <option value="0">College</option>
                                     
                                 </select>
                             </div>
@@ -111,7 +111,7 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">সংরক্ষণ করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Submit</button>
                             </div>
                         </div>
                     </div>
