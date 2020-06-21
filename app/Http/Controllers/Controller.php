@@ -47,11 +47,11 @@ class Controller extends BaseController
         $school_type_ids=explode('|', $id);
         $classes = MasterClass::whereIn('school_type_id', $school_type_ids)->get();
         return $classes;
-    } 
+    }
     protected function groupClasses()
     {
         return GroupClass::all();
-    }  
+    }
     protected function getUnits()
     {
         $units=Unit::where('school_id',Auth::getSchool())->get();
@@ -92,13 +92,13 @@ class Controller extends BaseController
     protected function get_balance($api_key, $sender_id){
          $url = "http://sms.worldehsan.org/api/sms_balance?api_key=".$api_key."&sender_id=".$sender_id;
          return file_get_contents($url);
-         
+
          /*$ch_banpage = curl_init($url);
          curl_setopt($ch_banpage, CURLOPT_URL, $url);
          curl_setopt($ch_banpage, CURLOPT_HEADER, 0);
          curl_setopt($ch_banpage, CURLOPT_RETURNTRANSFER, true);
          $curl_scraped_page = curl_exec($ch_banpage);
-         curl_close($ch_banpage);*/ 
+         curl_close($ch_banpage);*/
     }
 
     protected function sms_send_by_api($school,$mobile_number,$message){
@@ -143,4 +143,17 @@ class Controller extends BaseController
 
            return response()->json($response, $code);
        }
+
+       function curl_get_file_contents($URL)
+       {
+           $c = curl_init();
+           curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+           curl_setopt($c, CURLOPT_URL, $URL);
+           $contents = curl_exec($c);
+           curl_close($c);
+
+           if ($contents) return $contents;
+           else return FALSE;
+       }
+       
 }
