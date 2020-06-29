@@ -1114,3 +1114,15 @@ Route::group(['prefix' => 'online_admission_application', 'as'=>'online_admissio
     Route::post('/edit/{id}','OnlineAdmissionApplicationController@update')->name('.edit');
     Route::get('/delete/{id}','OnlineAdmissionApplicationController@destroy')->name('.delete');
 });
+
+//online admission
+Route::group(['prefix' => 'online_class', 'as'=>'online_class'], function(){
+    Route::get('/','OnlineClassController@index')->name('');
+    Route::get('/create','OnlineClassController@create')->name('.create');
+    Route::post('/create','OnlineClassController@store')->name('.create');
+    Route::get('/edit/{id}','OnlineClassController@edit')->name('.edit');
+    Route::post('/edit/{id}','OnlineClassController@update')->name('.edit');
+    Route::get('/delete/{id}','OnlineClassController@destroy')->name('.delete');
+
+     Route::get('/student','OnlineClassController@student_class')->name('.student');
+});
