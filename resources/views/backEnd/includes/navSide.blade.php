@@ -827,6 +827,28 @@
                 @endif
 
             @endif
+            @if(Auth::is('teacher') || Auth::is('student'))
+            <li>
+                <li class="@yield('online_class')">
+                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>Online Class<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        @if(Auth::is('teacher'))
+                        <li>
+                            <a href="{{ route('online_class.create') }}">Add Online Class</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('online_class') }}">Online Class Information</a>
+                        </li>
+                        @endif
+                        @if(Auth::is('student'))
+                        <li>
+                            <a href="{{ route('online_class.student') }}">Online Class Information</a>
+                        </li>
+                        @endif
+                    </ul>
+                </li>
+            </li>
+            @endif
             @if(Auth::is('admin'))
                 <li>
                     <a href="{{url('school_settings')}}"><i class="fa fa-angle-double-down fa-2x"></i>Web Management</a>
