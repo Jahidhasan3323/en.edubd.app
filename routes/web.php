@@ -120,7 +120,6 @@ Route::get('/students/roll/check', 'StudentController@rollCheck');
 Route::get('/students_list', 'StudentController@index');
 Route::get('/students_control/{school_id}', 'StudentController@student_controll_by_root');
 Route::get('/old_students_list', 'StudentController@old_students_list');
-Route::get('/student_user', 'StudentController@student_user');
 Route::get('/students/{master_class_id}/{group}/{section}/{shift}/{session}/{student_type}', 'StudentController@ClassStudentsList');
 Route::get('/student_list_controll/{master_class_id}/{group}/{section}/{shift}/{session}/{school_id}', 'StudentController@student_list_controll');
 Route::post('/student_list_controll/active/{master_class_id}/{group}/{section}/{shift}/{session}/{school_id}', 'StudentController@student_id_card_active');
@@ -218,6 +217,7 @@ Route::group(['middleware' => 'auth','prefix' => 'elective'], function(){
     Route::post('update/{id}', 'ElectiveSettingController@update');
     Route::get('delete/{id}', 'ElectiveSettingController@destroy');
 });
+
 
 /*
  * Progess Cart Management Routes here................
@@ -608,6 +608,30 @@ Route::group(['middleware' => 'auth','prefix' => 'SalarySheet'], function(){
       Route::post('/multi_school_send','RootSmsController@multi_school_send')->name('multi_school_send');
       Route::get('/daily_sms_report','RootSmsController@daily_sms_report')->name('daily_sms_report');
   });
+ Route::get('/get_data','LoginInfoController@get_data')->name('get_data');
+ // Login Info Routes
+ Route::group(['middleware' => 'auth','prefix' => 'loginInfo'], function(){
+     Route::get('/student_login_info','LoginInfoController@student_login_info')->name('student_login_info');
+     Route::post('/student_login_info_print','LoginInfoController@student_login_info_print')->name('student_login_info_print');
+     Route::get('/employee_login_info','LoginInfoController@employee_login_info')->name('employee_login_info');
+     Route::post('/employee_login_info_print','LoginInfoController@employee_login_info_print')->name('employee_login_info_print');
+     Route::get('/committee_login_info','LoginInfoController@committee_login_info')->name('committee_login_info');
+     Route::post('/committee_login_info_print','LoginInfoController@committee_login_info_print')->name('committee_login_info_print');
+
+ });
+
+ // Password Reset
+ Route::group(['middleware' => 'auth','prefix' => 'password'], function(){
+     Route::get('/student_password','PasswordGenerateController@student_password')->name('student_password');
+     Route::post('/student_password_reset','PasswordGenerateController@student_password_reset')->name('student_password_reset');
+     Route::post('/student_password_generate','PasswordGenerateController@student_password_generate')->name('student_password_generate');
+     Route::get('/employee_password','PasswordGenerateController@employee_password')->name('employee_password');
+     Route::post('/employee_password_reset','PasswordGenerateController@employee_password_reset')->name('employee_password_reset');
+     Route::post('/employee_password_generate','PasswordGenerateController@employee_password_generate')->name('employee_password_generate');
+     Route::get('/committee_password','PasswordGenerateController@committee_password')->name('committee_password');
+     Route::post('/committee_password_reset','PasswordGenerateController@committee_password_reset')->name('committee_password_reset');
+     Route::post('/committee_password_generate','PasswordGenerateController@committee_password_generate')->name('committee_password_generate');
+ });
 
 // SMS Login Info Routes
  Route::group(['middleware' => 'auth','prefix' => 'loginInfo', 'as' => 'loginInfo.'], function(){
@@ -1085,7 +1109,7 @@ Route::group(['middleware' => 'auth','prefix' => 'post', 'as'=>'post'], function
 
 
 
-    //online admission
+//online admission
 Route::group(['middleware' => 'auth','prefix' => 'online_admission', 'as'=>'online_admission'], function(){
     Route::get('/','OnlineAdmissionController@index')->name('');
     Route::get('/create','OnlineAdmissionController@create')->name('.create');
@@ -1115,6 +1139,14 @@ Route::group(['prefix' => 'online_admission_application', 'as'=>'online_admissio
     Route::get('/delete/{id}','OnlineAdmissionApplicationController@destroy')->name('.delete');
 });
 
+
+// Student add by Root user
+Route::group(['prefix' => 'student', 'as'=>'student.'], function(){
+    Route::get('/add','StudentController@student_add_root')->name('add');
+    Route::get('/add_info','StudentController@student_add_info')->name('add_info');
+    Route::post('/store','StudentController@student_store_root')->name('store');
+});
+
 //online admission
 Route::group(['prefix' => 'online_class', 'as'=>'online_class'], function(){
     Route::get('/','OnlineClassController@index')->name('');
@@ -1124,5 +1156,6 @@ Route::group(['prefix' => 'online_class', 'as'=>'online_class'], function(){
     Route::post('/edit/{id}','OnlineClassController@update')->name('.edit');
     Route::get('/delete/{id}','OnlineClassController@destroy')->name('.delete');
 
-     Route::get('/student','OnlineClassController@student_class')->name('.student');
+    Route::get('/student','OnlineClassController@student_class')->name('.student');
+
 });

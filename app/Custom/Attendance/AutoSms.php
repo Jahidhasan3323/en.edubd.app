@@ -26,7 +26,7 @@
             // School Holiday Check
             if (empty($holiday)) {
                 $school_name=$school->short_name?? self::school_name_process($school->user->name);
-                $percentage = $school->attend_percentage_limit??'10';
+                $percentage = $school->attend_percentage_limit??10;
                 $numbers = [];
                 if ($person==2) {
                     $msg = AttendanceText::where('school_id', $school->id)->where('type',1)->where('person_type',2)->first();
@@ -53,7 +53,7 @@
                     if($school->attendance_sms==1 || $school->attendance_sms==3){
                         $atten_employees = AttenEmployee::with('staff.user')->where('school_id',$school->id)->whereDate('date', date('Y-m-d'))->where('status','P')->where('in_time','!=',NULL)->get();
                         // Check for attend must be greater than 10%
-                        if (($total_employees*10)/100 < count($atten_employees)){
+                        if (($total_employees*$percentage)/100 < count($atten_employees)){
                             foreach ($atten_employees as $atten_employee) {
                                 if($atten_employee->staff){
                                     if ($atten_employee->staff->user->mobile) {$numbers[] = $atten_employee->staff->user->mobile; }
@@ -85,7 +85,7 @@
             $total_employees = Staff::where('school_id',$school->id)->current()->count();
             if (empty($holiday)) {
                 $school_name=$school->short_name?? self::school_name_process($school->user->name);
-                $percentage = $school->attend_percentage_limit??'0';
+                $percentage = $school->attend_percentage_limit??10;
                 $numbers = [];
                 if ($person==2) {
                     $msg = AttendanceText::where('school_id', $school->id)->where('type', 2)->where('person_type',2)->first();
@@ -113,7 +113,7 @@
                         $attend_employees = AttenEmployee::where('school_id',$school->id)->whereDate('date', date('Y-m-d'))->where('status','P')->pluck('staff_id');
                         $absent_employees = Staff::with('user')->where('school_id',$school->id)->whereNotIn('staff_id',$attend_employees)->current()->get();
                         // Check for attend must be greater than 10%
-                        if (($total_employees*10)/100 < count($attend_employees)){
+                        if (($total_employees*$percentage)/100 < count($attend_employees)){
                             foreach ($absent_employees as $absent_employee) {
                                 if($absent_employee->user){
                                     if ($absent_employee->user->mobile) {$numbers[] = $absent_employee->user->mobile; }
@@ -145,7 +145,7 @@
             $total_employees = Staff::where('school_id',$school->id)->current()->count();
             if (empty($holiday)) {
                 $school_name=$school->short_name?? self::school_name_process($school->user->name);
-                $percentage = $school->attend_percentage_limit??'0';
+                $percentage = $school->attend_percentage_limit??10;
                 $numbers = [];
                 if ($person==2) {
                     $msg = AttendanceText::where('school_id', $school->id)->where('type', 3)->where('person_type',2)->first();
@@ -172,7 +172,7 @@
                     if($school->attendance_sms==1 || $school->attendance_sms==3){
                         $attend_out_employees = AttenEmployee::with('staff.user')->where('school_id',$school->id)->whereDate('date', date('Y-m-d'))->where('status','P')->where('out_time','!=',NULL)->get();
                         // Check for attend must be greater than 10%
-                        if (($total_employees*10)/100 < count($attend_out_employees)) {
+                        if (($total_employees*$percentage)/100 < count($attend_out_employees)) {
                             foreach ($attend_out_employees as $attend_out_employee) {
                                 if($attend_out_employee->staff){
                                     if ($attend_out_employee->staff->user->mobile) {$numbers[] = $attend_out_employee->staff->user->mobile; }

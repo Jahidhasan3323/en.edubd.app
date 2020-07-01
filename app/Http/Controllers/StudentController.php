@@ -33,6 +33,57 @@ class StudentController extends Controller
         $this->middleware('auth');
     }
 
+    public function student_add_root()
+    {
+        $schools = School::all();
+        return view('backEnd.students.add', compact('schools'));
+    }
+    public function student_add_info()
+    {
+        $schools = School::all();
+        $school = School::where('id',$_GET['school_id'])->first();
+        $schoolId = $school->id;
+        $student_id = $this->student_id_generator($schoolId);
+        $student_limit=$school->total_student;
+        $total_students=count($school->student()->get());
+        $id = $school->school_type_id;
+        $school_type_ids=explode('|', $id);
+        $classes = MasterClass::whereIn('school_type_id', $school_type_ids)->get();
+        $group_classes=GroupClass::all();
+        $units=Unit::where('school_id',$schoolId)->get();
+        return view('backEnd.students.add', compact('classes', 'units', 'schoolId', 'student_id','student_limit','total_students','group_classes','units','schools','school'));
+    }
+
+    public function student_store_root(Request $request)
+    {
+        if (!Auth::is('root')){
+            return redirect('/home');
+        }
+        $user_data = $request->only(['name','email','mobile','group_id']);
+        $user_data['real_password'] = $request->password;
+        $user_data['password'] = bcrypt($request->password);
+        $user = User::create($user_data);
+        if ($user) {
+            $data = $request->except(['password','photo','f_photo','m_photo']);
+            $data['photo'] = 'public/images/user.png';
+            $data['f_photo'] = 'public/images/user.png';
+            $data['m_photo'] = 'public/images/user.png';
+            $data['user_id'] = $user->id;
+            if($imageFile = $request->file('photo')){
+               $data['photo'] = $this->imagesProcessing1($imageFile, 'studentPhoto',300,350);
+            }
+            if($imageFile = $request->file('f_photo')){
+               $data['f_photo'] = $this->imagesProcessing1($imageFile, 'studentPhoto',300,350);
+            }
+            if($imageFile = $request->file('m_photo')){
+               $data['m_photo'] = $this->imagesProcessing1($imageFile, 'studentPhoto',300,350);
+            }
+            Student::create($data);
+            return redirect()->back()->with('sccmgs','Student added successfully.');
+        }
+
+    }
+
     public function index()
     {
         if (!Auth::is('admin') && !Auth::is('teacher')){
