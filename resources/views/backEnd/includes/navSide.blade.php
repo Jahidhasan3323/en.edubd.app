@@ -21,6 +21,11 @@
             <li>
                 <a class="active-menu" href="{{url('/home')}}"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
             </li>
+            @if (Auth::is('root'))
+                <li>
+                    <a class="menu" href="{{ route('student.add') }}"><i class="fa fa-user fa-2x"></i> Add Student</a>
+                </li>
+            @endif
             @if(Auth::is('admin'))
                 <li class="@yield('active_sms')">
                     <a href="#"><i class="fa fa-sitemap fa-2x"></i>SMS Service Management<span
@@ -59,6 +64,30 @@
                         </li>
                         <li>
                             <a href="{{url('/schools')}}">Institute List</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="@yield('active_login_info')">
+                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>Login Information<span
+                                class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{ route('student_login_info') }}">Student Login Info</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('student_password') }}">Student Password Reset</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('employee_login_info') }}">Employee Login Info</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('employee_password') }}">Employee Password Reset</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('committee_login_info') }}">Committee Login Info</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('committee_password') }}">Committee Password reset</a>
                         </li>
                     </ul>
                 </li>
