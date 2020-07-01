@@ -137,7 +137,7 @@ class OnlineClassController extends Controller
             return redirect('/home');
         }
         $student_details=student::where(['school_id'=>Auth::getSchool(),'user_id'=>Auth::id()])->first();
-        $online_class=OnlineClass::where(['master_class_id'=>$student_details->master_class_id,'shift'=>$student_details->shift,'section'=>$student_details->section,'group'=>$student_details->group])->get();
+        $online_class=OnlineClass::where(['master_class_id'=>$student_details->master_class_id,'shift'=>$student_details->shift,'group'=>$student_details->group])->get();
         //dd($online_class);
         return view('backEnd.online_class.student_class',compact('online_class'));
     }
