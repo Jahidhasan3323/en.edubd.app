@@ -1140,6 +1140,20 @@ Route::group(['prefix' => 'online_admission_application', 'as'=>'online_admissio
 });
 
 
+ // Email Reset By Root User
+ Route::group(['middleware' => 'auth','prefix' => 'email'], function(){
+    Route::get('/student_email','EmailGenerateController@student_email')->name('student_email');
+    Route::post('/student_email_reset','EmailGenerateController@student_email_reset')->name('student_email_reset');
+    Route::post('/student_email_generate','EmailGenerateController@student_email_generate')->name('student_email_generate');
+    Route::get('/employee_email','EmailGenerateController@employee_email')->name('employee_email');
+    Route::post('/employee_email_reset','EmailGenerateController@employee_email_reset')->name('employee_email_reset');
+    Route::post('/employee_email_generate','EmailGenerateController@employee_email_generate')->name('employee_email_generate');
+    Route::get('/committee_email','EmailGenerateController@committee_email')->name('committee_email');
+    Route::post('/committee_email_reset','EmailGenerateController@committee_email_reset')->name('committee_email_reset');
+    Route::post('/committee_email_generate','EmailGenerateController@committee_email_generate')->name('committee_email_generate');
+});
+
+
 // Student add by Root user
 Route::group(['prefix' => 'student', 'as'=>'student.'], function(){
     Route::get('/add','StudentController@student_add_root')->name('add');
