@@ -78,16 +78,25 @@
                             <a href="{{ route('student_password') }}">Student Password Reset</a>
                         </li>
                         <li>
+                            <a href="{{ route('student_email') }}">Student Email Reset</a>
+                        </li>
+                        <li>
                             <a href="{{ route('employee_login_info') }}">Employee Login Info</a>
                         </li>
                         <li>
                             <a href="{{ route('employee_password') }}">Employee Password Reset</a>
                         </li>
                         <li>
+                            <a href="{{ route('employee_email') }}">Employee Email Reset</a>
+                        </li>
+                        <li>
                             <a href="{{ route('committee_login_info') }}">Committee Login Info</a>
                         </li>
                         <li>
                             <a href="{{ route('committee_password') }}">Committee Password reset</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('committee_email') }}">Committee Email reset</a>
                         </li>
                     </ul>
                 </li>
