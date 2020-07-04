@@ -34,59 +34,72 @@
             <form id="result_from" name="result_from" action="{{url('/single-result/update')}}" method="post" enctype="multipart/form-data">
               {{csrf_field()}}
               <div class="row">
-                  <div class="col-sm-3">
-                      <div class="form-group {{$errors->has('master_class_id') ? 'has-error' : ''}}">
-                          <label class="" for="master_class_id">Class <span class="star">*</span></label>
-                          <select name="master_class_id" id="master_class_id" class="form-control" required="">
-                              <option value="">...Select Class...</option>
-                              @foreach($classes as $class)
-                                  <option value="{{$class->id}}">{{$class->name}}</option>
-                              @endforeach
-                          </select>
-                      </div>
-                  </div>
-                  
-                  <div class="col-sm-3">
-                      <div class="form-group {{$errors->has('group_class_id') ? 'has-error' : ''}}">
-                          <label class="" for="group_class_id">Group/Division <span class="star">*</span></label>
-                          <select name="group_class_id" id="group_class_id" class="form-control" required="">
-                              <option value="">...Select Group/Division...</option>
-                              @foreach($group_classes as $group_class)
-                                <option value="{{$group_class->id}}">{{$group_class->name}}</option>
-                              @endforeach
-                          </select>
-                      </div>
-                  </div>
-
-                  <div class="col-sm-3">
-                      <div class="form-group {{$errors->has('shift') ? 'has-error' : ''}}">
-                          <label class="" for="shift">Shift <span class="star">*</span></label>
-                          <select name="shift" id="shift" class="form-control" required="">
-                              <option value="">Select Shift</option>
-                              <option value="Morning">Morning</option>
-                              <option value="Day">Day</option>
-                              <option value="Evening">Evening</option>
-                              <option value="Night">Night</option>
-                          </select>
-                      </div>
-                  </div>
-
-                  <div class="col-sm-3">
-                      <div class="form-group {{$errors->has('section') ? 'has-error' : ''}}">
-                          <label class="" for="section">Section <span class="star">*</span></label>
-                          <select name="section" id="section" class="form-control" required="">
-                              <option value="">...Select Section...</option>
-                              <option value="A">A</option>
-                              <option value="B">B</option>
-                              <option value="C">C</option>
-                              <option value="D">D</option>
-                              @foreach($units as $unit)
-                              <option value="{!!$unit->name!!}">{!!$unit->name!!}</option>
-                              @endforeach
-                          </select>
-                      </div>
-                  </div>
+                   <div class="col-sm-12">
+                        <p><b>Class : </b>{{$class_name}}, 
+                        <b>Group: </b>{{$group_classes_name}}, 
+                        <b>Shift: </b>{{$search['shift']}}, 
+                        <b>Section : </b>{{$search['section']}}, 
+                        <b>Exam : </b>{{$exam_name}}, 
+                        <b>Session  : </b>{{$search['exam_year']}}, 
+                        <b>Subject : </b>{{$subject_name}}, 
+                        <b>Subject Status : </b>{{$search['subject_status']}}</p>
+                    </div>
               </div>
+              <div style="display:none">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group {{$errors->has('master_class_id') ? 'has-error' : ''}}">
+                            <label class="" for="master_class_id">Class <span class="star">*</span></label>
+                            <select name="master_class_id" id="master_class_id" class="form-control" required="">
+                                <option value="">...Select Class...</option>
+                                @foreach($classes as $class)
+                                    <option value="{{$class->id}}">{{$class->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-3">
+                        <div class="form-group {{$errors->has('group_class_id') ? 'has-error' : ''}}">
+                            <label class="" for="group_class_id">Group/Division <span class="star">*</span></label>
+                            <select name="group_class_id" id="group_class_id" class="form-control" required="">
+                                <option value="">...Select Group/Division...</option>
+                                @foreach($group_classes as $group_class)
+                                  <option value="{{$group_class->id}}">{{$group_class->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group {{$errors->has('shift') ? 'has-error' : ''}}">
+                            <label class="" for="shift">Shift <span class="star">*</span></label>
+                            <select name="shift" id="shift" class="form-control" required="">
+                                <option value="">Select Shift</option>
+                                <option value="Morning">Morning</option>
+                                <option value="Day">Day</option>
+                                <option value="Evening">Evening</option>
+                                <option value="Night">Night</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group {{$errors->has('section') ? 'has-error' : ''}}">
+                            <label class="" for="section">Section <span class="star">*</span></label>
+                            <select name="section" id="section" class="form-control" required="">
+                                <option value="">...Select Section...</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                @foreach($units as $unit)
+                                <option value="{!!$unit->name!!}">{!!$unit->name!!}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group {{$errors->has('exam_type_id') ? 'has-error' : ''}}">
@@ -175,6 +188,7 @@
                     </div>
                     
                 </div>
+              </div>
                 <hr>
 
             @if(count($students)>0)
