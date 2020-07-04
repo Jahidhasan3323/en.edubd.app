@@ -83,7 +83,7 @@ class EmailGenerateController extends Controller
 
     public function committee_email(){
 		$schools = School::all();
-		return view('backEnd.email.committee_email',compact('schools'));
+		return view('backEnd.email_reset.committee_email',compact('schools'));
 	}
 	public function committee_email_reset(Request $request){
 		$schools = School::all();
@@ -116,7 +116,7 @@ class EmailGenerateController extends Controller
         return $user_id;
     }
 
-    public function reset_employee_email_($user_id)
+    public function reset_employee_email($user_id)
     {
         $users = User::whereIn('id',$user_id)->get();
         foreach ($users as $user) {
