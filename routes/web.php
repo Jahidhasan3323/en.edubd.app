@@ -1161,7 +1161,7 @@ Route::group(['prefix' => 'student', 'as'=>'student.'], function(){
     Route::post('/store','StudentController@student_store_root')->name('store');
 });
 
-//online admission
+//online class
 Route::group(['prefix' => 'online_class', 'as'=>'online_class'], function(){
     Route::get('/','OnlineClassController@index')->name('');
     Route::get('/create','OnlineClassController@create')->name('.create');
@@ -1171,5 +1171,19 @@ Route::group(['prefix' => 'online_class', 'as'=>'online_class'], function(){
     Route::get('/delete/{id}','OnlineClassController@destroy')->name('.delete');
 
     Route::get('/student','OnlineClassController@student_class')->name('.student');
+
+});
+
+//online class youtube
+Route::group(['prefix' => 'online_class_youtube', 'as'=>'online_class_youtube'], function(){
+    Route::get('/','OnlineClassYoutubeController@index')->name('');
+    Route::get('/view/{id}','OnlineClassYoutubeController@view')->name('.view');
+    Route::get('/create','OnlineClassYoutubeController@create')->name('.create');
+    Route::post('/create','OnlineClassYoutubeController@store')->name('.create');
+    Route::get('/edit/{id}','OnlineClassYoutubeController@edit')->name('.edit');
+    Route::post('/edit/{id}','OnlineClassYoutubeController@update')->name('.edit');
+    Route::get('/delete/{id}','OnlineClassYoutubeController@destroy')->name('.delete');
+
+    Route::get('/student','OnlineClassYoutubeController@student_class')->name('.student');
 
 });
