@@ -27,6 +27,7 @@ class SmsSendController extends Controller
 
     public function send_for_teacher($teachers)
     {
+      $numbers = array();
         foreach ($teachers as $teacher) {
                    $numbers[] = $teacher->user->mobile;
                }

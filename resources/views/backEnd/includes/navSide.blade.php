@@ -47,9 +47,6 @@
                         <li>
                             <a href="{{url('/sms/result')}}">SMS Result</a>
                         </li>
-                        <li>
-                            <a href="{{url('/sms/number-collection')}}">Collection Phone No.</a>
-                        </li>
                     </ul>
                 </li>
             @endif
@@ -103,6 +100,9 @@
                 <li class="@yield('active_sms_login_info')">
                     <a href="#"><i class="fa fa-sitemap fa-2x"></i>SMS<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{url('/sms/number-collection')}}">Collection Phone No.</a>
+                        </li>
                         <li>
                             <a href="{{ route('rootSms.daily_sms_report')}}">Institute Based Daily SMS Report</a>
                         </li>

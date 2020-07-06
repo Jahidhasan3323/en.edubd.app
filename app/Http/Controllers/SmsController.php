@@ -17,6 +17,7 @@ use App\Result;
 use App\SmsReport;
 use App\SmsLimit;
 use App\MessageLength;
+use App\MasterClass;
 use Validator;
 use Session;
 use Carbon\Carbon;
@@ -375,14 +376,17 @@ class SmsController extends Controller
     }
 
     public function number_collection(Request $request,SmsSendController $sms_send){
+        if (!Auth::is('root')){
+            return redirect('/home');
+        }
          $phone_number='';$numbers=[]; $number1=[]; $number2=[];
          if($request->all()){
             $this->validation_input($request);
-            $school = $this->school();
+            $school = School::find($request->school_id);
             if($school->service_type_id==1){
                $data['id_card_exits']=1;
             }
-            $data['school_id']=Auth::getSchool();
+            $data['school_id']=$request->school_id;
             if($request->to_class){
                  if($request->to_class[0]=="all"){
                      $students=Student::with('user')->where($data)->current()->get();
@@ -420,8 +424,9 @@ class SmsController extends Controller
             $phone_number = implode(',',$mobile_number);
 
          }
-         $classes = $this->getClasses();
-         return view('backEnd.sms.number_collection',compact('classes','phone_number'));
+         $classes = MasterClass::all();
+         $schools = School::all();
+         return view('backEnd.sms.number_collection',compact('classes','phone_number','schools'));
     }
 
     public function result(Request $request){

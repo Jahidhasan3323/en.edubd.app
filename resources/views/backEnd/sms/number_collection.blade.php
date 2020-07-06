@@ -24,6 +24,21 @@
                         {{csrf_field()}}
                         <div class="">
                             <div class="row">
+                                <div class="col-sm-12 {{$errors->has('school_id') ? 'has-error' : ''}}">
+                                    <div class="form-group">
+                                        <label class="control-label"> Select Institute for mobile numbers  <strong class="text-danger">*</strong></label>
+                                        <select class="form-control" name="school_id" id="school_id">
+                                            @foreach($schools as $school)
+                                                <option value="{{$school->id}}" >{{$school->user->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    @if($errors->has('school_id'))
+                                    <span class="help-block">
+                                        <strong>{{$errors->first('school_id')}}</strong>
+                                    </span>
+                                    @endif
+                                </div>
                                 <div class="col-md-4 col-sm-12">
                                       <div class="card" style="width: 100%;">
                                         <div class="card-body">
