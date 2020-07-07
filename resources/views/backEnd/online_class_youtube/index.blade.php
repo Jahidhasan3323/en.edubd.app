@@ -39,7 +39,7 @@
                         <tr>
                             <td>{{$i++}}</td>
                             <td>{{$row->title}}</td>                            
-                            <td>{{$row->link}} </td>
+                            <td>{{$row->link}} <a target="_blank" href="https://www.youtube.com/watch?v=<?=$row->link?>"> <i class="fa fa-external-link"></i></a></td>
                             <td>{{$row->shift}}</td>                            
                             <td>{{$row->masterClass->name}}</td>
                             <td>{{$row->group}}</td>                            

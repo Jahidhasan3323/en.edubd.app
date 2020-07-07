@@ -34,7 +34,10 @@
                         <tr>
                             <td>{{$i++}}</td>
                             <td>{{$row->title}}</td>                            
-                            <td> <a class="btn btn-info" href="{{url('/online_class_youtube/view/'.$row->id)}}" ><i class="fa fa-eye"></i></a></td>
+                            <td> 
+                                 <a class="btn btn-danger" target="_blank" href="https://www.youtube.com/watch?v=<?=$row->link?>"><i class="fa fa-external-link"></i></a>
+                                <a class="btn btn-info" href="{{url('/online_class_youtube/view/'.$row->id)}}" >Ofline Video</a>
+                            </td>
                         </tr>
                         
                         @endforeach
