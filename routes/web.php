@@ -1187,3 +1187,9 @@ Route::group(['prefix' => 'online_class_youtube', 'as'=>'online_class_youtube'],
     Route::get('/student','OnlineClassYoutubeController@student_class')->name('.student');
 
 });
+
+//Social link
+Route::group(['middleware' => 'auth','prefix' => 'social_link', 'as'=>'social_link'], function(){
+    Route::get('/','WmSocialController@index')->name('');
+    Route::post('/','WmSocialController@update')->name('');
+});
