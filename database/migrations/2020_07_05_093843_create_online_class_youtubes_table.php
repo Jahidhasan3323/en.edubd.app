@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOnlineClassesTable extends Migration
+class CreateOnlineClassYoutubesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateOnlineClassesTable extends Migration
      */
     public function up()
     {
-        Schema::create('online_classes', function (Blueprint $table) {
+        Schema::create('online_class_youtubes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->string('link');
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->integer('master_class_id');
             $table->string('shift');
             $table->string('section')->nullable();
@@ -36,6 +36,6 @@ class CreateOnlineClassesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('online_classes');
+        Schema::dropIfExists('online_class_youtubes');
     }
 }

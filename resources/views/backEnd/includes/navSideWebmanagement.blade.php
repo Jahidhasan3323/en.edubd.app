@@ -122,6 +122,10 @@
                         </li>
                     </ul>
                 </li>
+                <li class="@yield('social_link') ">
+                    <a href="{{url('social_link')}}" ><i class="fa fa-share-square-o fa-2x"></i>Social Media</span></a>
+                    
+                </li>
                  <li class="@yield('school_settings') ">
                     <a href="{{url('school_settings')}}" style="background:<?=$bg== 'active' ? '#4D4D4D' : ''?>"><i class="fa fa-gears fa-2x"></i>Settings</span></a>
 
