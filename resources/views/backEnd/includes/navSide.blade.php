@@ -32,6 +32,9 @@
                                 class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
+                            <a href="{{url('/sms/report')}}">SMS Report (Dashboard)</a>
+                        </li>
+                        <li>
                             <a href="{{url('/sms')}}">Notification of Absent Student</a>
                         </li>
                         <li>

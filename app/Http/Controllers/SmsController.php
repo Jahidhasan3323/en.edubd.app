@@ -507,5 +507,14 @@ class SmsController extends Controller
         return $this->returnWithSuccess('SMS : '.$a.'!');
     }
 
+    public function report()
+    {
+        $school = $this->school();
+        $url = 'http://sms.worldehsan.org/api/client?sender_id='.$school->sender_id.'&api_key='.$school->api_key;
+        $report = $this->curl_get_file_contents($url);
+        $report = json_decode($report,true);
+        return view('backEnd.sms.report',compact('report'));
+    }
+
 
 }
