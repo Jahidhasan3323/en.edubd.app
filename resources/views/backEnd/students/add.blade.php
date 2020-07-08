@@ -66,7 +66,7 @@
                         <div class="form-group {{$errors->has('name') ? 'has-error' : ''}}">
                             <label class="" for="name">Student's Name <span class="star">*</span></label>
                             <div class="">
-                                <input value="{{old('name')}}" class="form-control" type="text" name="name" id="name" placeholder="Student Full Name">
+                                <input value="{{old('name')}}" class="form-control" type="text" name="name" id="name" placeholder="Student Full Name" required>
                             </div>
                             @if ($errors->has('name'))
                             <span class="help-block">
@@ -79,7 +79,7 @@
                         <div class="form-group">
                             <label class="" for="gender">Gender <span class="star">*</span></label>
                             <div class="">
-                                <select class="form-control" name="gender" id="gender">
+                                <select class="form-control" name="gender" id="gender" required>
                                     <option value="">Select Gender</option>
                                     <option selected value="Male">Male</option>
                                     <option value="Female">Female</option>
@@ -99,7 +99,7 @@
                         <div class="form-group {{$errors->has('master_class_id') ? 'has-error' : ''}}">
                             <label class="" for="master_class_id">Class <span class="star">*</span></label>
                             <div class="">
-                                <select class="form-control" name="master_class_id" id="master_class_id">
+                                <select class="form-control" name="master_class_id" id="master_class_id" required>
                                     <option value="">Select Class</option>
                                     @foreach($classes as $class)
                                     <option value="{{$class->id}}">{{$class->name}}</option>
@@ -119,7 +119,7 @@
                         <div class="form-group {{$errors->has('shift') ? 'has-error' : ''}}">
                             <label class="" for="shift">Shift <span class="star">*</span></label>
                             <div class="">
-                                <select class="form-control" name="shift" id="shift">
+                                <select class="form-control" name="shift" id="shift" required>
                                     <option value="">Select Shift</option>
                                     <option value="Morning">Morning</option>
                                     <option selected value="Day">Day</option>
@@ -140,7 +140,7 @@
                         <div class="form-group {{$errors->has('section') ? 'has-error' : ''}}">
                             <label class="" for="section">Section <span class="star">*</span></label>
                             <div class="">
-                                <select class="form-control" name="section" id="section">
+                                <select class="form-control" name="section" id="section" required>
                                     <option value="">...Select Section...</option>
                                     <option selected value="A">A</option>
                                     <option value="B">B</option>
@@ -163,7 +163,7 @@
                         <div class="form-group {{$errors->has('group') ? 'has-error' : ''}}">
                             <label class="" for="group">Goup / Department <span class="star">*</span></label>
                             <div class="">
-                                <select class="form-control" name="group" id="group">
+                                <select class="form-control" name="group" id="group" required>
                                     <option value="">Select Group</option>
                                     @foreach($group_classes as $group_class)
                                     <option value="{{$group_class->name}}">{{$group_class->name}}</option>
@@ -198,7 +198,7 @@
                         <div class="form-group {{$errors->has('session') ? 'has-error' : ''}}">
                             <label for="session">Session</label>
                             <div>
-                                <input value="{{date('Y')}}" type="text" class="form-control" name="session" id="session">
+                                <input value="{{date('Y')}}" type="text" class="form-control" name="session" id="session" required>
                             </div>
                             @if ($errors->has('session'))
                             <span class="help-block">
@@ -214,7 +214,7 @@
                             <label class="" for="student_id">Student ID No. <span class="star">* Don't try to change this</span></label>
                             <div class="form-control">
                                 <span>{{$student_id}}</span>
-                                <input value="{{$student_id}}" class="" type="hidden" name="student_id" id="student_id">
+                                <input value="{{$student_id}}" class="" type="hidden" name="student_id" id="student_id" required>
                             </div>
                             @if ($errors->has('student_id'))
                             <span class="help-block">
@@ -227,7 +227,7 @@
                         <div class="form-group {{$errors->has('regularity') ? 'has-error' : ''}}">
                             <label class="" for="regularity">Student Type<span class="star">*</span></label>
                             <div class="">
-                                <select class="form-control" name="regularity" id="regularity">
+                                <select class="form-control" name="regularity" id="regularity" required>
                                     <option value="">Select Student Type</option>
                                     <option selected value="Regular">Regular</option>
                                     <option value="Irregular">Irregular</option>

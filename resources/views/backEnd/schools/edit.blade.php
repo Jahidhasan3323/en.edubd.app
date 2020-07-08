@@ -269,9 +269,15 @@
                         <div class="form-group">
                             <label class="" for="sms_service">Service type<span class="star">*</span></label>
                             <select class="form-control" id="sms_service" name="sms_service">
-                                <option selected value="{{ $showData->sms_service }}">{{ $showData->sms_service==1?'Automatic':'Manually' }}</option>
-                                <option value="1">Automatic</option>
-                                <option value="0">Manually</option>
+                                <option selected value="{{ $showData->sms_service }}">
+                                    @if ($showData->sms_service==1) Automatic
+                                    @elseif($showData->sms_service==0) Manually
+                                    @elseif($showData->sms_service==2) Disable SMS Service
+                                    @endif
+                                </option>
+                                <option value="1">অটোমেটিক</option>
+                                <option value="0">ম্যানুয়ালি</option>
+                                <option value="2">Disable SMS Service</option>
                             </select>
                         </div>
                     </div>

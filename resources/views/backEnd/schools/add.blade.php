@@ -178,6 +178,7 @@
                             <select class="form-control" id="sms_service" name="sms_service">
                                 <option value="1">Automatic</option>
                                 <option value="0">Manually</option>
+                                <option value="2">Disable SMS Service</option>
                             </select>
                         </div>
                     </div>
