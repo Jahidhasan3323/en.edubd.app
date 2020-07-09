@@ -48,6 +48,7 @@ Route::group(['namespace'=>'Api\V1','prefix'=>'v1/school'], function(){
     Route::get('committee','SchoolController@commitee');
     Route::get('date_laguage','SchoolController@date_laguage');
     Route::get('notice','SchoolController@notice');
+    Route::get('notice_all','SchoolController@notice_all');
     Route::get('image_home','SchoolController@image_home');
     Route::get('important_link_header','SchoolController@important_link_header');
     Route::get('important_link','SchoolController@important_link');

@@ -25,6 +25,7 @@ use App\WmGalleryCategory;
 use App\Holiday;
 use App\ImportantFile;
 use App\Care;
+use App\WmSocial;
 use App\OnlineAdmissionApplication;
 use App\OnlineAdmissionAccademicInfo;
 use App\OnlineAdmissionApplicationSubject;
@@ -80,11 +81,23 @@ class SchoolController extends Controller
        return $this->sendResponse($date_language, 'Date language retrieved successfully.');  
     }
 
+    public function social_link(Request $request)
+    {
+        $school=School::where('serial_no',$request->serial_no)->first();
+       $wm_social=WmSocial::where('school_id',$school->id)->first();
+       return $this->sendResponse($wm_social, 'Social Link data retrieved successfully.');  
+    }
     public function notice(Request $request)
     {
         $school=School::where('serial_no',$request->serial_no)->first();
         $notice=Notice::where(['school_id'=>$school->id,'status'=>1])->orderby('id','DESC')->limit(20)->get();
        return $this->sendResponse($notice, 'Notice retrieved successfully.');  
+    }
+    public function notice_all(Request $request)
+    {
+        $school=School::where('serial_no',$request->serial_no)->first();
+        $notice_all=Notice::where(['school_id'=>$school->id,'status'=>1])->orderby('id','DESC')->get();
+       return $this->sendResponse($notice_all, 'Notice retrieved successfully.');  
     }
     
     public function image_home(Request $request)
