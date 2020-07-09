@@ -35,6 +35,9 @@
                             <a href="{{url('/sms/report')}}">SMS Report (Dashboard)</a>
                         </li>
                         <li>
+                            <a href="{{url('/sms/sms_history')}}">SMS History</a>
+                        </li>
+                        <li>
                             <a href="{{url('/sms')}}">Notification of Absent Student</a>
                         </li>
                         <li>

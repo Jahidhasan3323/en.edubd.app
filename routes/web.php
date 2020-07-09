@@ -701,6 +701,7 @@ Route::group(['middleware' => 'auth','prefix' => 'sms'], function(){
     Route::get('result/search','SmsController@result');
     Route::post('result-send','SmsController@result_send');
     Route::get('report','SmsController@report')->name('sms.report');
+    Route::get('sms_history','SmsController@sms_history')->name('sms_history');
 });
 
 Route::group(['middleware' => 'auth','prefix' => 'studentCard'], function(){
