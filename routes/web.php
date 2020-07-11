@@ -702,6 +702,9 @@ Route::group(['middleware' => 'auth','prefix' => 'sms'], function(){
     Route::post('result-send','SmsController@result_send');
     Route::get('report','SmsController@report')->name('sms.report');
     Route::get('sms_history','SmsController@sms_history')->name('sms_history');
+    Route::get('custom','SmsController@custom')->name('custom');
+    Route::get('msg_count','SmsController@msg_count')->name('msg_count');
+    Route::post('custom_sms','SmsController@custom_sms')->name('custom_sms');
 });
 
 Route::group(['middleware' => 'auth','prefix' => 'studentCard'], function(){

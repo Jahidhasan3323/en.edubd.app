@@ -53,6 +53,9 @@
                         <li>
                             <a href="{{url('/sms/result')}}">SMS Result</a>
                         </li>
+                        <li>
+                            <a href="{{url('/sms/custom')}}">Send Custom Number SMS</a>
+                        </li>
                     </ul>
                 </li>
             @endif

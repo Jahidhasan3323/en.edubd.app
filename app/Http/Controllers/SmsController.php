@@ -510,6 +510,55 @@ class SmsController extends Controller
         return $this->returnWithSuccess('SMS : '.$a.'!');
     }
 
+    public function custom()
+    {
+        return view('backEnd.sms.custom');
+    }
+
+    public function custom_sms(Request $request)
+    {
+        $this->validate($request, [
+            'numbers' => 'required',
+            'message' => 'required',
+        ]);
+        $numbers = $this->number_validate($request->numbers);
+        $message = urlencode($request->message);
+        $school = $this->school();
+        $send = $this->sms_send_by_api($school,$numbers,$message);
+        return redirect()->back()->with('sccmgs', $send);
+    }
+
+    public function msg_count()
+    {
+        $char = strlen($_GET['message'])+16;
+        $msg = ceil(($char)/160);
+		$data = [
+			"char_count" => $char,
+			"msg_count" => $msg,
+		];
+		if(preg_match('/[^\x20-\x7f]/', $_GET['message'])){
+			$data['text_status'] = 'unicode';
+		}else {
+			$data['text_status'] = 'regular';
+		}
+		return json_encode($data);
+    }
+
+    public function number_validate($numbers)
+    {
+        $numbers = str_replace(' ',',',$numbers);
+        $numbers = explode(',',$numbers);
+        $get_numbers = array();
+        foreach ($numbers as $number) {
+            if (strlen($number)==11) {
+                $get_numbers[] = '88'.$number;
+            }elseif(strlen($number)==13){
+                $get_numbers[] = $number;
+            }
+        }
+        return implode(',',$get_numbers);
+    }
+
     public function report()
     {
         $school = $this->school();
