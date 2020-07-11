@@ -74,7 +74,7 @@ class NoticeController extends Controller
             $noticeObject = new Notice();
             if($notice){
             $file_size = $notice->getClientSize();
-            if ($file_size > 512000){
+            if ($file_size > 5120000){
                 Session::flash('errmgs', 'Sorry, File size is too large !');
                 return redirect()->back();
             }
