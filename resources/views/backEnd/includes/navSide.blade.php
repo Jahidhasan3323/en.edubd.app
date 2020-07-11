@@ -868,7 +868,7 @@
                 @endif
 
             @endif
-            @if(Auth::is('teacher') || Auth::is('student'))
+            @if(Auth::is('teacher') || Auth::is('student') || Auth::is('admin') || Auth::is('commitee') || Auth::is('staff'))
             <li>
                 <li class="@yield('online_class')">
                     <a href="#"><i class="fa fa-sitemap fa-2x"></i>Online Class<span class="fa arrow"></span></a>
@@ -879,6 +879,11 @@
                         </li>
                         <li>
                             <a href="{{ route('online_class') }}">Online Class Information</a>
+                        </li>
+                        @endif
+                        @if(Auth::is('teacher') || Auth::is('admin') || Auth::is('commitee') || Auth::is('staff'))
+                        <li>
+                            <a href="{{ route('online_class.staff') }}">Request Online class</a>
                         </li>
                         @endif
                         @if(Auth::is('student'))

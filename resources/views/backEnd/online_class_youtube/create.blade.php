@@ -137,6 +137,23 @@
                             @endif
                         </div>
                     </div>
+                    <div class="col-sm-6">
+                        <div class="form-group {{$errors->has('type') ? 'has-error' : ''}}">
+                            <label class="" for="type">User <span class="star">*</span></label>
+                            <div class="">
+                                <select class="form-control" name="type" id="type">
+                                    <option value="">User</option>
+                                    <option value="1">Student</option>
+                                    <option value="2">Staff</option>
+                                </select>
+                            </div>
+                            @if ($errors->has('type'))
+                                <span class="help-block">
+                                    <strong>{{$errors->first('type')}}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
                 </div>
                 
                 <hr>

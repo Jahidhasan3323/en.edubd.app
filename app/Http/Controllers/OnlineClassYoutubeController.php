@@ -50,14 +50,27 @@ class OnlineClassYoutubeController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'link' => 'required',
-            'master_class_id' => 'required',
-            'group' => 'required',
-            'shift' => 'required',
+            'type' => 'required',
         ]);
+       if ($request->type==1) {
+        
+            $this->validate($request, [
+                'master_class_id' => 'required',
+                'group' => 'required',
+                'section' => 'required',
+                'shift' => 'required',
+            ]);
+        }
+        if ($request->type==2  ) {
+            $data['master_class_id']=0;
+            $data['group']=0;
+            $data['section']=0;
+            $data['shift']=0;
+        }
         $data['created_by']=Auth::id();
         $data['school_id']=Auth::getSchool();
         OnlineClassYoutube::create($data);
-        return $this->returnWithSuccessRedirect('Your information store successfully','online_class_youtube');
+        return $this->returnWithSuccessRedirect('Data store successfully','online_class_youtube');
     }
 
     /**
@@ -107,13 +120,26 @@ class OnlineClassYoutubeController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'link' => 'required',
-            'master_class_id' => 'required',
-            'group' => 'required',
-            'shift' => 'required',
+            'type' => 'required',
         ]);
+       if ($request->type==1) {
+        
+            $this->validate($request, [
+                'master_class_id' => 'required',
+                'group' => 'required',
+                'section' => 'required',
+                'shift' => 'required',
+            ]);
+        }
+        if ($request->type==2  ) {
+            $data['master_class_id']=0;
+            $data['group']=0;
+            $data['section']=0;
+            $data['shift']=0;
+        }
         
         OnlineClassYoutube::where(['id'=>$id,'created_by'=>Auth::id(),'school_id'=>Auth::getSchool()])->update($data);
-        return $this->returnWithSuccessRedirect('Your information store successfully !','online_class_youtube');
+        return $this->returnWithSuccessRedirect('Data store successfully','online_class_youtube');
     }
 
     /**
@@ -125,7 +151,7 @@ class OnlineClassYoutubeController extends Controller
     public function destroy($id)
     {
         OnlineClassYoutube::where(['id'=>$id,'created_by'=>Auth::id(),'school_id'=>Auth::getSchool()])->delete();
-        return $this->returnWithSuccessRedirect('Your information deleted successfully !','online_class_youtube');
+        return $this->returnWithSuccessRedirect('Data deleted successfully','online_class_youtube');
     }
 
     public function student_class()
@@ -134,7 +160,19 @@ class OnlineClassYoutubeController extends Controller
             return redirect('/home');
         }
         $student_details=student::where(['school_id'=>Auth::getSchool(),'user_id'=>Auth::id()])->first();
-        $online_class=OnlineClassYoutube::where(['master_class_id'=>$student_details->master_class_id,'shift'=>$student_details->shift,'group'=>$student_details->group])->get();
+        $online_class=OnlineClassYoutube::where(['master_class_id'=>$student_details->master_class_id,'shift'=>$student_details->shift,'group'=>$student_details->group,'school_id'=>Auth::getSchool(),'type'=>1])->get();
+        //dd($online_class);
+        return view('backEnd.online_class_youtube.student_class',compact('online_class'));
+    }
+    public function staff_class()
+    {
+        if(Auth::is('teacher') || Auth::is('admin') || Auth::is('commitee') || Auth::is('staff')){
+            
+        }else{
+            return redirect('/home');
+        }
+        $student_details=student::where(['school_id'=>Auth::getSchool(),'user_id'=>Auth::id()])->first();
+        $online_class=OnlineClassYoutube::where(['school_id'=>Auth::getSchool(),'type'=>2])->get();
         //dd($online_class);
         return view('backEnd.online_class_youtube.student_class',compact('online_class'));
     }
