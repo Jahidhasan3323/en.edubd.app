@@ -28,6 +28,9 @@
                                     <div class="form-group">
                                         <label class="control-label"> Select Institute for mobile numbers  <strong class="text-danger">*</strong></label>
                                         <select class="form-control" name="school_id" id="school_id">
+                                            @isset($school)
+                                                <option value="{{ $school->id }}">{{ $school->user->name??'' }}<option>
+                                            @endisset
                                             @foreach($schools as $school)
                                                 <option value="{{$school->id}}" >{{$school->user->name}}</option>
                                             @endforeach
