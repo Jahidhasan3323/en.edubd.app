@@ -36,6 +36,17 @@ class SmsSendController extends Controller
         return $numberArray;
     }
 
+    public function send_for_committee($committees)
+    {
+        $numbers = array();
+        foreach ($committees as $committee) {
+                $numbers[] = $committee->user->mobile;
+            }
+        $numberArray = $this->validateNumber($numbers);
+
+        return $numberArray;
+    }
+
     public function send_for_student($numbers)
     {
         $numberArray = $this->validateNumber($numbers);

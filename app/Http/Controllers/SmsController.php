@@ -10,6 +10,7 @@ use App\GroupClass;
 use App\Unit;
 use App\School;
 use App\Staff;
+use App\Commitee;
 use App\AbsentContent;
 use App\AttenStudent;
 use App\ExamType;
@@ -354,24 +355,32 @@ class SmsController extends Controller
     }
 
     protected function validation_input($request){
-      if($request->to_teacher){
-         $this->Validate($request, [
-                  'to_teacher' => 'required',
-         ]);
-      }
+        if($request->to_committee){
+            $this->Validate($request, [
+                'to_committee' => 'required',
+            ]);
+        }
 
-      if($request->to_class){
-         $this->Validate($request, [
-                  'to_class' => 'required',
-                  'sub_to' => 'required',
-         ]);
-      }
-      if(!$request->to_class && !$request->to_teacher){
-         $this->Validate($request, [
-                  'to_class' => 'required',
-                  'to_teacher' => 'required',
-         ]);
-      }
+        if($request->to_teacher){
+            $this->Validate($request, [
+                    'to_teacher' => 'required',
+            ]);
+        }
+
+        if($request->to_class){
+            $this->Validate($request, [
+                    'to_class' => 'required',
+                    'sub_to' => 'required',
+            ]);
+        }
+
+        if(!$request->to_class && !$request->to_teacher && !$request->to_committee){
+            $this->Validate($request, [
+                    'to_class' => 'required',
+                    'to_teacher' => 'required',
+                    'committee_part' => 'required',
+            ]);
+        }
 
     }
 
@@ -419,7 +428,12 @@ class SmsController extends Controller
             if($request->to_teacher){
                 $teachers=Staff::with('user')->where('school_id',$request->school_id)->current()->get();
                 $mobile_number=$sms_send->send_for_teacher($teachers);
-           }
+            }
+
+           if($request->to_committee){
+                $committees=Commitee::with('user')->where('school_id',$request->school_id)->current()->get();
+                $mobile_number=$sms_send->send_for_committee($committees);
+            }
 
             $phone_number = implode(',',$mobile_number);
 

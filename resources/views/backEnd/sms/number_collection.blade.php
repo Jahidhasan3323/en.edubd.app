@@ -7,7 +7,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">Notice Message</h1>
+            <h1 class="text-center text-temp">SMS Number Collection</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -16,7 +16,7 @@
         @if(Session::has('sccmgs'))
             @include('backEnd.includes.success')
         @endif
-
+            
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel-body" style="margin-top: 10px;">
@@ -29,7 +29,7 @@
                                         <label class="control-label"> Select Institute for mobile numbers  <strong class="text-danger">*</strong></label>
                                         <select class="form-control" name="school_id" id="school_id">
                                             @isset($school)
-                                                <option value="{{ $school->id }}">{{ $school->user->name??'' }}<option>
+                                                <option value="{{ $school->id }}"> {{ $school->user->name??'' }} <option>
                                             @endisset
                                             @foreach($schools as $school)
                                                 <option value="{{$school->id}}" >{{$school->user->name}}</option>
@@ -48,28 +48,27 @@
                                             <div class="row">
                                                 @if(!old('to_teacher'))
                                                 <div class="col-md-12 col-sm-12" id="student_part">
-                                                    <label class="control-label">To  ( Select Class) <strong class="text-danger">*</strong></label>
+                                                    <label class="control-label">To  ( Select class for student ) <strong class="text-danger">*</strong></label>
                                                     <div class="form-group">
-                                                        <select class="form-control" multiple="" name="to_class[]" id="class" onchange="rmoveTeacher()">
+                                                        <select class="form-control" multiple="" name="to_class[]" id="class" onchange="show_student()">
                                                             <option value="all">All Class</option>
                                                             @foreach($classes as $class)
                                                              <option value="{{$class->id}}">{{$class->name}}</option>
                                                             @endforeach
-
                                                         </select>
-                                                    <strong class="text-danger"> {{ $errors->has('to_class')?$errors->first('to_class'):''}}</strong>
+                                                    <strong class="text-danger"> {{ $errors->has('to_class')?$errors->first('to_class'):''}}</strong>    
                                                     </div>
-                                                    <label class="control-label">One or All Check</label><br>
+                                                    <label class="control-label">Select at least one</label><br>
                                                     <input class="form-check-input" onclick="checkClassSelect()" name="sub_to[]" type="checkbox" value="Guardian" id="guardian_mobile">
                                                     <label class="form-check-label" for="guardian_mobile">
-                                                      Guaridan
+                                                      Guardian
                                                     </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                                                     <input class="form-check-input" onclick="checkClassSelect()" name="sub_to[]" type="checkbox" value="Student" id="student_mobile">
                                                     <label class="form-check-label" for="student_mobile">
-                                                      Student
+                                                      Students
                                                     </label><br>
-                                                    <strong class="text-danger"> {{ $errors->has('sub_to')?$errors->first('sub_to'):''}}</strong>
+                                                    <strong class="text-danger"> {{ $errors->has('sub_to')?$errors->first('sub_to'):''}}</strong> 
                                                 </div>
                                                 @endif()
                                             </div>
@@ -77,18 +76,33 @@
                                         @if(!$errors->has('sub_to'))
                                         <div class="card-body" id="teacher_part">
                                             <hr>
-                                            <label for="notice_subject">To  ( Check for Staff ) <strong class="text-danger">*</strong></label>
+                                            <label for="notice_subject">To  ( Select for Staff ) <strong class="text-danger">*</strong></label>
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
-                                                    <input class="form-check-input number" {{old('to_teacher')?'checked':''}} onclick="removeStudent()" name="to_teacher[]" type="checkbox" value="Teacher" id="teacher_mobile">
+                                                    <input class="form-check-input number" {{old('to_teacher')?'checked':''}} onclick="show_teacher()" name="to_teacher[]" type="checkbox" value="Teacher" id="teacher_mobile">
                                                     <label class="form-check-label" for="teacher_mobile">
                                                       Staff
                                                     </label>
                                                 </div>
                                             </div>
-                                            <strong class="text-danger"> {{ $errors->has('to_teacher')?$errors->first('to_teacher'):''}}</strong>
+                                            <strong class="text-danger"> {{ $errors->has('to_teacher')?$errors->first('to_teacher'):''}}</strong> 
                                         </div>
                                         @endif
+
+                                        <div class="card-body" id="committee_part">
+                                            <hr>
+                                            <label for="committee_mobile">To  ( Select for Committee ) <strong class="text-danger">*</strong></label>
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <input class="form-check-input number" {{old('to_committee')?'checked':''}} onclick="show_committee()" name="to_committee" type="checkbox" value="committee" id="committee_mobile">
+                                                    <label class="form-check-label" for="committee_mobile">
+                                                       Committee
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <strong class="text-danger"> {{ $errors->has('to_committee')?$errors->first('to_committee'):''}}</strong> 
+                                        </div>
+
                                       </div>
                                 </div>
                                 <div class="col-md-8 col-sm-12">
@@ -119,30 +133,44 @@
 
 @section('script')
     <script type="text/javascript">
-
+        
         function checkClassSelect(){
            if(($('#class').val().length)==0){
             $('#class').focus();
             confirm('Please select class first !');
             $('#guardian_mobile').prop( "checked", false );
             $('#student_mobile').prop( "checked", false );
-           }
+           } 
         }
 
-        function rmoveTeacher(){
-           if(($('#class').val().length)==0){
-            $("#teacher_part").show();
-           }else{
+        function show_committee(){
+           if ($("#committee_mobile").prop('checked') == true) {
+                $("#committee_part").show();
                 $("#teacher_part").hide();
+                $("#student_part").hide();
+           }else{
+                $("#committee_part").show();
+                $("#teacher_part").show();
+                $("#student_part").show();
            }
         }
-        function removeStudent(){
-            if($("#teacher_mobile").prop('checked') == true){
-               $("#student_part").hide();
-            }else{
+        function show_teacher(){
+           if ($("#teacher_mobile").prop('checked') == true) {
+                $("#teacher_part").show();
+                $("#committee_part").hide();
+                $("#student_part").hide();
+           }else{
+                $("#teacher_part").show();
+                $("#committee_part").show();
                 $("#student_part").show();
-            }
+           }
         }
+        function show_student(){
+            $("#student_part").show();
+            $("#committee_part").hide();
+            $("#teacher_part").hide();
+        }
+        
     </script>
-
+  
 @endsection
