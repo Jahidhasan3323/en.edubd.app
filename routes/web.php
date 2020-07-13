@@ -1191,6 +1191,23 @@ Route::group(['prefix' => 'online_class_youtube', 'as'=>'online_class_youtube'],
 
 });
 
+//online class us
+Route::group(['prefix' => 'online_class_us', 'as'=>'online_class_us'], function(){
+    Route::get('index/{id}','OnlineClassUsController@index')->name('.index');
+    Route::get('/view/{id}','OnlineClassUsController@view')->name('.view');
+    Route::get('/create','OnlineClassUsController@create')->name('.create');
+    Route::post('/create','OnlineClassUsController@store')->name('.create');
+    Route::get('/edit/{id}','OnlineClassUsController@edit')->name('.edit');
+    Route::post('/edit/{id}','OnlineClassUsController@update')->name('.edit');
+    Route::get('/delete/{id}','OnlineClassUsController@destroy')->name('.delete');
+    
+    Route::get('/student','OnlineClassUsController@student_class')->name('.student');
+    Route::get('/staff','OnlineClassUsController@staff_class')->name('.staff');
+    
+    Route::get('/link','OnlineClassUsController@link')->name('.link');
+
+});
+
 //Social link
 Route::group(['middleware' => 'auth','prefix' => 'social_link', 'as'=>'social_link'], function(){
     Route::get('/','WmSocialController@index')->name('');

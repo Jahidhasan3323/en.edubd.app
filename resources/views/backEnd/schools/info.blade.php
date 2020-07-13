@@ -48,6 +48,7 @@
                         <td>
                             <a href="{{url('/schools/'.$school->id)}}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span></a>
                             <a href="{{url('/schools/'.$school->id.'/edit')}}" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></a>
+                            <a href="{{url('/online_class_us/'.$school->id)}}" class="btn btn-warning"><span class="fa fa-video-camera"></span></a>
                             <a href="{{url('/schools/'.$school->id.'/delete')}}" onclick="return confirm('Are you sure delete this institute..?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
                         </td>
                     </tr>
