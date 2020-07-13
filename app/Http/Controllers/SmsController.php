@@ -10,6 +10,7 @@ use App\GroupClass;
 use App\Unit;
 use App\School;
 use App\Staff;
+use App\Commitee;
 use App\AbsentContent;
 use App\AttenStudent;
 use App\ExamType;
@@ -354,24 +355,32 @@ class SmsController extends Controller
     }
 
     protected function validation_input($request){
-      if($request->to_teacher){
-         $this->Validate($request, [
-                  'to_teacher' => 'required',
-         ]);
-      }
+        if($request->to_committee){
+            $this->Validate($request, [
+                'to_committee' => 'required',
+            ]);
+        }
 
-      if($request->to_class){
-         $this->Validate($request, [
-                  'to_class' => 'required',
-                  'sub_to' => 'required',
-         ]);
-      }
-      if(!$request->to_class && !$request->to_teacher){
-         $this->Validate($request, [
-                  'to_class' => 'required',
-                  'to_teacher' => 'required',
-         ]);
-      }
+        if($request->to_teacher){
+            $this->Validate($request, [
+                    'to_teacher' => 'required',
+            ]);
+        }
+
+        if($request->to_class){
+            $this->Validate($request, [
+                    'to_class' => 'required',
+                    'sub_to' => 'required',
+            ]);
+        }
+
+        if(!$request->to_class && !$request->to_teacher && !$request->to_committee){
+            $this->Validate($request, [
+                    'to_class' => 'required',
+                    'to_teacher' => 'required',
+                    'committee_part' => 'required',
+            ]);
+        }
 
     }
 
@@ -419,7 +428,12 @@ class SmsController extends Controller
             if($request->to_teacher){
                 $teachers=Staff::with('user')->where('school_id',$request->school_id)->current()->get();
                 $mobile_number=$sms_send->send_for_teacher($teachers);
-           }
+            }
+
+           if($request->to_committee){
+                $committees=Commitee::with('user')->where('school_id',$request->school_id)->current()->get();
+                $mobile_number=$sms_send->send_for_committee($committees);
+            }
 
             $phone_number = implode(',',$mobile_number);
 
@@ -508,6 +522,55 @@ class SmsController extends Controller
           }
         }
         return $this->returnWithSuccess('SMS : '.$a.'!');
+    }
+
+    public function custom()
+    {
+        return view('backEnd.sms.custom');
+    }
+
+    public function custom_sms(Request $request)
+    {
+        $this->validate($request, [
+            'numbers' => 'required',
+            'message' => 'required',
+        ]);
+        $numbers = $this->number_validate($request->numbers);
+        $message = urlencode($request->message);
+        $school = $this->school();
+        $send = $this->sms_send_by_api($school,$numbers,$message);
+        return redirect()->back()->with('sccmgs', $send);
+    }
+
+    public function msg_count()
+    {
+        $char = strlen($_GET['message'])+16;
+        $msg = ceil(($char)/160);
+		$data = [
+			"char_count" => $char,
+			"msg_count" => $msg,
+		];
+		if(preg_match('/[^\x20-\x7f]/', $_GET['message'])){
+			$data['text_status'] = 'unicode';
+		}else {
+			$data['text_status'] = 'regular';
+		}
+		return json_encode($data);
+    }
+
+    public function number_validate($numbers)
+    {
+        $numbers = str_replace(' ',',',$numbers);
+        $numbers = explode(',',$numbers);
+        $get_numbers = array();
+        foreach ($numbers as $number) {
+            if (strlen($number)==11) {
+                $get_numbers[] = '88'.$number;
+            }elseif(strlen($number)==13){
+                $get_numbers[] = $number;
+            }
+        }
+        return implode(',',$get_numbers);
     }
 
     public function report()
