@@ -591,5 +591,18 @@ class SmsController extends Controller
         return view('backEnd.sms.sms_history',compact('sms_history'));
     }
 
+    public function api_sender_id()
+	{
+		$url = 'http://sms.worldehsan.org/api/api_sender_id?role=root&api_key=798ROmf0ACbtDiva2dUYyqwo6PSp53';
+        $data = $this->curl_get_file_contents($url);
+		$data = json_decode($data,true);
+		if ($data['status']==1) {
+			$users =  $data['users'];
+		}else {
+			$users = [];
+		}
+		return view('backEnd.sms.api_sender_id',compact('users'));
+	}
+
 
 }

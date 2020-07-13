@@ -71,6 +71,9 @@
                         <li>
                             <a href="{{url('/schools')}}">Institute List</a>
                         </li>
+                        <li>
+                            <a href="{{url('/sms/api_sender_id')}}">API & Sender of Institutes</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="@yield('active_login_info')">

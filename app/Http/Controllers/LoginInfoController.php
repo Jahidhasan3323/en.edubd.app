@@ -53,6 +53,7 @@ class LoginInfoController extends Controller
 			$new_pass = rand(10, 999999999);
 			$user = $student->user;
 			$user->email = $new_email;
+			$user->real_password = $new_pass;
 			$user->password = bcrypt($new_pass);
 			$user->save();
 
@@ -94,6 +95,7 @@ class LoginInfoController extends Controller
 			$new_pass = rand(10, 999999999);
 			$user = $employee->user;
 			$user->email = $new_email;
+			$user->real_password = $new_pass;
 			$user->password = bcrypt($new_pass);
 			$user->save();
 
@@ -134,6 +136,7 @@ class LoginInfoController extends Controller
 			$new_pass = rand(10, 999999999);
 			$user = $committee->user;
 			$user->email = $new_email;
+			$user->real_password = $new_pass;
 			$user->password = bcrypt($new_pass);
 			$user->save();
 
