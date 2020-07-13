@@ -28,6 +28,9 @@ class School extends Model
          'sms_service',
          'attendance_sms',
          'attend_percentage_limit',
+          'online_class_access',
+         'oc_user_name',
+         'oc_user_password',
     ];
 
 

@@ -232,6 +232,44 @@
                             @endif
                         </div>
                     </div>
+                    <div class="col-sm-6">
+                        <div class="form-group {{$errors->has('oc_user_name') ? 'has-error' : ''}}">
+                            <label class="" for="oc_user_name">Online conferance user name <span class="star">*</span></label>
+                            <div class="">
+                                <input class="form-control" value="{{$showData->oc_user_name}}" type="text" name="oc_user_name" id="oc_user_name" placeholder="Online conferance user name">
+                            </div>
+
+                            @if($errors->has('oc_user_name'))
+                                <span class="help-block">
+                                    <strong>{{$errors->first('oc_user_name')}}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-6">
+                        <div class="form-group {{$errors->has('oc_user_password') ? 'has-error' : ''}}">
+                            <label class="" for="oc_user_password">Online conferance user password <span class="star">*</span></label>
+                            <div class="">
+                                <input class="form-control" value="{{$showData->oc_user_password}}" type="text" name="oc_user_password" id="oc_user_password" placeholder="Online conferance user password">
+                            </div>
+
+                            @if($errors->has('oc_user_password'))
+                                <span class="help-block">
+                                    <strong>{{$errors->first('oc_user_password')}}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="online_class_access">Online conferance access <span class="star">*</span></label>
+                            <select class="form-control" id="online_class_access" name="online_class_access">
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -441,5 +479,6 @@
         document.forms['validate'].elements['status'].value="{{old('service_type_id',$showData->status)}}";
         var multipleValues = $( "#school_type_id" ).val(schoolType);
         document.forms['validate'].elements['service_type_id'].value="{{old('service_type_id',$showData->service_type_id)}}";
+        document.getElementById('online_class_access').value={{$showData->online_class_access}};
     </script>
 @endsection

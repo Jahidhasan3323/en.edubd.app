@@ -877,49 +877,28 @@
                 @endif
 
             @endif
-            @if(Auth::is('teacher') || Auth::is('student') || Auth::is('admin') || Auth::is('commitee') || Auth::is('staff'))
+            @if(Auth::is('teacher') || Auth::is('student') || Auth::is('admin') || Auth::is('commitee') || Auth::is('staff') || Auth::is('root') )
             <li>
-                <li class="@yield('online_class')">
-                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>Online Class<span class="fa arrow"></span></a>
+                <li class="@yield('online_class_us')">
+                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>Ehsan Online Conferance<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        @if(Auth::is('teacher'))
+                        @if(Auth::is('root'))
                         <li>
-                            <a href="{{ route('online_class.create') }}">Add Online Class</a>
+                            <a href="{{ route('online_class_us.create') }}">Ehsan Online Conferance add</a>
                         </li>
-                        <li>
-                            <a href="{{ route('online_class') }}">Online Class Information</a>
-                        </li>
+                        {{-- <li>
+                            <a href="{{ route('online_class_us') }}">Ehsan Online Conferance</a>
+                        </li> --}}
+                        
                         @endif
                         @if(Auth::is('teacher') || Auth::is('admin') || Auth::is('commitee') || Auth::is('staff'))
                         <li>
-                            <a href="{{ route('online_class.staff') }}">Request Online class</a>
+                            <a href="{{ route('online_class_us.staff') }}"> Ehsan Online Conferance</a>
                         </li>
                         @endif
                         @if(Auth::is('student'))
                         <li>
-                            <a href="{{ route('online_class.student') }}">Online Class Information</a>
-                        </li>
-                        @endif
-                    </ul>
-                </li>
-            </li>
-            @endif
-            @if(Auth::is('teacher') || Auth::is('student'))
-            <li>
-                <li class="@yield('online_class_youtube')">
-                    <a href="#"><i class="fa fa-sitemap fa-2x"></i>Youtube Online Class<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        @if(Auth::is('teacher'))
-                        <li>
-                            <a href="{{ route('online_class_youtube.create') }}">Add Online Class</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('online_class_youtube') }}">Online Class Information</a>
-                        </li>
-                        @endif
-                        @if(Auth::is('student'))
-                        <li>
-                            <a href="{{ route('online_class_youtube.student') }}">Online Class Information</a>
+                            <a href="{{ route('online_class_us.student') }}">Ehsan Online Conferance</a>
                         </li>
                         @endif
                     </ul>
