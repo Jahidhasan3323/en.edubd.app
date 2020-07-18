@@ -1,3 +1,20 @@
+<style>
+     .oc-dextop{
+            display: block;
+            width: 40%;
+        }
+
+        .fa-spinner{
+            color: #fff;
+            font-size: 20px;
+            background: #d9534f;
+            padding: 5px 0 0 6px;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+        }
+    
+</style>
 <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0;">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
