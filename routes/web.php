@@ -705,7 +705,7 @@ Route::group(['middleware' => 'auth','prefix' => 'sms'], function(){
     Route::get('custom','SmsController@custom')->name('custom');
     Route::get('msg_count','SmsController@msg_count')->name('msg_count');
     Route::post('custom_sms','SmsController@custom_sms')->name('custom_sms');
-    Route::post('api_sender_id','SmsController@api_sender_id')->name('api_sender_id');
+    Route::get('api_sender_id','SmsController@api_sender_id')->name('api_sender_id');
 });
 
 Route::group(['middleware' => 'auth','prefix' => 'studentCard'], function(){

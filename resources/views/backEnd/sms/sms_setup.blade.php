@@ -37,9 +37,12 @@
               <div class="col-sm-8 {{$errors->has('school_id') ? 'has-error' : ''}}">
                   <div class="form-group">
                       <select class="form-control" name="school_id" id="school_id">
-                          @foreach($schools as $school)
-                              <option value="{{$school->id}}" >{{$school->user->name}}</option>
-                          @endforeach
+                            @isset($school)
+                                <option value="{{$school->id}}" >{{$school->user->name}}</option>
+                            @endisset
+                            @foreach($schools as $school)
+                                <option value="{{$school->id}}" >{{$school->user->name}}</option>
+                            @endforeach
                       </select>
                   </div>
                   @if($errors->has('school_id'))
@@ -57,12 +60,12 @@
           </form>
       </div>
   </div>
-  @isset($school_id)
+  @isset($school->id)
       <div class="panel col-md-8 col-md-offset-2" style="border: 1px solid #ddd;">
             <div class="panel-body">
                 <form action="{{ route('smsLimit.store') }}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
-                     <input type="hidden" name="school_id" value="{{ $school_id }}">
+                     <input type="hidden" name="school_id" value="{{ $school->id }}">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">

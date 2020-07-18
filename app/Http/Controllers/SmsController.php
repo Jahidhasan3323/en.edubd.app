@@ -10,9 +10,9 @@ use App\GroupClass;
 use App\Unit;
 use App\School;
 use App\Staff;
-use App\Commitee;
 use App\AbsentContent;
 use App\AttenStudent;
+use App\Commitee;
 use App\ExamType;
 use App\Result;
 use App\SmsReport;
@@ -33,6 +33,7 @@ class SmsController extends Controller
     public function index(Request $request)
     {
        $students=[];
+       $school=[];
        $classes = $this->getClasses();
        $class_groups=$this->groupClasses();
        $units=$this->getUnits();
@@ -49,8 +50,8 @@ class SmsController extends Controller
             }
           }
           $students = $this->get_apsent_students($ids);
+          $school=$this->school();
        }
-       $school=$this->school();
 
         return view('backEnd.sms.index',compact('students','classes','class_groups','units','request','school'));
     }
@@ -135,7 +136,7 @@ class SmsController extends Controller
         $max_len = MessageLength::where([
             "school_id" => Auth::getSchool()
         ])->first();
-        $max_len = $max_len?$max_len->notification-$extra_length:'230';
+        $max_len = $max_len?$max_len->notification-$extra_length:'500';
         return view('backEnd.sms.notice',compact('classes','max_len'));
     }
 
@@ -148,7 +149,7 @@ class SmsController extends Controller
     public function store(Request $request, SmsSendController $sms_send)
     {
         if(!$request->number){
-             return $this->returnWithError('Sorry, Please select at least 1 student');
+             return $this->returnWithError('Sorry, Select at least one student !');
         }
         $mobile_number=$sms_send->send_notification_for_absend($request->number);
         try {
@@ -165,14 +166,14 @@ class SmsController extends Controller
              }
 
          } catch (\Exception $e) {
-             return $this->returnWithError('Sorry, Something went wrong !'.$e->getMessage());
+             return $this->returnWithError('Sorry, There was an error !'.$e->getMessage());
          }
     }
 
     public function store_present_student(Request $request, SmsSendController $sms_send)
     {
         if(!$request->number){
-             return $this->returnWithError('Sorry, Please select at least 1 student !');
+             return $this->returnWithError('Sorry, Select at least one student !');
         }
         $mobile_number=$sms_send->send_notification_for_present($request->number);
         try {
@@ -202,7 +203,7 @@ class SmsController extends Controller
              }
 
          } catch (\Exception $e) {
-             return $this->returnWithError('Sorry, Something went wrong !'.$e->getMessage());
+             return $this->returnWithError('Sorry, There was an problem !'.$e->getMessage());
          }
     }
 
@@ -217,7 +218,7 @@ class SmsController extends Controller
     public function contentStore(Request $request)
     {
         if(!$request->student_absent_content){
-          return $this->returnWithSuccess('Please fill the following field !');
+          return $this->returnWithSuccess('Please fill up the form !');
         }
         try {
             $data['student_absent_content']=$request->student_absent_content;
@@ -229,9 +230,9 @@ class SmsController extends Controller
             }else{
               AbsentContent::insert($data);
             }
-            return $this->returnWithSuccess('Content Setting Added Successfully.');
+            return $this->returnWithSuccess('Content setting successfully done.');
         } catch (\Exception $e) {
-            return $this->returnWithError('Sorry, Something went wrong !');
+            return $this->returnWithError('Sorry, There was an error !');
         }
     }
 
@@ -243,9 +244,9 @@ class SmsController extends Controller
         $max_len = MessageLength::where([
             "school_id" => Auth::getSchool()
         ])->first();
-        $max_len = $max_len?$max_len->notification-$extra_length:'250';
+        $max_len = $max_len?$max_len->notification-$extra_length:'500';
         if (strlen($request->message) > $max_len) {
-            return $this->returnWithError('Sorry, Please select at least 1 student !');
+            return $this->returnWithError('Sorry, Please decrease you sms size !');
         }
 
       if(!$request->message){
@@ -259,6 +260,7 @@ class SmsController extends Controller
       $sms_limit = $sms_limit?$sms_limit->notification:'0';
       $school_name=($school==NULL) ? $sms_send->school_name_process(Auth::user()->name) : $school->short_name;
       $content=$request->message.' '.$school_name;
+      $msg_count=$request->message.' '.$school_name;
       $message= urlencode($content);
       if($school->service_type_id==1){
          $data['id_card_exits'] = 1;
@@ -295,30 +297,35 @@ class SmsController extends Controller
                if(count($mobile_number)>50){
                 $mobile_numbers=array_chunk($mobile_number,50);
                 foreach ($mobile_numbers as $key=>$mobile_number) {
-                  $mobile_number=implode(',',$mobile_number);
-                  $url_AllNumber = "http://sms.worldehsan.org/api/send_sms?api_key=".$school->api_key."&sender_id=".$school->sender_id."&number=".$mobile_number."&message=".$message;
-                  if ($school->sms_service==0) {
-                      $a = $this->send_sms_by_curl($url_AllNumber);
-                  }else {
-                      if ($sms_report < $sms_limit && urldecode(strlen($message)) < 305) {
-                          $a = $this->send_sms_by_curl($url_AllNumber);
-                      }else {
-                          return json_encode(["status"=>"Your sms limit is exceeded ।","error"=>"1"]);
-                      }
-                  }
+                    $mobile_number=implode(',',$mobile_number);
+                    // $mobile_number='01729890904';
+                    // dd($mobile_number);
+                    $url_AllNumber = "http://sms.worldehsan.org/api/send_sms?api_key=".$school->api_key."&sender_id=".$school->sender_id."&number=".$mobile_number."&message=".$message;
+                    if ($school->sms_service==0) {
+                        $a = $this->send_sms_by_curl($url_AllNumber);
+                    }else {
+                        
+                        if ($sms_report < $sms_limit && strlen($msg_count) < 1500) {
+                            $a = $this->send_sms_by_curl($url_AllNumber);
+                        }else {
+                            return json_encode(["status"=>"Your SMS limit already end.","error"=>"1"]);
+                        }
+                    }
 
                 }
 
                }else {
                  $mobile_number=implode(',',$mobile_number);
+                //  $mobile_number='01729890904';
+                //  dd($mobile_number);
                  $url_AllNumber = "http://sms.worldehsan.org/api/send_sms?api_key=".$school->api_key."&sender_id=".$school->sender_id."&number=".$mobile_number."&message=".$message;
                  if ($school->sms_service==0) {
                      $a = $this->send_sms_by_curl($url_AllNumber);
                  }else {
-                     if ($sms_report < $sms_limit && urldecode(strlen($message)) < 305) {
+                     if ($sms_report < $sms_limit && strlen($msg_count) < 1500) {
                          $a = $this->send_sms_by_curl($url_AllNumber);
                      }else {
-                         return json_encode(["status"=>"Your sms limit is exceeded ।","error"=>"1"]);
+                         return json_encode(["status"=>"Your SMS limit already end.","error"=>"1"]);
                      }
                  }
                }
@@ -336,18 +343,18 @@ class SmsController extends Controller
           if($request->to_teacher){
                $teachers=Staff::with('user')->where('school_id',Auth::getSchool())->current()->get();
                $mobile_number=$sms_send->send_for_teacher($teachers);
-             if(count($mobile_number)>50){
-                  $mobile_numbers=array_chunk($mobile_number,50);
-                  foreach ($mobile_numbers as $key=>$mobile_number) {
+            if(count($mobile_number)>50){
+                $mobile_numbers=array_chunk($mobile_number,50);
+                foreach ($mobile_numbers as $key=>$mobile_number) {
                     $mobile_number=implode(',',$mobile_number);
                     $url_AllNumber = "http://sms.worldehsan.org/api/send_sms?api_key=".$school->api_key."&sender_id=".$school->sender_id."&number=".$mobile_number."&message=".$message;
                     $a = $this->send_sms_by_curl($url_AllNumber);
-                  }
-             }else {
-                   $mobile_number=implode(',',$mobile_number);
-                   $url_AllNumber = "http://sms.worldehsan.org/api/send_sms?api_key=".$school->api_key."&sender_id=".$school->sender_id."&number=".$mobile_number."&message=".$message;
-                   $a = $this->send_sms_by_curl($url_AllNumber);
-             }
+                }
+            }else {
+                $mobile_number=implode(',',$mobile_number);
+                $url_AllNumber = "http://sms.worldehsan.org/api/send_sms?api_key=".$school->api_key."&sender_id=".$school->sender_id."&number=".$mobile_number."&message=".$message;
+                $a = $this->send_sms_by_curl($url_AllNumber);
+            }
              Session::flash('sccmgs', 'SMS : '.$a.'!');
              return redirect()->back();
 
@@ -388,8 +395,8 @@ class SmsController extends Controller
         if (!Auth::is('root')){
             return redirect('/home');
         }
-         $phone_number='';$numbers=[]; $number1=[]; $number2=[];
-         if($request->all()){
+        $phone_number='';$numbers=[]; $number1=[]; $number2=[];
+        if($request->all()){
             $this->validation_input($request);
             $school = School::find($request->school_id);
             if($school->service_type_id==1){
@@ -426,13 +433,13 @@ class SmsController extends Controller
             }
 
             if($request->to_teacher){
-                $teachers=Staff::with('user')->where('school_id',$request->school_id)->current()->get();
-                $mobile_number=$sms_send->send_for_teacher($teachers);
+                 $teachers=Staff::with('user')->where('school_id',$request->school_id)->current()->get();
+                 $mobile_number=$sms_send->send_for_teacher($teachers);
             }
 
-           if($request->to_committee){
-                $committees=Commitee::with('user')->where('school_id',$request->school_id)->current()->get();
-                $mobile_number=$sms_send->send_for_committee($committees);
+            if($request->to_committee){
+                 $committees=Commitee::with('user')->where('school_id',$request->school_id)->current()->get();
+                 $mobile_number=$sms_send->send_for_committee($committees);
             }
 
             $phone_number = implode(',',$mobile_number);
@@ -448,6 +455,7 @@ class SmsController extends Controller
 
     public function result(Request $request){
       $results=[];
+      $school=[];
       $exam_years = $this->exam_year();
       $classes = $this->getClasses();
       $class_groups=$this->groupClasses();
@@ -456,8 +464,8 @@ class SmsController extends Controller
       if($request->all()){
         $this->result_request_validation($request);
         $results=$this->get_students_result($request);
+        $school=$this->school();
       }
-      $school=$this->school();
 
       return view('backEnd.sms.result_send',compact('results','exam_years','classes','class_groups','units','request','exam_types','school'));
     }
@@ -488,7 +496,7 @@ class SmsController extends Controller
 
     public function result_send(Request $request, SmsSendController $sms_send){
         if(!$request->students){
-             return $this->returnWithError('Sorry, Please select at least 1 student !');
+             return $this->returnWithError('Sorry, select at least one student !');
         }
         foreach ($request->students as $student) {
           $array=explode(',', $student);
@@ -497,7 +505,7 @@ class SmsController extends Controller
             $sms_limit = SmsLimit::where('school_id', $school->id)->first();
             $sms_limit = $sms_limit?$sms_limit->result:'0';
             $school_name = ($school->short_name==NULL) ? $sms_send->school_name_process(Auth::user()->name) : $school->short_name;
-            $content='Student : '.$array[1].', Class : '.$array[2].', Total Number : '.$array[3].', G.P.A : '.$array[4].', '.$school_name;
+            $content='Student : '.$array[1].', Class : '.$array[2].', Total number : '.$array[3].', G.P.A : '.$array[4].', '.$school_name;
             $message= urlencode($content);
             $mobile_number=implode(',',$sms_send->validateNumber([$array[0]]));
             $url_AllNumber = "http://sms.worldehsan.org/api/send_sms?api_key=".$school->api_key."&sender_id=".$school->sender_id."&number=".$mobile_number."&message=".$message;
@@ -508,7 +516,7 @@ class SmsController extends Controller
                 if ($sms_report < $sms_limit) {
                     $a = $this->send_sms_by_curl($url_AllNumber);
                 }else {
-                    return json_encode(["status"=>"Your sms limit is exceeded ।","error"=>"1"]);
+                    return json_encode(["status"=>"Your SMS limit already finished !","error"=>"1"]);
                 }
             }
             $success = json_decode($a,true);

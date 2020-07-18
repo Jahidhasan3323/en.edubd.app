@@ -24,13 +24,6 @@ class OnlineClassUsController extends Controller
         //dd($online_class);
         return view('backEnd.online_class_us.index',compact('online_class'));
     }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     
     public function create()
     {
@@ -47,28 +40,32 @@ class OnlineClassUsController extends Controller
         return view('backEnd.online_class_us.create',compact('classes','group_classes','units','schools'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
        $data=$request->all();
+       $data['created_by']=Auth::id();
        $this->validate($request, [
             'school_id' => 'required',
             'type' => 'required',
         ]);
-       if ($request->type==1) {
         
+        if ($request->type==1) {
             $this->validate($request, [
                 'subject' => 'required',
                 'master_class_id' => 'required',
-                'group' => 'required',
-                'section' => 'required',
-                'shift' => 'required',
             ]);
+            $data['group']=0;
+            $data['section']=0;
+            $data['shift']=0;
+            foreach ($request->master_class_id as $class_id) {
+                $data['master_class_id']=$class_id;
+                $subjects = explode(',',$request->subject);
+                $subjects = array_filter($subjects);
+                foreach ($subjects as $subject) {
+                    $data['subject']=$subject;
+                    OnlineClassUs::create($data);
+                }
+            }
         }
         if ($request->type==2  ) {
             $data['subject']=0;
@@ -76,18 +73,13 @@ class OnlineClassUsController extends Controller
             $data['group']=0;
             $data['section']=0;
             $data['shift']=0;
+            OnlineClassUs::create($data);
         }
-        $data['created_by']=Auth::id();
-        OnlineClassUs::create($data);
-        return $this->returnWithSuccessRedirect('Data store successfully','online_class_us/index/'.$request->school_id);
+        
+        
+        return $this->returnWithSuccessRedirect('Data stored successfully !','online_class_us/index/'.$request->school_id);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\OnlineClassUs  $onlineClass
-     * @return \Illuminate\Http\Response
-     */
     public function show(OnlineClassUs $onlineClass)
     {
         //
@@ -134,10 +126,11 @@ class OnlineClassUsController extends Controller
             $this->validate($request, [
                 'subject' => 'required',
                 'master_class_id' => 'required',
-                'group' => 'required',
-                'section' => 'required',
-                'shift' => 'required',
+                // 'group' => 'required',
+                // 'section' => 'required',
+                // 'shift' => 'required',
             ]);
+            
         }
         if ($request->type==2  ) {
             $data['subject']=0;
@@ -148,7 +141,7 @@ class OnlineClassUsController extends Controller
         }
         
         OnlineClassUs::where(['id'=>$id,'created_by'=>Auth::id()])->update($data);
-        return $this->returnWithSuccessRedirect('Data store successfully !','online_class_us/index/'.$request->school_id);
+        return $this->returnWithSuccessRedirect('Data stored successfully !','online_class_us/index/'.$request->school_id);
     }
 
     /**
@@ -194,7 +187,7 @@ class OnlineClassUsController extends Controller
         if ($school) {
             return redirect('https://us.worldehsan.org/');
         }else{
-            return $this->returnWithError(' ইহসান অনলাইন কনফারেন্সে আপনার অনুমতি নেই !');
+            return $this->returnWithError(' You have no permission for conference !');
         }
     }
 }
