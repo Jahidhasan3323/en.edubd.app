@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\GroupClass;
+use Storage;
+use Illuminate\Support\Str;
 
 class ClassRoutineController extends Controller
 {
@@ -108,7 +110,7 @@ class ClassRoutineController extends Controller
         ])->first();
         $file = $request->file('routine');
         $file_size = $file->getClientSize();
-        if ($file_size > 512000){
+        if ($file_size > 5120000){
             Session::flash('errmgs', 'Sorry, File size large.!');
             return redirect()->back();
         }
@@ -144,7 +146,7 @@ class ClassRoutineController extends Controller
             $classRoutine = new ClassRoutine();
             $classRoutine->school_id = Auth::getSchool();
             $classRoutine->master_class_id = $request->master_class_id;
-            $classRoutine->name = $name;
+            $classRoutine->name = $request->name;
             $classRoutine->path = $this->photo;
             $classRoutine->save();
             Session::flash('sccmgs', 'Class Routine Added Successfully.');
