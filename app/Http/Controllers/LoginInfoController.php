@@ -61,10 +61,12 @@ class LoginInfoController extends Controller
 			$content='Dear, '.$user->name.' Your login information ! Web address : '.$school->website.', Email : '.$new_email.', Password : '.$new_pass.'. '.$school_name;
 			$message= urlencode($content);
             // dd(urldecode($message));
-			$a = $this->sms_send_by_api($school,$user->mobile,$message);
-            $success = json_decode($a,true);
-            if ($success['error']==0) {
-                $count++;
+			if ($user->mobile) {
+                $a = $this->sms_send_by_api($school,$user->mobile,$message);
+                $success = json_decode($a,true);
+                if ($success['error']==0) {
+                    $count++;
+                }
             }
 		}
         // return redirect()->route('loginInfo.student')->with('sccmgs', 'Send login information '.$count);
@@ -102,10 +104,12 @@ class LoginInfoController extends Controller
 			$school_name = $school->short_name??$sms_send->school_name_process($school->user->name);
 			$content='Dear, '.$user->name.' Your software login information ! Web address : '.$school->website.', Email : '.$new_email.', Password : '.$new_pass.'. '.$school_name;
 			$message= urlencode($content);
-			$a = $this->sms_send_by_api($school,$user->mobile,$message);
-            $success = json_decode($a,true);
-            if ($success['error']==0) {
-                $count++;
+			if ($user->mobile) {
+                $a = $this->sms_send_by_api($school,$user->mobile,$message);
+                $success = json_decode($a,true);
+                if ($success['error']==0) {
+                    $count++;
+                }
             }
 		}
         // return redirect()->route('loginInfo.employee')->with('sccmgs','Send login information '.$count);
@@ -143,10 +147,12 @@ class LoginInfoController extends Controller
 			$school_name = $school->short_name??$sms_send->school_name_process($school->user->name);
 			$content='Dear, '.$user->name.' your software login information ! Web address : '.$school->website.', Email : '.$new_email.', Password : '.$new_pass.'. '.$school_name;
 			$message= urlencode($content);
-			$a = $this->sms_send_by_api($school,$user->mobile,$message);
-            $success = json_decode($a,true);
-            if ($success['error']==0) {
-                $count++;
+			if ($user->mobile) {
+                $a = $this->sms_send_by_api($school,$user->mobile,$message);
+                $success = json_decode($a,true);
+                if ($success['error']==0) {
+                    $count++;
+                }
             }
 		}
         // return redirect()->route('loginInfo.employee')->with('sccmgs', 'Send login information '.$count);
