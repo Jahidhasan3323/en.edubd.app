@@ -66,9 +66,11 @@ class OnlineClassUsController extends Controller
                 'subject' => 'required',
                 'master_class_id' => 'required',
                 'group' => 'required',
-                'section' => 'required',
                 'shift' => 'required',
             ]);
+            if (!$request->section) {
+                $data['section']=0;
+            }
         }
         if ($request->type==2  ) {
             $data['subject']=0;
@@ -135,9 +137,11 @@ class OnlineClassUsController extends Controller
                 'subject' => 'required',
                 'master_class_id' => 'required',
                 'group' => 'required',
-                'section' => 'required',
                 'shift' => 'required',
             ]);
+            if (!$request->section) {
+                $data['section']=0;
+            }
         }
         if ($request->type==2  ) {
             $data['subject']=0;
@@ -171,8 +175,17 @@ class OnlineClassUsController extends Controller
         if(!Auth::is('student')){
             return redirect('/home');
         }
+
+        $school=School::where(['id'=>Auth::getSchool(),'online_class_access'=>1])->first();
+        if (!$school) {
+
+            return $this->returnWithError(' You have no acces in Ehsan online conferance syatem !');
+
+        }
          $student_details=student::where(['school_id'=>Auth::getSchool(),'user_id'=>Auth::id()])->first();
-         $online_class=OnlineClassUs::where(['master_class_id'=>$student_details->master_class_id,'shift'=>$student_details->shift,'group'=>$student_details->group,'school_id'=>Auth::getSchool(),'type'=>1])->get();
+         $online_class=OnlineClassUs::where(['master_class_id'=>$student_details->master_class_id,'shift'=>$student_details->shift,'group'=>$student_details->group,'school_id'=>Auth::getSchool(),'type'=>1])
+         ->whereIn('section',[$student_details->section,'0'])
+         ->get();
         //dd($online_class);
         return view('backEnd.online_class_us.student_class',compact('online_class'));
     }
@@ -182,6 +195,13 @@ class OnlineClassUsController extends Controller
             
         }else{
             return redirect('/home');
+        }
+
+        $school=School::where(['id'=>Auth::getSchool(),'online_class_access'=>1])->first();
+        if (!$school) {
+
+            return $this->returnWithError(' You have no acces in Ehsan online conferance syatem !');
+
         }
         $online_class=OnlineClassUs::where(['school_id'=>Auth::getSchool(),'type'=>2])->get();
         //dd($online_class);
