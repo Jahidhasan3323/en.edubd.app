@@ -108,6 +108,17 @@ class Controller extends BaseController
             return file_get_contents($url_AllNumber);
         }
     }
+
+    protected function send_sms_by_curl($url_AllNumber){
+        $ch_banpage = curl_init($url_AllNumber);
+        curl_setopt($ch_banpage, CURLOPT_URL, $url_AllNumber);
+        curl_setopt($ch_banpage, CURLOPT_HEADER, 0);
+        curl_setopt($ch_banpage, CURLOPT_RETURNTRANSFER, true);
+        $curl_scraped_page = curl_exec($ch_banpage);
+        curl_close($ch_banpage);
+        return $curl_scraped_page;
+    }
+
     /**
         * success response method.
         *

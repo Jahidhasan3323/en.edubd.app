@@ -72,27 +72,23 @@
                 
                    
                </div>
-               <div class="row  student">
-                
+               <div class="row">
                     <div class="col-sm-6">
-                       <div class="form-group {{$errors->has('master_class_id') ? 'has-error' : ''}}">
-                           <label class="" for="master_class_id">Class <span class="star">*</span></label>
-                           <div class="">
-                               <select class="form-control" name="master_class_id" id="master_class_id">
-                                   <option value="">Select Class </option>
-                                   @foreach($classes as $class)
-                                   <option value="{{$class->id}}">{{$class->name}}</option>
-                                   @endforeach
+                        <div class="form-group {{$errors->has('master_class_id') ? 'has-error' : ''}}">
+                            <label for="master_class_id">Select Class<span class="star">*</span></label>
+                            <select name="master_class_id[]" id="master_class_id" class="form-control" multiple="true">
+                                @foreach($classes as $class)
+                                    <option value="{{$class->id}}">{{$class->name}}</option>
+                                    @endforeach
+                            </select>
 
-                               </select>
-                           </div>
-                           @if ($errors->has('master_class_id'))
-                               <span class="help-block">
-                                   <strong>{{$errors->first('master_class_id')}}</strong>
-                               </span>
-                           @endif
-                       </div>
-                   </div> 
+                            @if ($errors->has('master_class_id'))
+                                <span class="help-block">
+                                    <strong>{{$errors->first('master_class_id')}}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>  
                     <div class="col-sm-6">
                         <div class="form-group {{$errors->has('shift') ? 'has-error' : ''}}">
                             <label class="" for="shift">Shift <span class="star">*</span></label>
@@ -112,6 +108,8 @@
                             @endif
                         </div>
                     </div>
+               </div>
+               <div class="row  student">
                     <div class="col-sm-6">
                         <div class="form-group {{$errors->has('section') ? 'has-error' : ''}}">
                             <label class="" for="section">Section <span class="star">*</span></label>
@@ -152,11 +150,11 @@
                             @endif
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <div class="form-group {{$errors->has('subject') ? 'has-error' : ''}}">
                             <label class="" for="subject">Subject <span class="star">*</span></label>
                             <div class="">
-                                <input  type="text" name="subject" class="form-control" placeholder="Subject">
+                                <input  type="text" name="subject" class="form-control" placeholder="Each subject seperate by comma(,)">
                             </div>
                             @if ($errors->has('subject'))
                                 <span class="help-block">
