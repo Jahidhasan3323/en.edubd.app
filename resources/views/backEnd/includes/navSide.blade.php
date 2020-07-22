@@ -877,15 +877,15 @@
                 @endif
 
             @endif
-            @if(Auth::is('teacher') || Auth::is('student') || Auth::is('admin') || Auth::is('commitee') || Auth::is('staff') || Auth::is('root') )
+            @if(Auth::is('teacher') || Auth::is('student') || Auth::is('admin') || Auth::is('commitee') || Auth::is('staff')  )
             <li>
                 <li class="@yield('online_class_us')">
                     <a href="#"><i class="fa fa-sitemap fa-2x"></i>Ehsan Online Conferance<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         @if(Auth::is('root'))
-                        <li>
+                        <!-- <li>
                             <a href="{{ route('online_class_us.create') }}">Ehsan Online Conferance add</a>
-                        </li>
+                        </li> -->
                         {{-- <li>
                             <a href="{{ route('online_class_us') }}">Ehsan Online Conferance</a>
                         </li> --}}

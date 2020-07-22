@@ -1199,8 +1199,9 @@ Route::group(['prefix' => 'online_class_youtube', 'as'=>'online_class_youtube'],
 Route::group(['prefix' => 'online_class_us', 'as'=>'online_class_us'], function(){
     Route::get('index/{id}','OnlineClassUsController@index')->name('.index');
     Route::get('/view/{id}','OnlineClassUsController@view')->name('.view');
-    Route::get('/create','OnlineClassUsController@create')->name('.create');
+    Route::get('/create/{id}','OnlineClassUsController@create')->name('.create');
     Route::post('/create','OnlineClassUsController@store')->name('.create');
+    Route::get('/create_staff/{id}','OnlineClassUsController@store_staff')->name('.create_staff');
     Route::get('/edit/{id}','OnlineClassUsController@edit')->name('.edit');
     Route::post('/edit/{id}','OnlineClassUsController@update')->name('.edit');
     Route::get('/delete/{id}','OnlineClassUsController@destroy')->name('.delete');

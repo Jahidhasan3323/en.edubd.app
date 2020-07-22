@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\User;
 class Staff extends Model
 {
     protected $fillable = [ 
@@ -101,5 +101,10 @@ class Staff extends Model
     {
         return $query->whereNotNull('deleted_at');
     }
-
+    
+    public function teacher()
+    {
+        return $this->belongsTo(User::class,'user_id','id')->where('group_id',3);
+    }
+     
 }
