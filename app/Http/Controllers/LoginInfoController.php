@@ -44,6 +44,7 @@ class LoginInfoController extends Controller
 	}
 
 	public function st_sms(Request $request,SmsSendController $sms_send){
+        set_time_limit(8000000);
 		$school = School::find($request->school_id);
 		$student = Student::whereIn('id', $request->id)->first();
 		$students = Student::whereIn('id', $request->id)->get();
@@ -89,6 +90,7 @@ class LoginInfoController extends Controller
 	}
 
 	public function em_sms(Request $request,SmsSendController $sms_send){
+        set_time_limit(8000000);
 		$school = School::find($request->school_id);
 		$employees = Staff::whereIn('id', $request->id)->get();
         $count = 0;
@@ -132,6 +134,7 @@ class LoginInfoController extends Controller
 	}
 
 	public function comm_sms(Request $request,SmsSendController $sms_send){
+        set_time_limit(8000000);
 		$school = School::find($request->school_id);
 		$committees = Commitee::whereIn('id', $request->id)->get();
         $count = 0;
@@ -212,7 +215,12 @@ class LoginInfoController extends Controller
         $student = Student::whereIn('user_id',$user_id)->first();
         $all_id = $this->password_generate($user_id);
         $students = Student::whereIn('user_id',$all_id)->get();
-		return view('backEnd.login_info.print.student_login_info_print',compact('school','students','student'));
+        $photo_status = $request->photo_status;
+		if ($request->type==1) {
+            return view('backEnd.login_info.print.student_login_info_slip',compact('school','students','student','photo_status'));
+        }else{
+            return view('backEnd.login_info.print.student_login_info_print',compact('school','students','student','photo_status'));
+        };
     }
 
     public function employee_login_info()
@@ -230,7 +238,13 @@ class LoginInfoController extends Controller
         if (count($employees) < 1) {
             return redirect()->route('employee_login_info')->with('errmgs','Employee not found !');
         }
-		return view('backEnd.login_info.print.employee_login_info_print',compact('school','employees'));
+        $photo_status = $request->photo_status;
+        if ($request->type==1) {
+            return view('backEnd.login_info.print.employee_login_info_slip',compact('school','employees','photo_status'));
+        }else {
+            return view('backEnd.login_info.print.employee_login_info_print',compact('school','employees','photo_status'));
+        }
+		
     }
 
     public function committee_login_info()
@@ -248,7 +262,12 @@ class LoginInfoController extends Controller
         if (count($committees) < 1) {
             return redirect()->route('committee_login_info')->with('errmgs','Committee not found');
         }
-		return view('backEnd.login_info.print.committee_login_info_print',compact('school','committees'));
+        $photo_status = $request->photo_status;
+		if ($request->type==1) {
+            return view('backEnd.login_info.print.committee_login_info_slip',compact('school','committees','photo_status'));
+        }else{
+            return view('backEnd.login_info.print.committee_login_info_print',compact('school','committees','photo_status'));
+        }
     }
 
     public function password_generate($user_id)

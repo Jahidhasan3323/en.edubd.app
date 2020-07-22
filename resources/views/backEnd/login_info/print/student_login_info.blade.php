@@ -113,6 +113,33 @@
                         </span>
                         @endif
                     </div>
+                    <div class="col-md-6 {{$errors->has('type') ? 'has-error' : ''}}">
+                        <div class="form-group">
+                            <select name="type" id="type" class="form-control" required="">
+                                <option value="">Select Sheet Type </option>
+                                <option value="1">Slip based print</option>
+                                <option value="2">All print</option>
+                            </select>
+                        </div>
+                        @if($errors->has('type'))
+                        <span class="help-block">
+                            <strong>{{$errors->first('type')}}</strong>
+                        </span>
+                        @endif
+                    </div>
+                    <div class="col-md-6 {{$errors->has('photo_status') ? 'has-error' : ''}}">
+                        <div class="form-group">
+                            <select name="photo_status" id="photo_status" class="form-control" required="">
+                                <option value="1">Print with photo</option>
+                                <option value="2">Print without photo</option>
+                            </select>
+                        </div>
+                        @if($errors->has('photo_status'))
+                        <span class="help-block">
+                            <strong>{{$errors->first('photo_status')}}</strong>
+                        </span>
+                        @endif
+                    </div>
                     <div class="col-sm-12">
                         <div class="form-group">
                             <br>
@@ -165,7 +192,7 @@
 		$(document).ready(function() {
 		  $('#school_id').on('change', function () {
 				  var school_id = $(this).find(":selected").val();
-				  var option = '<option>শ্রেণী নির্বাচন করুন</option>';
+				  var option = '<option>Select Class</option>';
 				  $.ajaxSetup({
 					    headers: {
 					        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -183,7 +210,7 @@
 							  }
 							  $('#master_class_id').html(option);
 						  }else {
-							  var option1 = '<option>শ্রেণী খুজে পাওয়া যায়নি !</option>';
+							  var option1 = '<option>Class not found !</option>';
 							  $('#master_class_id').html(option1);
 						  }
 					  }
