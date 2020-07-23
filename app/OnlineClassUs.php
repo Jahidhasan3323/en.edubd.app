@@ -17,6 +17,11 @@ class OnlineClassUs extends Model
     {
         return $this->belongsTo(School::class);
     }
+   
+    public function user()
+    {
+        return $this->belongsTo(User::class,'teacher_id');
+    }
     
 
     protected $guarded = array();

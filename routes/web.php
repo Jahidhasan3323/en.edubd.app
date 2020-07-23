@@ -1202,12 +1202,16 @@ Route::group(['prefix' => 'online_class_us', 'as'=>'online_class_us'], function(
     Route::get('/create/{id}','OnlineClassUsController@create')->name('.create');
     Route::post('/create','OnlineClassUsController@store')->name('.create');
     Route::get('/create_staff/{id}','OnlineClassUsController@store_staff')->name('.create_staff');
-    Route::get('/edit/{id}','OnlineClassUsController@edit')->name('.edit');
+    Route::get('/edit/{id}/{school_id}','OnlineClassUsController@edit')->name('.edit');
     Route::post('/edit/{id}','OnlineClassUsController@update')->name('.edit');
     Route::get('/delete/{id}','OnlineClassUsController@destroy')->name('.delete');
     
     Route::get('/student','OnlineClassUsController@student_class')->name('.student');
     Route::get('/staff','OnlineClassUsController@staff_class')->name('.staff');
+    Route::get('/school_class','OnlineClassUsController@school_class')->name('.school_class');
+
+    Route::get('/add_multiple_teacher/{id}/{school}','OnlineClassUsController@add_multiple_teacher')->name('.add_multiple_teacher');
+    Route::post('/add_multiple_teacher','OnlineClassUsController@add_multiple_teacher_store')->name('.add_multiple_teacher');
     
     Route::get('/link','OnlineClassUsController@link')->name('.link');
 
