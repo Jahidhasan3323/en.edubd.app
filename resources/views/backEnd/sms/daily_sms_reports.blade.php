@@ -33,8 +33,8 @@
                     @php
                         $i = 1;
                     @endphp
-                    @foreach($daily_sms_reports as $daily_sms_report)
-                        <tbody>
+                    <tbody>
+                        @foreach($daily_sms_reports as $daily_sms_report)
                             <tr>
                                 <td class="text-center">{{ $i++ }}</td>
                                 <td class="text-left">{{ $daily_sms_report['name'] }}</td>
@@ -53,8 +53,8 @@
                                 </td>
 
                             </tr>
-                        </tbody>
-                    @endforeach
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>

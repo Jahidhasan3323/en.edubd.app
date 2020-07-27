@@ -106,6 +106,7 @@
 						{{ $school->user->name??'' }} <br>
 						<img class="logo" src="{{ Storage::url($school->logo??'public/images/default/user.png') }}" alt="Logo"><br>
 						<span class="address">{{ $school->address }}</span> <br>
+						<span class="address">Website: {{ $school->website }}</span> <br>
 						@if ($photo_status==1)
 							<img class="photo" src="{{ Storage::url($committee->photo??'public/images/user.png') }}" alt="Photo" />
 						@endif

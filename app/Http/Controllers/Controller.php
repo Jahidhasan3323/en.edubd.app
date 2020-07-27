@@ -105,7 +105,7 @@ class Controller extends BaseController
         if ($school->sms_service==2) {
         }else{
             $url_AllNumber = "http://sms.worldehsan.org/api/send_sms?api_key=".$school->api_key."&sender_id=".$school->sender_id."&number=".$mobile_number."&message=".$message;
-            return file_get_contents($url_AllNumber);
+            return $this->send_sms_by_curl($url_AllNumber);
         }
     }
 
