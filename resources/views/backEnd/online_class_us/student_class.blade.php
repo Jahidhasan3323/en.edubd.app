@@ -34,8 +34,13 @@
                         @foreach($online_class as $row)
                         <tr>
                             <td>{{$i++}}</td>
-                            <td>{{$row->subject}}</td>
-                            <td>{{$row->user->name ?? ' '}}</td>                             
+                            <td>{{$row->subject=='0' ? 'Guardian' : $row->subject}}</td>
+                            <td>
+                                <?php
+                                    if ($row->online_class_teacher) {
+                                    foreach ($row->online_class_teacher as $teacher) { ?>
+                                        <span>{{$teacher->user->name.', ' }}</span>
+                                <?php  }  }  ?></td>                             
                             <td>
                                 @if ($row->type==1)
                                 <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/{{$row->masterClass->name}}/{{$row->group}}/{{$row->shift}}/{{$row->subject}}">
@@ -43,8 +48,8 @@
                                 </a>
                                 @endif
                                
-                                @if ($row->type==2)
-                                    <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/teacher">
+                                @if ($row->type==3)
+                                    <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/guardian">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                     </a>
                                 @endif

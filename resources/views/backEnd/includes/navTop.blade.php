@@ -64,11 +64,16 @@ font-size: 16px;">
     <div class="navTopUser oc-dextop" style="color: white; padding: 10px 50px 5px 50px; float: right; font-size: 16px;">
         @if(Auth::is('student'))
         <a href="#" class="pull-left" style="margin-right:5px"><i class="fa fa-spinner fa-spin"></i></a>  
-        <a target="_blank" href="{{url('online_class_us/student')}}" class="btn btn-danger square-btn-adjust pull-left">Ehsan Online Conferance</a> 
+        <a href="{{url('online_class_us/student')}}" class="btn btn-danger square-btn-adjust pull-left">Ehsan Online Conferance</a> 
         @endif
-        @if(Auth::is('teacher') || Auth::is('admin') || Auth::is('commitee') || Auth::is('staff') )
+        @if(Auth::is('teacher')  || Auth::is('commitee') || Auth::is('staff') )
         <a href="#" class="pull-left" style="margin-right:5px"><i class="fa fa-spinner fa-spin"></i></a>  
-            <a target="_blank" href="{{url('online_class_us/staff')}}" class="btn btn-danger square-btn-adjust pull-left">Ehsan Online Conferance</a> 
+            <a href="{{url('online_class_us/staff')}}" class="btn btn-danger square-btn-adjust pull-left">Ehsan Online Conferance</a> 
+        @endif
+        @if ( Auth::is('admin'))
+        <a href="#" class="pull-left" style="margin-right:5px"><i class="fa fa-spinner fa-spin"></i></a>  
+        <a href="{{url('online_class_us/school_class')}}" class="btn btn-danger square-btn-adjust pull-left">Ehsan Online Conferance</a> 
         @endif
     </div>
+    
 </nav>

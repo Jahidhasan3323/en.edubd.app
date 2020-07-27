@@ -9,6 +9,7 @@ use App\Unit;
 use App\Student;
 use App\Http\Controllers\Controller;
 use App\OnlineClass;
+use App\OnlineClassTeacher;
 use App\School;
 use App\Staff;
 use Illuminate\Http\Request;
@@ -22,8 +23,9 @@ class OnlineClassUsController extends Controller
         if(!Auth::is('root')){
             return redirect('/home');
         }
-        $school_id=$id;
-        $online_class=OnlineClassUs::with('masterClass','user')->where(['created_by'=>Auth::id(),'school_id'=>$id])->orderBy('master_class_id', 'ASC')->get();
+         $school_id=$id;
+         $online_class=OnlineClassUs::with('masterClass','online_class_teacher')->where(['created_by'=>Auth::id(),'school_id'=>$id])->orderBy('master_class_id', 'ASC')->get();
+        
         //dd($online_class);
         return view('backEnd.online_class_us.index',compact('online_class','school_id'));
     }
@@ -108,16 +110,16 @@ class OnlineClassUsController extends Controller
                 }else{
                     $data['master_class_id']=0;
                 }
-                if (isset($request->teacher_id[$i])) {
-                    $data['teacher_id']=$request->teacher_id[$i];
-                }else{
-                    $data['teacher_id']=0;
-                }
+                $data['teacher_id']=0;
+                
                 $i++;
-                OnlineClassUs::create($data);
+               $online_class= OnlineClassUs::create($data);
+               if (isset($request->teacher_id[$i])) {
+                  OnlineClassUs::create(['online_class_us_id'=>$online_class->id,'teacher_id'=>$request->teacher_id[$i],'created_by'=>Auth::id()]);
+                }
             }
         }
-        return $this->returnWithSuccessRedirect('Data stored successfully !','online_class_us/index/'.$request->school_id);
+        return $this->returnWithSuccessRedirect('Data store successfuly','online_class_us/index/'.$request->school_id);
        
     }
     /* public function create($school_id)
@@ -140,9 +142,9 @@ class OnlineClassUsController extends Controller
         if(!Auth::is('root')){
             return redirect('/home');
         }
-        $check_status=OnlineClassUs::where('school_id',$school_id)->first();
+        $check_status=OnlineClassUs::where(['school_id'=>$school_id,'type'=>2])->first();
         if($check_status){
-            return $this->returnWithSuccessRedirect('Data stored successfully !','online_class_us/index/'.$school_id);
+            return $this->returnWithSuccessRedirect('Data store successfuly','online_class_us/index/'.$school_id);
         }
        //$data=$request->all();
        $data['created_by']=Auth::id();
@@ -155,7 +157,29 @@ class OnlineClassUsController extends Controller
         $data['shift']=0;
         $data['teacher_id']=0;
         OnlineClassUs::create($data);
-        return $this->returnWithSuccessRedirect('Data stored successfully !','online_class_us/index/'.$school_id);
+        return $this->returnWithSuccessRedirect('Data store successfuly','online_class_us/index/'.$school_id);
+    }
+    public function store_guardian($school_id)
+    {
+        if(!Auth::is('root')){
+            return redirect('/home');
+        }
+        $check_status=OnlineClassUs::where(['school_id'=>$school_id,'type'=>3])->first();
+        if($check_status){
+            return $this->returnWithSuccessRedirect('Data store successfuly','online_class_us/index/'.$school_id);
+        }
+       //$data=$request->all();
+       $data['created_by']=Auth::id();
+       $data['school_id']=$school_id;
+       $data['type']=3;
+       $data['subject']=0;
+        $data['master_class_id']=0;
+        $data['group']=0;
+        $data['section']=0;
+        $data['shift']=0;
+        $data['teacher_id']=0;
+        OnlineClassUs::create($data);
+        return $this->returnWithSuccessRedirect('Data store successfuly','online_class_us/index/'.$school_id);
     }
     public function add_multiple_teacher_store(Request $request)
     {
@@ -167,10 +191,10 @@ class OnlineClassUsController extends Controller
        if($teacher)
         {    foreach ($teacher as $row) {
             
-                OnlineClassUs::create(['subject'=>$data->subject,'master_class_id'=>$data->master_class_id,'shift'=>$data->shift,'section'=>$data->section,'group'=>$data->group,'teacher_id'=>$row,'type'=>$data->type,'school_id'=>$data->school_id,'created_by'=>$data->created_by]);
+                OnlineClassTeacher::create(['online_class_us_id'=>$request->id,'teacher_id'=>$row,'created_by'=>Auth::id()]);
             }
         }
-        return $this->returnWithSuccessRedirect('Data stored successfully !','online_class_us/index/'.$data->school_id);
+        return $this->returnWithSuccessRedirect('Data store successfuly','online_class_us/index/'.$data->school_id);
        
     }
     /**
@@ -243,7 +267,7 @@ class OnlineClassUsController extends Controller
         
         
         OnlineClassUs::where(['id'=>$id,'created_by'=>Auth::id()])->update($data);
-        return $this->returnWithSuccessRedirect('Data stored successfully !','online_class_us/index/'.$request->school_id);
+        return $this->returnWithSuccessRedirect('Data store successfuly','online_class_us/index/'.$request->school_id);
     }
 
     /**
@@ -258,7 +282,7 @@ class OnlineClassUsController extends Controller
             return redirect('/home');
         }
         OnlineClassUs::where(['id'=>$id,'created_by'=>Auth::id()])->delete();
-        return $this->returnWithSuccess('Data deleted successfully !');
+        return $this->returnWithSuccess('Data deleted successfuly !');
     }
 
     public function student_class()
@@ -267,10 +291,12 @@ class OnlineClassUsController extends Controller
             return redirect('/home');
         }
          $student_details=student::where(['school_id'=>Auth::getSchool(),'user_id'=>Auth::id()])->first();
-         $online_class=OnlineClassUs::with('user')->where(['master_class_id'=>$student_details->master_class_id,'school_id'=>Auth::getSchool(),'type'=>1])
+         $online_class=OnlineClassUs::with('online_class_teacher')->where(['school_id'=>Auth::getSchool()])
+         ->whereIn('master_class_id',[$student_details->master_class_id,'0'])
          ->whereIn('shift',[$student_details->shift,'0'])
          ->whereIn('group',[$student_details->group,'0'])
          ->whereIn('section',[$student_details->section,'0'])
+         ->whereIn('type',[1,3])
          ->get();
         //dd($online_class);
         return view('backEnd.online_class_us.student_class',compact('online_class'));
@@ -282,9 +308,10 @@ class OnlineClassUsController extends Controller
         }else{
             return redirect('/home');
         }
-        $online_class=OnlineClassUs::where(['school_id'=>Auth::getSchool()])->whereIn('teacher_id',[Auth::id(),'0'])->get();
-        //dd($online_class);
-        return view('backEnd.online_class_us.teacher_class',compact('online_class'));
+        $teacher_class=OnlineClassTeacher::where(['teacher_id'=>Auth::id()])->get();
+        $conferance=OnlineClassUs::where(['school_id'=>Auth::getSchool()])->whereIn('type',[2,3])->get();
+        //dd($teacher_class);
+        return view('backEnd.online_class_us.teacher_class',compact('teacher_class','conferance'));
     }
 
     public function school_class()
@@ -294,7 +321,7 @@ class OnlineClassUsController extends Controller
             return redirect('/home');
         }
         $school_id=Auth::getSchool();
-        $online_class=OnlineClassUs::with('masterClass','user')->where(['school_id'=>Auth::getSchool()])->orderBy('master_class_id', 'ASC')->get();
+        $online_class=OnlineClassUs::with('masterClass','online_class_teacher')->where(['school_id'=>Auth::getSchool()])->orderBy('master_class_id', 'ASC')->get();
         //dd($online_class);
         return view('backEnd.online_class_us.index',compact('online_class','school_id'));
     }

@@ -1202,6 +1202,7 @@ Route::group(['prefix' => 'online_class_us', 'as'=>'online_class_us'], function(
     Route::get('/create/{id}','OnlineClassUsController@create')->name('.create');
     Route::post('/create','OnlineClassUsController@store')->name('.create');
     Route::get('/create_staff/{id}','OnlineClassUsController@store_staff')->name('.create_staff');
+    Route::get('/create_guardian/{id}','OnlineClassUsController@store_guardian')->name('.create_guardian');
     Route::get('/edit/{id}/{school_id}','OnlineClassUsController@edit')->name('.edit');
     Route::post('/edit/{id}','OnlineClassUsController@update')->name('.edit');
     Route::get('/delete/{id}','OnlineClassUsController@destroy')->name('.delete');

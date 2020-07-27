@@ -8,7 +8,8 @@
         <div class="page-header">
             <h1 class="text-center text-temp">Online Class
             <a style="margin-left: 5px" class="btn btn-info pull-right" href="{{url('online_class_us/create/'.$school_id)}}"><i class="fa fa-plus"></i>  Add Student Class</a> 
-            <a class="btn btn-success pull-right" href="{{url('online_class_us/create_staff/'.$school_id)}}"><i class="fa fa-plus"></i> Add Teacher Class</a></h1>
+            <a style="margin-left: 5px" class="btn btn-warning pull-right" href="{{url('online_class_us/create_guardian/'.$school_id)}}"><i class="fa fa-plus"></i>Add Guardian Meeting</a>
+            <a class="btn btn-success pull-right" href="{{url('online_class_us/create_staff/'.$school_id)}}"><i class="fa fa-plus"></i> Add Teacher Meeting</a></h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -48,9 +49,15 @@
                             <td>{{$row->shift ?? ''}}</td>
                             <td>{{$row->group ?? ''}}</td>
                             <td>{{$row->section ?? ''}}</td>
-                            <td>{{$row->subject}}</td>                            
-                            <td>{{$row->user->name ?? ' '}}</td>                            
-                            <td>{{$row->type==1 ? 'Student' : 'Staff'}}</td>
+                            <td>{{$row->subject}}</td>  
+                            <td>
+                                <?php
+                                    if ($row->online_class_teacher) {
+                                       foreach ($row->online_class_teacher as $teacher) { ?>
+                                           <span>{{$teacher->user->name.', ' }}</span>
+                                <?php  }  }  ?>
+                            </td>                            
+                            <td>{{$row->type==1 ? 'Student' :($row->type==2 ? 'Staff': 'Guardian')}}</td>
                             <td>
                                 @if(Auth::is('root'))
                                     @if ($row->type==1)
@@ -67,6 +74,11 @@
                                 
                                     @if ($row->type==2)
                                         <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/teacher">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                        </a>
+                                    @endif
+                                    @if ($row->type==3)
+                                        <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/guardian">
                                         <span class="glyphicon glyphicon-eye-open"></span>
                                         </a>
                                     @endif
