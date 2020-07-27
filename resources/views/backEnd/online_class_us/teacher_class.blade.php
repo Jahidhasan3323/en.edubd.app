@@ -1,60 +1,143 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'অনলাইন ক্লাস')
+@section('mainTitle', 'Online Class')
 @section('online_class_us', 'active')
 
 @section('content')
+<?php
+    use App\OnlineClassUs;
+?>
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">অনলাইন ক্লাস</h1>
+            <h1 class="text-center text-temp">Online Class</h1>
         </div>
 
-        @if(Session::has('errmgs'))
+        @if(Session::has('errmgs')) 
             @include('backEnd.includes.errors')
         @endif
         @if(Session::has('sccmgs'))
             @include('backEnd.includes.success')
         @endif
+        <div class="col-sm-12">
+            <div class="panel-body" style="margin-top: 10px; padding-bottom: 50px">
+                <div class="col-sm-12" style="font-size: 18px; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); padding: 30px">
+                    <h4>Staff Conferance List</h4>
+                    <hr>
+                    <table id="commitee_tbl1" class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                            
+                                <th>Si</th>
+                                <th>User</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if($conferance)
+                            <?php $i=1?>
+                            @foreach($conferance as $row)
+                           
 
-        <div class="panel-body" style="margin-top: 10px; padding-bottom: 50px">
-            <div class="col-sm-12" style="font-size: 18px; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); padding: 30px">
-
-                <table id="commitee_tbl" class="table table-bordered table-hover table-striped">
-                    <thead>
-                        <tr>
-                            <th>ক্রমিক নং</th>
-                            <th>অ্যাকশন</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if($online_class)
-                        <?php $i=1?>
-                        @foreach($online_class as $row)
-                        <tr>
-                            <td>{{$i++}}</td>
-                            <td>
-                                @if ($row->type==1)
-                                <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/{{$row->masterClass->name}}/{{$row->group}}/{{$row->shift}}/{{$row->subject}}">
-                                    <span class="glyphicon glyphicon-eye-open"></span>
-                                </a>
-                                @endif
-                               
-                                @if ($row->type==2)
-                                    <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/teacher">
-                                    <span class="glyphicon glyphicon-eye-open"></span>
-                                    </a>
-                                @endif
-                            </td>                         
-                        </tr>
+                            <tr>
+                                <td>{{$i++}}</td>
+                                <td>
+                                   
+                                    @if($row->type==3)
+                                    Guardian
+                                    @elseif($row->type==2)
+                                    {{"Staff"}}
+                                    @endif
+                                    
+                                </td>
+                                <td>
+                                    
+                                    @if ($row->type==2)
+                                        <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/teacher">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                        </a>
+                                    @endif
+                                    @if ($row->type==3)
+                                        <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/guardian">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                        </a>
+                                    @endif
+                                </td>                         
+                            </tr>
+                            
+                            @endforeach
+                            @endif
+                        </tbody>
                         
-                        @endforeach
-                        @endif
-                    </tbody>
+                    </table>
                     
-                </table>
-                
+                </div>
             </div>
         </div>
+        <div class="col-sm-12">
+            <div class="panel-body" style="margin-top: 10px; padding-bottom: 50px">
+                <div class="col-sm-12" style="font-size: 18px; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); padding: 30px">
+                    <h4>Student Class List</h4>
+                    <hr>
+                    <table id="commitee_tbl" class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                            
+                                <th>Si</th>
+                                <th>Class</th>
+                                <th>Subject</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if($teacher_class)
+                            <?php $i=1?>
+                            @foreach($teacher_class as $row)
+                            <?php $online_class=OnlineClassUs::where('id',$row->online_class_us_id)->first(); ?>
+
+                            <tr>
+                                <td>{{$i++}}</td>
+                                <td>
+                                    @if ($online_class->type==2)
+                                        {{$online_class->masterClass->name ?? 'Staff'}}
+                                        
+                                    @elseif($online_class->type==3)
+                                    Guardian
+                                    @elseif($online_class->type==1)
+                                    {{$online_class->masterClass->name}}
+                                    @endif
+                                    
+                                </td>
+                                <td>{{$online_class->subject }}</td> 
+                                <td>
+                                    @if ($online_class->type==1)
+                                    <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$online_class->school->serial_no}}/{{$online_class->masterClass->name}}/{{$online_class->group}}/{{$online_class->shift}}/{{$online_class->subject}}">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                    </a>
+                                    @endif
+                                
+                                    @if ($online_class->type==2)
+                                        <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$online_class->school->serial_no}}/teacher">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                        </a>
+                                    @endif
+                                    @if ($online_class->type==3)
+                                        <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$online_class->school->serial_no}}/guardian">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                        </a>
+                                    @endif
+                                </td>                         
+                            </tr>
+                            
+                            @endforeach
+                            @endif
+                        </tbody>
+                        
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+        
     </div>
     
 @endsection

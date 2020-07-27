@@ -1,14 +1,15 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'অনলাইন ক্লাস')
+@section('mainTitle', 'Online Class')
 @section('online_class_us', 'active')
 
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">অনলাইন ক্লাস
-            <a style="margin-left: 5px" class="btn btn-info pull-right" href="{{url('online_class_us/create/'.$school_id)}}"><i class="fa fa-plus"></i>  শিক্ষার্থীদের জন্য ক্লাস তৈরি করুন</a> 
-            <a class="btn btn-success pull-right" href="{{url('online_class_us/create_staff/'.$school_id)}}"><i class="fa fa-plus"></i> শিক্ষকদের জন্য ক্লাস তৈরি করুন</a></h1>
+            <h1 class="text-center text-temp">Online Class
+            <a style="margin-left: 5px" class="btn btn-info pull-right" href="{{url('online_class_us/create/'.$school_id)}}"><i class="fa fa-plus"></i>  Add Student Class</a> 
+            <a style="margin-left: 5px" class="btn btn-warning pull-right" href="{{url('online_class_us/create_guardian/'.$school_id)}}"><i class="fa fa-plus"></i>Add Guardian Meeting</a>
+            <a class="btn btn-success pull-right" href="{{url('online_class_us/create_staff/'.$school_id)}}"><i class="fa fa-plus"></i> Add Teacher Meeting</a></h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -24,15 +25,16 @@
                 <table id="commitee_tbl" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>ক্রমিক নং</th>
-                            <th>শ্রেণী</th>
+                            <th>SI</th>
+                            <th>Class</th>
                             {{--  <th>পাসওয়ার্ড</th> --}}
-                            <th>শিফট</th>
-                            <th>বিভাগ </th>
-                            <th>শাখা </th>
-                            <th>বিষয়</th>
-                            <th>ব্যবহারকারী </th>
-                            <th>অ্যাকশন</th>
+                            <th>Shift</th>
+                            <th>Group </th>
+                            <th>Section </th>
+                            <th>Subject</th>
+                            <th>Teacher </th>
+                            <th>User </th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,36 +49,67 @@
                             <td>{{$row->shift ?? ''}}</td>
                             <td>{{$row->group ?? ''}}</td>
                             <td>{{$row->section ?? ''}}</td>
-                            <td>{{$row->subject}}</td>                            
-                            <td>{{$row->type==1 ? 'Student' : 'Staff'}}</td>
+                            <td>{{$row->subject}}</td>  
                             <td>
-                                @if ($row->type==1)
-                                <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/{{$row->masterClass->name}}/{{$row->group}}/{{$row->shift}}/{{$row->subject}}">
-                                    <span class="glyphicon glyphicon-eye-open"></span>
-                                </a>
-                                <a  class="btn btn-success"  href="{{url('/online_class_us/edit/'.$row->id)}}">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </a>
-                                @endif
-                               
-                                @if ($row->type==2)
-                            <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/teacher">
-                                    <span class="glyphicon glyphicon-eye-open"></span>
-                                </a>
-                                @endif
-                            
+                                <?php
+                                    if ($row->online_class_teacher) {
+                                       foreach ($row->online_class_teacher as $teacher) { ?>
+                                           <span>{{$teacher->user->name.', ' }}</span>
+                                <?php  }  }  ?>
+                            </td>                            
+                            <td>{{$row->type==1 ? 'Student' :($row->type==2 ? 'Staff': 'Guardian')}}</td>
+                            <td>
+                                @if(Auth::is('root'))
+                                    @if ($row->type==1)
+                                    <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/{{$row->masterClass->name}}/{{$row->group}}/{{$row->shift}}/{{$row->subject}}">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                    </a>
+                                    <a  class="btn btn-success"  href="{{url('/online_class_us/edit/'.$row->id.'/'.$row->school_id)}}">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </a>
+                                    <a  class="btn btn-warning"  href="{{url('/online_class_us/add_multiple_teacher/'.$row->id.'/'.$row->school_id)}}">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </a>
+                                    @endif
                                 
+                                    @if ($row->type==2)
+                                        <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/teacher">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                        </a>
+                                    @endif
+                                    @if ($row->type==3)
+                                        <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/guardian">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                        </a>
+                                    @endif
                                 
-                                <a  class="btn btn-danger" onclick="return confirm('Are you sure to delete it ?')" href="{{url('/online_class_us/delete/'.$row->id)}}">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </a>
-                                <script>
-                                    function deleteNodice{{$row->id}}() {
-                                        if (!confirm('Are you sure to delete it ?')){
-                                            event.preventDefault();
+                                    
+                                    
+                                    <a  class="btn btn-danger" onclick="return confirm('Are you sure to delete it ?')" href="{{url('/online_class_us/delete/'.$row->id)}}">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                    <script>
+                                        function deleteNodice{{$row->id}}() {
+                                            if (!confirm('Are you sure to delete it ?')){
+                                                event.preventDefault();
+                                            }
                                         }
-                                    }
-                                </script>
+                                    </script>
+                                @endif
+                                @if(Auth::is('admin'))
+                                    @if ($row->type==1)
+                                        <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/{{$row->masterClass->name}}/{{$row->group}}/{{$row->shift}}/{{$row->subject}}">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                        </a>
+                                    
+                                    @endif
+                                
+                                    @if ($row->type==2)
+                                        <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/teacher">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                        </a>
+                                    @endif
+                                @endif
                             </td>
                         </tr>
                         

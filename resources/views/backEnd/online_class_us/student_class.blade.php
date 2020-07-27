@@ -1,12 +1,12 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'অনলাইন ক্লাস')
+@section('mainTitle', 'Online Class')
 @section('online_class_us', 'active')
 
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">অনলাইন ক্লাস</h1>
+            <h1 class="text-center text-temp">Online Class</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -22,9 +22,10 @@
                 <table id="commitee_tbl" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>ক্রমিক নং</th>
-                            <th>বিষয়</th>
-                            <th>অ্যাকশন</th>
+                            <th>Si</th>
+                            <th>Subject</th>
+                            <th>Teacher</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,7 +34,13 @@
                         @foreach($online_class as $row)
                         <tr>
                             <td>{{$i++}}</td>
-                            <td>{{$row->subject}}</td>                            
+                            <td>{{$row->subject=='0' ? 'Guardian' : $row->subject}}</td>
+                            <td>
+                                <?php
+                                    if ($row->online_class_teacher) {
+                                    foreach ($row->online_class_teacher as $teacher) { ?>
+                                        <span>{{$teacher->user->name.', ' }}</span>
+                                <?php  }  }  ?></td>                             
                             <td>
                                 @if ($row->type==1)
                                 <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/{{$row->masterClass->name}}/{{$row->group}}/{{$row->shift}}/{{$row->subject}}">
@@ -41,8 +48,8 @@
                                 </a>
                                 @endif
                                
-                                @if ($row->type==2)
-                                    <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/teacher">
+                                @if ($row->type==3)
+                                    <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/guardian">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                     </a>
                                 @endif

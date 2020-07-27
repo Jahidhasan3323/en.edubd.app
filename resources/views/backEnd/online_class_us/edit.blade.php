@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'অনলাইন ক্লাস')
+@section('mainTitle', 'Online Class')
 @section('online_class_us', 'active')
 @section('head_section')
     <style>
@@ -11,7 +11,7 @@
 @section('content')
     <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="page-header">
-            <h1 class="text-center text-temp">অনলাইন ক্লাস</h1>
+            <h1 class="text-center text-temp">Online Class</h1>
         </div>
 
         @if(Session::has('errmgs'))
@@ -30,49 +30,28 @@
                 {{csrf_field()}}
                 <div class="row">
                     
-                    <div class="col-sm-6">
-                        <div class="form-group {{$errors->has('master_class_id') ? 'has-error' : ''}}">
-                            <label class="" for="master_class_id">প্রতিষ্ঠান <span class="star">*</span></label>
-                            <div class="">
-                                <select class="form-control" name="school_id" id="school_id">
-                                    <option value="">প্রতিষ্ঠান নির্বাচন করুন</option>
-                                    @foreach($schools as $school)
-                                    <option value="{{$school->id}}">{{$school->user->name}}</option>
-                                    @endforeach
-
-                                </select>
-                            </div>
-                            @if ($errors->has('master_class_id'))
-                                <span class="help-block">
-                                    <strong>{{$errors->first('master_class_id')}}</strong>
-                                </span>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group {{$errors->has('type') ? 'has-error' : ''}}">
-                            <label class="" for="type">ব্যবহারকারী <span class="star">*</span></label>
-                            <div class="">
-                                <select class="form-control" name="type" id="type">
-                                    <option value="">ব্যবহারকারী</option>
-                                    <option value="1">শিক্ষার্থী</option>
-                                    <option value="2">কর্মচারী</option>
-                                </select>
-                            </div>
-                            @if ($errors->has('type'))
-                                <span class="help-block">
-                                    <strong>{{$errors->first('type')}}</strong>
-                                </span>
-                            @endif
-                        </div>
-                    </div>
                     
+                    <input type="hidden" name="school_id" value="{{$school_id}}">
+                    <div class="col-sm-6">
+                        <div class="form-group ">
+                            <label class="" for="teacher_id">Teacher <span class="star">*</span></label>
+                            <div class="">
+                                <select class="form-control" name="teacher_id" id="teacher_id">
+                                    <option value="">Teacher</option>
+                                    @foreach($teachers as $teacher)
+                                    <option value="{{$teacher->user_id}}">{{$teacher->user->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            
+                        </div>
+                    </div>
                    <div class="col-sm-6">
                        <div class="form-group {{$errors->has('master_class_id') ? 'has-error' : ''}}">
-                           <label class="" for="master_class_id">শ্রেণী <span class="star">*</span></label>
+                           <label class="" for="master_class_id">Class <span class="star">*</span></label>
                            <div class="">
                                <select class="form-control" name="master_class_id" id="master_class_id">
-                                   <option value="">শ্রেণী নির্বাচন করুন</option>
+                                   <option value="">Select Class</option>
                                    @foreach($classes as $class)
                                    <option value="{{$class->id}}">{{$class->name}}</option>
                                    @endforeach
@@ -90,14 +69,14 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group {{$errors->has('shift') ? 'has-error' : ''}}">
-                            <label class="" for="shift">শিফট <span class="star">*</span></label>
+                            <label class="" for="shift">Shift <span class="star">*</span></label>
                             <div class="">
                                 <select class="form-control" name="shift" id="shift">
-                                    <option value="">শিফট নির্বাচন করুন</option>
-                                    <option value="সকাল">সকাল</option>
-                                    <option value="দিন">দিন</option>
-                                    <option value="সন্ধ্যা">সন্ধ্যা</option>
-                                    <option value="রাত">রাত</option>
+                                    <option value="">Select Shift</option>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Day">Day</option>
+                                    <option value="Evining">Evining</option>
+                                    <option value="Night">Night</option>
                                 </select>
                             </div>
                             @if ($errors->has('shift'))
@@ -109,14 +88,14 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group {{$errors->has('section') ? 'has-error' : ''}}">
-                            <label class="" for="section">শাখা <span class="star">*</span></label>
+                            <label class="" for="section">Section <span class="star">*</span></label>
                             <div class="">
                                 <select class="form-control" name="section" id="section">
-                                    <option value="">...শাখা নির্বাচন করুন...</option>
-                                    <option value="ক">ক</option>
-                                    <option value="খ">খ</option>
-                                    <option value="গ">গ</option>
-                                    <option value="ঘ">ঘ</option>
+                                    <option value="">...Select Section ...</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
                                     @foreach($units as $unit)
                                     <option value="{{$unit->name}}">{{$unit->name}}</option>
                                     @endforeach
@@ -131,10 +110,10 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group {{$errors->has('group') ? 'has-error' : ''}}">
-                            <label class="" for="group">গ্রুপ / বিভাগ <span class="star">*</span></label>
+                            <label class="" for="group">Group <span class="star">*</span></label>
                             <div class="">
                                 <select class="form-control" name="group" id="group">
-                                    <option value="">গ্রুপ / বিভাগ নির্বাচন করুন</option>
+                                    <option value="">Select Group</option>
                                     @foreach($group_classes as $group_class)
                                     <option value="{{$group_class->name}}">{{$group_class->name}}</option>
                                     @endforeach
@@ -149,9 +128,9 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group {{$errors->has('subject') ? 'has-error' : ''}}">
-                            <label class="" for="subject">বিষয় <span class="star">*</span></label>
+                            <label class="" for="subject">Subject <span class="star">*</span></label>
                             <div class="">
-                            <input value="{{$online_class->subject}}" type="text" name="subject" class="form-control" placeholder="বিষয়">
+                            <input value="{{$online_class->subject}}" type="text" name="subject" class="form-control" placeholder="Subject">
                             </div>
                             @if ($errors->has('subject'))
                                 <span class="help-block">
@@ -168,7 +147,7 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <button id="save" type="submit" class="btn btn-block btn-info">সংরক্ষণ করুন</button>
+                                <button id="save" type="submit" class="btn btn-block btn-info">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -182,8 +161,7 @@
         document.getElementById('shift').value="{{$online_class->shift}}";
         document.getElementById('section').value="{{$online_class->section}}";
         document.getElementById('group').value="{{$online_class->group}}";
-        document.getElementById('type').value="{{$online_class->type}}";
-        document.getElementById('school_id').value="{{$online_class->school_id}}";
+        document.getElementById('teacher_id').value="{{$online_class->teacher_id}}";
     </script>
    
 @endsection
