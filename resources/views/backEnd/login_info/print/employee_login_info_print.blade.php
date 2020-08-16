@@ -72,6 +72,11 @@
 			width: 80px;
 			height: 80px;
 		}
+		.powered_by{
+			padding: 15 15px;
+			font-size: 10px;
+			text-align: center;
+		}
 	</style>
 	<script type="text/javascript">
 		window.print();
@@ -86,6 +91,7 @@
 				{{ $school->user->name??'' }} <br>
 				<img class="logo" src="{{ Storage::url($school->logo??'public/images/default/user.png') }}" alt="Logo"><br>
 				<span class="address">{{ $school->address }}</span> <br>
+				<span class="address">Website: {{ $school->website }}</span> <br>
 			</h2>
 			<h3>Employee Login Information</h3>
 			<br>
@@ -115,6 +121,9 @@
 				@endforeach
 			</tbody>
 		</table>
+		<div class="powered_by">
+			<p>Powered By Ehsan Software</p>
+		</div>
 	</div>
 
 </body>

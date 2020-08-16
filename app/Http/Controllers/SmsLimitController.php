@@ -16,9 +16,9 @@ class SmsLimitController extends Controller
 	}
     public function search(Request $request){
 		$schools = School::all();
-		$school = School::find($request->school_id);
-		$sms_limit = SmsLimit::where('school_id', $school)->first();
-		return view('backEnd.sms.sms_setup',compact('sms_limit','schools','school'));
+		$school_info = School::find($request->school_id);
+		$sms_limit = SmsLimit::where('school_id', $school_info->id)->first();
+		return view('backEnd.sms.sms_setup',compact('sms_limit','schools','school_info'));
 	}
 
     public function store(Request $request){
