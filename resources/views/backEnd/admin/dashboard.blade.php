@@ -12,6 +12,12 @@
             @endif
         </div>
     @endif
+    @if(Session::has('errmgs'))
+            @include('backEnd.includes.errors')
+    @endif
+    @if(Session::has('sccmgs'))
+        @include('backEnd.includes.success')
+    @endif
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">

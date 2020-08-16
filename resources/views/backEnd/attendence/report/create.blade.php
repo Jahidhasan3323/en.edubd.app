@@ -19,8 +19,11 @@
 </head>
 <body>
     @if(isset($atten_students)&&$atten_students!=''&&$atten_students!=NULL)
+    @if(count($atten_students)>0)
+    <?php dd($atten_students)?>
       <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
           <div class="panel-body">
+             
             <div class="row">
                 <div class="col-md-12 text-center">
                     <img src="{{Storage::url(Auth::user()->school->logo)}}" width="80">
@@ -47,6 +50,7 @@
                       </tr>
                   </thead>
                   <tbody>
+                      
                   <?php $x = 1; ?>
                       @foreach($atten_students as $student)
                           <tr>
@@ -70,9 +74,13 @@
              </div>
           </div>
       </div>
+      @else
+      <h1>Data not found</h1>
+    @endif
     @endif
 
     @if(isset($atten_employees)&&$atten_employees!=''&&$atten_employees!=NULL)
+     @if(count($atten_employees)>0)
       <div class="panel col-sm-12" style="margin-top: 15px; margin-bottom: 15px;">
           <div class="panel-body">
             <div class="row">
@@ -118,8 +126,11 @@
              </div>
           </div>
       </div>
+      @else
+      <h1>Data not found</h1>
     @endif
-
+    @endif
+    
     <script>
        window.print();
     </script>

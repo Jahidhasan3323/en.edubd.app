@@ -105,7 +105,7 @@
                                 <label class="" for="teacher_id">Teacher <span class="star">*</span></label>
                                 <div class="">
                                     <select class="form-control" name="teacher_id[]" id="teacher_id">
-                                        <option value="">Teacher</option>
+                                        <option value="" >Teacher</option>
                                         @foreach($teachers as $teacher)
                                         <option value="{{$teacher->user_id}}">{{$teacher->user->name}}</option>
                                         @endforeach

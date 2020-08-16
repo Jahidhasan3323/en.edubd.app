@@ -112,11 +112,11 @@ class OnlineClassUsController extends Controller
                 }
                 $data['teacher_id']=0;
                 
-                $i++;
-               $online_class= OnlineClassUs::create($data);
-               if (isset($request->teacher_id[$i])) {
-                  OnlineClassUs::create(['online_class_us_id'=>$online_class->id,'teacher_id'=>$request->teacher_id[$i],'created_by'=>Auth::id()]);
+                $online_class= OnlineClassUs::create($data);
+                if (isset($request->teacher_id[$i])) {
+                    OnlineClassTeacher::create(['online_class_us_id'=>$online_class->id,'teacher_id'=>$request->teacher_id[$i],'created_by'=>Auth::id()]);
                 }
+                $i++;
             }
         }
         return $this->returnWithSuccessRedirect('Data store successfuly','online_class_us/index/'.$request->school_id);
@@ -290,6 +290,8 @@ class OnlineClassUsController extends Controller
         if(!Auth::is('student')){
             return redirect('/home');
         }
+        $school=School::where(['id'=>Auth::getSchool(),'online_class_access'=>1])->first();
+        if ($school) {
          $student_details=student::where(['school_id'=>Auth::getSchool(),'user_id'=>Auth::id()])->first();
          $online_class=OnlineClassUs::with('online_class_teacher')->where(['school_id'=>Auth::getSchool()])
          ->whereIn('master_class_id',[$student_details->master_class_id,'0'])
@@ -300,6 +302,9 @@ class OnlineClassUsController extends Controller
          ->get();
         //dd($online_class);
         return view('backEnd.online_class_us.student_class',compact('online_class'));
+        }else{
+            return $this->returnWithErrorRedirect('You have no permission for conference !','/home');
+        }
     }
     public function staff_class()
     {
@@ -308,10 +313,15 @@ class OnlineClassUsController extends Controller
         }else{
             return redirect('/home');
         }
+        $school=School::where(['id'=>Auth::getSchool(),'online_class_access'=>1])->first();
+        if ($school) {
         $teacher_class=OnlineClassTeacher::where(['teacher_id'=>Auth::id()])->get();
         $conferance=OnlineClassUs::where(['school_id'=>Auth::getSchool()])->whereIn('type',[2,3])->get();
         //dd($teacher_class);
         return view('backEnd.online_class_us.teacher_class',compact('teacher_class','conferance'));
+        }else{
+            return $this->returnWithErrorRedirect('You have no permission for conference !','/home');
+        }
     }
 
     public function school_class()
@@ -320,10 +330,15 @@ class OnlineClassUsController extends Controller
         if(!Auth::is('admin')){
             return redirect('/home');
         }
+        $school=School::where(['id'=>Auth::getSchool(),'online_class_access'=>1])->first();
+        if ($school) {
         $school_id=Auth::getSchool();
         $online_class=OnlineClassUs::with('masterClass','online_class_teacher')->where(['school_id'=>Auth::getSchool()])->orderBy('master_class_id', 'ASC')->get();
         //dd($online_class);
         return view('backEnd.online_class_us.index',compact('online_class','school_id'));
+        }else{
+            return $this->returnWithErrorRedirect('You have no permission for conference !','/home');
+        }
     }
 
     
