@@ -1,3 +1,4 @@
+<?php //dd('we are working on this page')?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,13 +25,13 @@
             </div>
           </div>
         </div>
-      	<div class="col-md-4 text-center">
-      		<h3>{{$school->user->name}}</h3>
-      		<p>Established: {{date('Y', strtotime($school->established_date))}}</p>
-      		<h5>{{$school->address}}</h5>
-      		<h3>{{$exam->name}} - {{$data['exam_year']}}</h3>
-      		<h3>Tabulation Sheet</h3>
-      	</div>
+        <div class="col-md-4 text-center">
+          <h3>{{$school->user->name}}</h3>
+          <p>Established: {{date('Y', strtotime($school->established_date))}}</p>
+          <h5>{{$school->address}}</h5>
+          <h3>{{$exam->name}} - {{$data['exam_year']}}</h3>
+          <h3>Tabulation Sheet</h3>
+        </div>
         <div class="col-md-4">
           <div class="pull-right" style="margin-top:25px;">
             <table class="table table-bordered grade-sheet">
@@ -70,9 +71,9 @@
       </div>
       <div class="bg-logo">
           <div class="row">
-          	<div class="col-md-12 text-center">
-          		<p> {{$class->name}} Class, Section - {{$data['section']}}, Division - {{DB::table('group_classes')->where('id',$data['group_class_id'])->select('name')->first()->name}}, Shift - {{$data['shift']}} </p>
-          	</div>
+            <div class="col-md-12 text-center">
+              <p> {{$class->name}} Class, Section - {{$data['section']}}, Division - {{DB::table('group_classes')->where('id',$data['group_class_id'])->select('name')->first()->name}}, Shift - {{$data['shift']}} </p>
+            </div>
           </div>
 
           <div class="row">
@@ -113,6 +114,7 @@
                    $fail_results=$results; 
                   @endphp
                   @foreach($results as $key => $student_results)
+                  
                   @php
                   $student_results=$student_results->sortBy("subject_id");
                   $copulsary_results = collect($student_results)->where('subject_status','Compulsory')->groupBy(function($element){
@@ -133,9 +135,11 @@
                   $optional_total_marks=$optional_results->map(function($row){
                     return $row->sum('total_mark');
                   });
-
-                  $student = App\Student::with('user')->where(['school_id'=>Auth::getSchool(),'student_id'=>$key])->first();
+                    $st_id=(string)$key;
+                  $student = App\Student::with('user')->where(['school_id'=>Auth::getSchool()])->where('student_id',$st_id)->first();
+                  
                   @endphp
+                 
                   @php
                    $i=1;
                    foreach ($copulsary_results as $key=>$results) {
@@ -219,7 +223,8 @@
                     }
                   }
                   @endphp
-                  @if($position['gpa'][$student->student_id]!="0.00")
+                  <?php //dd($student['student_id']) ?>
+                  @if($position['gpa'][$student['student_id']]!="0.00")
                   <tr>
                     <td>#{{$index++}}</td>
                     <td class="student-info" style="width:280px;">
@@ -301,6 +306,7 @@
                     </td>
                   </tr>
                   @endif
+                  
                   @endforeach
 
                   @foreach($fail_results as $key => $student_results)
@@ -324,8 +330,8 @@
                   $optional_total_marks=$optional_results->map(function($row){
                     return $row->sum('total_mark');
                   });
-
-                  $student = App\Student::with('user')->where(['school_id'=>Auth::getSchool(),'student_id'=>$key])->first();
+                     $st_id=(string)$key;
+                  $student = App\Student::with('user')->where(['school_id'=>Auth::getSchool(),'student_id'=>$st_id])->first();
                   @endphp
                   @php
                    $i=1;
@@ -333,6 +339,7 @@
 
                       $subjects[$i++]=$results;
                    }
+                   
                    foreach ($subjects as $key => $subject){
                        if(count($subject)>1){
                        $name=str_replace(['1st letter', '2nd letter', '1st paper', '2nd paper', 'first paper', 'second paper','1st Letter', '2nd Letter', '1st Paper', '2nd Paper', 'first Paper', 'second Paper'], '', $subject[0]->subject_name);
@@ -366,7 +373,7 @@
                         $pr_pass_mark[$name]=($subject[0]->pr_pass_mark=='--'?0:$subject[0]->pr_pass_mark);
                        }
                     }
-                     
+                   
                   @endphp
 
                   @php
@@ -409,9 +416,12 @@
                         $op_pr_pass_mark[$name]=($subject[0]->pr_pass_mark=='--'?0:$subject[0]->pr_pass_mark);
                        }
                     }
+                    
                   }
                   @endphp
+                   
                   @if($position['gpa'][$student->student_id]=="0.00")
+                 
                   <tr>
                     <td>#{{$index++}}</td>
                     <td class="student-info" style="width:280px;">
@@ -494,6 +504,7 @@
                   </tr>
                   @endif
                   @endforeach
+                  
                 </tbody>
               </table>
             </div>

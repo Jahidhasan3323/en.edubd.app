@@ -42,14 +42,17 @@
                                         <span>{{$teacher->user->name.', ' }}</span>
                                 <?php  }  }  ?></td>                             
                             <td>
+                                @php
+                                    $class_subject = str_replace(' ','_',$row->subject);
+                                @endphp
                                 @if ($row->type==1)
-                                <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/{{$row->masterClass->name}}/{{$row->group}}/{{$row->shift}}/{{$row->subject}}">
+                                <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}-{{$row->masterClass->name}}-{{$row->group}}-{{$row->shift}}-{{$class_subject}}">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </a>
                                 @endif
                                
                                 @if ($row->type==3)
-                                    <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/guardian">
+                                    <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}-guardian">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                     </a>
                                 @endif

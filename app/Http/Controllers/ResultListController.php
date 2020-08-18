@@ -131,7 +131,6 @@ class ResultListController extends Controller
       
      $success_position_numbers=[];
      $fail_position_numbers=[];
-
       foreach($results as $res){
                $student_results=Result::where([
                 'school_id'=>Auth::getSchool(),
@@ -190,24 +189,28 @@ class ResultListController extends Controller
                 $total_marks=$copulsary_results->map(function($row){
                  return $row->sum('total_mark');
                 });
+                
                 foreach($copulsary_results as $subject=>$result){
                  if($ca_mark[$subject]>=$ca_pass_mark[$subject]&&$cr_mark[$subject]>=$cr_pass_mark[$subject]&&$mcq_mark[$subject]>=$mcq_pass_mark[$subject]&&$pr_mark>$pr_pass_mark[$subject]){
                    $sub_total=$sub_totals[$subject];
                    $total_mark=$total_marks[$subject];
-                   if($result[0]['subject_status']=='আবশ্যিক'){
+                   
+                   if($result[0]['subject_status']=='Compulsory'){
                     $total_gpa_compulsary[$subject]= Auth::calculateResult($sub_total,$total_mark)['gpa'];
+                    
                    }else{
                     $total_gpa_otional[$subject]= Auth::calculateResult($sub_total,$total_mark)['gpa']; 
                    }
                  }else{
-                   if($result[0]['subject_status']=='আবশ্যিক'){
+                     //dd($result[0]['subject_status']);
+                   if($result[0]['subject_status']=='Compulsory'){
                     $total_gpa_compulsary[$subject]=0;
+                    
                    }else{
                     $total_gpa_otional[$subject]=0; 
                    }
                  }
                 }
-
                 $op_gpa=(array_sum($total_gpa_otional)>2)?(array_sum($total_gpa_otional)-2):0;
                 $total_gpa=(array_sum($total_gpa_compulsary)+$op_gpa)/count($total_gpa_compulsary);
                 $total_gpa=($total_gpa>5)?5:$total_gpa;

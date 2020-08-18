@@ -52,12 +52,12 @@
                                 <td>
                                     
                                     @if ($row->type==2)
-                                        <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/teacher">
+                                        <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}-teacher">
                                         <span class="glyphicon glyphicon-eye-open"></span>
                                         </a>
                                     @endif
                                     @if ($row->type==3)
-                                        <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}/guardian">
+                                        <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$row->school->serial_no}}-guardian">
                                         <span class="glyphicon glyphicon-eye-open"></span>
                                         </a>
                                     @endif
@@ -109,19 +109,22 @@
                                 </td>
                                 <td>{{$online_class->subject }}</td> 
                                 <td>
+                                    @php
+                                        $class_subject = str_replace(' ','_',$online_class->subject);
+                                    @endphp
                                     @if ($online_class->type==1)
-                                    <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$online_class->school->serial_no}}/{{$online_class->masterClass->name}}/{{$online_class->group}}/{{$online_class->shift}}/{{$online_class->subject}}">
+                                    <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$online_class->school->serial_no}}-{{$online_class->masterClass->name}}-{{$online_class->group}}-{{$online_class->shift}}-{{$class_subject}}">
                                         <span class="glyphicon glyphicon-eye-open"></span>
                                     </a>
                                     @endif
                                 
                                     @if ($online_class->type==2)
-                                        <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$online_class->school->serial_no}}/teacher">
+                                        <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$online_class->school->serial_no}}-teacher">
                                         <span class="glyphicon glyphicon-eye-open"></span>
                                         </a>
                                     @endif
                                     @if ($online_class->type==3)
-                                        <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$online_class->school->serial_no}}/guardian">
+                                        <a target="_blank"  class="btn btn-info"  href="https://us.worldehsan.org/{{$online_class->school->serial_no}}-guardian">
                                         <span class="glyphicon glyphicon-eye-open"></span>
                                         </a>
                                     @endif
