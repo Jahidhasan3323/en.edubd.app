@@ -76,7 +76,7 @@
                         <div class="form-group {{$errors->has('master_class_id') ? 'has-error' : ''}}">
                             <label class="" for="master_class_id">Class <span class="star">*</span></label>
                             <div class="">
-                                <select class="form-control" name="master_class_id" id="master_class_id" data-validation="required" >
+                                <select class="form-control" name="master_class_id[]" id="master_class_id" data-validation="required" multiple>
                                     <option value="">Class</option>
                                     @if($classes)
                                         @foreach($classes as $class)

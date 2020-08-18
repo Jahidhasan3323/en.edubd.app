@@ -23,16 +23,25 @@ class QuestionController extends Controller
             return redirect('/home');
         }
         $tittle="MCQ";
-        $questions=Question::with('masterClass','user','subject')->where(['school_id'=> Auth::getSchool(),'user_id'=>Auth::id(),'type'=>1])->orderby('id','DESC')->groupby('subject_id')->get();
-        return view('backEnd.question.mcq.index',compact('questions','tittle'));
+        $class=Question::with('masterClass','user','subject')->where(['school_id'=> Auth::getSchool(),'user_id'=>Auth::id(),'type'=>1])->orderby('id','DESC')->groupby('master_class_id')->get();
+        return view('backEnd.question.mcq.class_list',compact('class','tittle'));
     }
-    public function subjectwiseQuestion($subject_id)
+    public function subject_list($class_id)
     {
         if(!Auth::is('admin') && !Auth::is('teacher') && !Auth::is('student')){
             return redirect('/home');
         }
         $tittle="MCQ";
-        $questions=Question::with('options','user')->where(['school_id'=> Auth::getSchool(),'user_id'=>Auth::id(),'type'=>1,'subject_id'=>$subject_id])->orderby('id','DESC')->get();
+        $questions=Question::with('masterClass','user','subject')->where(['school_id'=> Auth::getSchool(),'user_id'=>Auth::id(),'master_class_id'=>$class_id, 'type'=>1])->orderby('id','DESC')->groupby('subject_id')->get();
+        return view('backEnd.question.mcq.index',compact('questions','tittle'));
+    }
+    public function subjectwiseQuestion($class_id, $subject_id)
+    {
+        if(!Auth::is('admin') && !Auth::is('teacher') && !Auth::is('student')){
+            return redirect('/home');
+        }
+        $tittle="MCQ";
+        $questions=Question::with('options','user')->where(['school_id'=> Auth::getSchool(),'user_id'=>Auth::id(),'type'=>1,'subject_id'=>$subject_id,'master_class_id'=>$class_id])->orderby('id','DESC')->get();
         return view('backEnd.question.mcq.subjectwise_question',compact('questions','tittle'));
     }
 
@@ -66,7 +75,7 @@ class QuestionController extends Controller
         if(!Auth::is('admin') && !Auth::is('teacher') && !Auth::is('student')){
             return redirect('/home');
         }
-        $data=$request->except('option');
+         $data=$request->except('option','master_class_id');
 
         $this->validate($request, [
             'question' => 'required',
@@ -82,16 +91,19 @@ class QuestionController extends Controller
            $image_file=$this->imagesProcessing1($imageFile,'question/',350,350);
            $data['file'] = $image_file;
         }
-        $question=Question::create($data);
-        if($request->option){
-            $i=1;
-            foreach ($request->option as $option) {
-                if($option){
-                    QuestionOption::insert(['option'=>$option,'serial'=>$i,'question_id'=>$question->id]);
-                }
+        foreach ($request->master_class_id as $row) {
+            $data['master_class_id']=$row;
+            $question=Question::create($data);
+                if($request->option){
+                    $i=1;
+                    foreach ($request->option as $option) {
+                        if($option){
+                            QuestionOption::insert(['option'=>$option,'serial'=>$i,'question_id'=>$question->id]);
+                        }
 
-                $i++;
-            }
+                        $i++;
+                    }
+                }
         }
         return $this->returnWithSuccess('Your information added successfully !');
 
@@ -193,16 +205,25 @@ class QuestionController extends Controller
             return redirect('/home');
         }
         $tittle="Written";
-        $questions=Question::with('masterClass','subject')->where(['school_id'=> Auth::getSchool(),'user_id'=>Auth::id(),'type'=>2])->orderby('id','DESC')->groupby('subject_id')->get();
-        return view('backEnd.question.written.index',compact('questions','tittle'));
+        $class=Question::with('masterClass','user','subject')->where(['school_id'=> Auth::getSchool(),'user_id'=>Auth::id(),'type'=>2])->orderby('id','DESC')->groupby('master_class_id')->get();
+        return view('backEnd.question.written.class_list',compact('class','tittle'));
     }
-    public function subjectwiseWrittenQuestion($subject_id)
+    public function subjectListWritten($class_id)
     {
         if(!Auth::is('admin') && !Auth::is('teacher') && !Auth::is('student')){
             return redirect('/home');
         }
         $tittle="Written";
-        $questions=Question::with('options','user')->where(['school_id'=> Auth::getSchool(),'user_id'=>Auth::id(),'type'=>2,'subject_id'=>$subject_id])->orderby('id','DESC')->get();
+        $questions=Question::with('masterClass','subject')->where(['school_id'=> Auth::getSchool(),'user_id'=>Auth::id(),'master_class_id'=>$class_id,'type'=>2])->orderby('id','DESC')->groupby('subject_id')->get();
+        return view('backEnd.question.written.index',compact('questions','tittle'));
+    }
+    public function subjectwiseWrittenQuestion($class_id,$subject_id)
+    {
+        if(!Auth::is('admin') && !Auth::is('teacher') && !Auth::is('student')){
+            return redirect('/home');
+        }
+        $tittle="Written";
+        $questions=Question::with('options','user')->where(['school_id'=> Auth::getSchool(),'user_id'=>Auth::id(),'type'=>2,'master_class_id'=>$class_id,'subject_id'=>$subject_id])->orderby('id','DESC')->get();
         return view('backEnd.question.written.subjectwise_question',compact('questions','tittle'));
     }
 
@@ -235,7 +256,7 @@ class QuestionController extends Controller
         if(!Auth::is('admin') && !Auth::is('teacher') && !Auth::is('student')){
             return redirect('/home');
         }
-        $data=$request->except('option');
+        $data=$request->except('master_class_id');
 
         $this->validate($request, [
             'question' => 'required',
@@ -251,7 +272,10 @@ class QuestionController extends Controller
            $data['file'] = $image_file;
         }
 
-        $question=Question::create($data);
+        foreach ($request->master_class_id as $row) {
+            $data['master_class_id']=$row;
+            $question=Question::create($data);
+        }
 
 
         return $this->returnWithSuccess('Your information added successfully !');

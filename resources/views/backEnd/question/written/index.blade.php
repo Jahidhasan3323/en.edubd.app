@@ -74,7 +74,6 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Class</th>
                     <th>Subject</th>
                     <th>Action</th>
                 </tr>
@@ -86,10 +85,9 @@
                     @foreach($questions as $question)
                         <tr>
                             <td>{{$x}}</td>
-                            <td>{{$question->masterClass->name}}</td>
                             <td>{{$question->subject->subject_name}}</td>
                             <td>
-                              <a style="margin-bottom: 10px;" href="{{url('/written/question/subjectwise/'.$question->subject_id)}}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span></a>
+                              <a style="margin-bottom: 10px;" href="{{url('/written/question/subjectwise/'.$question->master_class_id.'/'.$question->subject_id)}}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span></a>
 
                             </td>
                         </tr>

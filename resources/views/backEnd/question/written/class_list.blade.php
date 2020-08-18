@@ -1,6 +1,6 @@
 @extends('backEnd.master')
 
-@section('mainTitle', 'Question List')
+@section('mainTitle', 'Lists of Questions')
 @section('question', 'active')
 @section('head_section')
 
@@ -74,20 +74,21 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Subject</th>
+                    <th>Class</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @if(isset($questions))
+                @if(isset($class))
 
-                    @php($x = Get::serial($questions))
-                    @foreach($questions as $question)
+                    @php($x = Get::serial($class))
+
+                    @foreach($class as $row)
                         <tr>
                             <td>{{$x}}</td>
-                            <td>{{$question->subject->subject_name}}</td>
+                            <td>{{$row->masterClass->name}}</td>
                             <td>
-                              <a style="margin-bottom: 10px;" href="{{url('/mcq/question/subjectwise/'.$question->master_class_id.'/'.$question->subject_id)}}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span></a>
+                              <a style="margin-bottom: 10px;" href="{{url('/written/question/subject_list/'.$row->master_class_id)}}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span></a>
 
                             </td>
                         </tr>

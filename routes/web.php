@@ -1012,7 +1012,8 @@ Route::group(['middleware' => 'auth','prefix' => 'important_form', 'as'=>'import
 //question mcq
 Route::group(['middleware' => 'auth','prefix' => 'mcq/question', 'as'=>'mcq.question'], function(){
     Route::get('/','QuestionController@index')->name('');
-    Route::get('/subjectwise/{subject_id}','QuestionController@subjectwiseQuestion')->name('.subjectwise');
+    Route::get('/subject_list/{class_id}','QuestionController@subject_list')->name('subject_list');
+    Route::get('/subjectwise/{class_id}/{subject_id}','QuestionController@subjectwiseQuestion')->name('.subjectwise');
     Route::get('/student','QuestionController@mcqStudent')->name('.student');
     Route::get('/create','QuestionController@create')->name('.create');
     Route::post('/create','QuestionController@store')->name('.create');
@@ -1027,7 +1028,8 @@ Route::group(['middleware' => 'auth','prefix' => 'mcq/question', 'as'=>'mcq.ques
 //question written
 Route::group(['middleware' => 'auth','prefix' => 'written/question', 'as'=>'written.question'], function(){
     Route::get('/','QuestionController@indexWritten')->name('');
-    Route::get('/subjectwise/{subject_id}','QuestionController@subjectwiseWrittenQuestion')->name('subjectwise');
+    Route::get('/subject_list/{class_id}','QuestionController@subjectListWritten')->name('subject_list');
+    Route::get('/subjectwise/{class_id}/{subject_id}','QuestionController@subjectwiseWrittenQuestion')->name('subjectwise');
     Route::get('/student','QuestionController@writtenStudent')->name('.student');
     Route::get('/create','QuestionController@createWritten')->name('.create');
     Route::post('/create','QuestionController@storeWritten')->name('.create');
